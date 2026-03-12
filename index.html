@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RWMS - YEAR 7 BUSINESS STUDIES EXAM</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #27ae60;
+            --accent: #e74c3c;
+            --bg: #f4f7f6;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: var(--bg);
+            color: #333;
+            line-height: 1.6;
+        }
+        .header {
+            text-align: center;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+            border-top: 10px solid var(--primary);
+        }
+        h1 { color: var(--primary); margin: 0; font-size: 1.8em; }
+        .timer-wrap {
+            position: sticky;
+            top: 10px;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        #timer {
+            background: var(--accent);
+            color: white;
+            padding: 12px 40px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.5em;
+            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4);
+        }
+        .q-card {
+            background: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--secondary);
+        }
+        .options label {
+            display: block;
+            margin: 12px 0;
+            padding: 15px;
+            background: #f9f9f9;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .options label:hover { background: #e8f6ef; border-color: var(--secondary); }
+        input[type="radio"] { margin-right: 15px; transform: scale(1.3); }
+        
+        .feedback {
+            margin-top: 15px;
+            padding: 12px;
+            background: #d4edda;
+            color: #155724;
+            font-weight: bold;
+            border-radius: 6px;
+            display: none;
+            border-left: 4px solid #28a745;
+        }
+        
+        #submit-btn {
+            display: block;
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.3em;
+            cursor: pointer;
+            margin: 40px auto;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        #submit-btn:hover { background: #1a252f; transform: translateY(-2px); }
+        
+        #result-box {
+            display: none;
+            text-align: center;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            border: 4px solid var(--secondary);
+            margin-bottom: 30px;
+        }
+        .score-val { font-size: 4em; color: var(--secondary); font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>ROYAL WUNDERKIND MODEL SCHOOL</h1>
+    <p><strong>TERM TWO EXAMINATION | 2025/2026 ACADEMIC SESSION</strong></p>
+    <p>Class: Year 7 | Subject: BUSINESS STUDIES</p>
+    <p>Duration: 45 Minutes</p>
+</div>
+
+<div class="timer-wrap">
+    <div id="timer">45:00</div>
+</div>
+
+<form id="examForm"></form>
+
+<button id="submit-btn" onclick="submitExam()">Finish and Submit Examination</button>
+
+<div id="result-box">
+    <h2>Examination Result</h2>
+    <div class="score-val" id="finalScore">0 / 60</div>
+    <p id="percent" style="font-size: 1.5em;"></p>
+    <p>Scroll down to review correct answers for your learning.</p>
+</div>
+
+<script>
+const examData = [
+    { q: "_________ is the distribution and exchange of goods and services.", o: ["insurance", "commerce", "banking", "book keeping"], c: 1 },
+    { q: "Which of these is not a reward for a positive word attitude?", o: ["respected by everyone", "promotion", "improved relationship", "suspension from work"], c: 3 },
+    { q: "The main objective of setting up a business is to make", o: ["loss", "profit", "friends", "enemies"], c: 1 },
+    { q: "Arriving at a place at an agreed time is known as______", o: ["right time", "punctuality", "tardiness", "regularity"], c: 1 },
+    { q: "Which of the following is NOT a reward for being truthful?", o: ["good reputation", "bad reputation", "promotion", "useful suggestion"], c: 1 },
+    { q: "The two major divisions of trade are _____and ______", o: ["commerce and industry", "home and foreign", "import and export", "wholesale and retail"], c: 1 },
+    { q: "Keeping records of all staff including transfers, promotions, appraisal, etc are functions of _________ department.", o: ["production", "personnel", "sales", "transport"], c: 1 },
+    { q: "Which of the following is NOT a professional in Business studies?", o: ["banker", "secretary", "lawyer", "economist"], c: 2 },
+    { q: "A company gets the following as a reward of adhering to honesty except _______", o: ["good relationship", "loyalty", "patronage", "dubious dealing"], c: 3 },
+    { q: "______ is a place where buyers and sellers come together to exchange goods and services", o: ["society", "market", "school", "House"], c: 1 },
+    { q: "Import and export are components of _______", o: ["home trade", "distribution", "commerce", "foreign trade"], c: 3 },
+    { q: "All human efforts physically or mentally directed towards the production of wealth is _____", o: ["land", "labor", "capital", "entrepreneur"], c: 1 },
+    { q: "All chemicals sold in Nigeria must be registered with _________", o: ["NBTE", "NABTEB", "NAFDAC", "House of Assembly"], c: 2 },
+    { q: "Chemicals that are environmental friendly are called _________________", o: ["soluble", "solvent", "suitable", "non suitable"], c: 2 },
+    { q: "All except one are forms of business", o: ["co-operative", "partnership", "public/private company", "Nigeria labour congress"], c: 3 },
+    { q: "The production of goods and supply of services require __________", o: ["land, labor, management, money", "land, labour, money and raw materials", "land, labour, cash and enterprise", "land, labour, capital and entrepreneurs"], c: 3 },
+    { q: "Ethics refer to ______", o: ["values of the school", "values and rules of a school", "values, rules and behavior that govern people", "values and rules governing school exams"], c: 2 },
+    { q: "All except one are factors that cause people to steal or tell lies", o: ["cover up bad behavior", "dishonesty", "to become popular", "save face over promise"], c: 2 },
+    { q: "Proprietorship mean ---------", o: ["one", "ownership", "business", "work"], c: 1 },
+    { q: "All except one are the features of an entrepreneur", o: ["brings the capital", "is fixed asset", "determines production", "employs labor"], c: 1 },
+    { q: "A consumer must derive ______ from every goods used.", o: ["joy", "satisfaction", "asset", "product"], c: 1 },
+    { q: "The following are consequences of lack of consumer education except", o: ["bad purchase", "good information", "price exploitation", "waste of resources"], c: 1 },
+    { q: "_______ is the reward of an entrepreneur.", o: ["salaries/wages", "rent", "profit", "interest"], c: 2 },
+    { q: "Entrepreneurship brings about _________ in the economy", o: ["growth", "building", "books", "laws"], c: 0 },
+    { q: "If chemicals are not properly handled, they could cause the following except ________", o: ["harm", "happiness", "burn", "death"], c: 1 },
+    { q: "Organisation formed by a group to pool resources together for their benefits", o: ["partnership", "limited lability", "cooperative societies", "public enterprise"], c: 2 },
+    { q: "LTD means -----------", o: ["limited transferable document", "limited liable company", "legal limited company", "limited liabilities company"], c: 3 },
+    { q: "A person who has shares in a company is called a/an", o: ["shareholder", "Owner", "supervisor", "manager"], c: 0 },
+    { q: "Accurate keeping of record is one of books keeping --------", o: ["importance", "ethics", "problem", "drames"], c: 0 },
+    { q: "Which factor receives the reward of interest?", o: ["Land", "Labour", "Capital", "Enterpreneur"], c: 2 },
+    { q: "Factors of production are also called ________ of production", o: ["agents", "owners", "givers", "friends"], c: 0 },
+    { q: "Factors provided by God and man are rewarded with _____ and ______ accordingly", o: ["wages and profit", "rent and wages", "rent and interest", "Profit and salaries"], c: 1 },
+    { q: "_____ is defined as wealth set aside for the production of more wealth", o: ["Land", "Labour", "Capital", "Enterpreneur"], c: 2 },
+    { q: "A bridge engineer is involved in ____ occupation.", o: ["Manufacturing", "Constructive", "Extractive", "Commercial"], c: 1 },
+    { q: "______ is what a person does in order to earn a living.", o: ["Teaching", "Music", "Occupation", "Labour"], c: 2 },
+    { q: "Activities concerned with enabling products move from factory to final consumers.", o: ["Extractive", "direct services", "commercial", "Manufacturing"], c: 2 },
+    { q: "A banker is involved in ____ occupation.", o: ["extractive", "manufacturing", "constructive", "commercial"], c: 3 },
+    { q: "Term used when players in a business play according to rules without cheating.", o: ["Hard work", "co-operation", "obedience", "fair play"], c: 3 },
+    { q: "One of the following is NOT an attribute of fair play.", o: ["reliability", "not being nepotistic", "truthfulness", "cleverness"], c: 3 },
+    { q: "Attributes of a fruitful person include all EXCEPT", o: ["avoiding lies", "Not covering evil", "Standing by truth", "Reading minds of people"], c: 3 },
+    { q: "List of licensed chemical sellers can be obtained from _____ and _____", o: ["NAFDAC and EFCC", "EFCC and SON", "NAFDAC and SON", "CBN and UB"], c: 2 },
+    { q: "_____ is someone given permit to import, buy and sell chemicals?", o: ["licensed vendor", "agent", "retailer", "consumer"], c: 0 },
+    { q: "The reward to the entrepreneur as a factor of production is ______", o: ["risk", "money", "Profit", "Capital"], c: 2 },
+    { q: "Facilities for self-employment classified into environments except", o: ["economic", "social", "Advertising", "natural"], c: 2 },
+    { q: "Which of the following is NOT a member of the group?", o: ["Land", "Transport", "Labour", "Entrepreneur"], c: 1 },
+    { q: "The entrepreneur organizes", o: ["all factors", "Only land/capital", "land and labour", "only bank loans"], c: 0 },
+    { q: "Which business organization assists the entrepreneur in risk-taking?", o: ["Transportation", "Banking", "Insurance", "Advertising"], c: 2 },
+    { q: "Unit that must publish financial statements in national newspapers is", o: ["Partnership", "Private company", "Public Company", "Sole proprietorship"], c: 2 },
+    { q: "Business that are separate from their owners (legal entities) are", o: ["Partnership/Sole", "Partnership/Private", "Sole/Public", "Private and public companies"], c: 3 },
+    { q: "The business owner who does not share profit with anybody is", o: ["Sole trader", "Partnership", "Private company", "Share holders"], c: 0 },
+    { q: "______ is formed to carter for the welfare of its members", o: ["Partnership", "Co-operative society", "Sole proprietorship", "Public company"], c: 1 },
+    { q: "Dividend is a share of profit to ______", o: ["Debtors", "Creditors", "Partners", "shareholders"], c: 3 },
+    { q: "____ makes final use of finished products", o: ["Producer", "Wholesaler", "Retailer", "Consumer"], c: 3 },
+    { q: "Consumers need education because of", o: ["risk in consumption", "Money they spend", "Advertisement", "Transportation"], c: 0 },
+    { q: "________ enables consumers to make wise choices.", o: ["Consumer education", "Retailer", "Manufacturer", "Marketing"], c: 0 },
+    { q: "Toxic chemicals are", o: ["harmful to man", "suitable for food production", "suitable for fish farming", "suitable for preservation"], c: 0 },
+    { q: "Not a reason for monitoring chemicals:", o: ["safety gadgets", "ensure not sold in residential area", "evacuate from harmless chemical", "ensure non-diversion"], c: 2 },
+    { q: "Name used to describe the recording of cash and credit transactions", o: ["Records", "Bookkeeping", "Bookkeeper", "Accounting"], c: 1 },
+    { q: "From bookkeeping a businessman can find out following except________", o: ["goods purchased", "goods sold", "expenses", "amount of tax to be paid"], c: 3 },
+    { q: "A cash transaction is one that", o: ["payment with cash/cheque", "payment with cheque", "cheque only", "paying at future date"], c: 0 }
+];
+
+const form = document.getElementById('examForm');
+examData.forEach((item, i) => {
+    const div = document.createElement('div');
+    div.className = 'q-card';
+    div.innerHTML = `
+        <h3>${i + 1}. ${item.q}</h3>
+        <div class="options">
+            ${item.o.map((opt, idx) => `
+                <label><input type="radio" name="q${i}" value="${idx}"> ${String.fromCharCode(65 + idx)}. ${opt}</label>
+            `).join('')}
+        </div>
+        <div class="feedback" id="ans-${i}">Correct Answer: ${item.o[item.c]}</div>
+    `;
+    form.appendChild(div);
+});
+
+let timeLeft = 45 * 60;
+const timerEl = document.getElementById('timer');
+const clock = setInterval(() => {
+    let m = Math.floor(timeLeft / 60);
+    let s = timeLeft % 60;
+    timerEl.innerText = `${m}:${s < 10 ? '0' : ''}${s}`;
+    if (timeLeft <= 0) { clearInterval(clock); submitExam(); }
+    timeLeft--;
+}, 1000);
+
+function submitExam() {
+    clearInterval(clock);
+    document.getElementById('submit-btn').disabled = true;
+    let score = 0;
+
+    examData.forEach((item, i) => {
+        const selected = document.querySelector(`input[name="q${i}"]:checked`);
+        document.getElementById(`ans-${i}`).style.display = 'block';
+        if (selected && parseInt(selected.value) === item.c) score++;
+    });
+
+    document.getElementById('result-box').style.display = 'block';
+    document.getElementById('finalScore').innerText = `${score} / 60`;
+    document.getElementById('percent').innerText = "Score Percentage: " + Math.round((score/60)*100) + "%";
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
