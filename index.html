@@ -1,243 +1,413 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RWMS - YEAR 7 BUSINESS STUDIES EXAM</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>CULTURAL AND CREATIVE ART EXAMINATION CBT</title>
     <style>
-        :root {
-            --primary: #2c3e50;
-            --secondary: #27ae60;
-            --accent: #e74c3c;
-            --bg: #f4f7f6;
-        }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: Arial, sans-serif;
             max-width: 900px;
-            margin: 20px auto;
+            margin: 30px auto;
             padding: 20px;
-            background-color: var(--bg);
-            color: #333;
             line-height: 1.6;
         }
-        .header {
-            text-align: center;
-            background: white;
+        #start-screen, #quiz, #result {
+            border: 1px solid #ccc;
             padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            margin-bottom: 30px;
-            border-top: 10px solid var(--primary);
-        }
-        h1 { color: var(--primary); margin: 0; font-size: 1.8em; }
-        .timer-wrap {
-            position: sticky;
-            top: 10px;
-            z-index: 1000;
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
+            border-radius: 8px;
+            background: #f9f9f9;
         }
         #timer {
-            background: var(--accent);
-            color: white;
-            padding: 12px 40px;
-            border-radius: 50px;
+            font-size: 1.4em;
             font-weight: bold;
-            font-size: 1.5em;
-            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4);
-        }
-        .q-card {
-            background: white;
-            padding: 25px;
+            color: #d32f2f;
             margin-bottom: 20px;
-            border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            border-left: 5px solid var(--secondary);
+            text-align: center;
+        }
+        .question {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
         }
         .options label {
             display: block;
-            margin: 12px 0;
-            padding: 15px;
-            background: #f9f9f9;
-            border: 1px solid #eee;
-            border-radius: 8px;
+            margin: 10px 0;
             cursor: pointer;
-            transition: all 0.2s;
         }
-        .options label:hover { background: #e8f6ef; border-color: var(--secondary); }
-        input[type="radio"] { margin-right: 15px; transform: scale(1.3); }
-        
-        .feedback {
-            margin-top: 15px;
-            padding: 12px;
-            background: #d4edda;
-            color: #155724;
-            font-weight: bold;
-            border-radius: 6px;
-            display: none;
-            border-left: 4px solid #28a745;
-        }
-        
-        #submit-btn {
-            display: block;
-            width: 100%;
-            max-width: 400px;
-            padding: 20px;
-            background: var(--primary);
-            color: white;
+        button {
+            padding: 12px 30px;
+            font-size: 1.1em;
+            margin: 10px;
+            cursor: pointer;
             border: none;
-            border-radius: 10px;
-            font-size: 1.3em;
-            cursor: pointer;
-            margin: 40px auto;
+            border-radius: 5px;
+        }
+        #startBtn {
+            background: #4CAF50;
+            color: white;
+        }
+        #submitBtn {
+            background: #2196F3;
+            color: white;
+        }
+        .correct {
+            color: #2e7d32;
             font-weight: bold;
-            transition: 0.3s;
+            background: #e8f5e9;
+            padding: 6px 12px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-top: 4px;
         }
-        #submit-btn:hover { background: #1a252f; transform: translateY(-2px); }
-        
-        #result-box {
-            display: none;
+        .your-answer-was.wrong {
+            color: #c62828;
+        }
+        h1, h2 {
             text-align: center;
-            background: white;
-            padding: 40px;
-            border-radius: 15px;
-            border: 4px solid var(--secondary);
-            margin-bottom: 30px;
+            color: #333;
         }
-        .score-val { font-size: 4em; color: var(--secondary); font-weight: bold; }
+        #nameInput {
+            padding: 10px;
+            font-size: 1.1em;
+            width: 300px;
+            margin: 20px 0;
+        }
+        .hidden { display: none; }
     </style>
 </head>
 <body>
 
-<div class="header">
+<div id="start-screen">
     <h1>ROYAL WUNDERKIND MODEL SCHOOL</h1>
-    <p><strong>TERM TWO EXAMINATION | 2025/2026 ACADEMIC SESSION</strong></p>
-    <p>Class: Year 7 | Subject: BUSINESS STUDIES</p>
-    <p>Duration: 45 Minutes</p>
+    <h2>CULTURAL AND CREATIVE ART EXAMINATION CBT | 2025/2026 Academic Session | Year 7 | Objective Questions</h2>
+    <p style="text-align:center;">Time: 45 minutes</p>
+    <p>Enter your full name to begin the exam:</p>
+    <input type="text" id="nameInput" placeholder="Your Full Name" required />
+    <br>
+    <button id="startBtn">Start Exam</button>
 </div>
 
-<div class="timer-wrap">
-    <div id="timer">45:00</div>
+<div id="quiz" class="hidden">
+    <h2 id="candidateName"></h2>
+    <div id="timer">Time remaining: 45:00</div>
+    
+    <form id="quizForm">
+        <!-- Questions will be inserted here by JavaScript -->
+    </form>
+
+    <div style="text-align:center; margin-top:40px;">
+        <button id="submitBtn">Submit Exam</button>
+    </div>
 </div>
 
-<form id="examForm"></form>
-
-<button id="submit-btn" onclick="submitExam()">Finish and Submit Examination</button>
-
-<div id="result-box">
-    <h2>Examination Result</h2>
-    <div class="score-val" id="finalScore">0 / 60</div>
-    <p id="percent" style="font-size: 1.5em;"></p>
-    <p>Scroll down to review correct answers for your learning.</p>
+<div id="result" class="hidden">
+    <h2>Exam Result</h2>
+    <p id="resultText"></p>
+    <div id="detailedAnswers"></div>
+    <button onclick="location.reload()">Restart Exam</button>
 </div>
 
 <script>
-const examData = [
-    { q: "_________ is the distribution and exchange of goods and services.", o: ["insurance", "commerce", "banking", "book keeping"], c: 1 },
-    { q: "Which of these is not a reward for a positive word attitude?", o: ["respected by everyone", "promotion", "improved relationship", "suspension from work"], c: 3 },
-    { q: "The main objective of setting up a business is to make", o: ["loss", "profit", "friends", "enemies"], c: 1 },
-    { q: "Arriving at a place at an agreed time is known as______", o: ["right time", "punctuality", "tardiness", "regularity"], c: 1 },
-    { q: "Which of the following is NOT a reward for being truthful?", o: ["good reputation", "bad reputation", "promotion", "useful suggestion"], c: 1 },
-    { q: "The two major divisions of trade are _____and ______", o: ["commerce and industry", "home and foreign", "import and export", "wholesale and retail"], c: 1 },
-    { q: "Keeping records of all staff including transfers, promotions, appraisal, etc are functions of _________ department.", o: ["production", "personnel", "sales", "transport"], c: 1 },
-    { q: "Which of the following is NOT a professional in Business studies?", o: ["banker", "secretary", "lawyer", "economist"], c: 2 },
-    { q: "A company gets the following as a reward of adhering to honesty except _______", o: ["good relationship", "loyalty", "patronage", "dubious dealing"], c: 3 },
-    { q: "______ is a place where buyers and sellers come together to exchange goods and services", o: ["society", "market", "school", "House"], c: 1 },
-    { q: "Import and export are components of _______", o: ["home trade", "distribution", "commerce", "foreign trade"], c: 3 },
-    { q: "All human efforts physically or mentally directed towards the production of wealth is _____", o: ["land", "labor", "capital", "entrepreneur"], c: 1 },
-    { q: "All chemicals sold in Nigeria must be registered with _________", o: ["NBTE", "NABTEB", "NAFDAC", "House of Assembly"], c: 2 },
-    { q: "Chemicals that are environmental friendly are called _________________", o: ["soluble", "solvent", "suitable", "non suitable"], c: 2 },
-    { q: "All except one are forms of business", o: ["co-operative", "partnership", "public/private company", "Nigeria labour congress"], c: 3 },
-    { q: "The production of goods and supply of services require __________", o: ["land, labor, management, money", "land, labour, money and raw materials", "land, labour, cash and enterprise", "land, labour, capital and entrepreneurs"], c: 3 },
-    { q: "Ethics refer to ______", o: ["values of the school", "values and rules of a school", "values, rules and behavior that govern people", "values and rules governing school exams"], c: 2 },
-    { q: "All except one are factors that cause people to steal or tell lies", o: ["cover up bad behavior", "dishonesty", "to become popular", "save face over promise"], c: 2 },
-    { q: "Proprietorship mean ---------", o: ["one", "ownership", "business", "work"], c: 1 },
-    { q: "All except one are the features of an entrepreneur", o: ["brings the capital", "is fixed asset", "determines production", "employs labor"], c: 1 },
-    { q: "A consumer must derive ______ from every goods used.", o: ["joy", "satisfaction", "asset", "product"], c: 1 },
-    { q: "The following are consequences of lack of consumer education except", o: ["bad purchase", "good information", "price exploitation", "waste of resources"], c: 1 },
-    { q: "_______ is the reward of an entrepreneur.", o: ["salaries/wages", "rent", "profit", "interest"], c: 2 },
-    { q: "Entrepreneurship brings about _________ in the economy", o: ["growth", "building", "books", "laws"], c: 0 },
-    { q: "If chemicals are not properly handled, they could cause the following except ________", o: ["harm", "happiness", "burn", "death"], c: 1 },
-    { q: "Organisation formed by a group to pool resources together for their benefits", o: ["partnership", "limited lability", "cooperative societies", "public enterprise"], c: 2 },
-    { q: "LTD means -----------", o: ["limited transferable document", "limited liable company", "legal limited company", "limited liabilities company"], c: 3 },
-    { q: "A person who has shares in a company is called a/an", o: ["shareholder", "Owner", "supervisor", "manager"], c: 0 },
-    { q: "Accurate keeping of record is one of books keeping --------", o: ["importance", "ethics", "problem", "drames"], c: 0 },
-    { q: "Which factor receives the reward of interest?", o: ["Land", "Labour", "Capital", "Enterpreneur"], c: 2 },
-    { q: "Factors of production are also called ________ of production", o: ["agents", "owners", "givers", "friends"], c: 0 },
-    { q: "Factors provided by God and man are rewarded with _____ and ______ accordingly", o: ["wages and profit", "rent and wages", "rent and interest", "Profit and salaries"], c: 1 },
-    { q: "_____ is defined as wealth set aside for the production of more wealth", o: ["Land", "Labour", "Capital", "Enterpreneur"], c: 2 },
-    { q: "A bridge engineer is involved in ____ occupation.", o: ["Manufacturing", "Constructive", "Extractive", "Commercial"], c: 1 },
-    { q: "______ is what a person does in order to earn a living.", o: ["Teaching", "Music", "Occupation", "Labour"], c: 2 },
-    { q: "Activities concerned with enabling products move from factory to final consumers.", o: ["Extractive", "direct services", "commercial", "Manufacturing"], c: 2 },
-    { q: "A banker is involved in ____ occupation.", o: ["extractive", "manufacturing", "constructive", "commercial"], c: 3 },
-    { q: "Term used when players in a business play according to rules without cheating.", o: ["Hard work", "co-operation", "obedience", "fair play"], c: 3 },
-    { q: "One of the following is NOT an attribute of fair play.", o: ["reliability", "not being nepotistic", "truthfulness", "cleverness"], c: 3 },
-    { q: "Attributes of a fruitful person include all EXCEPT", o: ["avoiding lies", "Not covering evil", "Standing by truth", "Reading minds of people"], c: 3 },
-    { q: "List of licensed chemical sellers can be obtained from _____ and _____", o: ["NAFDAC and EFCC", "EFCC and SON", "NAFDAC and SON", "CBN and UB"], c: 2 },
-    { q: "_____ is someone given permit to import, buy and sell chemicals?", o: ["licensed vendor", "agent", "retailer", "consumer"], c: 0 },
-    { q: "The reward to the entrepreneur as a factor of production is ______", o: ["risk", "money", "Profit", "Capital"], c: 2 },
-    { q: "Facilities for self-employment classified into environments except", o: ["economic", "social", "Advertising", "natural"], c: 2 },
-    { q: "Which of the following is NOT a member of the group?", o: ["Land", "Transport", "Labour", "Entrepreneur"], c: 1 },
-    { q: "The entrepreneur organizes", o: ["all factors", "Only land/capital", "land and labour", "only bank loans"], c: 0 },
-    { q: "Which business organization assists the entrepreneur in risk-taking?", o: ["Transportation", "Banking", "Insurance", "Advertising"], c: 2 },
-    { q: "Unit that must publish financial statements in national newspapers is", o: ["Partnership", "Private company", "Public Company", "Sole proprietorship"], c: 2 },
-    { q: "Business that are separate from their owners (legal entities) are", o: ["Partnership/Sole", "Partnership/Private", "Sole/Public", "Private and public companies"], c: 3 },
-    { q: "The business owner who does not share profit with anybody is", o: ["Sole trader", "Partnership", "Private company", "Share holders"], c: 0 },
-    { q: "______ is formed to carter for the welfare of its members", o: ["Partnership", "Co-operative society", "Sole proprietorship", "Public company"], c: 1 },
-    { q: "Dividend is a share of profit to ______", o: ["Debtors", "Creditors", "Partners", "shareholders"], c: 3 },
-    { q: "____ makes final use of finished products", o: ["Producer", "Wholesaler", "Retailer", "Consumer"], c: 3 },
-    { q: "Consumers need education because of", o: ["risk in consumption", "Money they spend", "Advertisement", "Transportation"], c: 0 },
-    { q: "________ enables consumers to make wise choices.", o: ["Consumer education", "Retailer", "Manufacturer", "Marketing"], c: 0 },
-    { q: "Toxic chemicals are", o: ["harmful to man", "suitable for food production", "suitable for fish farming", "suitable for preservation"], c: 0 },
-    { q: "Not a reason for monitoring chemicals:", o: ["safety gadgets", "ensure not sold in residential area", "evacuate from harmless chemical", "ensure non-diversion"], c: 2 },
-    { q: "Name used to describe the recording of cash and credit transactions", o: ["Records", "Bookkeeping", "Bookkeeper", "Accounting"], c: 1 },
-    { q: "From bookkeeping a businessman can find out following except________", o: ["goods purchased", "goods sold", "expenses", "amount of tax to be paid"], c: 3 },
-    { q: "A cash transaction is one that", o: ["payment with cash/cheque", "payment with cheque", "cheque only", "paying at future date"], c: 0 }
+// Correct answers (letter → full text where needed)
+const correctAnswers = [
+    {q:1,  ans:"e", text:"mixed animal fat"},      // except
+    {q:2,  ans:"c", text:"sharp stone"},
+    {q:3,  ans:"d", text:"lion"},                  // except
+    {q:4,  ans:"c", text:"washing"},               // except
+    {q:5,  ans:"b", text:"Textile design"},
+    {q:6,  ans:"c", text:"court art"},
+    {q:7,  ans:"b", text:"Aina Onabolu"},
+    {q:8,  ans:"c", text:"He was active in the introduction of Art to the school curriculum."},
+    {q:9,  ans:"c", text:"dancing"},               // except
+    {q:10, ans:"b", text:"He paints sculptures"},  // except
+    {q:11, ans:"b", text:"painting"},              // except
+    {q:12, ans:"a", text:"Palm frond"},
+    {q:13, ans:"b", text:"Pottery"},
+    {q:14, ans:"a", text:"Rim"},
+    {q:15, ans:"b", text:"base"},
+    {q:16, ans:"c", text:"Imo state"},             // except
+    {q:17, ans:"e", text:"cocoons"},
+    {q:18, ans:"a", text:"Horizontal and vertical"},
+    {q:19, ans:"c", text:"bowl"},                  // except
+    {q:20, ans:"b", text:"Abeokuta"},
+    {q:21, ans:"a", text:"folding and dyeing"},
+    {q:22, ans:"c", text:"candle wax"},            // except
+    {q:23, ans:"b", text:"Pleating"},
+    {q:24, ans:"a", text:"clump"},
+    {q:25, ans:"b", text:"caustic soda"},
+    {q:26, ans:"b", text:"rubber gloves"},
+    {q:27, ans:"a", text:"clump method"},
+    {q:28, ans:"b", text:"wax"},
+    {q:29, ans:"c", text:"hot pressing iron"},     // except
+    {q:30, ans:"c", text:"wash the cloth"},
+    {q:31, ans:"c", text:"wash"},                  // except
+    {q:32, ans:"a", text:"Kite"},
+    {q:33, ans:"b", text:"No"},
+    {q:34, ans:"a", text:"paper"},
+    {q:35, ans:"c", text:"Pleating"},
+    {q:36, ans:"c", text:"bricks"},                // except
+    {q:37, ans:"b", text:"zig zags"},              // except (common shapes are squares, triangles, circles etc.)
+    {q:38, ans:"b", text:"decorations"},
+    {q:39, ans:"c", text:"dye solution"},          // except
+    {q:40, ans:"c", text:"many"},
+    {q:41, ans:"b", text:"Collage"},               // non-figurative example
+    {q:42, ans:"c", text:"coller"},
+    {q:43, ans:"b", text:"match sticks"},          // assuming common exception
+    {q:44, ans:"a", text:"Yes"},
+    {q:45, ans:"b", text:"to stick"},
+    {q:46, ans:"a", text:"moulding"},
+    {q:47, ans:"a", text:"Yes"},
+    {q:48, ans:"b", text:"Yes"},
+    {q:49, ans:"c", text:"newspaper"},
+    {q:50, ans:"a", text:"Yes"},
+    {q:51, ans:"c", text:"Edo state"},
+    {q:52, ans:"a", text:"Jasper"},
+    {q:53, ans:"c", text:"hook and eye"},
+    {q:54, ans:"b", text:"armpit"},                // except
+    {q:55, ans:"b", text:"Ile Ife"},
+    {q:56, ans:"b", text:"painting"},              // duplicate of Q11
+    {q:57, ans:"a", text:"Palm frond"},            // duplicate of Q12
+    {q:58, ans:"b", text:"Pottery"},               // duplicate of Q13
+    {q:59, ans:"a", text:"Rim"},                   // duplicate of Q14
+    {q:60, ans:"b", text:"base"}                   // duplicate of Q15
 ];
 
-const form = document.getElementById('examForm');
-examData.forEach((item, i) => {
-    const div = document.createElement('div');
-    div.className = 'q-card';
-    div.innerHTML = `
-        <h3>${i + 1}. ${item.q}</h3>
-        <div class="options">
-            ${item.o.map((opt, idx) => `
-                <label><input type="radio" name="q${i}" value="${idx}"> ${String.fromCharCode(65 + idx)}. ${opt}</label>
-            `).join('')}
-        </div>
-        <div class="feedback" id="ans-${i}">Correct Answer: ${item.o[item.c]}</div>
-    `;
-    form.appendChild(div);
-});
+const questions = [
+    "1. The things used for art by prehistoric men include all the following except ____________.",
+    "2. In pre-historic time, ____________ was used to make carvings on wood.",
+    "3. ____________ these animals were found in rock art except.",
+    "4. The following are forms of art except ____________.",
+    "5. ____________ is a form of visual art.",
+    "6. Traditional rulers were patrons of arts that make use of ____________.",
+    "7. ____________ is the father of arts in Africa.",
+    "8. Why was he regarded as the father of arts in Africa?",
+    "9. The following are forms of visual arts except ____________.",
+    "10. The characteristics of a graphic designer include the following except ____________.",
+    "11. The following are types of craft except __________",
+    "12. __________ is a material used in basketry.",
+    "13. __________ is the oldest form of craft.",
+    "14. __________ is a part of a basket.",
+    "15. The weaving of a basket starts from the __________",
+    "16. Cotton is cultivated in the following parts of Nigeria except __________.",
+    "17. Silk is made from the __________ of silk worms.",
+    "18. __________ and __________ are the two major types of loom.",
+    "19. The following are the items made from leather except __________.",
+    "20. The major city known for tie and dye is __________.",
+    "21. Tie and dye is the ____________________________ to a piece of cloth.",
+    "22. The following are the materials used for tie and dye except _____________________.",
+    "23. _______________ is a method of tying.",
+    "24. Pebbles are used for the _______________ method of tying.",
+    "25. The chemical used in mixing dye to relax its texture is called _______________",
+    "26. The _______________ are necessary when applying dye to a pieces of cloth.",
+    "27. Squeezing and tying of fabrics into ball shape is known as the _______________",
+    "28. Batik is made with _______________",
+    "29. The following materials are used for making batik except _____________________.",
+    "30. The first step in batik dyeing is to _____________________ so as to reduce the starch.",
+    "31. We do the following to produce a paper craft except _____________________.",
+    "32. _____________________ is an example of paper craft.",
+    "33. Paper craft is the creation of items from cutting and shaping of wood.",
+    "34. An important material used for folding is _____________________.",
+    "35. _____________________ is a simple method of folding paper.",
+    "36. Paper craft includes the production of the following except _____________________.",
+    "37. The following are shapes used for paper cut-out except _____________________.",
+    "38. Paper craft can be used for _____________________.",
+    "39. The following materials are needed to produce greeting cards except _____________________.",
+    "40. A polyhedron is a solid shape that has _____________________sides.",
+    "41. ________________________ is a form of non-figurative arts.",
+    "42. The French word for collage is ______________________________",
+    "43. The following are materials that can be used for collage except ______________________________.",
+    "44. Does collage making helps to develop creative instinct?",
+    "45. The word ‘coller’ in French means ______________________________",
+    "46. Paper-mâché is used for __________________________ items.",
+    "47. Paper-mâché is a French word.",
+    "48. Paper-mâché is paper pulp.",
+    "49. A major material used for producing paper-mâché is __________________________.",
+    "50. Torn newspaper is soaked in water to make paper-mâché.",
+    "51. Real stone beads are found in ________________________.",
+    "52. ________________________ is an example of bead.",
+    "53. The major material used in finishing a beaded necklace or armlet is ________________________.",
+    "54. Beads are used as adornments on all the following except ________________________.",
+    "55. The 'sege' bead is found in ________________________.",
+    "56. The following are types of craft except __________",
+    "57. __________ is a material used in basketry.",
+    "58. __________ is the oldest form of craft.",
+    "59. __________ is a part of a basket.",
+    "60. The weaving of a basket starts from the __________"
+];
+
+const options = [
+    ["a) blood of animal","b) earth colours","c) vegetables","d) clothings","e) mixed animal fat"],
+    ["a) knife","b) chalk","c) sharp stone","d) animal fat","e) brush"],
+    ["a) bisons","b) elephants","c) reindeers","d) lion","e) mammoths"],
+    ["a) basketry","b) weaving","c) washing","d) dyeing","e) leather crafts"],
+    ["a) Dance","b) Textile design","c) Music","d) Drama","e) Poetry"],
+    ["a) bead art","b) crown art","c) court art","d) palace art","e) shoe art"],
+    ["a) Cyprian Ekwensi","b) Aina Onabolu","c) Wole Soyinka","d) Kola Oyewo","e) Adams Smith"],
+    ["a) He studied in an Art school in London.","b) He taught arts in various schools.","c) He was active in the introduction of Art to the school curriculum.","d) He painted a lot of artworks that are in use now.","e) He taught a lot of people art."],
+    ["a) textile art","b) ceramic art","c) dancing","d) sculpture","e) video art"],
+    ["a) He brings idea to life","b) He paints sculptures","c) He creates attractive and colourful concept","d) He designs the pages of newspapers","e) He makes designs on cloth"],
+    ["a) pottery","b) painting","c) carving","d) leather craft","e) weaving"],
+    ["a) Palm frond","b) Leather","c) Animal skin","d) Clay","e) Stone"],
+    ["a) Leather work","b) Pottery","c) Weaving","d) Carving","e) Painting"],
+    ["a) Rim","b) Bottom","c) Lead","d) Top","e) Skin"],
+    ["a) rear","b) base","c) handle","d) side","e) top"],
+    ["a) Kwara state","b) Ondo state","c) Imo state","d) Katsina state","e) Niger state"],
+    ["a) root","b) stem","c) leaves","d) worms","e) cocoons"],
+    ["a) Horizontal and vertical","b) Circular and vertical","c) Large size and medium size","d) Root and stem","e) Side stakes and horizontal stakes"],
+    ["a) bags","b) shoes","c) bowl","d) saddler","e) adornment"],
+    ["a) Ondo State","b) Abeokuta","c) Ibadan","d) Ilorin","e) Ajaokuta"],
+    ["a) folding and dyeing","b) adding of colours","c) application of dye."],
+    ["a) dye stuff","b) caustic soda","c) candle wax"],
+    ["a) Clumping","b) Pleating","c) Clamping"],
+    ["a) clump","b) stitching","c) pleating"],
+    ["a) dylon","b) caustic soda","c) dye"],
+    ["a) nylon gloves","b) rubber gloves","c) surgical gloves"],
+    ["a) clump method","b) sandwiching","c) marbling method"],
+    ["a) thread","b) wax","c) raffia"],
+    ["a) wax","b) hotwater","c) hot pressing iron"],
+    ["a) iron the cloth","b) sun the cloth","c) wash the cloth"],
+    ["a) shape","b) cut","c) wash"],
+    ["a) Kite","b) Photography","c) Resist"],
+    ["a) Yes","b) No"],
+    ["a) paper","b) metal","c) rubber"],
+    ["a) Sewing","b) Tearing","c) Pleating"],
+    ["a) handfans","b) kites","c) bricks"],
+    ["a) squares","b) zig zags","c) triangles"],
+    ["a) sewing cloths","b) decorations","c) packing books"],
+    ["a) stiff paper","b) crayon","c) dye solution"],
+    ["a) few","b) some","c) many"],
+    ["a) Batik","b) Collage","c) Mosaic"],
+    ["a) coiller","b) cooler","c) coller"],
+    ["a) leaves","b) match sticks","c) bottle tops"],
+    ["a) Yes","b) No"],
+    ["a) to write .","b) to stick","c) to colour"],
+    ["a) moulding","b) painting","c) folding"],
+    ["a) Yes","b) No"],
+    ["a) No","b) Yes"],
+    ["a) cardboard paper","b) glossy paper","c) newspaper"],
+    ["a) Yes","b) No"],
+    ["a) Maiduguri","b) Benue state","c) Edo state"],
+    ["a) Jasper","b) Wood","c) Stone"],
+    ["a) paper","b) glass","c) hook and eye"],
+    ["a) legs","b) armpit","c) arm"],
+    ["a) Oyo State","b) Ile Ife","c) Kano State"],
+    // duplicates 56-60 same as 11,12,13,14,15
+    ["a) pottery","b) painting","c) carving","d) leather craft","e) weaving"],
+    ["a) Palm frond","b) Leather","c) Animal skin","d) Clay","e) Stone"],
+    ["a) Leather work","b) Pottery","c) Weaving","d) Carving","e) Painting"],
+    ["a) Rim","b) Bottom","c) Lead","d) Top","e) Skin"],
+    ["a) rear","b) base","c) handle","d) side","e) top"]
+];
+
+// ------------------ Logic ------------------
 
 let timeLeft = 45 * 60;
-const timerEl = document.getElementById('timer');
-const clock = setInterval(() => {
-    let m = Math.floor(timeLeft / 60);
-    let s = timeLeft % 60;
-    timerEl.innerText = `${m}:${s < 10 ? '0' : ''}${s}`;
-    if (timeLeft <= 0) { clearInterval(clock); submitExam(); }
-    timeLeft--;
-}, 1000);
+let timerId;
+let userName = "";
+
+const startScreen = document.getElementById("start-screen");
+const quizDiv     = document.getElementById("quiz");
+const resultDiv   = document.getElementById("result");
+const timerEl     = document.getElementById("timer");
+const nameDisplay = document.getElementById("candidateName");
+const quizForm    = document.getElementById("quizForm");
+const resultText  = document.getElementById("resultText");
+const detailed    = document.getElementById("detailedAnswers");
+
+document.getElementById("startBtn").onclick = () => {
+    userName = document.getElementById("nameInput").value.trim();
+    if (!userName) {
+        alert("Please enter your name!");
+        return;
+    }
+    nameDisplay.textContent = `Candidate: ${userName}`;
+    startScreen.classList.add("hidden");
+    quizDiv.classList.remove("hidden");
+    generateQuestions();
+    startTimer();
+};
+
+function startTimer() {
+    updateTimerDisplay();
+    timerId = setInterval(() => {
+        timeLeft--;
+        updateTimerDisplay();
+        if (timeLeft <= 0) {
+            clearInterval(timerId);
+            alert("Time's up! Submitting your exam...");
+            submitExam();
+        }
+    }, 1000);
+}
+
+function updateTimerDisplay() {
+    const min = Math.floor(timeLeft / 60);
+    const sec = timeLeft % 60;
+    timerEl.textContent = `Time remaining: ${min}:${sec < 10 ? "0" : ""}${sec}`;
+}
+
+function generateQuestions() {
+    let html = "";
+    questions.forEach((qText, i) => {
+        const qNum = i + 1;
+        html += `<div class="question">
+            <p><strong>${qText}</strong></p>
+            <div class="options">`;
+        
+        const opts = options[i];
+        opts.forEach((opt, j) => {
+            const letter = String.fromCharCode(97 + j); // a,b,c,...
+            html += `
+                <label>
+                    <input type="radio" name="q${qNum}" value="${letter}">
+                    ${opt}
+                </label>`;
+        });
+        html += `</div></div>`;
+    });
+    quizForm.innerHTML = html;
+}
+
+document.getElementById("submitBtn").onclick = submitExam;
 
 function submitExam() {
-    clearInterval(clock);
-    document.getElementById('submit-btn').disabled = true;
-    let score = 0;
+    clearInterval(timerId);
+    quizDiv.classList.add("hidden");
+    resultDiv.classList.remove("hidden");
 
-    examData.forEach((item, i) => {
-        const selected = document.querySelector(`input[name="q${i}"]:checked`);
-        document.getElementById(`ans-${i}`).style.display = 'block';
-        if (selected && parseInt(selected.value) === item.c) score++;
+    let score = 0;
+    let detailHtml = "<h3>Detailed Answers:</h3>";
+
+    questions.forEach((_, i) => {
+        const qNum = i + 1;
+        const selected = document.querySelector(`input[name="q${qNum}"]:checked`);
+        const userAns = selected ? selected.value : null;
+        const correct = correctAnswers.find(c => c.q === qNum);
+        const correctLetter = correct.ans;
+        const correctText = correct.text;
+
+        const isCorrect = userAns === correctLetter;
+        if (isCorrect) score++;
+
+        detailHtml += `
+            <div style="margin:20px 0;">
+                <strong>Question ${qNum}:</strong><br>
+                Your answer: ${userAns ? userAns.toUpperCase() : "(not answered)"} 
+                <span class="${isCorrect ? 'correct' : 'your-answer-was wrong'}">
+                    ${isCorrect ? "✔ Correct" : "✘ Wrong"}
+                </span><br>
+                <span class="correct">Correct answer: ${correctLetter.toUpperCase()} (${correctText})</span>
+            </div>`;
     });
 
-    document.getElementById('result-box').style.display = 'block';
-    document.getElementById('finalScore').innerText = `${score} / 60`;
-    document.getElementById('percent').innerText = "Score Percentage: " + Math.round((score/60)*100) + "%";
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    resultText.innerHTML = `
+        <strong>${userName}</strong>, you scored <span style="font-size:1.6em;color:#2e7d32;">${score}</span> / ${questions.length}<br>
+        (${((score / questions.length) * 100).toFixed(1)}%)
+    `;
+    detailed.innerHTML = detailHtml;
 }
 </script>
+
 </body>
 </html>
