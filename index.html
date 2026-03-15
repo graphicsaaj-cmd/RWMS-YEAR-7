@@ -3,165 +3,174 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>JSS 1 - CHRISTIAN RELIGIOUS STUDIES - SECOND TERM EXAM</title>
+  <title>Year 7 - CRS SECOND TERM EXAM</title>
   <style>
+    :root {
+      --primary-color: #1976d2;
+      --accent-color: #d32f2f;
+      --bg-color: #f0f2f5;
+    }
+
     body {
-      font-family: Arial, Helvetica, sans-serif;
-      margin: 20px;
-      background-color: #f8f9fa;
-      line-height: 1.5;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding-top: 80px; /* Space for the fixed navbar */
+      background-color: var(--bg-color);
+      line-height: 1.6;
     }
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      background: white;
-      padding: 25px;
-      border-radius: 8px;
+
+    /* Fixed Navigation Bar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 70px;
+      background-color: #ffffff;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      z-index: 1000;
+      padding: 0 10px;
+      box-sizing: border-box;
     }
-    h1, h2, h3 {
-      text-align: center;
-      color: #2c3e50;
-    }
-    .timer {
-      text-align: center;
-      font-size: 1.6em;
+
+    .nav-title {
       font-weight: bold;
-      color: #d32f2f;
-      margin: 20px 0;
-      padding: 12px;
-      border: 2px solid #d32f2f;
-      border-radius: 8px;
-      background: #ffebee;
+      color: var(--primary-color);
+      font-size: 1.1em;
+      display: none; /* Hidden on small screens */
     }
+
+    .timer-badge {
+      background: var(--accent-color);
+      color: white;
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-size: 1.2em;
+      font-weight: bold;
+      min-width: 150px;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(211, 47, 47, 0.2);
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+
+    .header-info {
+      text-align: center;
+      border-bottom: 2px solid #eee;
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+    }
+
     .question {
-      margin: 25px 0;
-      padding: 18px;
-      background: #f5faff;
-      border-left: 5px solid #1976d2;
-      border-radius: 6px;
+      margin-bottom: 30px;
+      padding: 20px;
+      background: #ffffff;
+      border: 1px solid #e0e0e0;
+      border-radius: 10px;
+      transition: transform 0.2s;
     }
+
+    .question:hover {
+      border-color: var(--primary-color);
+    }
+
     .question h3 {
       margin-top: 0;
-      color: #0d47a1;
+      font-size: 1.1em;
+      color: #333;
     }
+
     .options label {
       display: block;
-      margin: 10px 0;
-      cursor: pointer;
-    }
-    button {
-      padding: 12px 30px;
-      font-size: 1.1em;
-      margin: 10px;
-      cursor: pointer;
-      border: none;
-      border-radius: 6px;
-      color: white;
-    }
-    #startBtn {
-      background: #1976d2;
-    }
-    #startBtn:hover { background: #1565c0; }
-    #submitBtn {
-      background: #388e3c;
-    }
-    #submitBtn:hover { background: #2e7d32; }
-    #result {
-      margin-top: 30px;
-      padding: 20px;
-      border-radius: 8px;
-      display: none;
-    }
-    .correct {
-      background: #e8f5e9;
-      border-left: 5px solid #4caf50;
-      padding: 12px;
-      margin: 8px 0;
-    }
-    .your-answer-correct {
-      background: #c8e6c9;
-    }
-    .your-answer-wrong {
-      background: #ffebee;
-      text-decoration: line-through;
-      color: #c62828;
-    }
-    .score-summary {
-      font-size: 1.4em;
-      font-weight: bold;
-      text-align: center;
-      margin: 20px 0;
-    }
-    #intro, #quiz {
-      display: none;
-    }
-    #intro {
-      display: block;
-      text-align: center;
-      margin: 40px 0;
-    }
-    input[type="text"] {
+      margin: 12px 0;
       padding: 10px;
-      font-size: 1.1em;
-      width: 300px;
-      max-width: 90%;
-      margin: 15px 0;
+      border-radius: 5px;
+      background: #f8f9fa;
+      cursor: pointer;
+      transition: background 0.2s;
     }
-    .header {
-      text-align: center;
-      margin-bottom: 30px;
+
+    .options label:hover {
+      background: #eef2f7;
+    }
+
+    input[type="radio"] {
+      margin-right: 10px;
+    }
+
+    button {
+      padding: 12px 35px;
+      font-size: 1.1em;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: opacity 0.3s;
+    }
+
+    #startBtn { background: var(--primary-color); color: white; }
+    #submitBtn { background: #2e7d32; color: white; width: 100%; margin-top: 20px; }
+    button:hover { opacity: 0.9; }
+
+    #result { display: none; margin-top: 30px; }
+    
+    .correct-feedback { background: #e8f5e9; border-left: 5px solid #4caf50; padding: 15px; margin-top: 10px; border-radius: 4px; }
+    .wrong-feedback { background: #ffebee; border-left: 5px solid #f44336; padding: 15px; margin-top: 10px; border-radius: 4px; }
+
+    @media (min-width: 600px) {
+      .nav-title { display: block; }
     }
   </style>
 </head>
 <body>
 
+<div class="navbar" id="navbar" style="display: none;">
+  <div class="nav-title">Year 7 CRS Exam</div>
+  <div id="candidateDisplay" style="font-weight: 500;"></div>
+  <div class="timer-badge" id="timer">45:00</div>
+</div>
+
 <div class="container">
-
-  <div class="header">
-    <h1>SECOND TERM EXAMINATION</h1>
-    <h2>JSS 1 – CHRISTIAN RELIGIOUS STUDIES</h2>
-    <p><strong>SECTION A: OBJECTIVE QUESTIONS</strong><br>Choose the correct answer. Time allowed: 45 minutes</p>
-  </div>
-
-  <!-- Intro - Name Entry -->
   <div id="intro">
-    <h2>Welcome to the Examination</h2>
-    <p>Please enter your full name to begin:</p>
-    <input type="text" id="candidateName" placeholder="Full Name (e.g. Adebayo Tolu)" required>
-    <br>
-    <button id="startBtn">Start Examination</button>
-  </div>
-
-  <!-- Quiz (hidden initially) -->
-  <div id="quiz">
-    <div style="text-align:center; margin-bottom:15px;">
-      <strong>Candidate:</strong> <span id="displayName"></span>
+    <div class="header-info">
+      <h1>SECOND TERM EXAMINATION</h1>
+      <h2>Christian Religious Studies</h2>
+      <p>Time Allowed: 45 Minutes</p>
     </div>
-
-    <div class="timer" id="timer">Time Remaining: 45:00</div>
-
-    <form id="quizForm">
-      <!-- Questions generated here -->
-    </form>
-
-    <div style="text-align:center; margin:30px 0;">
-      <button id="submitBtn">Submit Exam</button>
-    </div>
-
-    <div id="result">
-      <h2>Examination Result</h2>
-      <div class="score-summary" id="scoreText"></div>
-      <div id="detailedAnswers"></div>
+    <div style="text-align: center;">
+      <h3>Welcome, Candidate</h3>
+      <p>Please enter your full name to begin the exam:</p>
+      <input type="text" id="candidateName" placeholder="Enter Full Name" style="padding: 12px; width: 80%; max-width: 300px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 5px;">
+      <br>
+      <button id="startBtn">Begin Examination</button>
     </div>
   </div>
 
+  <div id="quiz" style="display: none;">
+    <form id="quizForm"></form>
+    <button id="submitBtn">Submit Final Answers</button>
+  </div>
+
+  <div id="result">
+    <div class="header-info">
+        <h2>Examination Result</h2>
+        <div id="scoreText" style="font-size: 1.5em; color: var(--primary-color);"></div>
+    </div>
+    <div id="detailedAnswers"></div>
+  </div>
 </div>
 
 <script>
-// ──────────────────────────────────────────────
-// QUESTIONS & CORRECT ANSWERS
-// ──────────────────────────────────────────────
 const questions = [
   { q: "In the beginning, God created the heaven and the earth. This account is found in", options: ["Exodus", "Genesis", "Matthew", "Revelation"], correct: "B", ansText: "Genesis" },
   { q: "On the first day of creation, God created _____", options: ["animals", "light", "man", "stars"], correct: "B", ansText: "light" },
@@ -225,128 +234,82 @@ const questions = [
   { q: "Christians today are expected to ____", options: ["ignore repentance", "live in obedience to God", "disobey authority", "reject the Bible"], correct: "B", ansText: "live in obedience to God" }
 ];
 
-// ──────────────────────────────────────────────
-// TIMER (45 minutes = 2700 seconds)
-// ──────────────────────────────────────────────
 let timeLeft = 45 * 60;
 let timerInterval;
-const timerDisplay = document.getElementById("timer");
 
-function updateTimer() {
-  const min = Math.floor(timeLeft / 60);
-  const sec = timeLeft % 60;
-  timerDisplay.textContent = `Time Remaining: ${min}:${sec < 10 ? "0" : ""}${sec}`;
-
-  if (timeLeft <= 0) {
-    clearInterval(timerInterval);
-    timerDisplay.textContent = "Time's Up!";
-    submitExam(true);
-  }
-}
-
-function startTimer() {
-  updateTimer();
-  timerInterval = setInterval(() => {
-    timeLeft--;
-    updateTimer();
-  }, 1000);
-}
-
-// ──────────────────────────────────────────────
-// GENERATE QUESTIONS
-// ──────────────────────────────────────────────
-const form = document.getElementById("quizForm");
-
-questions.forEach((q, i) => {
-  const div = document.createElement("div");
-  div.className = "question";
-  div.innerHTML = `
-    <h3>Question ${i+1}</h3>
-    <p>${q.q}</p>
-    <div class="options">
-      ${q.options.map((opt, idx) => `
-        <label>
-          <input type="radio" name="q${i+1}" value="${String.fromCharCode(65 + idx)}">
-          ${String.fromCharCode(65 + idx)}. ${opt}
-        </label>
-      `).join("")}
-    </div>
-  `;
-  form.appendChild(div);
-});
-
-// ──────────────────────────────────────────────
-// START EXAM
-// ──────────────────────────────────────────────
+// Start Quiz Logic
 document.getElementById("startBtn").addEventListener("click", () => {
-  const nameInput = document.getElementById("candidateName").value.trim();
-  if (!nameInput) {
-    alert("Please enter your full name before starting the exam.");
-    return;
-  }
+  const name = document.getElementById("candidateName").value.trim();
+  if (!name) return alert("Please enter your name");
 
-  document.getElementById("displayName").textContent = nameInput;
   document.getElementById("intro").style.display = "none";
+  document.getElementById("navbar").style.display = "flex";
   document.getElementById("quiz").style.display = "block";
+  document.getElementById("candidateDisplay").textContent = `Candidate: ${name}`;
+  
+  generateQuestions();
   startTimer();
 });
 
-// ──────────────────────────────────────────────
-// SUBMIT & SHOW RESULTS
-// ──────────────────────────────────────────────
-document.getElementById("submitBtn").addEventListener("click", () => submitExam(false));
-
-function submitExam(timeUp = false) {
-  clearInterval(timerInterval);
-  if (timeUp) {
-    alert("Time is up! Your exam has been submitted automatically.");
-  }
-
-  let score = 0;
-  let resultHTML = "";
-
+function generateQuestions() {
+  const form = document.getElementById("quizForm");
   questions.forEach((q, i) => {
-    const selected = document.querySelector(`input[name="q${i+1}"]:checked`);
-    const userAns = selected ? selected.value : null;
-    const correct = q.correct;
-
-    let statusClass = "";
-    let displayAns = "";
-
-    if (userAns === correct) {
-      score++;
-      statusClass = "your-answer-correct";
-      displayAns = `<div class="${statusClass}">Your answer: <strong>${userAns}</strong> → Correct!</div>`;
-    } else {
-      statusClass = userAns ? "your-answer-wrong" : "";
-      const yourAnsText = userAns ? `Your answer: <strong>${userAns}</strong>` : "No answer selected";
-      displayAns = `<div class="${statusClass}">${yourAnsText}</div>`;
-    }
-
-    resultHTML += `
-      <div class="question">
-        <h3>Question ${i+1}: ${q.q}</h3>
-        ${displayAns}
-        <div class="correct">
-          <strong>Correct answer:</strong> ${q.correct}. ${q.ansText}
-        </div>
+    const div = document.createElement("div");
+    div.className = "question";
+    div.innerHTML = `
+      <h3>${i + 1}. ${q.q}</h3>
+      <div class="options">
+        ${q.options.map((opt, idx) => `
+          <label>
+            <input type="radio" name="q${i}" value="${String.fromCharCode(65 + idx)}">
+            ${String.fromCharCode(65 + idx)}. ${opt}
+          </label>
+        `).join("")}
       </div>
     `;
+    form.appendChild(div);
+  });
+}
+
+function startTimer() {
+  timerInterval = setInterval(() => {
+    timeLeft--;
+    const m = Math.floor(timeLeft / 60);
+    const s = timeLeft % 60;
+    document.getElementById("timer").textContent = `${m}:${s < 10 ? '0' : ''}${s}`;
+    if (timeLeft <= 0) submitExam(true);
+  }, 1000);
+}
+
+document.getElementById("submitBtn").addEventListener("click", () => submitExam(false));
+
+function submitExam(timeUp) {
+  clearInterval(timerInterval);
+  if (timeUp) alert("Time is up!");
+  
+  let score = 0;
+  let html = "";
+  
+  questions.forEach((q, i) => {
+    const selected = document.querySelector(`input[name="q${i}"]:checked`);
+    const val = selected ? selected.value : null;
+    const isCorrect = val === q.correct;
+    if (isCorrect) score++;
+
+    html += `
+      <div class="${isCorrect ? 'correct-feedback' : 'wrong-feedback'}">
+        <strong>Question ${i+1}:</strong> ${q.q}<br>
+        Your Answer: ${val || "None"} | Correct: ${q.correct} (${q.ansText})
+      </div>`;
   });
 
-  const percentage = ((score / questions.length) * 100).toFixed(1);
-
-  document.getElementById("scoreText").innerHTML = `
-    Score: <strong>${score} / ${questions.length}</strong> (${percentage}%)
-    ${timeUp ? "<br><span style='color:#d32f2f'>(Time expired)</span>" : ""}
-  `;
-
-  document.getElementById("detailedAnswers").innerHTML = resultHTML;
+  document.getElementById("quiz").style.display = "none";
+  document.getElementById("navbar").style.display = "none";
   document.getElementById("result").style.display = "block";
-  document.getElementById("submitBtn").disabled = true;
-  window.scrollTo(0, document.getElementById("result").offsetTop - 60);
+  document.getElementById("scoreText").innerHTML = `Final Score: ${score} / ${questions.length} (${((score/questions.length)*100).toFixed(1)}%)`;
+  document.getElementById("detailedAnswers").innerHTML = html;
+  window.scrollTo(0,0);
 }
 </script>
-
 </body>
 </html>
