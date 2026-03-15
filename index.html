@@ -1,411 +1,350 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>CULTURAL AND CREATIVE ART EXAMINATION CBT</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 900px;
-            margin: 30px auto;
-            padding: 20px;
-            line-height: 1.6;
-        }
-        #start-screen, #quiz, #result {
-            border: 1px solid #ccc;
-            padding: 30px;
-            border-radius: 8px;
-            background: #f9f9f9;
-        }
-        #timer {
-            font-size: 1.4em;
-            font-weight: bold;
-            color: #d32f2f;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        .question {
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #eee;
-        }
-        .options label {
-            display: block;
-            margin: 10px 0;
-            cursor: pointer;
-        }
-        button {
-            padding: 12px 30px;
-            font-size: 1.1em;
-            margin: 10px;
-            cursor: pointer;
-            border: none;
-            border-radius: 5px;
-        }
-        #startBtn {
-            background: #4CAF50;
-            color: white;
-        }
-        #submitBtn {
-            background: #2196F3;
-            color: white;
-        }
-        .correct {
-            color: #2e7d32;
-            font-weight: bold;
-            background: #e8f5e9;
-            padding: 6px 12px;
-            border-radius: 4px;
-            display: inline-block;
-            margin-top: 4px;
-        }
-        .your-answer-was.wrong {
-            color: #c62828;
-        }
-        h1, h2 {
-            text-align: center;
-            color: #333;
-        }
-        #nameInput {
-            padding: 10px;
-            font-size: 1.1em;
-            width: 300px;
-            margin: 20px 0;
-        }
-        .hidden { display: none; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JSS 1 - CHRISTIAN RELIGIOUS STUDIES - SECOND TERM EXAM</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 20px;
+      background-color: #f8f9fa;
+      line-height: 1.5;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    h1, h2, h3 {
+      text-align: center;
+      color: #2c3e50;
+    }
+    .timer {
+      text-align: center;
+      font-size: 1.6em;
+      font-weight: bold;
+      color: #d32f2f;
+      margin: 20px 0;
+      padding: 12px;
+      border: 2px solid #d32f2f;
+      border-radius: 8px;
+      background: #ffebee;
+    }
+    .question {
+      margin: 25px 0;
+      padding: 18px;
+      background: #f5faff;
+      border-left: 5px solid #1976d2;
+      border-radius: 6px;
+    }
+    .question h3 {
+      margin-top: 0;
+      color: #0d47a1;
+    }
+    .options label {
+      display: block;
+      margin: 10px 0;
+      cursor: pointer;
+    }
+    button {
+      padding: 12px 30px;
+      font-size: 1.1em;
+      margin: 10px;
+      cursor: pointer;
+      border: none;
+      border-radius: 6px;
+      color: white;
+    }
+    #startBtn {
+      background: #1976d2;
+    }
+    #startBtn:hover { background: #1565c0; }
+    #submitBtn {
+      background: #388e3c;
+    }
+    #submitBtn:hover { background: #2e7d32; }
+    #result {
+      margin-top: 30px;
+      padding: 20px;
+      border-radius: 8px;
+      display: none;
+    }
+    .correct {
+      background: #e8f5e9;
+      border-left: 5px solid #4caf50;
+      padding: 12px;
+      margin: 8px 0;
+    }
+    .your-answer-correct {
+      background: #c8e6c9;
+    }
+    .your-answer-wrong {
+      background: #ffebee;
+      text-decoration: line-through;
+      color: #c62828;
+    }
+    .score-summary {
+      font-size: 1.4em;
+      font-weight: bold;
+      text-align: center;
+      margin: 20px 0;
+    }
+    #intro, #quiz {
+      display: none;
+    }
+    #intro {
+      display: block;
+      text-align: center;
+      margin: 40px 0;
+    }
+    input[type="text"] {
+      padding: 10px;
+      font-size: 1.1em;
+      width: 300px;
+      max-width: 90%;
+      margin: 15px 0;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+  </style>
 </head>
 <body>
 
-<div id="start-screen">
-    <h1>ROYAL WUNDERKIND MODEL SCHOOL</h1>
-    <h2>CULTURAL AND CREATIVE ART EXAMINATION CBT | 2025/2026 Academic Session | Year 7 | Objective Questions</h2>
-    <p style="text-align:center;">Time: 45 minutes</p>
-    <p>Enter your full name to begin the exam:</p>
-    <input type="text" id="nameInput" placeholder="Your Full Name" required />
-    <br>
-    <button id="startBtn">Start Exam</button>
-</div>
+<div class="container">
 
-<div id="quiz" class="hidden">
-    <h2 id="candidateName"></h2>
-    <div id="timer">Time remaining: 45:00</div>
-    
+  <div class="header">
+    <h1>SECOND TERM EXAMINATION</h1>
+    <h2>JSS 1 – CHRISTIAN RELIGIOUS STUDIES</h2>
+    <p><strong>SECTION A: OBJECTIVE QUESTIONS</strong><br>Choose the correct answer. Time allowed: 45 minutes</p>
+  </div>
+
+  <!-- Intro - Name Entry -->
+  <div id="intro">
+    <h2>Welcome to the Examination</h2>
+    <p>Please enter your full name to begin:</p>
+    <input type="text" id="candidateName" placeholder="Full Name (e.g. Adebayo Tolu)" required>
+    <br>
+    <button id="startBtn">Start Examination</button>
+  </div>
+
+  <!-- Quiz (hidden initially) -->
+  <div id="quiz">
+    <div style="text-align:center; margin-bottom:15px;">
+      <strong>Candidate:</strong> <span id="displayName"></span>
+    </div>
+
+    <div class="timer" id="timer">Time Remaining: 45:00</div>
+
     <form id="quizForm">
-        <!-- Questions will be inserted here by JavaScript -->
+      <!-- Questions generated here -->
     </form>
 
-    <div style="text-align:center; margin-top:40px;">
-        <button id="submitBtn">Submit Exam</button>
+    <div style="text-align:center; margin:30px 0;">
+      <button id="submitBtn">Submit Exam</button>
     </div>
-</div>
 
-<div id="result" class="hidden">
-    <h2>Exam Result</h2>
-    <p id="resultText"></p>
-    <div id="detailedAnswers"></div>
-    <button onclick="location.reload()">Restart Exam</button>
+    <div id="result">
+      <h2>Examination Result</h2>
+      <div class="score-summary" id="scoreText"></div>
+      <div id="detailedAnswers"></div>
+    </div>
+  </div>
+
 </div>
 
 <script>
-// Correct answers (letter → full text where needed)
-const correctAnswers = [
-    {q:1,  ans:"e", text:"mixed animal fat"},      // except
-    {q:2,  ans:"c", text:"sharp stone"},
-    {q:3,  ans:"d", text:"lion"},                  // except
-    {q:4,  ans:"c", text:"washing"},               // except
-    {q:5,  ans:"b", text:"Textile design"},
-    {q:6,  ans:"c", text:"court art"},
-    {q:7,  ans:"b", text:"Aina Onabolu"},
-    {q:8,  ans:"c", text:"He was active in the introduction of Art to the school curriculum."},
-    {q:9,  ans:"c", text:"dancing"},               // except
-    {q:10, ans:"b", text:"He paints sculptures"},  // except
-    {q:11, ans:"b", text:"painting"},              // except
-    {q:12, ans:"a", text:"Palm frond"},
-    {q:13, ans:"b", text:"Pottery"},
-    {q:14, ans:"a", text:"Rim"},
-    {q:15, ans:"b", text:"base"},
-    {q:16, ans:"c", text:"Imo state"},             // except
-    {q:17, ans:"e", text:"cocoons"},
-    {q:18, ans:"a", text:"Horizontal and vertical"},
-    {q:19, ans:"c", text:"bowl"},                  // except
-    {q:20, ans:"b", text:"Abeokuta"},
-    {q:21, ans:"a", text:"folding and dyeing"},
-    {q:22, ans:"c", text:"candle wax"},            // except
-    {q:23, ans:"b", text:"Pleating"},
-    {q:24, ans:"a", text:"clump"},
-    {q:25, ans:"b", text:"caustic soda"},
-    {q:26, ans:"b", text:"rubber gloves"},
-    {q:27, ans:"a", text:"clump method"},
-    {q:28, ans:"b", text:"wax"},
-    {q:29, ans:"c", text:"hot pressing iron"},     // except
-    {q:30, ans:"c", text:"wash the cloth"},
-    {q:31, ans:"c", text:"wash"},                  // except
-    {q:32, ans:"a", text:"Kite"},
-    {q:33, ans:"b", text:"No"},
-    {q:34, ans:"a", text:"paper"},
-    {q:35, ans:"c", text:"Pleating"},
-    {q:36, ans:"c", text:"bricks"},                // except
-    {q:37, ans:"b", text:"zig zags"},              // except (common shapes are squares, triangles, circles etc.)
-    {q:38, ans:"b", text:"decorations"},
-    {q:39, ans:"c", text:"dye solution"},          // except
-    {q:40, ans:"c", text:"many"},
-    {q:41, ans:"b", text:"Collage"},               // non-figurative example
-    {q:42, ans:"c", text:"coller"},
-    {q:43, ans:"b", text:"match sticks"},          // assuming common exception
-    {q:44, ans:"a", text:"Yes"},
-    {q:45, ans:"b", text:"to stick"},
-    {q:46, ans:"a", text:"moulding"},
-    {q:47, ans:"a", text:"Yes"},
-    {q:48, ans:"b", text:"Yes"},
-    {q:49, ans:"c", text:"newspaper"},
-    {q:50, ans:"a", text:"Yes"},
-    {q:51, ans:"c", text:"Edo state"},
-    {q:52, ans:"a", text:"Jasper"},
-    {q:53, ans:"c", text:"hook and eye"},
-    {q:54, ans:"b", text:"armpit"},                // except
-    {q:55, ans:"b", text:"Ile Ife"},
-    {q:56, ans:"b", text:"painting"},              // duplicate of Q11
-    {q:57, ans:"a", text:"Palm frond"},            // duplicate of Q12
-    {q:58, ans:"b", text:"Pottery"},               // duplicate of Q13
-    {q:59, ans:"a", text:"Rim"},                   // duplicate of Q14
-    {q:60, ans:"b", text:"base"}                   // duplicate of Q15
-];
-
+// ──────────────────────────────────────────────
+// QUESTIONS & CORRECT ANSWERS
+// ──────────────────────────────────────────────
 const questions = [
-    "1. The things used for art by prehistoric men include all the following except ____________.",
-    "2. In pre-historic time, ____________ was used to make carvings on wood.",
-    "3. ____________ these animals were found in rock art except.",
-    "4. The following are forms of art except ____________.",
-    "5. ____________ is a form of visual art.",
-    "6. Traditional rulers were patrons of arts that make use of ____________.",
-    "7. ____________ is the father of arts in Africa.",
-    "8. Why was he regarded as the father of arts in Africa?",
-    "9. The following are forms of visual arts except ____________.",
-    "10. The characteristics of a graphic designer include the following except ____________.",
-    "11. The following are types of craft except __________",
-    "12. __________ is a material used in basketry.",
-    "13. __________ is the oldest form of craft.",
-    "14. __________ is a part of a basket.",
-    "15. The weaving of a basket starts from the __________",
-    "16. Cotton is cultivated in the following parts of Nigeria except __________.",
-    "17. Silk is made from the __________ of silk worms.",
-    "18. __________ and __________ are the two major types of loom.",
-    "19. The following are the items made from leather except __________.",
-    "20. The major city known for tie and dye is __________.",
-    "21. Tie and dye is the ____________________________ to a piece of cloth.",
-    "22. The following are the materials used for tie and dye except _____________________.",
-    "23. _______________ is a method of tying.",
-    "24. Pebbles are used for the _______________ method of tying.",
-    "25. The chemical used in mixing dye to relax its texture is called _______________",
-    "26. The _______________ are necessary when applying dye to a pieces of cloth.",
-    "27. Squeezing and tying of fabrics into ball shape is known as the _______________",
-    "28. Batik is made with _______________",
-    "29. The following materials are used for making batik except _____________________.",
-    "30. The first step in batik dyeing is to _____________________ so as to reduce the starch.",
-    "31. We do the following to produce a paper craft except _____________________.",
-    "32. _____________________ is an example of paper craft.",
-    "33. Paper craft is the creation of items from cutting and shaping of wood.",
-    "34. An important material used for folding is _____________________.",
-    "35. _____________________ is a simple method of folding paper.",
-    "36. Paper craft includes the production of the following except _____________________.",
-    "37. The following are shapes used for paper cut-out except _____________________.",
-    "38. Paper craft can be used for _____________________.",
-    "39. The following materials are needed to produce greeting cards except _____________________.",
-    "40. A polyhedron is a solid shape that has _____________________sides.",
-    "41. ________________________ is a form of non-figurative arts.",
-    "42. The French word for collage is ______________________________",
-    "43. The following are materials that can be used for collage except ______________________________.",
-    "44. Does collage making helps to develop creative instinct?",
-    "45. The word ‘coller’ in French means ______________________________",
-    "46. Paper-mâché is used for __________________________ items.",
-    "47. Paper-mâché is a French word.",
-    "48. Paper-mâché is paper pulp.",
-    "49. A major material used for producing paper-mâché is __________________________.",
-    "50. Torn newspaper is soaked in water to make paper-mâché.",
-    "51. Real stone beads are found in ________________________.",
-    "52. ________________________ is an example of bead.",
-    "53. The major material used in finishing a beaded necklace or armlet is ________________________.",
-    "54. Beads are used as adornments on all the following except ________________________.",
-    "55. The 'sege' bead is found in ________________________.",
-    "56. The following are types of craft except __________",
-    "57. __________ is a material used in basketry.",
-    "58. __________ is the oldest form of craft.",
-    "59. __________ is a part of a basket.",
-    "60. The weaving of a basket starts from the __________"
+  { q: "In the beginning, God created the heaven and the earth. This account is found in", options: ["Exodus", "Genesis", "Matthew", "Revelation"], correct: "B", ansText: "Genesis" },
+  { q: "On the first day of creation, God created _____", options: ["animals", "light", "man", "stars"], correct: "B", ansText: "light" },
+  { q: "God separated the light from the _____", options: ["moon", "sky", "darkness", "sea"], correct: "C", ansText: "darkness" },
+  { q: "The firmament created on the second day is known as the", options: ["land", "heaven/sky", "river", "forest"], correct: "B", ansText: "heaven/sky" },
+  { q: "On the third day, God created _____", options: ["land and plants", "birds", "man", "stars"], correct: "A", ansText: "land and plants" },
+  { q: "The sun, moon, and stars were created on the", options: ["third day", "fourth day", "fifth day", "sixth day"], correct: "B", ansText: "fourth day" },
+  { q: "God created birds and fishes on the ______", options: ["fourth day", "fifth day", "sixth day", "seventh day"], correct: "B", ansText: "fifth day" },
+  { q: "Animals and man were created on the", options: ["fifth day", "sixth day", "seventh day", "fourth day"], correct: "B", ansText: "sixth day" },
+  { q: "God rested on the ______", options: ["fifth day", "sixth day", "seventh day", "eighth day"], correct: "C", ansText: "seventh day" },
+  { q: "Human beings were created in the ______ of God.", options: ["strength", "image", "likeness of angels", "wisdom"], correct: "B", ansText: "image" },
+  { q: "God created human beings mainly to", options: ["dominate others", "worship and serve Him", "destroy the earth", "compete with angels"], correct: "B", ansText: "worship and serve Him" },
+  { q: "God placed the first man in the Garden of _____", options: ["Bethlehem", "Eden", "Nazareth", "Sinai"], correct: "B", ansText: "Eden" },
+  { q: "The first man created by God was ____", options: ["Abraham", "Adam", "Noah", "David"], correct: "B", ansText: "Adam" },
+  { q: "The first woman was called", options: ["Sarah", "Mary", "Eve", "Ruth"], correct: "C", ansText: "Eve" },
+  { q: "Eve was created from Adam’s _____", options: ["hand", "rib", "leg", "head"], correct: "B", ansText: "rib" },
+  { q: "Marriage was first instituted by", options: ["Moses", "the apostles", "God", "kings"], correct: "C", ansText: "God" },
+  { q: "According to the Bible, marriage is between", options: ["two men", "a man and a woman", "many people", "friends"], correct: "B", ansText: "a man and a woman" },
+  { q: "One function of marriage is ______", options: ["hatred", "companionship", "fighting", "separation"], correct: "B", ansText: "companionship" },
+  { q: "Another function of marriage is _____", options: ["reproduction", "competition", "punishment", "pride"], correct: "A", ansText: "reproduction" },
+  { q: "God commanded Adam and Eve to", options: ["be lazy", "multiply and fill the earth", "destroy animals", "leave the garden"], correct: "B", ansText: "multiply and fill the earth" },
+  { q: "The tree God commanded Adam not to eat from was the tree of", options: ["wisdom", "knowledge of good and evil", "life", "fruitfulness"], correct: "B", ansText: "knowledge of good and evil" },
+  { q: "The animal that tempted Eve was the ____", options: ["lion", "serpent", "goat", "bird"], correct: "B", ansText: "serpent" },
+  { q: "The serpent told Eve that eating the fruit would make her", options: ["weak", "wise like God", "sick", "invisible"], correct: "B", ansText: "wise like God" },
+  { q: "Who ate the forbidden fruit first?", options: ["Adam", "Eve", "serpent", "angel"], correct: "B", ansText: "Eve" },
+  { q: "Adam ate the fruit after ____", options: ["praying", "Eve gave him", "God forced him", "sleeping"], correct: "B", ansText: "Eve gave him" },
+  { q: "The first human sin was", options: ["pride", "disobedience", "laziness", "anger"], correct: "B", ansText: "disobedience" },
+  { q: "After eating the fruit, Adam and Eve realized they were", options: ["hungry", "naked", "sick", "poor"], correct: "B", ansText: "naked" },
+  { q: "As a punishment, Adam was to _____", options: ["rule angels", "work hard for food", "live in heaven", "sleep forever"], correct: "B", ansText: "work hard for food" },
+  { q: "Eve’s punishment included", options: ["painful childbirth", "riches", "eternal sleep", "strength"], correct: "A", ansText: "painful childbirth" },
+  { q: "Adam and Eve were driven out of the", options: ["temple", "city", "Garden of Eden", "palace"], correct: "C", ansText: "Garden of Eden" },
+  { q: "Disobedience leads to _____", options: ["blessings", "punishment", "peace", "honour"], correct: "B", ansText: "punishment" },
+  { q: "Learners who disobey school rules may face", options: ["reward", "discipline", "promotion", "praise"], correct: "B", ansText: "discipline" },
+  { q: "Repentance means _____", options: ["hiding sin", "turning away from sin", "denying sin", "repeating sin"], correct: "B", ansText: "turning away from sin" },
+  { q: "God always calls people to", options: ["punishment", "repentance", "destruction", "pride"], correct: "B", ansText: "repentance" },
+  { q: "The prophet sent to Nineveh was", options: ["Isaiah", "Jonah", "Elijah", "Amos"], correct: "B", ansText: "Jonah" },
+  { q: "Nineveh was a _____", options: ["village", "wicked city", "temple", "garden"], correct: "B", ansText: "wicked city" },
+  { q: "Jonah initially", options: ["obeyed God", "refused God’s call", "slept in Nineveh", "became king"], correct: "B", ansText: "refused God’s call" },
+  { q: "The people of Nineveh repented after hearing", options: ["the king", "Jonah’s warning", "soldiers", "traders"], correct: "B", ansText: "Jonah’s warning" },
+  { q: "The king of Nineveh commanded the people to", options: ["fight", "fast and pray", "travel", "sing"], correct: "B", ansText: "fast and pray" },
+  { q: "Because the people repented, God _____", options: ["punished them", "forgave them", "destroyed them", "ignored them"], correct: "B", ansText: "forgave them" },
+  { q: "John the Baptist preached about", options: ["wealth", "repentance", "farming", "politics"], correct: "B", ansText: "repentance" },
+  { q: "John the Baptist baptized people in the _____", options: ["Red Sea", "Jordan River", "Nile River", "Lake"], correct: "B", ansText: "Jordan River" },
+  { q: "John told the people to produce fruits worthy of", options: ["anger", "repentance", "wealth", "pride"], correct: "B", ansText: "repentance" },
+  { q: "John the Baptist prepared the way for", options: ["Moses", "Jesus Christ", "David", "Peter"], correct: "B", ansText: "Jesus Christ" },
+  { q: "True repentance involves _____", options: ["changing behaviour", "hiding sins", "blaming others", "lying"], correct: "A", ansText: "changing behaviour" },
+  { q: "Lack of repentance leads to", options: ["forgiveness", "judgment", "peace", "honour"], correct: "B", ansText: "judgment" },
+  { q: "God shows mercy to those who _____", options: ["continue sinning", "repent sincerely", "fight others", "lie"], correct: "B", ansText: "repent sincerely" },
+  { q: "One example of obedience is", options: ["keeping God’s commandments", "stealing", "lying", "cheating"], correct: "A", ansText: "keeping God’s commandments" },
+  { q: "Learners should obey", options: ["teachers and parents", "strangers only", "no one", "friends only"], correct: "A", ansText: "teachers and parents" },
+  { q: "The Bible teaches that obedience brings _____", options: ["blessings", "suffering", "poverty", "shame"], correct: "A", ansText: "blessings" },
+  { q: "Disobedience often results in", options: ["joy", "punishment", "honour", "wealth"], correct: "B", ansText: "punishment" },
+  { q: "Repentance requires _____", options: ["humility", "pride", "anger", "stubbornness"], correct: "A", ansText: "humility" },
+  { q: "The people of Nineveh showed repentance through", options: ["fasting", "dancing", "fighting", "travelling"], correct: "A", ansText: "fasting" },
+  { q: "God forgives those who _____", options: ["hide sin", "truly repent", "ignore Him", "boast"], correct: "B", ansText: "truly repent" },
+  { q: "The message of repentance teaches people to", options: ["continue sinning", "change their ways", "hide wrongdoing", "boast"], correct: "B", ansText: "change their ways" },
+  { q: "God created human beings to _____", options: ["worship Him", "compete with Him", "destroy creation", "ignore Him"], correct: "A", ansText: "worship Him" },
+  { q: "Marriage helps to build _____", options: ["families", "wars", "hatred", "pride"], correct: "A", ansText: "families" },
+  { q: "Adam and Eve’s sin brought", options: ["happiness", "suffering", "promotion", "wealth"], correct: "B", ansText: "suffering" },
+  { q: "Obeying God leads to _____", options: ["peace and blessings", "sorrow", "destruction", "fear"], correct: "A", ansText: "peace and blessings" },
+  { q: "Christians today are expected to ____", options: ["ignore repentance", "live in obedience to God", "disobey authority", "reject the Bible"], correct: "B", ansText: "live in obedience to God" }
 ];
 
-const options = [
-    ["a) blood of animal","b) earth colours","c) vegetables","d) clothings","e) mixed animal fat"],
-    ["a) knife","b) chalk","c) sharp stone","d) animal fat","e) brush"],
-    ["a) bisons","b) elephants","c) reindeers","d) lion","e) mammoths"],
-    ["a) basketry","b) weaving","c) washing","d) dyeing","e) leather crafts"],
-    ["a) Dance","b) Textile design","c) Music","d) Drama","e) Poetry"],
-    ["a) bead art","b) crown art","c) court art","d) palace art","e) shoe art"],
-    ["a) Cyprian Ekwensi","b) Aina Onabolu","c) Wole Soyinka","d) Kola Oyewo","e) Adams Smith"],
-    ["a) He studied in an Art school in London.","b) He taught arts in various schools.","c) He was active in the introduction of Art to the school curriculum.","d) He painted a lot of artworks that are in use now.","e) He taught a lot of people art."],
-    ["a) textile art","b) ceramic art","c) dancing","d) sculpture","e) video art"],
-    ["a) He brings idea to life","b) He paints sculptures","c) He creates attractive and colourful concept","d) He designs the pages of newspapers","e) He makes designs on cloth"],
-    ["a) pottery","b) painting","c) carving","d) leather craft","e) weaving"],
-    ["a) Palm frond","b) Leather","c) Animal skin","d) Clay","e) Stone"],
-    ["a) Leather work","b) Pottery","c) Weaving","d) Carving","e) Painting"],
-    ["a) Rim","b) Bottom","c) Lead","d) Top","e) Skin"],
-    ["a) rear","b) base","c) handle","d) side","e) top"],
-    ["a) Kwara state","b) Ondo state","c) Imo state","d) Katsina state","e) Niger state"],
-    ["a) root","b) stem","c) leaves","d) worms","e) cocoons"],
-    ["a) Horizontal and vertical","b) Circular and vertical","c) Large size and medium size","d) Root and stem","e) Side stakes and horizontal stakes"],
-    ["a) bags","b) shoes","c) bowl","d) saddler","e) adornment"],
-    ["a) Ondo State","b) Abeokuta","c) Ibadan","d) Ilorin","e) Ajaokuta"],
-    ["a) folding and dyeing","b) adding of colours","c) application of dye."],
-    ["a) dye stuff","b) caustic soda","c) candle wax"],
-    ["a) Clumping","b) Pleating","c) Clamping"],
-    ["a) clump","b) stitching","c) pleating"],
-    ["a) dylon","b) caustic soda","c) dye"],
-    ["a) nylon gloves","b) rubber gloves","c) surgical gloves"],
-    ["a) clump method","b) sandwiching","c) marbling method"],
-    ["a) thread","b) wax","c) raffia"],
-    ["a) wax","b) hotwater","c) hot pressing iron"],
-    ["a) iron the cloth","b) sun the cloth","c) wash the cloth"],
-    ["a) shape","b) cut","c) wash"],
-    ["a) Kite","b) Photography","c) Resist"],
-    ["a) Yes","b) No"],
-    ["a) paper","b) metal","c) rubber"],
-    ["a) Sewing","b) Tearing","c) Pleating"],
-    ["a) handfans","b) kites","c) bricks"],
-    ["a) squares","b) zig zags","c) triangles"],
-    ["a) sewing cloths","b) decorations","c) packing books"],
-    ["a) stiff paper","b) crayon","c) dye solution"],
-    ["a) few","b) some","c) many"],
-    ["a) Batik","b) Collage","c) Mosaic"],
-    ["a) coiller","b) cooler","c) coller"],
-    ["a) leaves","b) match sticks","c) bottle tops"],
-    ["a) Yes","b) No"],
-    ["a) to write .","b) to stick","c) to colour"],
-    ["a) moulding","b) painting","c) folding"],
-    ["a) Yes","b) No"],
-    ["a) No","b) Yes"],
-    ["a) cardboard paper","b) glossy paper","c) newspaper"],
-    ["a) Yes","b) No"],
-    ["a) Maiduguri","b) Benue state","c) Edo state"],
-    ["a) Jasper","b) Wood","c) Stone"],
-    ["a) paper","b) glass","c) hook and eye"],
-    ["a) legs","b) armpit","c) arm"],
-    ["a) Oyo State","b) Ile Ife","c) Kano State"],
-    // duplicates 56-60 same as 11,12,13,14,15
-    ["a) pottery","b) painting","c) carving","d) leather craft","e) weaving"],
-    ["a) Palm frond","b) Leather","c) Animal skin","d) Clay","e) Stone"],
-    ["a) Leather work","b) Pottery","c) Weaving","d) Carving","e) Painting"],
-    ["a) Rim","b) Bottom","c) Lead","d) Top","e) Skin"],
-    ["a) rear","b) base","c) handle","d) side","e) top"]
-];
-
-// ------------------ Logic ------------------
-
+// ──────────────────────────────────────────────
+// TIMER (45 minutes = 2700 seconds)
+// ──────────────────────────────────────────────
 let timeLeft = 45 * 60;
-let timerId;
-let userName = "";
+let timerInterval;
+const timerDisplay = document.getElementById("timer");
 
-const startScreen = document.getElementById("start-screen");
-const quizDiv     = document.getElementById("quiz");
-const resultDiv   = document.getElementById("result");
-const timerEl     = document.getElementById("timer");
-const nameDisplay = document.getElementById("candidateName");
-const quizForm    = document.getElementById("quizForm");
-const resultText  = document.getElementById("resultText");
-const detailed    = document.getElementById("detailedAnswers");
+function updateTimer() {
+  const min = Math.floor(timeLeft / 60);
+  const sec = timeLeft % 60;
+  timerDisplay.textContent = `Time Remaining: ${min}:${sec < 10 ? "0" : ""}${sec}`;
 
-document.getElementById("startBtn").onclick = () => {
-    userName = document.getElementById("nameInput").value.trim();
-    if (!userName) {
-        alert("Please enter your name!");
-        return;
-    }
-    nameDisplay.textContent = `Candidate: ${userName}`;
-    startScreen.classList.add("hidden");
-    quizDiv.classList.remove("hidden");
-    generateQuestions();
-    startTimer();
-};
+  if (timeLeft <= 0) {
+    clearInterval(timerInterval);
+    timerDisplay.textContent = "Time's Up!";
+    submitExam(true);
+  }
+}
 
 function startTimer() {
-    updateTimerDisplay();
-    timerId = setInterval(() => {
-        timeLeft--;
-        updateTimerDisplay();
-        if (timeLeft <= 0) {
-            clearInterval(timerId);
-            alert("Time's up! Submitting your exam...");
-            submitExam();
-        }
-    }, 1000);
+  updateTimer();
+  timerInterval = setInterval(() => {
+    timeLeft--;
+    updateTimer();
+  }, 1000);
 }
 
-function updateTimerDisplay() {
-    const min = Math.floor(timeLeft / 60);
-    const sec = timeLeft % 60;
-    timerEl.textContent = `Time remaining: ${min}:${sec < 10 ? "0" : ""}${sec}`;
-}
+// ──────────────────────────────────────────────
+// GENERATE QUESTIONS
+// ──────────────────────────────────────────────
+const form = document.getElementById("quizForm");
 
-function generateQuestions() {
-    let html = "";
-    questions.forEach((qText, i) => {
-        const qNum = i + 1;
-        html += `<div class="question">
-            <p><strong>${qText}</strong></p>
-            <div class="options">`;
-        
-        const opts = options[i];
-        opts.forEach((opt, j) => {
-            const letter = String.fromCharCode(97 + j); // a,b,c,...
-            html += `
-                <label>
-                    <input type="radio" name="q${qNum}" value="${letter}">
-                    ${opt}
-                </label>`;
-        });
-        html += `</div></div>`;
-    });
-    quizForm.innerHTML = html;
-}
+questions.forEach((q, i) => {
+  const div = document.createElement("div");
+  div.className = "question";
+  div.innerHTML = `
+    <h3>Question ${i+1}</h3>
+    <p>${q.q}</p>
+    <div class="options">
+      ${q.options.map((opt, idx) => `
+        <label>
+          <input type="radio" name="q${i+1}" value="${String.fromCharCode(65 + idx)}">
+          ${String.fromCharCode(65 + idx)}. ${opt}
+        </label>
+      `).join("")}
+    </div>
+  `;
+  form.appendChild(div);
+});
 
-document.getElementById("submitBtn").onclick = submitExam;
+// ──────────────────────────────────────────────
+// START EXAM
+// ──────────────────────────────────────────────
+document.getElementById("startBtn").addEventListener("click", () => {
+  const nameInput = document.getElementById("candidateName").value.trim();
+  if (!nameInput) {
+    alert("Please enter your full name before starting the exam.");
+    return;
+  }
 
-function submitExam() {
-    clearInterval(timerId);
-    quizDiv.classList.add("hidden");
-    resultDiv.classList.remove("hidden");
+  document.getElementById("displayName").textContent = nameInput;
+  document.getElementById("intro").style.display = "none";
+  document.getElementById("quiz").style.display = "block";
+  startTimer();
+});
 
-    let score = 0;
-    let detailHtml = "<h3>Detailed Answers:</h3>";
+// ──────────────────────────────────────────────
+// SUBMIT & SHOW RESULTS
+// ──────────────────────────────────────────────
+document.getElementById("submitBtn").addEventListener("click", () => submitExam(false));
 
-    questions.forEach((_, i) => {
-        const qNum = i + 1;
-        const selected = document.querySelector(`input[name="q${qNum}"]:checked`);
-        const userAns = selected ? selected.value : null;
-        const correct = correctAnswers.find(c => c.q === qNum);
-        const correctLetter = correct.ans;
-        const correctText = correct.text;
+function submitExam(timeUp = false) {
+  clearInterval(timerInterval);
+  if (timeUp) {
+    alert("Time is up! Your exam has been submitted automatically.");
+  }
 
-        const isCorrect = userAns === correctLetter;
-        if (isCorrect) score++;
+  let score = 0;
+  let resultHTML = "";
 
-        detailHtml += `
-            <div style="margin:20px 0;">
-                <strong>Question ${qNum}:</strong><br>
-                Your answer: ${userAns ? userAns.toUpperCase() : "(not answered)"} 
-                <span class="${isCorrect ? 'correct' : 'your-answer-was wrong'}">
-                    ${isCorrect ? "✔ Correct" : "✘ Wrong"}
-                </span><br>
-                <span class="correct">Correct answer: ${correctLetter.toUpperCase()} (${correctText})</span>
-            </div>`;
-    });
+  questions.forEach((q, i) => {
+    const selected = document.querySelector(`input[name="q${i+1}"]:checked`);
+    const userAns = selected ? selected.value : null;
+    const correct = q.correct;
 
-    resultText.innerHTML = `
-        <strong>${userName}</strong>, you scored <span style="font-size:1.6em;color:#2e7d32;">${score}</span> / ${questions.length}<br>
-        (${((score / questions.length) * 100).toFixed(1)}%)
+    let statusClass = "";
+    let displayAns = "";
+
+    if (userAns === correct) {
+      score++;
+      statusClass = "your-answer-correct";
+      displayAns = `<div class="${statusClass}">Your answer: <strong>${userAns}</strong> → Correct!</div>`;
+    } else {
+      statusClass = userAns ? "your-answer-wrong" : "";
+      const yourAnsText = userAns ? `Your answer: <strong>${userAns}</strong>` : "No answer selected";
+      displayAns = `<div class="${statusClass}">${yourAnsText}</div>`;
+    }
+
+    resultHTML += `
+      <div class="question">
+        <h3>Question ${i+1}: ${q.q}</h3>
+        ${displayAns}
+        <div class="correct">
+          <strong>Correct answer:</strong> ${q.correct}. ${q.ansText}
+        </div>
+      </div>
     `;
-    detailed.innerHTML = detailHtml;
+  });
+
+  const percentage = ((score / questions.length) * 100).toFixed(1);
+
+  document.getElementById("scoreText").innerHTML = `
+    Score: <strong>${score} / ${questions.length}</strong> (${percentage}%)
+    ${timeUp ? "<br><span style='color:#d32f2f'>(Time expired)</span>" : ""}
+  `;
+
+  document.getElementById("detailedAnswers").innerHTML = resultHTML;
+  document.getElementById("result").style.display = "block";
+  document.getElementById("submitBtn").disabled = true;
+  window.scrollTo(0, document.getElementById("result").offsetTop - 60);
 }
 </script>
 
