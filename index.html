@@ -1,315 +1,263 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Year 7 - CRS SECOND TERM EXAM</title>
-  <style>
-    :root {
-      --primary-color: #1976d2;
-      --accent-color: #d32f2f;
-      --bg-color: #f0f2f5;
-    }
+<title>ROYAL WUNDERKIND MODEL SCHOOL CBT</title>
 
+<style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      padding-top: 80px; /* Space for the fixed navbar */
-      background-color: var(--bg-color);
-      line-height: 1.6;
+        font-family: Arial, sans-serif;
+        background: #f4f6f9;
+        margin: 0;
+        padding: 0;
     }
 
-    /* Fixed Navigation Bar */
-    .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 70px;
-      background-color: #ffffff;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
-      z-index: 1000;
-      padding: 0 10px;
-      box-sizing: border-box;
+    /* LOGIN OVERLAY */
+    #loginOverlay {
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: #0a2a66;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 2000;
+    }
+    .login-box {
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    }
+    .login-box input {
+        padding: 10px;
+        width: 80%;
+        margin: 15px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
     }
 
-    .nav-title {
-      font-weight: bold;
-      color: var(--primary-color);
-      font-size: 1.1em;
-      display: none; /* Hidden on small screens */
+    .header-main {
+        background: white;
+        padding: 10px;
+        border-bottom: 2px solid #0a2a66;
     }
 
-    .timer-badge {
-      background: var(--accent-color);
-      color: white;
-      padding: 8px 20px;
-      border-radius: 50px;
-      font-size: 1.2em;
-      font-weight: bold;
-      min-width: 150px;
-      text-align: center;
-      box-shadow: 0 4px 6px rgba(211, 47, 47, 0.2);
+    /* STICKY STUDENT BAR */
+    .student-bar {
+        position: sticky;
+        top: 0;
+        background: #ffffff;
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        z-index: 1000;
+        border-bottom: 2px solid #0a2a66;
     }
 
     .container {
-      max-width: 800px;
-      margin: 20px auto;
-      background: white;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        max-width: 900px;
+        margin: 20px auto;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.2);
     }
 
-    .header-info {
-      text-align: center;
-      border-bottom: 2px solid #eee;
-      margin-bottom: 30px;
-      padding-bottom: 20px;
+    h1 { text-align: center; color: #0a2a66; margin: 5px 0; }
+
+    .timer {
+        font-size: 20px;
+        font-weight: bold;
+        color: red;
+        background: #fff0f0;
+        padding: 5px 15px;
+        border-radius: 5px;
+        border: 1px solid red;
     }
 
-    .question {
-      margin-bottom: 30px;
-      padding: 20px;
-      background: #ffffff;
-      border: 1px solid #e0e0e0;
-      border-radius: 10px;
-      transition: transform 0.2s;
-    }
-
-    .question:hover {
-      border-color: var(--primary-color);
-    }
-
-    .question h3 {
-      margin-top: 0;
-      font-size: 1.1em;
-      color: #333;
-    }
-
-    .options label {
-      display: block;
-      margin: 12px 0;
-      padding: 10px;
-      border-radius: 5px;
-      background: #f8f9fa;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-
-    .options label:hover {
-      background: #eef2f7;
-    }
-
-    input[type="radio"] {
-      margin-right: 10px;
-    }
-
-    button {
-      padding: 12px 35px;
-      font-size: 1.1em;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: opacity 0.3s;
-    }
-
-    #startBtn { background: var(--primary-color); color: white; }
-    #submitBtn { background: #2e7d32; color: white; width: 100%; margin-top: 20px; }
-    button:hover { opacity: 0.9; }
-
-    #result { display: none; margin-top: 30px; }
+    .question { margin-bottom: 20px; padding: 15px; border-bottom: 1px solid #ddd; }
+    .options label { display: block; margin: 8px 0; cursor: pointer; }
     
-    .correct-feedback { background: #e8f5e9; border-left: 5px solid #4caf50; padding: 15px; margin-top: 10px; border-radius: 4px; }
-    .wrong-feedback { background: #ffebee; border-left: 5px solid #f44336; padding: 15px; margin-top: 10px; border-radius: 4px; }
-
-    @media (min-width: 600px) {
-      .nav-title { display: block; }
+    button {
+        padding: 15px 30px;
+        background: #0a2a66;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 18px;
+        cursor: pointer;
+        width: 100%;
     }
-  </style>
+
+    button:hover { background: #1f4fd1; }
+    .result { font-size: 24px; font-weight: bold; text-align: center; margin-top: 20px; color: #0a2a66; }
+    .correct { color: green; font-weight: bold; margin-top: 10px; background: #e8f5e9; padding: 5px; }
+</style>
+
 </head>
+
 <body>
 
-<div class="navbar" id="navbar" style="display: none;">
-  <div class="nav-title">Year 7 CRS Exam</div>
-  <div id="candidateDisplay" style="font-weight: 500;"></div>
-  <div class="timer-badge" id="timer">45:00</div>
+<div id="loginOverlay">
+    <div class="login-box">
+        <h2>RoyaL Wunderkind Model School</h2>
+         <h3>Subject: Intermediate Science | Year 7</h3>
+        <p>Enter your Full Name to start the exam:</p>
+        <input type="text" id="studentNameInput" placeholder="e.g. John Doe">
+        <br>
+        <button type="button" onclick="startExam()">Start Examination</button>
+    </div>
+</div>
+
+<div class="header-main">
+    <h1>ROYAL WUNDERKIND MODEL SCHOOL</h1>
+    <h3 style="text-align:center; color:#555;">Intermediate Science CBT – YEAR 7</h3>
+</div>
+
+<div class="student-bar">
+    <div><strong>Student:</strong> <span id="displayName">---</span></div>
+    <div class="timer">Time: <span id="time">45:00</span></div>
 </div>
 
 <div class="container">
-  <div id="intro">
-    <div class="header-info">
-      <h1>SECOND TERM EXAMINATION</h1>
-      <h2>Christian Religious Studies</h2>
-      <p>Time Allowed: 45 Minutes</p>
-    </div>
-    <div style="text-align: center;">
-      <h3>Welcome, Candidate</h3>
-      <p>Please enter your full name to begin the exam:</p>
-      <input type="text" id="candidateName" placeholder="Enter Full Name" style="padding: 12px; width: 80%; max-width: 300px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 5px;">
-      <br>
-      <button id="startBtn">Begin Examination</button>
-    </div>
-  </div>
-
-  <div id="quiz" style="display: none;">
-    <form id="quizForm"></form>
-    <button id="submitBtn">Submit Final Answers</button>
-  </div>
-
-  <div id="result">
-    <div class="header-info">
-        <h2>Examination Result</h2>
-        <div id="scoreText" style="font-size: 1.5em; color: var(--primary-color);"></div>
-    </div>
-    <div id="detailedAnswers"></div>
-  </div>
+    <form id="quizForm">
+        <div id="questions"></div>
+        <button type="button" id="submitBtn" onclick="submitExam()" style="display:none;">Submit Exam</button>
+    </form>
+    <div class="result" id="result"></div>
 </div>
 
 <script>
+// (All 60 questions from your original code remain here)
 const questions = [
-  { q: "In the beginning, God created the heaven and the earth. This account is found in", options: ["Exodus", "Genesis", "Matthew", "Revelation"], correct: "B", ansText: "Genesis" },
-  { q: "On the first day of creation, God created _____", options: ["animals", "light", "man", "stars"], correct: "B", ansText: "light" },
-  { q: "God separated the light from the _____", options: ["moon", "sky", "darkness", "sea"], correct: "C", ansText: "darkness" },
-  { q: "The firmament created on the second day is known as the", options: ["land", "heaven/sky", "river", "forest"], correct: "B", ansText: "heaven/sky" },
-  { q: "On the third day, God created _____", options: ["land and plants", "birds", "man", "stars"], correct: "A", ansText: "land and plants" },
-  { q: "The sun, moon, and stars were created on the", options: ["third day", "fourth day", "fifth day", "sixth day"], correct: "B", ansText: "fourth day" },
-  { q: "God created birds and fishes on the ______", options: ["fourth day", "fifth day", "sixth day", "seventh day"], correct: "B", ansText: "fifth day" },
-  { q: "Animals and man were created on the", options: ["fifth day", "sixth day", "seventh day", "fourth day"], correct: "B", ansText: "sixth day" },
-  { q: "God rested on the ______", options: ["fifth day", "sixth day", "seventh day", "eighth day"], correct: "C", ansText: "seventh day" },
-  { q: "Human beings were created in the ______ of God.", options: ["strength", "image", "likeness of angels", "wisdom"], correct: "B", ansText: "image" },
-  { q: "God created human beings mainly to", options: ["dominate others", "worship and serve Him", "destroy the earth", "compete with angels"], correct: "B", ansText: "worship and serve Him" },
-  { q: "God placed the first man in the Garden of _____", options: ["Bethlehem", "Eden", "Nazareth", "Sinai"], correct: "B", ansText: "Eden" },
-  { q: "The first man created by God was ____", options: ["Abraham", "Adam", "Noah", "David"], correct: "B", ansText: "Adam" },
-  { q: "The first woman was called", options: ["Sarah", "Mary", "Eve", "Ruth"], correct: "C", ansText: "Eve" },
-  { q: "Eve was created from Adam’s _____", options: ["hand", "rib", "leg", "head"], correct: "B", ansText: "rib" },
-  { q: "Marriage was first instituted by", options: ["Moses", "the apostles", "God", "kings"], correct: "C", ansText: "God" },
-  { q: "According to the Bible, marriage is between", options: ["two men", "a man and a woman", "many people", "friends"], correct: "B", ansText: "a man and a woman" },
-  { q: "One function of marriage is ______", options: ["hatred", "companionship", "fighting", "separation"], correct: "B", ansText: "companionship" },
-  { q: "Another function of marriage is _____", options: ["reproduction", "competition", "punishment", "pride"], correct: "A", ansText: "reproduction" },
-  { q: "God commanded Adam and Eve to", options: ["be lazy", "multiply and fill the earth", "destroy animals", "leave the garden"], correct: "B", ansText: "multiply and fill the earth" },
-  { q: "The tree God commanded Adam not to eat from was the tree of", options: ["wisdom", "knowledge of good and evil", "life", "fruitfulness"], correct: "B", ansText: "knowledge of good and evil" },
-  { q: "The animal that tempted Eve was the ____", options: ["lion", "serpent", "goat", "bird"], correct: "B", ansText: "serpent" },
-  { q: "The serpent told Eve that eating the fruit would make her", options: ["weak", "wise like God", "sick", "invisible"], correct: "B", ansText: "wise like God" },
-  { q: "Who ate the forbidden fruit first?", options: ["Adam", "Eve", "serpent", "angel"], correct: "B", ansText: "Eve" },
-  { q: "Adam ate the fruit after ____", options: ["praying", "Eve gave him", "God forced him", "sleeping"], correct: "B", ansText: "Eve gave him" },
-  { q: "The first human sin was", options: ["pride", "disobedience", "laziness", "anger"], correct: "B", ansText: "disobedience" },
-  { q: "After eating the fruit, Adam and Eve realized they were", options: ["hungry", "naked", "sick", "poor"], correct: "B", ansText: "naked" },
-  { q: "As a punishment, Adam was to _____", options: ["rule angels", "work hard for food", "live in heaven", "sleep forever"], correct: "B", ansText: "work hard for food" },
-  { q: "Eve’s punishment included", options: ["painful childbirth", "riches", "eternal sleep", "strength"], correct: "A", ansText: "painful childbirth" },
-  { q: "Adam and Eve were driven out of the", options: ["temple", "city", "Garden of Eden", "palace"], correct: "C", ansText: "Garden of Eden" },
-  { q: "Disobedience leads to _____", options: ["blessings", "punishment", "peace", "honour"], correct: "B", ansText: "punishment" },
-  { q: "Learners who disobey school rules may face", options: ["reward", "discipline", "promotion", "praise"], correct: "B", ansText: "discipline" },
-  { q: "Repentance means _____", options: ["hiding sin", "turning away from sin", "denying sin", "repeating sin"], correct: "B", ansText: "turning away from sin" },
-  { q: "God always calls people to", options: ["punishment", "repentance", "destruction", "pride"], correct: "B", ansText: "repentance" },
-  { q: "The prophet sent to Nineveh was", options: ["Isaiah", "Jonah", "Elijah", "Amos"], correct: "B", ansText: "Jonah" },
-  { q: "Nineveh was a _____", options: ["village", "wicked city", "temple", "garden"], correct: "B", ansText: "wicked city" },
-  { q: "Jonah initially", options: ["obeyed God", "refused God’s call", "slept in Nineveh", "became king"], correct: "B", ansText: "refused God’s call" },
-  { q: "The people of Nineveh repented after hearing", options: ["the king", "Jonah’s warning", "soldiers", "traders"], correct: "B", ansText: "Jonah’s warning" },
-  { q: "The king of Nineveh commanded the people to", options: ["fight", "fast and pray", "travel", "sing"], correct: "B", ansText: "fast and pray" },
-  { q: "Because the people repented, God _____", options: ["punished them", "forgave them", "destroyed them", "ignored them"], correct: "B", ansText: "forgave them" },
-  { q: "John the Baptist preached about", options: ["wealth", "repentance", "farming", "politics"], correct: "B", ansText: "repentance" },
-  { q: "John the Baptist baptized people in the _____", options: ["Red Sea", "Jordan River", "Nile River", "Lake"], correct: "B", ansText: "Jordan River" },
-  { q: "John told the people to produce fruits worthy of", options: ["anger", "repentance", "wealth", "pride"], correct: "B", ansText: "repentance" },
-  { q: "John the Baptist prepared the way for", options: ["Moses", "Jesus Christ", "David", "Peter"], correct: "B", ansText: "Jesus Christ" },
-  { q: "True repentance involves _____", options: ["changing behaviour", "hiding sins", "blaming others", "lying"], correct: "A", ansText: "changing behaviour" },
-  { q: "Lack of repentance leads to", options: ["forgiveness", "judgment", "peace", "honour"], correct: "B", ansText: "judgment" },
-  { q: "God shows mercy to those who _____", options: ["continue sinning", "repent sincerely", "fight others", "lie"], correct: "B", ansText: "repent sincerely" },
-  { q: "One example of obedience is", options: ["keeping God’s commandments", "stealing", "lying", "cheating"], correct: "A", ansText: "keeping God’s commandments" },
-  { q: "Learners should obey", options: ["teachers and parents", "strangers only", "no one", "friends only"], correct: "A", ansText: "teachers and parents" },
-  { q: "The Bible teaches that obedience brings _____", options: ["blessings", "suffering", "poverty", "shame"], correct: "A", ansText: "blessings" },
-  { q: "Disobedience often results in", options: ["joy", "punishment", "honour", "wealth"], correct: "B", ansText: "punishment" },
-  { q: "Repentance requires _____", options: ["humility", "pride", "anger", "stubbornness"], correct: "A", ansText: "humility" },
-  { q: "The people of Nineveh showed repentance through", options: ["fasting", "dancing", "fighting", "travelling"], correct: "A", ansText: "fasting" },
-  { q: "God forgives those who _____", options: ["hide sin", "truly repent", "ignore Him", "boast"], correct: "B", ansText: "truly repent" },
-  { q: "The message of repentance teaches people to", options: ["continue sinning", "change their ways", "hide wrongdoing", "boast"], correct: "B", ansText: "change their ways" },
-  { q: "God created human beings to _____", options: ["worship Him", "compete with Him", "destroy creation", "ignore Him"], correct: "A", ansText: "worship Him" },
-  { q: "Marriage helps to build _____", options: ["families", "wars", "hatred", "pride"], correct: "A", ansText: "families" },
-  { q: "Adam and Eve’s sin brought", options: ["happiness", "suffering", "promotion", "wealth"], correct: "B", ansText: "suffering" },
-  { q: "Obeying God leads to _____", options: ["peace and blessings", "sorrow", "destruction", "fear"], correct: "A", ansText: "peace and blessings" },
-  { q: "Christians today are expected to ____", options: ["ignore repentance", "live in obedience to God", "disobey authority", "reject the Bible"], correct: "B", ansText: "live in obedience to God" }
+{q:"Science is the systematic study of the ______ world.", options:["Artificial","Natural","Imaginary","Spiritual"],answer:1},
+{q:"Science explains natural events using observation, experimentation and ______.", options:["Guessing","Logical reasoning","Dreaming","Imagination"],answer:1},
+{q:"Which is a characteristic of science?", options:["Superstition","Evidence based","Emotion","Magic"],answer:1},
+{q:"Which is an example of science in daily life?", options:["Charging a phone","Sleeping","Dancing","Talking"],answer:0},
+{q:"The study of living organisms is called ______.", options:["Physics","Chemistry","Biology","Geography"],answer:2},
+{q:"The study of plants is called ______.", options:["Zoology","Botany","Ecology","Anatomy"],answer:1},
+{q:"The study of animals is called ______.", options:["Botany","Zoology","Ecology","Physiology"],answer:1},
+{q:"The study of substances and their reactions is ______.", options:["Biology","Chemistry","Physics","Ecology"],answer:1},
+{q:"The study of matter and energy is called ______.", options:["Physics","Biology","Botany","Sociology"],answer:0},
+{q:"The study of weather is called ______.", options:["Meteorology","Geology","Oceanography","Astronomy"],answer:0},
+{q:"The first step in scientific method is ______.", options:["Observation","Experiment","Conclusion","Analysis"],answer:0},
+{q:"A smart guess in science is called ______.", options:["Observation","Hypothesis","Experiment","Theory"],answer:1},
+{q:"Testing a hypothesis is called ______.", options:["Observation","Experiment","Communication","Analysis"],answer:1},
+{q:"Recording results is called ______.", options:["Data collection","Hypothesis","Observation","Prediction"],answer:0},
+{q:"Matter is anything that has ______ and occupies space.", options:["Mass","Colour","Taste","Smell"],answer:0},
+{q:"The three states of matter are ______.", options:["Solid liquid gas","Water air fire","Stone gas dust","Air soil fire"],answer:0},
+{q:"Which of these is a solid?", options:["Water","Oil","Book","Milk"],answer:2},
+{q:"Liquids have ______.", options:["Fixed shape and volume","No shape but fixed volume","No shape no volume","Fixed shape only"],answer:1},
+{q:"Gases have ______.", options:["Fixed shape","Fixed volume","No shape and no volume","Fixed size"],answer:2},
+{q:"Smallest building block of matter is ______.", options:["Atom","Molecule","Ion","Cell"],answer:0},
+{q:"Two atoms joined together form a ______.", options:["Cell","Molecule","Organ","Tissue"],answer:1},
+{q:"Charged atoms are called ______.", options:["Atoms","Molecules","Ions","Cells"],answer:2},
+{q:"Which is a living thing?", options:["Stone","Goat","Chair","Pen"],answer:1},
+{q:"Which is non-living?", options:["Dog","Maize","Water","Goat"],answer:2},
+{q:"Production of young ones is ______.", options:["Growth","Respiration","Reproduction","Movement"],answer:2},
+{q:"Removal of body waste is ______.", options:["Respiration","Excretion","Growth","Feeding"],answer:1},
+{q:"Plants make food through ______.", options:["Respiration","Photosynthesis","Digestion","Absorption"],answer:1},
+{q:"Which animal gives birth to live young?", options:["Hen","Lizard","Cow","Snake"],answer:2},
+{q:"Which animal lays eggs?", options:["Goat","Chicken","Dog","Sheep"],answer:1},
+{q:"Which plant part makes food?", options:["Root","Stem","Leaf","Flower"],answer:2},
+{q:"Shiny surface of metals is called ______.", options:["Lustre","Ductility","Brittleness","Malleability"],answer:0},
+{q:"Metals conduct ______.", options:["Heat and electricity","Air and water","Light and wind","Water and gas"],answer:0},
+{q:"Which is a metal?", options:["Sulphur","Carbon","Iron","Oxygen"],answer:2},
+{q:"Which is a non-metal?", options:["Iron","Copper","Carbon","Zinc"],answer:2},
+{q:"Energy is the ability to ______.", options:["Rest","Do work","Sleep","Move"],answer:1},
+{q:"Heat energy produces ______.", options:["Light","Warmth","Sound","Wind"],answer:1},
+{q:"Light energy helps us ______.", options:["Hear","See","Taste","Touch"],answer:1},
+{q:"Energy stored in food is ______ energy.", options:["Chemical","Heat","Light","Sound"],answer:0},
+{q:"Energy from the sun is ______.", options:["Wind energy","Solar energy","Heat energy","Chemical energy"],answer:1},
+{q:"Energy from vibration is ______.", options:["Sound energy","Heat energy","Light energy","Chemical energy"],answer:0},
+{q:"Energy changing from one form to another is ______.", options:["Energy movement","Energy transformation","Energy storage","Energy division"],answer:1},
+{q:"Generator converts ______ energy to electricity.", options:["Mechanical","Heat","Sound","Solar"],answer:0},
+{q:"Electric bulb converts electricity to ______.", options:["Heat","Sound","Light","Chemical"],answer:2},
+{q:"Solar panels convert solar energy to ______.", options:["Heat","Electrical","Sound","Mechanical"],answer:1},
+{q:"Renewable energy sources can be ______ naturally.", options:["Destroyed","Replaced","Hidden","Reduced"],answer:1},
+{q:"Which is renewable energy?", options:["Coal","Petrol","Solar","Diesel"],answer:2},
+{q:"Which is non-renewable?", options:["Wind","Sun","Petroleum","Water"],answer:2},
+{q:"Wind energy comes from ______.", options:["Sunlight","Moving air","Water","Soil"],answer:1},
+{q:"Hydroelectric energy comes from ______.", options:["Flowing water","Sun","Coal","Petrol"],answer:0},
+{q:"Too much firewood causes ______.", options:["Flooding","Deforestation","Rain","Wind"],answer:1},
+{q:"Petrol and diesel are ______ energy.", options:["Renewable","Non-renewable","Solar","Wind"],answer:1},
+{q:"Hospital machines like X-ray use ______.", options:["Energy","Soil","Water","Wind"],answer:0},
+{q:"Energy from plants and waste is ______.", options:["Solar","Biomass","Wind","Coal"],answer:1},
+{q:"Vehicles use ______.", options:["Petrol","Sunlight","Wind","Water"],answer:0},
+{q:"Energy helps in ______.", options:["Cooking","Sleeping","Dreaming","Resting"],answer:0},
+{q:"Renewable energy reduces ______.", options:["Pollution","Sunlight","Wind","Rain"],answer:0},
+{q:"Proper energy use ensures ______ development.", options:["Temporary","Sustainable","Weak","Slow"],answer:1},
+{q:"One importance of energy is that it helps in ______.", options:["cooking food","sleeping","dreaming","resting"],answer:0},
+{q:"Renewable energy helps reduce ______.", options:["pollution","rainfall","sunshine","wind"],answer:0},
+{q:"Proper use of energy ensures ______ development.", options:["temporary","sustainable","weak","poor"],answer:1}
 ];
 
-let timeLeft = 45 * 60;
+let time = 2700;
 let timerInterval;
 
-// Start Quiz Logic
-document.getElementById("startBtn").addEventListener("click", () => {
-  const name = document.getElementById("candidateName").value.trim();
-  if (!name) return alert("Please enter your name");
+function startExam() {
+    const name = document.getElementById("studentNameInput").value;
+    if (name.trim() === "") {
+        alert("Please enter your name!");
+        return;
+    }
+    document.getElementById("displayName").textContent = name;
+    document.getElementById("loginOverlay").style.display = "none";
+    document.getElementById("submitBtn").style.display = "block";
+    renderQuestions();
+    startTimer();
+}
 
-  document.getElementById("intro").style.display = "none";
-  document.getElementById("navbar").style.display = "flex";
-  document.getElementById("quiz").style.display = "block";
-  document.getElementById("candidateDisplay").textContent = `Candidate: ${name}`;
-  
-  generateQuestions();
-  startTimer();
-});
-
-function generateQuestions() {
-  const form = document.getElementById("quizForm");
-  questions.forEach((q, i) => {
-    const div = document.createElement("div");
-    div.className = "question";
-    div.innerHTML = `
-      <h3>${i + 1}. ${q.q}</h3>
-      <div class="options">
-        ${q.options.map((opt, idx) => `
-          <label>
-            <input type="radio" name="q${i}" value="${String.fromCharCode(65 + idx)}">
-            ${String.fromCharCode(65 + idx)}. ${opt}
-          </label>
-        `).join("")}
-      </div>
-    `;
-    form.appendChild(div);
-  });
+function renderQuestions() {
+    const container = document.getElementById("questions");
+    questions.forEach((q, index) => {
+        let html = `<div class="question">
+            <p><b>${index+1}. ${q.q}</b></p>
+            <div class="options">`;
+        q.options.forEach((opt, i) => {
+            html += `<label><input type="radio" name="q${index}" value="${i}"> ${opt}</label>`;
+        });
+        html += `</div></div>`;
+        container.innerHTML += html;
+    });
 }
 
 function startTimer() {
-  timerInterval = setInterval(() => {
-    timeLeft--;
-    const m = Math.floor(timeLeft / 60);
-    const s = timeLeft % 60;
-    document.getElementById("timer").textContent = `${m}:${s < 10 ? '0' : ''}${s}`;
-    if (timeLeft <= 0) submitExam(true);
-  }, 1000);
+    timerInterval = setInterval(function() {
+        let minutes = Math.floor(time / 60);
+        let seconds = time % 60;
+        document.getElementById("time").innerHTML = minutes + ":" + (seconds < 10 ? "0" + seconds : seconds);
+        time--;
+        if (time < 0) {
+            clearInterval(timerInterval);
+            submitExam();
+            alert("Time Up! Exam Submitted");
+        }
+    }, 1000);
 }
 
-document.getElementById("submitBtn").addEventListener("click", () => submitExam(false));
+function submitExam() {
+    clearInterval(timerInterval);
+    let score = 0;
+    questions.forEach((q, i) => {
+        let selected = document.querySelector(`input[name="q${i}"]:checked`);
+        let div = document.querySelectorAll(".question")[i];
+        
+        if (selected && parseInt(selected.value) === q.answer) {
+            score++;
+        }
+        
+        let correctText = q.options[q.answer];
+        div.innerHTML += `<div class="correct">Correct Answer: ${correctText}</div>`;
+    });
 
-function submitExam(timeUp) {
-  clearInterval(timerInterval);
-  if (timeUp) alert("Time is up!");
-  
-  let score = 0;
-  let html = "";
-  
-  questions.forEach((q, i) => {
-    const selected = document.querySelector(`input[name="q${i}"]:checked`);
-    const val = selected ? selected.value : null;
-    const isCorrect = val === q.correct;
-    if (isCorrect) score++;
-
-    html += `
-      <div class="${isCorrect ? 'correct-feedback' : 'wrong-feedback'}">
-        <strong>Question ${i+1}:</strong> ${q.q}<br>
-        Your Answer: ${val || "None"} | Correct: ${q.correct} (${q.ansText})
-      </div>`;
-  });
-
-  document.getElementById("quiz").style.display = "none";
-  document.getElementById("navbar").style.display = "none";
-  document.getElementById("result").style.display = "block";
-  document.getElementById("scoreText").innerHTML = `Final Score: ${score} / ${questions.length} (${((score/questions.length)*100).toFixed(1)}%)`;
-  document.getElementById("detailedAnswers").innerHTML = html;
-  window.scrollTo(0,0);
+    document.getElementById("result").innerHTML = `Examination Complete!<br>Final Score: ${score} / ${questions.length}`;
+    document.getElementById("submitBtn").style.display = "none";
+    window.scrollTo(0,0);
 }
 </script>
+
 </body>
 </html>
