@@ -1,314 +1,263 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Term 2 Examination 2025/2026 Academic session |  Subject:Digital Art </title>
-    <style>
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            margin: 20px;
-            background: #f8f9fa;
-            color: #333;
-        }
-        h1, h2 { text-align: center; color: #2c3e50; }
-        #intro, #quiz, #result { max-width: 960px; margin: 0 auto; background: white; padding: 25px; border-radius: 10px; box-shadow: 0 2px 12px rgba(0,0,0,0.12); }
-        #timer {
-            font-size: 1.6em; font-weight: bold; color: #e74c3c; text-align: center; margin: 20px 0;
-        }
-        .question {
-            margin: 30px 0; padding: 18px; border-left: 5px solid #3498db; background: #f9fcff; border-radius: 8px;
-        }
-        .options label {
-            display: block; margin: 12px 0; cursor: pointer; line-height: 1.5;
-        }
-        button {
-            display: block; margin: 35px auto; padding: 14px 50px; font-size: 1.25em;
-            background: #27ae60; color: white; border: none; border-radius: 8px; cursor: pointer;
-        }
-        button:hover { background: #219653; }
-        #result table {
-            width: 100%; border-collapse: collapse; margin-top: 25px; font-size: 0.98em;
-        }
-        #result th, #result td {
-            border: 1px solid #ddd; padding: 12px; text-align: left; vertical-align: top;
-        }
-        #result th { background: #34495e; color: white; }
-        .correct { background: #e8f5e9; }
-        .wrong { background: #ffebee; }
-        #nameInput { padding: 12px; font-size: 1.1em; width: 340px; margin: 15px; }
-        .hidden { display: none; }
-        .answer-display { white-space: pre-wrap; }
-    </style>
+<title>ROYAL WUNDERKIND MODEL SCHOOL CBT</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f4f6f9;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* LOGIN OVERLAY */
+    #loginOverlay {
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: #0a2a66;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 2000;
+    }
+    .login-box {
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    }
+    .login-box input {
+        padding: 10px;
+        width: 80%;
+        margin: 15px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .header-main {
+        background: white;
+        padding: 10px;
+        border-bottom: 2px solid #0a2a66;
+    }
+
+    /* STICKY STUDENT BAR */
+    .student-bar {
+        position: sticky;
+        top: 0;
+        background: #ffffff;
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        z-index: 1000;
+        border-bottom: 2px solid #0a2a66;
+    }
+
+    .container {
+        max-width: 900px;
+        margin: 20px auto;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    h1 { text-align: center; color: #0a2a66; margin: 5px 0; }
+
+    .timer {
+        font-size: 20px;
+        font-weight: bold;
+        color: red;
+        background: #fff0f0;
+        padding: 5px 15px;
+        border-radius: 5px;
+        border: 1px solid red;
+    }
+
+    .question { margin-bottom: 20px; padding: 15px; border-bottom: 1px solid #ddd; }
+    .options label { display: block; margin: 8px 0; cursor: pointer; }
+    
+    button {
+        padding: 15px 30px;
+        background: #0a2a66;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 18px;
+        cursor: pointer;
+        width: 100%;
+    }
+
+    button:hover { background: #1f4fd1; }
+    .result { font-size: 24px; font-weight: bold; text-align: center; margin-top: 20px; color: #0a2a66; }
+    .correct { color: green; font-weight: bold; margin-top: 10px; background: #e8f5e9; padding: 5px; }
+</style>
+
 </head>
+
 <body>
-<div id="intro">
-    <h1>Term 2 Examination 2025/2026 Academic session</h1>
-    <h2>Digital Art | Fundamental Genres of Literature & Book Creation</h2>
-    <p style="text-align:center; font-size:1.3em;">60 Objective Questions • 45 Minutes</p>
-    <div style="text-align:center;">
-        <label>Enter your full name: </label><br>
-        <input type="text" id="nameInput" placeholder="Your Name..." required />
-        <button onclick="startExam()">Start Examination</button>
+
+<div id="loginOverlay">
+    <div class="login-box">
+        <h2>RoyaL Wunderkind Model School</h2>
+         <h3>Subject: Intermediate Science | Year 7</h3>
+        <p>Enter your Full Name to start the exam:</p>
+        <input type="text" id="studentNameInput" placeholder="e.g. John Doe">
+        <br>
+        <button type="button" onclick="startExam()">Start Examination</button>
     </div>
 </div>
-<div id="quiz" class="hidden">
-    <h2 id="candidateName"></h2>
-    <div id="timer">Time remaining: 45:00</div>
-  
-    <form id="quizForm"></form>
-  
-    <button type="button" onclick="submitExam()">Submit Exam</button>
+
+<div class="header-main">
+    <h1>ROYAL WUNDERKIND MODEL SCHOOL</h1>
+    <h3 style="text-align:center; color:#555;">Intermediate Science CBT – YEAR 7</h3>
 </div>
-<div id="result" class="hidden">
-    <h2>Examination Result</h2>
-    <div id="summary"></div>
-    <table>
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Question</th>
-                <th>Your Answer</th>
-                <th>Correct Answer</th>
-                <th>Result</th>
-            </tr>
-        </thead>
-        <tbody id="resultBody"></tbody>
-    </table>
+
+<div class="student-bar">
+    <div><strong>Student:</strong> <span id="displayName">---</span></div>
+    <div class="timer">Time: <span id="time">45:00</span></div>
 </div>
+
+<div class="container">
+    <form id="quizForm">
+        <div id="questions"></div>
+        <button type="button" id="submitBtn" onclick="submitExam()" style="display:none;">Submit Exam</button>
+    </form>
+    <div class="result" id="result"></div>
+</div>
+
 <script>
-// Correct answers (index 0 = question 1)
-const correctAnswers = [
-    "B","C","C","B","C","B","B","C","B","B", // 1-10
-    "C","B","B","C","D","C","B","A","B","C", // 11-20
-    "B","C","B","C","B","C","B","C","B","C", // 21-30
-    "C","C","C","C","A","C","B","B","C","B", // 31-40
-    "C","A","B","B","B","B","C","B","C","C", // 41-50
-    "B","B","C","C","B","B","B","C","C","B" // 51-60
-];
+// (All 60 questions from your original code remain here)
 const questions = [
-    "1. Stories created from the author’s imagination are called ______. ",
-    "2. A book that tells real-life events is called ______. ",
-    "3. An autobiography is a story about ______. ",
-    "4. A biography tells the life of ______. ",
-    "5. Drama is written mainly to be ______. ",
-    "6. Stories in drama are told through ______. ",
-    "7. Poetry uses ______ qualities of language. ",
-    "8. A sonnet is a type of ______. ",
-    "9. Horror and fantasy are types of ______. ",
-    "10. Sci-fi means ______. ",
-    "11. The first step in book writing is ______. ",
-    "12. Finding your “Why” helps you stay ______. ",
-    "13. Developing your idea includes deciding the ______. ",
-    "14. An outline helps to ______ your book. ",
-    "15. Research is important for both fiction and ______. ",
-    "16. The first draft should focus on ______. ",
-    "17. Revision focuses on ______. ",
-    "18. Editing improves ______. ",
-    "19. Proofreading checks for ______ errors. ",
-    "20. Formatting prepares the manuscript for ______. ",
-    "21. AI prompting means giving ______ to AI. ",
-    "22. Clear prompts help AI give ______ responses. ",
-    "23. AI prompting improves ______ of output. ",
-    "24. Generative AI produces ______. ",
-    "25. Giving context to AI makes results more ______. ",
-    "26. Page orientation can be portrait or ______. ",
-    "27. Portrait orientation is ______. ",
-    "28. Landscape orientation is ______. ",
-    "29. Serif fonts are mostly used for ______ text. ",
-    "30. Sans-serif fonts are mostly used for ______. ",
-    "31. A recommended serif font is ______. ",
-    "32. Times New Roman is a ______ font. ",
-    "33. Arial is a ______ font. ",
-    "34. Standard body text size is usually ______. ",
-    "35. Full justification is mainly used for ______. ",
-    "36. Paragraph indent should be about ______ inches. ",
-    "37. eBook fonts should remain ______. ",
-    "38. The first page of a book is the ______. ",
-    "39. The title page usually appears on the ______ side. ",
-    "40. The copyright page is placed after the ______ page. ",
-    "41. The copyright symbol is written as ______. ",
-    "42. ISBN stands for ______. ",
-    "43. A dedication page is ______. ",
-    "44. The Table of Contents lists ______. ",
-    "45. Front matter uses ______ numerals. ",
-    "46. Chapter 1 begins with ______ numerals. ",
-    "47. Track Changes is a feature in ______. ",
-    "48. Track Changes shows ______. ",
-    "49. Proofreading is the ______ step before publishing. ",
-    "50. Proofreading checks sentence ______. ",
-    "51. Consistency of tense and tone is checked during ______. ",
-    "52. A full book cover set includes ______ elements. ",
-    "53. The front cover must contain the ______. ",
-    "54. The author’s name appears on the ______. ",
-    "55. Illustrations on the cover make it more ______. ",
-    "56. The subtitle on a cover is ______. ",
-    "57. Professional formatting improves ______. ",
-    "58. Research ensures information is ______. ",
-    "59. Revision focuses on ______ organization. ",
-    "60. Editing removes ______ words. "
+{q:"Science is the systematic study of the ______ world.", options:["Artificial","Natural","Imaginary","Spiritual"],answer:1},
+{q:"Science explains natural events using observation, experimentation and ______.", options:["Guessing","Logical reasoning","Dreaming","Imagination"],answer:1},
+{q:"Which is a characteristic of science?", options:["Superstition","Evidence based","Emotion","Magic"],answer:1},
+{q:"Which is an example of science in daily life?", options:["Charging a phone","Sleeping","Dancing","Talking"],answer:0},
+{q:"The study of living organisms is called ______.", options:["Physics","Chemistry","Biology","Geography"],answer:2},
+{q:"The study of plants is called ______.", options:["Zoology","Botany","Ecology","Anatomy"],answer:1},
+{q:"The study of animals is called ______.", options:["Botany","Zoology","Ecology","Physiology"],answer:1},
+{q:"The study of substances and their reactions is ______.", options:["Biology","Chemistry","Physics","Ecology"],answer:1},
+{q:"The study of matter and energy is called ______.", options:["Physics","Biology","Botany","Sociology"],answer:0},
+{q:"The study of weather is called ______.", options:["Meteorology","Geology","Oceanography","Astronomy"],answer:0},
+{q:"The first step in scientific method is ______.", options:["Observation","Experiment","Conclusion","Analysis"],answer:0},
+{q:"A smart guess in science is called ______.", options:["Observation","Hypothesis","Experiment","Theory"],answer:1},
+{q:"Testing a hypothesis is called ______.", options:["Observation","Experiment","Communication","Analysis"],answer:1},
+{q:"Recording results is called ______.", options:["Data collection","Hypothesis","Observation","Prediction"],answer:0},
+{q:"Matter is anything that has ______ and occupies space.", options:["Mass","Colour","Taste","Smell"],answer:0},
+{q:"The three states of matter are ______.", options:["Solid liquid gas","Water air fire","Stone gas dust","Air soil fire"],answer:0},
+{q:"Which of these is a solid?", options:["Water","Oil","Book","Milk"],answer:2},
+{q:"Liquids have ______.", options:["Fixed shape and volume","No shape but fixed volume","No shape no volume","Fixed shape only"],answer:1},
+{q:"Gases have ______.", options:["Fixed shape","Fixed volume","No shape and no volume","Fixed size"],answer:2},
+{q:"Smallest building block of matter is ______.", options:["Atom","Molecule","Ion","Cell"],answer:0},
+{q:"Two atoms joined together form a ______.", options:["Cell","Molecule","Organ","Tissue"],answer:1},
+{q:"Charged atoms are called ______.", options:["Atoms","Molecules","Ions","Cells"],answer:2},
+{q:"Which is a living thing?", options:["Stone","Goat","Chair","Pen"],answer:1},
+{q:"Which is non-living?", options:["Dog","Maize","Water","Goat"],answer:2},
+{q:"Production of young ones is ______.", options:["Growth","Respiration","Reproduction","Movement"],answer:2},
+{q:"Removal of body waste is ______.", options:["Respiration","Excretion","Growth","Feeding"],answer:1},
+{q:"Plants make food through ______.", options:["Respiration","Photosynthesis","Digestion","Absorption"],answer:1},
+{q:"Which animal gives birth to live young?", options:["Hen","Lizard","Cow","Snake"],answer:2},
+{q:"Which animal lays eggs?", options:["Goat","Chicken","Dog","Sheep"],answer:1},
+{q:"Which plant part makes food?", options:["Root","Stem","Leaf","Flower"],answer:2},
+{q:"Shiny surface of metals is called ______.", options:["Lustre","Ductility","Brittleness","Malleability"],answer:0},
+{q:"Metals conduct ______.", options:["Heat and electricity","Air and water","Light and wind","Water and gas"],answer:0},
+{q:"Which is a metal?", options:["Sulphur","Carbon","Iron","Oxygen"],answer:2},
+{q:"Which is a non-metal?", options:["Iron","Copper","Carbon","Zinc"],answer:2},
+{q:"Energy is the ability to ______.", options:["Rest","Do work","Sleep","Move"],answer:1},
+{q:"Heat energy produces ______.", options:["Light","Warmth","Sound","Wind"],answer:1},
+{q:"Light energy helps us ______.", options:["Hear","See","Taste","Touch"],answer:1},
+{q:"Energy stored in food is ______ energy.", options:["Chemical","Heat","Light","Sound"],answer:0},
+{q:"Energy from the sun is ______.", options:["Wind energy","Solar energy","Heat energy","Chemical energy"],answer:1},
+{q:"Energy from vibration is ______.", options:["Sound energy","Heat energy","Light energy","Chemical energy"],answer:0},
+{q:"Energy changing from one form to another is ______.", options:["Energy movement","Energy transformation","Energy storage","Energy division"],answer:1},
+{q:"Generator converts ______ energy to electricity.", options:["Mechanical","Heat","Sound","Solar"],answer:0},
+{q:"Electric bulb converts electricity to ______.", options:["Heat","Sound","Light","Chemical"],answer:2},
+{q:"Solar panels convert solar energy to ______.", options:["Heat","Electrical","Sound","Mechanical"],answer:1},
+{q:"Renewable energy sources can be ______ naturally.", options:["Destroyed","Replaced","Hidden","Reduced"],answer:1},
+{q:"Which is renewable energy?", options:["Coal","Petrol","Solar","Diesel"],answer:2},
+{q:"Which is non-renewable?", options:["Wind","Sun","Petroleum","Water"],answer:2},
+{q:"Wind energy comes from ______.", options:["Sunlight","Moving air","Water","Soil"],answer:1},
+{q:"Hydroelectric energy comes from ______.", options:["Flowing water","Sun","Coal","Petrol"],answer:0},
+{q:"Too much firewood causes ______.", options:["Flooding","Deforestation","Rain","Wind"],answer:1},
+{q:"Petrol and diesel are ______ energy.", options:["Renewable","Non-renewable","Solar","Wind"],answer:1},
+{q:"Hospital machines like X-ray use ______.", options:["Energy","Soil","Water","Wind"],answer:0},
+{q:"Energy from plants and waste is ______.", options:["Solar","Biomass","Wind","Coal"],answer:1},
+{q:"Vehicles use ______.", options:["Petrol","Sunlight","Wind","Water"],answer:0},
+{q:"Energy helps in ______.", options:["Cooking","Sleeping","Dreaming","Resting"],answer:0},
+{q:"Renewable energy reduces ______.", options:["Pollution","Sunlight","Wind","Rain"],answer:0},
+{q:"Proper energy use ensures ______ development.", options:["Temporary","Sustainable","Weak","Slow"],answer:1},
+{q:"One importance of energy is that it helps in ______.", options:["cooking food","sleeping","dreaming","resting"],answer:0},
+{q:"Renewable energy helps reduce ______.", options:["pollution","rainfall","sunshine","wind"],answer:0},
+{q:"Proper use of energy ensures ______ development.", options:["temporary","sustainable","weak","poor"],answer:1}
 ];
-const options = [
-    ["A. Non-fiction","B. Fiction","C. Biography","D. Essay"],
-    ["A. Fantasy","B. Horror","C. Non-fiction","D. Drama"],
-    ["A. animals","B. another person","C. the author’s life","D. imagination"],
-    ["A. the writer","B. another person","C. a character","D. a place"],
-    ["A. read silently","B. memorized","C. performed","D. drawn"],
-    ["A. narration only","B. dialogue and action","C. pictures","D. songs"],
-    ["A. mathematical","B. rhythmic and aesthetic","C. scientific","D. technical"],
-    ["A. drama","B. fiction","C. poetry","D. essay"],
-    ["A. poetry","B. fiction","C. drama","D. non-fiction"],
-    ["A. social fiction","B. science fiction","C. silent fiction","D. simple fiction"],
-    ["A. publishing","B. printing","C. planning","D. advertising"],
-    ["A. confused","B. driven","C. tired","D. bored"],
-    ["A. printer","B. genre","C. paper colour","D. price"],
-    ["A. destroy","B. decorate","C. structure","D. shorten"],
-    ["A. drama","B. poetry","C. comics","D. non-fiction"],
-    ["A. perfect grammar","B. word count only","C. getting ideas down","D. publishing"],
-    ["A. printing","B. story flow","C. cover colour","D. price"],
-    ["A. sentence structure","B. paper size","C. binding","D. marketing"],
-    ["A. colour","B. grammar and spelling","C. binding","D. illustration"],
-    ["A. performance","B. discussion","C. publication","D. drawing"],
-    ["A. money","B. instructions","C. hardware","D. cables"],
-    ["A. confusing","B. irrelevant","C. accurate","D. short"],
-    ["A. colour","B. clarity","C. printing","D. binding"],
-    ["A. books","B. computers","C. outputs","D. printers"],
-    ["A. random","B. clear","C. useless","D. slow"],
-    ["A. vertical","B. horizontal","C. landscape","D. square"],
-    ["A. wide","B. tall","C. small","D. flat"],
-    ["A. tall","B. narrow","C. wide","D. short"],
-    ["A. headings","B. body","C. captions","D. covers"],
-    ["A. body text","B. margins","C. headings","D. footnotes"],
-    ["A. Arial","B. Helvetica","C. Garamond","D. Verdana"],
-    ["A. decorative","B. serif","C. script","D. symbol"],
-    ["A. serif","B. sans-serif","C. script","D. fantasy"],
-    ["A. 8 pt","B. 9 pt","C. 11–12 pt","D. 20 pt"],
-    ["A. novels","B. posters","C. poetry","D. legal documents"],
-    ["A. 2","B. 1","C. 0.25–0.3","D. 3"],
-    ["A. decorative","B. standard","C. colourful","D. artistic"],
-    ["A. copyright page","B. title page","C. index","D. glossary"],
-    ["A. left","B. middle","C. right-hand","D. back"],
-    ["A. dedication","B. title","C. contents","D. chapter"],
-    ["A. @","B. #","C. ©","D. &"],
-    ["A. International Standard Book Number","B. Internal System Book Note","C. International Script Book Name","D. Internet Standard Book Network"],
-    ["A. compulsory","B. optional","C. illegal","D. printed last"],
-    ["A. prices","B. chapters","C. publishers","D. printers"],
-    ["A. Arabic","B. Roman","C. Greek","D. English"],
-    ["A. Roman","B. Arabic","C. Latin","D. Symbol"],
-    ["A. Excel","B. PowerPoint","C. Microsoft Word","D. Paint"],
-    ["A. hidden pages","B. modifications","C. pictures","D. margins"],
-    ["A. first","B. second","C. final","D. middle"],
-    ["A. colour","B. clarity","C. size","D. shape"],
-    ["A. printing","B. proofreading","C. drawing","D. scanning"],
-    ["A. two","B. three","C. four","D. five"],
-    ["A. printer","B. price","C. title","D. index"],
-    ["A. back cover","B. spine only","C. front cover","D. copyright page only"],
-    ["A. boring","B. attractive","C. heavy","D. blank"],
-    ["A. compulsory","B. optional","C. illegal","D. hidden"],
-    ["A. confusion","B. readability","C. noise","D. printing errors"],
-    ["A. false","B. imaginary","C. credible","D. copied"],
-    ["A. paper","B. cover","C. overall","D. binding"],
-    ["A. strong","B. repeated","C. clear","D. important"]
-];
-let timeLeft = 45 * 60;   // ← changed to 45 minutes
-let timerId;
-let studentName = "";
+
+let time = 2700;
+let timerInterval;
 
 function startExam() {
-    studentName = document.getElementById("nameInput").value.trim();
-    if (!studentName) {
-        alert("Please enter your name before starting the exam.");
+    const name = document.getElementById("studentNameInput").value;
+    if (name.trim() === "") {
+        alert("Please enter your name!");
         return;
     }
-    document.getElementById("intro").classList.add("hidden");
-    document.getElementById("quiz").classList.remove("hidden");
-    document.getElementById("candidateName").textContent = "Candidate: " + studentName;
-    generateQuestions();
+    document.getElementById("displayName").textContent = name;
+    document.getElementById("loginOverlay").style.display = "none";
+    document.getElementById("submitBtn").style.display = "block";
+    renderQuestions();
     startTimer();
 }
 
-function generateQuestions() {
-    const form = document.getElementById("quizForm");
-    form.innerHTML = "";
-    questions.forEach((qText, index) => {
-        const qNum = index + 1;
-        const div = document.createElement("div");
-        div.className = "question";
-        div.innerHTML = `<strong>${qText}</strong><div class="options"></div>`;
-        const optsDiv = div.querySelector(".options");
-       
-        "ABCD".split("").forEach(letter => {
-            const optIndex = "ABCD".indexOf(letter);
-            const label = document.createElement("label");
-            label.innerHTML = `<input type="radio" name="q${qNum}" value="${letter}"> ${options[index][optIndex]}`;
-            optsDiv.appendChild(label);
+function renderQuestions() {
+    const container = document.getElementById("questions");
+    questions.forEach((q, index) => {
+        let html = `<div class="question">
+            <p><b>${index+1}. ${q.q}</b></p>
+            <div class="options">`;
+        q.options.forEach((opt, i) => {
+            html += `<label><input type="radio" name="q${index}" value="${i}"> ${opt}</label>`;
         });
-        form.appendChild(div);
+        html += `</div></div>`;
+        container.innerHTML += html;
     });
 }
 
 function startTimer() {
-    updateTimerDisplay();
-    timerId = setInterval(() => {
-        timeLeft--;
-        updateTimerDisplay();
-        if (timeLeft <= 0) {
-            clearInterval(timerId);
-            alert("Time is up! Your exam is being submitted automatically.");
-            submitExam(true);
+    timerInterval = setInterval(function() {
+        let minutes = Math.floor(time / 60);
+        let seconds = time % 60;
+        document.getElementById("time").innerHTML = minutes + ":" + (seconds < 10 ? "0" + seconds : seconds);
+        time--;
+        if (time < 0) {
+            clearInterval(timerInterval);
+            submitExam();
+            alert("Time Up! Exam Submitted");
         }
     }, 1000);
 }
 
-function updateTimerDisplay() {
-    const min = Math.floor(timeLeft / 60);
-    const sec = timeLeft % 60;
-    document.getElementById("timer").textContent =
-        `Time remaining: ${min}:${sec < 10 ? "0" : ""}${sec}`;
-}
-
-function submitExam(auto = false) {
-    if (timerId) clearInterval(timerId);
-   
+function submitExam() {
+    clearInterval(timerInterval);
     let score = 0;
-    const resultBody = document.getElementById("resultBody");
-    resultBody.innerHTML = "";
-    for (let i = 0; i < 60; i++) {
-        const qNum = i + 1;
-        const selected = document.querySelector(`input[name="q${qNum}"]:checked`);
-        const userLetter = selected ? selected.value : "-";
-        const correctLetter = correctAnswers[i];
-       
-        const userAnswerText = userLetter === "-" ? "-" : options[i]["ABCD".indexOf(userLetter)];
-        const correctAnswerText = options[i]["ABCD".indexOf(correctLetter)];
-       
-        const isCorrect = userLetter === correctLetter;
-        if (isCorrect) score++;
-        const row = document.createElement("tr");
-        row.className = isCorrect ? "correct" : "wrong";
-        row.innerHTML = `
-            <td>${qNum}</td>
-            <td>${questions[i].trim()}</td>
-            <td class="answer-display">${userAnswerText}</td>
-            <td class="answer-display">${correctAnswerText}</td>
-            <td>${isCorrect ? "✓ Correct" : "✗ Wrong"}</td>
-        `;
-        resultBody.appendChild(row);
-    }
-    const percent = ((score / 60) * 100).toFixed(1);
-    document.getElementById("summary").innerHTML = `
-        <p><strong>Name:</strong> ${studentName}</p>
-        <p><strong>Score:</strong> ${score} / 60 (${percent}%)</p>
-        <p style="color: ${percent >= 50 ? '#27ae60' : '#c0392b'}; font-weight:bold; font-size:1.4em; margin-top:15px;">
-            ${percent >= 50 ? "PASSED" : "FAILED"}
-        </p>
-    `;
-    document.getElementById("quiz").classList.add("hidden");
-    document.getElementById("result").classList.remove("hidden");
-    if (auto) {
-        document.getElementById("summary").innerHTML += "<p><em>(Auto-submitted due to time out)</em></p>";
-    }
+    questions.forEach((q, i) => {
+        let selected = document.querySelector(`input[name="q${i}"]:checked`);
+        let div = document.querySelectorAll(".question")[i];
+        
+        if (selected && parseInt(selected.value) === q.answer) {
+            score++;
+        }
+        
+        let correctText = q.options[q.answer];
+        div.innerHTML += `<div class="correct">Correct Answer: ${correctText}</div>`;
+    });
+
+    document.getElementById("result").innerHTML = `Examination Complete!<br>Final Score: ${score} / ${questions.length}`;
+    document.getElementById("submitBtn").style.display = "none";
+    window.scrollTo(0,0);
 }
 </script>
+
 </body>
 </html>
