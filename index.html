@@ -1,262 +1,269 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>ROYAL WUNDERKIND MODEL SCHOOL CBT</title>
-
-<style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Year 7 English Language - Grammar CBT</title>
+  <style>
     body {
-        font-family: Arial, sans-serif;
-        background: #f4f6f9;
-        margin: 0;
-        padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 20px;
+      line-height: 1.5;
+      background-color: #f9f9f9;
     }
-
-    /* LOGIN OVERLAY */
-    #loginOverlay {
-        position: fixed;
-        top: 0; left: 0; width: 100%; height: 100%;
-        background: #0a2a66;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 2000;
+    h1, h2 {
+      text-align: center;
+      color: #2c3e50;
     }
-    .login-box {
-        background: white;
-        padding: 30px;
-        border-radius: 10px;
-        text-align: center;
-        box-shadow: 0 0 20px rgba(0,0,0,0.3);
-    }
-    .login-box input {
-        padding: 10px;
-        width: 80%;
-        margin: 15px 0;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-    }
-
-    .header-main {
-        background: white;
-        padding: 10px;
-        border-bottom: 2px solid #0a2a66;
-    }
-
-    /* STICKY STUDENT BAR */
-    .student-bar {
-        position: sticky;
-        top: 0;
-        background: #ffffff;
-        padding: 10px 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        z-index: 1000;
-        border-bottom: 2px solid #0a2a66;
-    }
-
-    .container {
-        max-width: 900px;
-        margin: 20px auto;
-        background: white;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0,0,0,0.2);
-    }
-
-    h1 { text-align: center; color: #0a2a66; margin: 5px 0; }
-
     .timer {
-        font-size: 20px;
-        font-weight: bold;
-        color: red;
-        background: #fff0f0;
-        padding: 5px 15px;
-        border-radius: 5px;
-        border: 1px solid red;
+      text-align: center;
+      font-size: 1.6em;
+      font-weight: bold;
+      color: #e74c3c;
+      margin: 20px 0;
+      padding: 12px;
+      border: 2px solid #e74c3c;
+      border-radius: 8px;
+      display: inline-block;
+      width: 220px;
     }
-
-    .question { margin-bottom: 20px; padding: 15px; border-bottom: 1px solid #ddd; }
-    .options label { display: block; margin: 8px 0; cursor: pointer; }
-    
+    .info {
+      text-align: center;
+      color: #7f8c8d;
+      margin-bottom: 30px;
+    }
+    .question {
+      margin-bottom: 28px;
+      padding: 18px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .question h3 {
+      margin-top: 0;
+      color: #34495e;
+    }
+    label {
+      display: block;
+      margin: 10px 0;
+      cursor: pointer;
+    }
+    input[type="radio"] {
+      margin-right: 10px;
+    }
     button {
-        padding: 15px 30px;
-        background: #0a2a66;
-        color: white;
-        border: none;
-        border-radius: 6px;
-        font-size: 18px;
-        cursor: pointer;
-        width: 100%;
+      display: block;
+      margin: 40px auto;
+      padding: 14px 40px;
+      font-size: 1.2em;
+      background-color: #27ae60;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
     }
-
-    button:hover { background: #1f4fd1; }
-    .result { font-size: 24px; font-weight: bold; text-align: center; margin-top: 20px; color: #0a2a66; }
-    .correct { color: green; font-weight: bold; margin-top: 10px; background: #e8f5e9; padding: 5px; }
-</style>
-
+    button:hover {
+      background-color: #219653;
+    }
+    .correct {
+      color: #27ae60;
+      font-weight: bold;
+    }
+    .result {
+      text-align: center;
+      font-size: 1.4em;
+      margin: 30px 0;
+      padding: 20px;
+      background: #ecf0f1;
+      border-radius: 8px;
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
 </head>
-
 <body>
 
-<div id="loginOverlay">
-    <div class="login-box">
-        <h2>RoyaL Wunderkind Model School</h2>
-         <h3>Subject: Intermediate Science | Year 7</h3>
-        <p>Enter your Full Name to start the exam:</p>
-        <input type="text" id="studentNameInput" placeholder="e.g. John Doe">
-        <br>
-        <button type="button" onclick="startExam()">Start Examination</button>
-    </div>
+<h1>English Language – Year 7</h1>
+<h2>SECTION B: GRAMMAR – OBJECTIVE QUESTIONS</h2>
+
+<div class="info">
+  Choose the correct answer (A – D) for each question.<br>
+  Time allowed: 45 minutes
 </div>
 
-<div class="header-main">
-    <h1>ROYAL WUNDERKIND MODEL SCHOOL</h1>
-    <h3 style="text-align:center; color:#555;">Intermediate Science CBT – YEAR 7</h3>
-</div>
+<div class="timer" id="timer">45:00</div>
 
-<div class="student-bar">
-    <div><strong>Student:</strong> <span id="displayName">---</span></div>
-    <div class="timer">Time: <span id="time">45:00</span></div>
-</div>
+<form id="quizForm">
 
-<div class="container">
-    <form id="quizForm">
-        <div id="questions"></div>
-        <button type="button" id="submitBtn" onclick="submitExam()" style="display:none;">Submit Exam</button>
-    </form>
-    <div class="result" id="result"></div>
-</div>
+  <!-- Questions will be inserted here by JavaScript -->
+
+</form>
+
+<button id="submitBtn">Submit Test</button>
+
+<div id="result" class="result hidden"></div>
 
 <script>
-// (All 60 questions from your original code remain here)
+// ────────────────────────────────────────────────
+// DATA - QUESTIONS & CORRECT ANSWERS
+// ────────────────────────────────────────────────
 const questions = [
-{q:"Science is the systematic study of the ______ world.", options:["Artificial","Natural","Imaginary","Spiritual"],answer:1},
-{q:"Science explains natural events using observation, experimentation and ______.", options:["Guessing","Logical reasoning","Dreaming","Imagination"],answer:1},
-{q:"Which is a characteristic of science?", options:["Superstition","Evidence based","Emotion","Magic"],answer:1},
-{q:"Which is an example of science in daily life?", options:["Charging a phone","Sleeping","Dancing","Talking"],answer:0},
-{q:"The study of living organisms is called ______.", options:["Physics","Chemistry","Biology","Geography"],answer:2},
-{q:"The study of plants is called ______.", options:["Zoology","Botany","Ecology","Anatomy"],answer:1},
-{q:"The study of animals is called ______.", options:["Botany","Zoology","Ecology","Physiology"],answer:1},
-{q:"The study of substances and their reactions is ______.", options:["Biology","Chemistry","Physics","Ecology"],answer:1},
-{q:"The study of matter and energy is called ______.", options:["Physics","Biology","Botany","Sociology"],answer:0},
-{q:"The study of weather is called ______.", options:["Meteorology","Geology","Oceanography","Astronomy"],answer:0},
-{q:"The first step in scientific method is ______.", options:["Observation","Experiment","Conclusion","Analysis"],answer:0},
-{q:"A smart guess in science is called ______.", options:["Observation","Hypothesis","Experiment","Theory"],answer:1},
-{q:"Testing a hypothesis is called ______.", options:["Observation","Experiment","Communication","Analysis"],answer:1},
-{q:"Recording results is called ______.", options:["Data collection","Hypothesis","Observation","Prediction"],answer:0},
-{q:"Matter is anything that has ______ and occupies space.", options:["Mass","Colour","Taste","Smell"],answer:0},
-{q:"The three states of matter are ______.", options:["Solid liquid gas","Water air fire","Stone gas dust","Air soil fire"],answer:0},
-{q:"Which of these is a solid?", options:["Water","Oil","Book","Milk"],answer:2},
-{q:"Liquids have ______.", options:["Fixed shape and volume","No shape but fixed volume","No shape no volume","Fixed shape only"],answer:1},
-{q:"Gases have ______.", options:["Fixed shape","Fixed volume","No shape and no volume","Fixed size"],answer:2},
-{q:"Smallest building block of matter is ______.", options:["Atom","Molecule","Ion","Cell"],answer:0},
-{q:"Two atoms joined together form a ______.", options:["Cell","Molecule","Organ","Tissue"],answer:1},
-{q:"Charged atoms are called ______.", options:["Atoms","Molecules","Ions","Cells"],answer:2},
-{q:"Which is a living thing?", options:["Stone","Goat","Chair","Pen"],answer:1},
-{q:"Which is non-living?", options:["Dog","Maize","Water","Goat"],answer:2},
-{q:"Production of young ones is ______.", options:["Growth","Respiration","Reproduction","Movement"],answer:2},
-{q:"Removal of body waste is ______.", options:["Respiration","Excretion","Growth","Feeding"],answer:1},
-{q:"Plants make food through ______.", options:["Respiration","Photosynthesis","Digestion","Absorption"],answer:1},
-{q:"Which animal gives birth to live young?", options:["Hen","Lizard","Cow","Snake"],answer:2},
-{q:"Which animal lays eggs?", options:["Goat","Chicken","Dog","Sheep"],answer:1},
-{q:"Which plant part makes food?", options:["Root","Stem","Leaf","Flower"],answer:2},
-{q:"Shiny surface of metals is called ______.", options:["Lustre","Ductility","Brittleness","Malleability"],answer:0},
-{q:"Metals conduct ______.", options:["Heat and electricity","Air and water","Light and wind","Water and gas"],answer:0},
-{q:"Which is a metal?", options:["Sulphur","Carbon","Iron","Oxygen"],answer:2},
-{q:"Which is a non-metal?", options:["Iron","Copper","Carbon","Zinc"],answer:2},
-{q:"Energy is the ability to ______.", options:["Rest","Do work","Sleep","Move"],answer:1},
-{q:"Heat energy produces ______.", options:["Light","Warmth","Sound","Wind"],answer:1},
-{q:"Light energy helps us ______.", options:["Hear","See","Taste","Touch"],answer:1},
-{q:"Energy stored in food is ______ energy.", options:["Chemical","Heat","Light","Sound"],answer:0},
-{q:"Energy from the sun is ______.", options:["Wind energy","Solar energy","Heat energy","Chemical energy"],answer:1},
-{q:"Energy from vibration is ______.", options:["Sound energy","Heat energy","Light energy","Chemical energy"],answer:0},
-{q:"Energy changing from one form to another is ______.", options:["Energy movement","Energy transformation","Energy storage","Energy division"],answer:1},
-{q:"Generator converts ______ energy to electricity.", options:["Mechanical","Heat","Sound","Solar"],answer:0},
-{q:"Electric bulb converts electricity to ______.", options:["Heat","Sound","Light","Chemical"],answer:2},
-{q:"Solar panels convert solar energy to ______.", options:["Heat","Electrical","Sound","Mechanical"],answer:1},
-{q:"Renewable energy sources can be ______ naturally.", options:["Destroyed","Replaced","Hidden","Reduced"],answer:1},
-{q:"Which is renewable energy?", options:["Coal","Petrol","Solar","Diesel"],answer:2},
-{q:"Which is non-renewable?", options:["Wind","Sun","Petroleum","Water"],answer:2},
-{q:"Wind energy comes from ______.", options:["Sunlight","Moving air","Water","Soil"],answer:1},
-{q:"Hydroelectric energy comes from ______.", options:["Flowing water","Sun","Coal","Petrol"],answer:0},
-{q:"Too much firewood causes ______.", options:["Flooding","Deforestation","Rain","Wind"],answer:1},
-{q:"Petrol and diesel are ______ energy.", options:["Renewable","Non-renewable","Solar","Wind"],answer:1},
-{q:"Hospital machines like X-ray use ______.", options:["Energy","Soil","Water","Wind"],answer:0},
-{q:"Energy from plants and waste is ______.", options:["Solar","Biomass","Wind","Coal"],answer:1},
-{q:"Vehicles use ______.", options:["Petrol","Sunlight","Wind","Water"],answer:0},
-{q:"Energy helps in ______.", options:["Cooking","Sleeping","Dreaming","Resting"],answer:0},
-{q:"Renewable energy reduces ______.", options:["Pollution","Sunlight","Wind","Rain"],answer:0},
-{q:"Proper energy use ensures ______ development.", options:["Temporary","Sustainable","Weak","Slow"],answer:1},
-{q:"One importance of energy is that it helps in ______.", options:["cooking food","sleeping","dreaming","resting"],answer:0},
-{q:"Renewable energy helps reduce ______.", options:["pollution","rainfall","sunshine","wind"],answer:0},
-{q:"Proper use of energy ensures ______ development.", options:["temporary","sustainable","weak","poor"],answer:1}
+  { q: "Which of the following words is a verb?", opts: ["quickly", "teacher", "write", "beauty"], ans: "C" },
+  { q: "The past tense of begin is", opts: ["begun", "began", "beginning", "begins"], ans: "B" },
+  { q: "The past participle of break is", opts: ["broke", "breaking", "broken", "breaks"], ans: "C" },
+  { q: "She ______ the letter before leaving the office.", opts: ["write", "wrote", "written", "writes"], ans: "B" },
+  { q: "The children ______ happily in the playground yesterday.", opts: ["play", "plays", "played", "playing"], ans: "C" },
+  { q: "Identify the verb in the sentence: The teacher explained the lesson carefully.", opts: ["teacher", "lesson", "explained", "carefully"], ans: "C" },
+  { q: "The correct past tense of teach is", opts: ["teached", "taught", "teaching", "teach"], ans: "B" },
+  { q: "Identify the adjective in the sentence: The intelligent girl solved the problem quickly.", opts: ["girl", "intelligent", "solved", "quickly"], ans: "B" },
+  { q: "Which of the following is an adjective?", opts: ["kindness", "quickly", "brave", "happily"], ans: "C" },
+  { q: "This building is ______ than the one beside it.", opts: ["tall", "taller", "tallest", "more tall"], ans: "B" },
+  { q: "Choose the correct adjective: The ______ boy won the competition.", opts: ["courage", "courageous", "courageously", "courageing"], ans: "B" },
+  { q: "Identify the adjective in the sentence: She bought a beautiful dress for the party.", opts: ["bought", "dress", "beautiful", "party"], ans: "C" },
+  { q: "Which of the following is an adverb?", opts: ["quickly", "quick", "quicker", "quickness"], ans: "A" },
+  { q: "He completed the assignment ______.", opts: ["careful", "carefully", "care", "caring"], ans: "B" },
+  { q: "Identify the adverb in the sentence: The boy ran swiftly to catch the bus.", opts: ["boy", "ran", "swiftly", "bus"], ans: "C" },
+  { q: "An adverb can modify a", opts: ["noun only", "verb only", "verb, adjective or another adverb", "pronoun only"], ans: "C" },
+  { q: "They arrived ______ at the meeting.", opts: ["early", "earlier", "earliest", "earlying"], ans: "A" },
+  { q: "The keys are ______ the drawer.", opts: ["in", "at", "on", "between"], ans: "A" },
+  { q: "The students walked ______ the bridge.", opts: ["across", "among", "beside", "under"], ans: "A" },
+  { q: "The picture is hanging ______ the wall.", opts: ["at", "on", "beside", "under"], ans: "B" },
+  { q: "Identify the preposition in the sentence: The dog ran into the house.", opts: ["dog", "ran", "into", "house"], ans: "C" },
+  { q: "Mary studied hard ______ she passed the examination.", opts: ["but", "because", "so", "although"], ans: "C" },
+  { q: "I will attend the meeting ______ I am invited.", opts: ["if", "but", "and", "because"], ans: "A" },
+  { q: "She was tired ______ she continued working.", opts: ["because", "but", "so", "and"], ans: "B" },
+  { q: "Which of the following words is a conjunction?", opts: ["under", "quickly", "because", "tall"], ans: "C" },
+  { q: "Which sentence is correctly capitalized?", opts: ["lagos is the commercial capital of nigeria.", "Lagos is the commercial capital of Nigeria.", "lagos is the commercial Capital of nigeria.", "Lagos is the Commercial capital of nigeria."], ans: "B" },
+  { q: "Which word should begin with a capital letter?", opts: ["teacher", "january", "classroom", "student"], ans: "B" },
+  { q: "Choose the correctly written sentence.", opts: ["My brother lives in abuja.", "My brother lives in Abuja.", "my brother lives in Abuja.", "My Brother lives in abuja."], ans: "B" },
+  { q: "Which sentence is correctly capitalized?", opts: ["We celebrate Christmas in december.", "We celebrate christmas in December.", "We celebrate Christmas in December.", "we celebrate Christmas in December."], ans: "C" },
+  { q: "Which of the following is correct?", opts: ["Mr john teaches English.", "Mr John teaches English.", "mr John teaches english.", "Mr john teaches english."], ans: "B" },
+  { q: "A verb is a word that shows", opts: ["action", "colour", "size", "number"], ans: "A" },
+  { q: "Which of the following is a verb?", opts: ["Jump", "Beautiful", "Quickly", "Tall"], ans: "A" },
+  { q: "Identify the verb in this sentence: The boy runs fast.", opts: ["Boy", "Runs", "Fast", "The"], ans: "B" },
+  { q: "Which word is an adjective?", opts: ["Tall", "Run", "Slowly", "Under"], ans: "A" },
+  { q: "Adjectives describe", opts: ["verbs", "nouns", "conjunctions", "pronouns"], ans: "B" },
+  { q: "Which word is an adverb?", opts: ["Quickly", "Beautiful", "Table", "Under"], ans: "A" },
+  { q: "Adverbs usually describe", opts: ["nouns", "verbs", "pronouns", "conjunctions"], ans: "B" },
+  { q: "In the sentence She sang beautifully, the word beautifully is an", opts: ["adjective", "adverb", "noun", "verb"], ans: "B" },
+  { q: "Which of the following is a preposition?", opts: ["Under", "Quickly", "Happy", "Sing"], ans: "A" },
+  { q: "Prepositions show", opts: ["action", "relationship between words", "colour", "size"], ans: "B" },
+  { q: "Choose the correct preposition: The book is ___ the table.", opts: ["on", "quickly", "very", "but"], ans: "A" },
+  { q: "A conjunction is used to", opts: ["join words or sentences", "describe nouns", "show action", "show place"], ans: "A" },
+  { q: "Which of the following is a conjunction?", opts: ["And", "Quickly", "Tall", "Run"], ans: "A" },
+  { q: "Choose the correct conjunction: John is tired ___ he continued working.", opts: ["but", "under", "quickly", "tall"], ans: "A" },
+  { q: "Which of the following sentences is correctly capitalized?", opts: ["lagos is a big city in nigeria.", "Lagos is a big city in Nigeria.", "Lagos is a big city in nigeria.", "lagos is a big city in Nigeria."], ans: "B" },
+  { q: "The first letter of a sentence should be written in", opts: ["small letter", "capital letter", "number", "symbol"], ans: "B" },
+  { q: "Which of the following is the past tense of go?", opts: ["Went", "Going", "Goes", "Gone"], ans: "A" },
+  { q: "Which word is the past tense of eat?", opts: ["Ate", "Eat", "Eating", "Eaten"], ans: "A" },
+  { q: "In the sentence She walked slowly, the word slowly tells us", opts: ["where", "when", "how", "who"], ans: "C" },
+  { q: "Which of the following sentences contains an adjective?", opts: ["The tall boy ran fast.", "She sings loudly.", "They played yesterday.", "He arrived early."], ans: "A" },
+  { q: "Choose the correct verb form to complete the sentence. She ______ to school every day.", opts: ["go", "goes", "going", "gone"], ans: "B" },
+  { q: "Identify the adjective in the sentence: The tall boy won the race.", opts: ["boy", "tall", "race", "won"], ans: "B" },
+  { q: "Which of these is an adverb?", opts: ["Quickly", "Quick", "Quicker", "Quickest"], ans: "A" },
+  { q: "Choose the correct preposition. The cat is hiding ______ the table.", opts: ["in", "under", "by", "with"], ans: "B" },
+  { q: "Select the correct conjunction to complete the sentence. I wanted to go out, ______ it started raining.", opts: ["but", "and", "because", "so"], ans: "A" },
+  { q: "Which sentence is correctly capitalized?", opts: ["my brother lives in lagos.", "My brother lives in lagos.", "My brother lives in Lagos.", "my brother lives in Lagos."], ans: "C" },
+  { q: "Identify the adverb in the sentence. She sang beautifully at the concert.", opts: ["sang", "beautifully", "concert", "she"], ans: "B" },
+  { q: "Choose the correct form of the verb. They have ______ their homework.", opts: ["finish", "finishing", "finished", "finishes"], ans: "C" },
+  { q: "Which word is a conjunction?", opts: ["slowly", "and", "happy", "under"], ans: "B" },
+  { q: "Identify the preposition in the sentence. The book is on the table.", opts: ["book", "is", "on", "table"], ans: "C" }
 ];
 
-let time = 2700;
-let timerInterval;
+const letters = ["A", "B", "C", "D"];
 
-function startExam() {
-    const name = document.getElementById("studentNameInput").value;
-    if (name.trim() === "") {
-        alert("Please enter your name!");
-        return;
-    }
-    document.getElementById("displayName").textContent = name;
-    document.getElementById("loginOverlay").style.display = "none";
-    document.getElementById("submitBtn").style.display = "block";
-    renderQuestions();
-    startTimer();
-}
+// ────────────────────────────────────────────────
+// BUILD QUIZ
+// ────────────────────────────────────────────────
+const form = document.getElementById("quizForm");
 
-function renderQuestions() {
-    const container = document.getElementById("questions");
-    questions.forEach((q, index) => {
-        let html = `<div class="question">
-            <p><b>${index+1}. ${q.q}</b></p>
-            <div class="options">`;
-        q.options.forEach((opt, i) => {
-            html += `<label><input type="radio" name="q${index}" value="${i}"> ${opt}</label>`;
-        });
-        html += `</div></div>`;
-        container.innerHTML += html;
-    });
-}
+questions.forEach((qItem, index) => {
+  const div = document.createElement("div");
+  div.className = "question";
+  div.innerHTML = `
+    <h3>${index + 1}. ${qItem.q}</h3>
+    ${qItem.opts.map((opt, i) => `
+      <label>
+        <input type="radio" name="q${index}" value="${letters[i]}" required>
+        ${letters[i]}. ${opt}
+        <span class="correct hidden" data-correct="${letters[i] === qItem.ans ? 'yes' : 'no'}"></span>
+      </label>
+    `).join("")}
+  `;
+  form.appendChild(div);
+});
 
-function startTimer() {
-    timerInterval = setInterval(function() {
-        let minutes = Math.floor(time / 60);
-        let seconds = time % 60;
-        document.getElementById("time").innerHTML = minutes + ":" + (seconds < 10 ? "0" + seconds : seconds);
-        time--;
-        if (time < 0) {
-            clearInterval(timerInterval);
-            submitExam();
-            alert("Time Up! Exam Submitted");
-        }
-    }, 1000);
-}
+// ────────────────────────────────────────────────
+// TIMER (45 minutes = 2700 seconds)
+// ────────────────────────────────────────────────
+let timeLeft = 45 * 60;
+const timerDisplay = document.getElementById("timer");
 
-function submitExam() {
+function updateTimer() {
+  const min = Math.floor(timeLeft / 60);
+  const sec = timeLeft % 60;
+  timerDisplay.textContent = `${min}:${sec < 10 ? "0" : ""}${sec}`;
+  
+  if (timeLeft <= 0) {
     clearInterval(timerInterval);
-    let score = 0;
-    questions.forEach((q, i) => {
-        let selected = document.querySelector(`input[name="q${i}"]:checked`);
-        let div = document.querySelectorAll(".question")[i];
-        
-        if (selected && parseInt(selected.value) === q.answer) {
-            score++;
-        }
-        
-        let correctText = q.options[q.answer];
-        div.innerHTML += `<div class="correct">Correct Answer: ${correctText}</div>`;
+    alert("Time is up! Your test will be submitted automatically.");
+    submitQuiz();
+  }
+  timeLeft--;
+}
+
+const timerInterval = setInterval(updateTimer, 1000);
+updateTimer(); // initial display
+
+// ────────────────────────────────────────────────
+// SUBMIT & SHOW ANSWERS
+// ────────────────────────────────────────────────
+const submitBtn = document.getElementById("submitBtn");
+const resultDiv = document.getElementById("result");
+
+function submitQuiz() {
+  clearInterval(timerInterval);
+  submitBtn.disabled = true;
+  submitBtn.textContent = "Test Submitted";
+
+  let score = 0;
+  document.querySelectorAll(".question").forEach((qDiv, i) => {
+    const selected = qDiv.querySelector(`input[name="q${i}"]:checked`);
+    const correctSpans = qDiv.querySelectorAll(".correct");
+
+    correctSpans.forEach(span => {
+      span.classList.remove("hidden");
+      if (span.dataset.correct === "yes") {
+        span.textContent = " (correct answer)";
+      }
     });
 
-    document.getElementById("result").innerHTML = `Examination Complete!<br>Final Score: ${score} / ${questions.length}`;
-    document.getElementById("submitBtn").style.display = "none";
-    window.scrollTo(0,0);
+    if (selected && selected.value === questions[i].ans) {
+      score++;
+      selected.parentElement.style.color = "#27ae60";
+      selected.parentElement.style.fontWeight = "bold";
+    } else if (selected) {
+      selected.parentElement.style.color = "#c0392b";
+    }
+  });
+
+  resultDiv.innerHTML = `
+    <strong>Test Completed!</strong><br>
+    Your Score: <b>${score} / ${questions.length}</b><br>
+    (${Math.round(score / questions.length * 100)}%)
+  `;
+  resultDiv.classList.remove("hidden");
+  window.scrollTo(0, document.body.scrollHeight);
 }
+
+submitBtn.addEventListener("click", () => {
+  if (confirm("Are you sure you want to submit? You cannot change answers after submission.")) {
+    submitQuiz();
+  }
+});
 </script>
 
 </body>
