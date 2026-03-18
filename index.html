@@ -1,361 +1,319 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Year 7 - SOCIAL AND CITIZENSHIP STUDIES - EXAM</title>
-  <style>
-    :root {
-      --primary: #1a73e8;
-      --secondary: #5f6368;
-      --success: #1e8e3e;
-      --danger: #d93025;
-      --bg-color: #f0f2f5;
-      --card-bg: #ffffff;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>RWMS - YEAR 7 PHE EXAM</title>
+    <style>
+        :root {
+            --primary: #2e7d32;
+            --primary-dark: #1b5e20;
+            --secondary: #0277bd;
+            --danger: #d32f2f;
+            --bg: #f0f4f0;
+        }
 
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: var(--bg-color);
-      color: #3c4043;
-      line-height: 1.6;
-    }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg);
+            color: #333;
+        }
 
-    .container {
-      max-width: 850px;
-      margin: 20px auto;
-      padding: 0 15px;
-    }
+        .sticky-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid var(--primary);
+        }
 
-    /* Header Styling */
-    .header-box {
-      background: var(--card-bg);
-      padding: 30px;
-      border-radius: 12px;
-      text-align: center;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-      margin-bottom: 20px;
-      border-top: 8px solid var(--primary);
-    }
+        .timer-box {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: var(--danger);
+            background: #ffebee;
+            padding: 8px 15px;
+            border-radius: 8px;
+            border: 1px solid var(--danger);
+        }
 
-    /* Sticky Timer Bar */
-    .sticky-bar {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: #ffffff;
-      padding: 15px 20px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 2px solid var(--primary);
-      margin-bottom: 20px;
-    }
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
 
-    .timer-pill {
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: var(--danger);
-      background: #fce8e6;
-      padding: 8px 20px;
-      border-radius: 50px;
-      border: 1px solid var(--danger);
-    }
+        .header-info {
+            text-align: center;
+            border-bottom: 2px double #eee;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+        }
 
-    .student-info {
-      font-weight: 600;
-      color: var(--secondary);
-    }
+        .question {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+        }
 
-    /* Forms and Inputs */
-    .card {
-      background: var(--card-bg);
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-      margin-bottom: 20px;
-    }
+        .options label {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            margin: 8px 0;
+            border: 1px solid #eee;
+            border-radius: 6px;
+            cursor: pointer;
+        }
 
-    input[type="text"] {
-      padding: 12px;
-      font-size: 1rem;
-      width: 100%;
-      max-width: 400px;
-      border: 2px solid #dadce0;
-      border-radius: 8px;
-      transition: border-color 0.2s;
-    }
+        .options label:hover { background-color: #e8f5e9; }
+        .options input { margin-right: 12px; }
 
-    input[type="text"]:focus {
-      border-color: var(--primary);
-      outline: none;
-    }
+        .correct-ans-highlight {
+            background-color: #e8f5e9;
+            border: 1px solid #2e7d32;
+            color: #1b5e20;
+            padding: 10px;
+            border-radius: 6px;
+            margin-top: 10px;
+            font-weight: bold;
+        }
 
-    /* Question Styling */
-    .question-block {
-      border: 1px solid #dadce0;
-      padding: 20px;
-      margin-bottom: 20px;
-      border-radius: 8px;
-      transition: transform 0.2s;
-    }
+        .name-input {
+            padding: 15px;
+            width: 80%;
+            max-width: 400px;
+            border: 2px solid var(--primary);
+            border-radius: 10px;
+            margin: 20px 0;
+        }
 
-    .question-block:hover {
-      border-color: var(--primary);
-      background-color: #f8f9ff;
-    }
+        button {
+            display: block;
+            width: 250px;
+            margin: 40px auto;
+            padding: 15px;
+            font-weight: bold;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
 
-    .question-text {
-      font-size: 1.1rem;
-      font-weight: 600;
-      margin-bottom: 15px;
-      display: block;
-    }
+        .result-card {
+            background: #e1f5fe;
+            border: 2px solid var(--secondary);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+        }
 
-    .option-label {
-      display: flex;
-      align-items: center;
-      padding: 12px;
-      margin: 8px 0;
-      border-radius: 6px;
-      background: #f1f3f4;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-
-    .option-label:hover {
-      background: #e8eaed;
-    }
-
-    .option-label input {
-      margin-right: 15px;
-      transform: scale(1.2);
-    }
-
-    /* Buttons */
-    .btn {
-      padding: 12px 35px;
-      font-size: 1rem;
-      font-weight: 600;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    .btn-primary { background: var(--primary); color: white; }
-    .btn-primary:hover { background: #1557b0; }
-    .btn-success { background: var(--success); color: white; width: 100%; font-size: 1.2rem; }
-    .btn-success:hover { background: #137333; }
-
-    /* Result Section */
-    #result {
-      display: none;
-      margin-top: 30px;
-    }
-
-    .score-banner {
-      background: var(--primary);
-      color: white;
-      text-align: center;
-      padding: 30px;
-      border-radius: 12px;
-      margin-bottom: 30px;
-    }
-
-    .correct-feedback { border-left: 5px solid var(--success); background: #e6f4ea; padding: 10px; margin-top: 10px; border-radius: 4px; }
-    .wrong-feedback { border-left: 5px solid var(--danger); background: #fce8e6; padding: 10px; margin-top: 10px; border-radius: 4px; }
-
-    #quiz { display: none; }
-  </style>
+        .hidden { display: none; }
+    </style>
 </head>
 <body>
 
-<div class="container">
-  <div id="intro" class="header-box">
-    <h1>SECOND TERM EXAMINATION</h1>
-    <h2 style="color: var(--primary);">Year 7 – Social & Citizenship Studies</h2>
-    <p><strong>Time Allowed:</strong> 45 Minutes | <strong>Section:</strong> Objectives</p>
-    <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
-    <h3>Enter Student Details</h3>
-    <input type="text" id="candidateName" placeholder="Enter Full Name" required>
-    <br><br>
-    <button id="startBtn" class="btn btn-primary">Begin Examination</button>
-  </div>
+<div id="intro-screen" class="container">
+    <div class="header-info">
+        <h1>ROYAL WUNDERKIND MODEL SCHOOL</h1>
+        <h2>YEAR 7 | HEALTH & PHYSICAL EDUCATION</h2>
+        <p>Term Two Examination | 2025/2026 Session</p>
+    </div>
+    <div style="text-align: center;">
+        <input type="text" id="studentName" class="name-input" placeholder="Enter Candidate Full Name">
+        <div style="background: #e8f5e9; padding: 15px; border-radius: 8px; margin: 20px 0; border: 1px solid var(--primary);">
+            <p><strong>Instructions:</strong> 60 Questions | 45 Minutes</p>
+        </div>
+        <button id="startBtn">Begin Examination</button>
+    </div>
+</div>
 
-  <div id="quiz">
-    <div class="sticky-bar">
-      <div class="student-info">📝 <span id="displayName"></span></div>
-      <div class="timer-pill" id="timer">45:00</div>
+<div id="exam-content" class="hidden">
+    <div class="sticky-header">
+        <div style="font-weight: bold;">Candidate: <span id="navName"></span></div>
+        <div style="color: var(--secondary);">Answered: <span id="answeredCount">0</span> / 60</div>
+        <div class="timer-box" id="timer">45:00</div>
     </div>
 
-    <form id="quizForm" class="card">
-      </form>
+    <div class="container">
+        <form id="examForm"></form>
+        <button id="submitBtn" type="button">Submit Examination</button>
 
-    <div style="margin-bottom: 50px;">
-        <button id="submitBtn" class="btn btn-success shadow">Submit Examination</button>
+        <div id="result" class="result-card hidden">
+            <h2 id="finalMsg">Result</h2>
+            <h1 id="scoreDisplay" style="font-size: 3.5em; margin: 10px 0; color: var(--primary);">0/60</h1>
+            <p id="percentageDisplay" style="font-size: 1.5em;"></p>
+            <p><strong>Scroll down to review your corrections.</strong></p>
+        </div>
     </div>
-
-    <div id="result">
-      <div class="score-banner">
-        <h1>Examination Completed</h1>
-        <div id="scoreText" style="font-size: 2rem;"></div>
-      </div>
-      <div id="detailedAnswers"></div>
-    </div>
-  </div>
 </div>
 
 <script>
-const questions = [
-  { q: "A citizen is someone who ____", options: ["lives in any country", "enjoys full political rights in a state", "travels frequently", "pays taxes only"], correct: "B", ansText: "enjoys full political rights in a state" },
-  { q: "Citizenship means _____", options: ["visiting a country", "legal membership of a state", "staying temporarily in a country", "travelling abroad"], correct: "B", ansText: "legal membership of a state" },
-  { q: "Citizenship by birth occurs when ____", options: ["a person marries abroad", "parents are citizens of a country", "a person travels overseas", "a person studies abroad"], correct: "B", ansText: "parents are citizens of a country" },
-  { q: "A child born by Nigerian parents automatically becomes a _____", options: ["visitor", "citizen by birth", "alien", "tourist"], correct: "B", ansText: "citizen by birth" },
-  { q: "Citizenship by marriage is also called _____", options: ["registration", "naturalization", "descent", "honour"], correct: "A", ansText: "registration" },
-  { q: "Citizenship by naturalization is when", options: ["a citizen travels abroad", "an alien becomes a citizen after meeting conditions", "a child is born in a country", "a citizen marries"], correct: "B", ansText: "an alien becomes a citizen after meeting conditions" },
-  { q: "A foreigner who becomes a citizen of another country is called ______", options: ["native", "alien", "tourist", "resident"], correct: "B", ansText: "alien" },
-  { q: "One condition for naturalization is ______", options: ["laziness", "good character", "dishonesty", "corruption"], correct: "B", ansText: "good character" },
-  { q: "Another requirement for naturalization is ____", options: ["paying no tax", "swearing oath of allegiance", "fighting the government", "avoiding community service"], correct: "B", ansText: "swearing oath of allegiance" },
-  { q: "Citizenship given to important people by a country is called _____", options: ["honorary citizenship", "birth citizenship", "national citizenship", "temporary citizenship"], correct: "A", ansText: "honorary citizenship" },
-  { q: "Citizenship by descent means citizenship through ______", options: ["blood ties", "marriage", "election", "education"], correct: "A", ansText: "blood ties" },
-  { q: "A person seeking citizenship must _____", options: ["be a child", "attain statutory age", "be poor", "be unemployed"], correct: "B", ansText: "attain statutory age" },
-  { q: "One requirement for citizenship is _____", options: ["willingness to live in the country", "hatred for the country", "fighting the government", "avoiding community service"], correct: "A", ansText: "willingness to live in the country" },
-  { q: "A person must reside in a country for _____", options: ["a specified period", "one day", "one week", "one month"], correct: "A", ansText: "a specified period" },
-  { q: "According to the Nigerian Constitution, a person must be above ____", options: ["18 years", "21 years", "30 years", "40 years"], correct: "A", ansText: "18 years" },
-  { q: "A foreigner must live in Nigeria for at least ____", options: ["5 years", "10 years", "15 years", "20 years"], correct: "C", ansText: "15 years" },
-  { q: "A person applying for citizenship must take ____", options: ["oath of allegiance", "oath of poverty", "oath of friendship", "oath of silence"], correct: "A", ansText: "oath of allegiance" },
-  { q: "Rights are", options: ["punishments", "privileges given by law", "duties of leaders", "rules of school"], correct: "B", ansText: "privileges given by law" },
-  { q: "One example of citizens’ rights is ____", options: ["right to life", "right to steal", "right to cheat", "right to fight"], correct: "A", ansText: "right to life" },
-  { q: "Another right of citizens is _____", options: ["right to education", "right to corruption", "right to violence", "right to bribery"], correct: "A", ansText: "right to education" },
-  { q: "The right to vote is a ______", options: ["civic right", "economic right", "political right", "family right"], correct: "C", ansText: "political right" },
-  { q: "Duties are ______", options: ["privileges of citizens", "responsibilities expected of citizens", "benefits of government", "rights of foreigners"], correct: "B", ansText: "responsibilities expected of citizens" },
-  { q: "One duty of citizens is ____", options: ["tax payment", "cheating others", "stealing public money", "disobedience"], correct: "A", ansText: "tax payment" },
-  { q: "Another duty of citizens is _____", options: ["obedience to laws", "fighting leaders", "ignoring laws", "breaking rules"], correct: "A", ansText: "obedience to laws" },
-  { q: "Citizens should vote during", options: ["elections", "holidays", "festivals", "ceremonies"], correct: "A", ansText: "elections" },
-  { q: "Citizens should defend their _____", options: ["family", "fatherland", "friends", "neighbours"], correct: "B", ansText: "fatherland" },
-  { q: "Rights and duties help to promote", options: ["conflict", "peace and stability", "violence", "war"], correct: "B", ansText: "peace and stability" },
-  { q: "When citizens perform their duties, society experiences", options: ["disorder", "development", "confusion", "crime"], correct: "B", ansText: "development" },
-  { q: "Paying taxes helps government to _____", options: ["build houses abroad", "provide social amenities", "punish citizens", "travel abroad"], correct: "B", ansText: "provide social amenities" },
-  { q: "One importance of rights and duties is", options: ["social control", "disunity", "hatred", "crime"], correct: "A", ansText: "social control" },
-  { q: "Peace exists in society when citizens _____", options: ["respect rights and perform duties", "fight each other", "ignore laws", "break rules"], correct: "A", ansText: "respect rights and perform duties" },
-  { q: "Orderliness occurs when citizens _____", options: ["respect laws", "break rules", "fight leaders", "cheat others"], correct: "A", ansText: "respect laws" },
-  { q: "Corruption means ______", options: ["honesty", "illegal acquisition of wealth", "discipline", "kindness"], correct: "B", ansText: "illegal acquisition of wealth" },
-  { q: "Bribery means ______", options: ["giving money illegally for favour", "helping others freely", "paying taxes", "respecting leaders"], correct: "A", ansText: "giving money illegally for favour" },
-  { q: "One cause of corruption is ______", options: ["honesty", "poverty", "discipline", "patriotism"], correct: "B", ansText: "poverty" },
-  { q: "Another cause of corruption is _____", options: ["good leadership", "bad value system", "patriotism", "honesty"], correct: "B", ansText: "bad value system" },
-  { q: "Influence of bad groups may lead to", options: ["honesty", "corruption", "discipline", "development"], correct: "B", ansText: "corruption" },
-  { q: "One effect of corruption is", options: ["slow economic development", "national growth", "peace", "progress"], correct: "A", ansText: "slow economic development" },
-  { q: "Corruption reduces", options: ["development", "crime", "poverty", "population"], correct: "A", ansText: "development" },
-  { q: "Civic rights include _____", options: ["right to life", "right to corruption", "right to violence", "right to cheating"], correct: "A", ansText: "right to life" },
-  { q: "The right to liberty is a", options: ["civic right", "economic right", "political right", "social right"], correct: "A", ansText: "civic right" },
-  { q: "Economic rights allow citizens to _____", options: ["earn a living", "fight government", "steal money", "avoid work"], correct: "A", ansText: "earn a living" },
-  { q: "Political rights allow citizens to", options: ["vote and be voted for", "fight leaders", "ignore elections", "reject government"], correct: "A", ansText: "vote and be voted for" },
-  { q: "The right to join trade unions is an", options: ["economic right", "civic right", "political right", "social right"], correct: "A", ansText: "economic right" },
-  { q: "Duties are expected by the _____", options: ["constitution", "teachers", "friends", "neighbours"], correct: "A", ansText: "constitution" },
-  { q: "Rights are protected by the", options: ["constitution", "school rules", "teachers", "parents"], correct: "A", ansText: "constitution" },
-  { q: "Obligation means _____", options: ["privilege", "legal or moral responsibility", "enjoyment", "reward"], correct: "B", ansText: "legal or moral responsibility" },
-  { q: "Duties and obligations help in", options: ["development of society", "destruction of society", "conflict", "corruption"], correct: "A", ansText: "development of society" },
-  { q: "Pupils should ____", options: ["respect teachers", "insult elders", "destroy school property", "break rules"], correct: "A", ansText: "respect teachers" },
-  { q: "Pupils should obey", options: ["school rules", "criminals", "strangers", "thieves"], correct: "A", ansText: "school rules" },
-  { q: "One duty of pupils is _____", options: ["hard work", "laziness", "disobedience", "corruption"], correct: "A", ansText: "hard work" },
-  { q: "Citizens should respect", options: ["rights of others", "criminals", "corruption", "injustice"], correct: "A", ansText: "rights of others" },
-  { q: "Reporting crime is a ______", options: ["duty of citizens", "right of foreigners", "job of students", "privilege"], correct: "A", ansText: "duty of citizens" },
-  { q: "Environmental sanitation is part of", options: ["community service", "corruption", "violence", "conflict"], correct: "A", ansText: "community service" },
-  { q: "Citizens must respect", options: ["national symbols", "criminals", "corruption", "injustice"], correct: "A", ansText: "national symbols" },
-  { q: "Citizens should defend their nation", options: ["when necessary", "never", "always violently", "by crime"], correct: "A", ansText: "when necessary" },
-  { q: "Duties ensure", options: ["orderliness", "chaos", "violence", "crime"], correct: "A", ansText: "orderliness" },
-  { q: "Respecting rights promotes _____", options: ["peace", "conflict", "hatred", "crime"], correct: "A", ansText: "peace" },
-  { q: "Obeying laws helps society achieve _____", options: ["stability", "disorder", "corruption", "crisis"], correct: "A", ansText: "stability" },
-  { q: "Good citizenship promotes _____", options: ["national development", "corruption", "violence", "crime"], correct: "A", ansText: "national development" }
+// Data includes your 60 questions provided above
+const questionsData = [
+    { q: "Health is defined as a state of complete ______ well-being.", o: ["physical only", "mental only", "physical, mental and social", "emotional only"], a: "C" },
+    { q: "The definition of health was given by ______", o: ["UNICEF", "WHO", "Red Cross", "NAFDAC"], a: "B" },
+    { q: "Physical health refers to ______", o: ["emotions", "body functioning", "social life", "beliefs"], a: "B" },
+    { q: "Mental health involves ability to ______", o: ["run fast", "eat well", "think clearly", "sleep well"], a: "C" },
+    { q: "Social health means ______", o: ["exercise daily", "relate well with others", "eat food", "sleep early"], a: "B" },
+    { q: "Spiritual health is about ______", o: ["money", "strength", "values and purpose", "games"], a: "C" },
+    { q: "Health promotion focuses more on ______", o: ["cure", "prevention", "punishment", "drugs"], a: "B" },
+    { q: "Health promotion helps people to ______", o: ["become rich", "prevent diseases", "sleep more", "avoid school"], a: "B" },
+    { q: "One example of health promotion is ______", o: ["fighting", "hand washing", "sleeping", "shouting"], a: "B" },
+    { q: "Balanced diet is part of ______", o: ["disease", "health promotion", "punishment", "infection"], a: "B" },
+    { q: "Physical education is concerned with ______", o: ["books only", "body development", "money", "punishment"], a: "B" },
+    { q: "Education means ______", o: ["punishment", "training", "sickness", "play"], a: "B" },
+    { q: "Physical education develops ______", o: ["only body", "only mind", "whole person", "none"], a: "C" },
+    { q: "Physical education includes ______", o: ["cooking", "games", "trading", "singing"], a: "B" },
+    { q: "Health education teaches ______", o: ["fighting", "hygiene", "stealing", "noise"], a: "B" },
+    { q: "One importance of physical education is ______", o: ["weakness", "obesity", "fitness", "laziness"], a: "C" },
+    { q: "Health education helps to ______", o: ["spread disease", "prevent disease", "ignore health", "avoid food"], a: "B" },
+    { q: "Health care services are provided by ______", o: ["traders", "doctors", "farmers", "drivers"], a: "B" },
+    { q: "Chronic diseases last for ______", o: ["short time", "long time", "one day", "one hour"], a: "B" },
+    { q: "Example of chronic disease is ______", o: ["malaria", "diabetes", "cough", "cold"], a: "B" },
+    { q: "A balanced diet contains ______", o: ["one class of food", "two classes", "all classes", "none"], a: "C" },
+    { q: "Carbohydrates provide ______", o: ["strength", "energy", "blood", "water"], a: "B" },
+    { q: "Proteins help in ______", o: ["energy only", "growth", "sleep", "play"], a: "B" },
+    { q: "Recreation means ______", o: ["punishment", "enjoyment activities", "sickness", "hunger"], a: "B" },
+    { q: "Example of recreation is ______", o: ["reading", "football", "writing", "cooking"], a: "B" },
+    { q: "Sleep helps the body to ______", o: ["fight", "rest", "run", "jump"], a: "B" },
+    { q: "Children should sleep for ______", o: ["2 hours", "4 hours", "8–10 hours", "1 hour"], a: "C" },
+    { q: "Lack of sleep causes ______", o: ["strength", "illness", "growth", "energy"], a: "B" },
+    { q: "Good feeding improves ______", o: ["sickness", "immunity", "laziness", "weakness"], a: "B" },
+    { q: "Heredity is ______", o: ["environment", "genes from parents", "behaviour", "food"], a: "B" },
+    { q: "Example of hereditary trait is ______", o: ["height", "food", "water", "exercise"], a: "A" },
+    { q: "Behaviour refers to ______", o: ["genes", "actions", "food", "environment"], a: "B" },
+    { q: "Healthy behaviour includes ______", o: ["smoking", "hygiene", "drug abuse", "laziness"], a: "B" },
+    { q: "Environment means ______", o: ["food", "surroundings", "sleep", "genes"], a: "B" },
+    { q: "Lifestyle refers to ______", o: ["genes", "daily living pattern", "school", "water"], a: "B" },
+    { q: "Determinants of health include all except ______", o: ["heredity", "behaviour", "environment", "punishment"], a: "D" },
+    { q: "Refuse is ______ waste", o: ["liquid", "solid", "gas", "air"], a: "B" },
+    { q: "Non-biodegradable waste ______", o: ["decay easily", "does not decay", "grows", "melts"], a: "B" },
+    { q: "Landfill involves ______", o: ["burning", "burying waste", "washing", "drying"], a: "B" },
+    { q: "Incineration means ______", o: ["burying", "burning waste", "washing", "drying"], a: "B" },
+    { q: "Composting produces ______", o: ["gas", "manure", "water", "oil"], a: "B" },
+    { q: "Improper waste disposal causes ______", o: ["health", "disease", "growth", "strength"], a: "B" },
+    { q: "Proper disposal helps to ______", o: ["spread disease", "prevent disease", "cause pollution", "reduce hygiene"], a: "B" },
+    { q: "Pathogens are ______", o: ["big animals", "microorganisms", "plants", "food"], a: "B" },
+    { q: "Bacteria cause ______", o: ["malaria", "cholera", "measles", "flu"], a: "B" },
+    { q: "Viruses cause ______", o: ["measles", "malaria", "ringworm", "typhoid"], a: "A" },
+    { q: "Fungi cause ______", o: ["cholera", "ringworm", "malaria", "flu"], a: "B" },
+    { q: "Protozoa cause ______", o: ["malaria", "measles", "flu", "cholera"], a: "A" },
+    { q: "Diseases that spread are called ______", o: ["chronic", "communicable", "simple", "mild"], a: "B" },
+    { q: "One symptom of disease is ______", o: ["strength", "fever", "growth", "energy"], a: "B" },
+    { q: "Diseases spread through ______", o: ["air", "water", "contact", "all"], a: "D" },
+    { q: "Posture means ______", o: ["body position", "food", "sleep", "disease"], a: "A" },
+    { q: "Good posture prevents ______", o: ["pain", "growth", "food", "sleep"], a: "A" },
+    { q: "Poor posture causes ______", o: ["strength", "pain", "energy", "growth"], a: "B" },
+    { q: "Kyphosis affects ______", o: ["legs", "upper back", "arms", "eyes"], a: "B" },
+    { q: "Lordosis affects ______", o: ["lower spine", "arms", "head", "legs"], a: "A" },
+    { q: "Scoliosis is ______", o: ["straight spine", "curved spine", "broken bone", "muscle"], a: "B" },
+    { q: "Cardiovascular endurance involves ______", o: ["heart and lungs", "legs", "arms", "eyes"], a: "A" },
+    { q: "Coordination means ______", o: ["confusion", "smooth movement", "weakness", "fatigue"], a: "B" },
+    { q: "Power is ______", o: ["strength + speed", "speed only", "strength only", "rest"], a: "A" }
 ];
 
 let timeLeft = 45 * 60;
 let timerInterval;
 
-// Start Logic
-document.getElementById("startBtn").addEventListener("click", () => {
-  const name = document.getElementById("candidateName").value.trim();
-  if(!name) return alert("Please enter your name");
-  
-  document.getElementById("displayName").textContent = name;
-  document.getElementById("intro").style.display = "none";
-  document.getElementById("quiz").style.display = "block";
-  
-  renderQuestions();
-  startTimer();
+document.getElementById('startBtn').addEventListener('click', () => {
+    const name = document.getElementById('studentName').value;
+    if(!name) return alert("Please enter Candidate Name");
+    
+    document.getElementById('navName').textContent = name;
+    document.getElementById('intro-screen').classList.add('hidden');
+    document.getElementById('exam-content').classList.remove('hidden');
+    renderExam();
+    startTimer();
 });
 
-function renderQuestions() {
-  const form = document.getElementById("quizForm");
-  form.innerHTML = questions.map((q, i) => `
-    <div class="question-block">
-      <span class="question-text">${i+1}. ${q.q}</span>
-      <div class="options-grid">
-        ${q.options.map((opt, idx) => {
-          const char = String.fromCharCode(65 + idx);
-          return `
-            <label class="option-label">
-              <input type="radio" name="q${i}" value="${char}">
-              <span>${char}. ${opt}</span>
-            </label>
-          `;
-        }).join('')}
-      </div>
-    </div>
-  `).join('');
+function renderExam() {
+    const form = document.getElementById('examForm');
+    questionsData.forEach((data, index) => {
+        const qNum = index + 1;
+        const div = document.createElement('div');
+        div.className = 'question';
+        div.id = `q${qNum}`;
+
+        let html = `<span class="question-title">${qNum}. ${data.q}</span><div class="options">`;
+        data.o.forEach((opt, i) => {
+            const letter = String.fromCharCode(65 + i);
+            html += `
+                <label>
+                    <input type="radio" name="q${qNum}" value="${letter}" onchange="updateProgress()">
+                    ${letter}. ${opt}
+                </label>`;
+        });
+        html += `</div>`;
+        div.innerHTML = html;
+        form.appendChild(div);
+    });
+}
+
+function updateProgress() {
+    const answered = document.querySelectorAll('input[type="radio"]:checked').length;
+    document.getElementById('answeredCount').textContent = answered;
 }
 
 function startTimer() {
-  timerInterval = setInterval(() => {
-    timeLeft--;
-    let min = Math.floor(timeLeft/60);
-    let sec = timeLeft % 60;
-    document.getElementById("timer").textContent = `${min}:${sec < 10 ? '0'+sec : sec}`;
-    if(timeLeft <= 0) submitExam(true);
-  }, 1000);
+    timerInterval = setInterval(() => {
+        const min = Math.floor(timeLeft / 60);
+        const sec = timeLeft % 60;
+        document.getElementById('timer').textContent = `${min}:${sec.toString().padStart(2, '0')}`;
+        if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            alert("Time is up! Submitting automatically.");
+            submitExam(false);
+        }
+        timeLeft--;
+    }, 1000);
 }
 
-document.getElementById("submitBtn").addEventListener("click", () => {
-    if(confirm("Are you sure you want to submit?")) submitExam(false);
+document.getElementById('submitBtn').addEventListener('click', () => {
+    if(confirm("Confirm Examination Submission?")) submitExam(true);
 });
 
-function submitExam(auto = false) {
-  clearInterval(timerInterval);
-  const form = document.getElementById("quizForm");
-  let score = 0;
-  let summaryHTML = "";
+function submitExam(manual) {
+    clearInterval(timerInterval);
+    document.getElementById('submitBtn').classList.add('hidden');
+    let score = 0;
 
-  questions.forEach((q, i) => {
-    const selected = form.querySelector(`input[name="q${i}"]:checked`);
-    const userVal = selected ? selected.value : "None";
-    const isCorrect = userVal === q.correct;
-    if(isCorrect) score++;
+    questionsData.forEach((data, index) => {
+        const qNum = index + 1;
+        const selected = document.querySelector(`input[name="q${qNum}"]:checked`);
+        const questionDiv = document.getElementById(`q${qNum}`);
+        
+        if (selected && selected.value === data.a) score++;
 
-    summaryHTML += `
-      <div class="card" style="border-left: 5px solid ${isCorrect ? 'var(--success)' : 'var(--danger)'}">
-        <p><strong>Question ${i+1}:</strong> ${q.q}</p>
-        <div class="${isCorrect ? 'correct-feedback' : 'wrong-feedback'}">
-          Your Answer: ${userVal} ${isCorrect ? '✅' : '❌'}
-        </div>
-        ${!isCorrect ? `<div class="correct-feedback">Correct Answer: ${q.correct} - ${q.ansText}</div>` : ''}
-      </div>
-    `;
-  });
+        const correctLetter = data.a;
+        const correctText = data.o[correctLetter.charCodeAt(0) - 65];
+        const feedback = document.createElement('div');
+        feedback.className = 'correct-ans-highlight';
+        feedback.textContent = `Correct Answer: ${correctLetter}. ${correctText}`;
+        questionDiv.appendChild(feedback);
 
-  const percent = ((score / questions.length) * 100).toFixed(1);
-  document.getElementById("scoreText").innerHTML = `Score: ${score} / ${questions.length} (${percent}%)`;
-  document.getElementById("detailedAnswers").innerHTML = summaryHTML;
-  
-  document.getElementById("quizForm").style.display = "none";
-  document.getElementById("submitBtn").style.display = "none";
-  document.getElementById("result").style.display = "block";
-  window.scrollTo({top: 0, behavior: 'smooth'});
+        questionDiv.querySelectorAll('input').forEach(i => i.disabled = true);
+    });
+
+    const percent = ((score / 60) * 100).toFixed(1);
+    document.getElementById('scoreDisplay').textContent = `${score} / 60`;
+    document.getElementById('percentageDisplay').textContent = `Grade: ${percent}%`;
+    document.getElementById('finalMsg').textContent = percent >= 50 ? "Congratulations! Pass" : "Good Attempt!";
+    document.getElementById('result').classList.remove('hidden');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 </script>
-
 </body>
 </html>
