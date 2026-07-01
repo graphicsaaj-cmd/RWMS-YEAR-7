@@ -3,1233 +3,555 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Year 7 English Language Promotional Examination</title>
+    <title>Royal Wunderkind Model School - Online Examination</title>
     <style>
         :root {
-            --primary-color: #1b3a4b;
-            --secondary-color: #2e6f40;
-            --error-color: #a71d2a;
-            --bg-color: #f4f7f6;
+            --primary-color: #1a365d;
+            --secondary-color: #2b6cb0;
+            --success-color: #2f855a;
+            --error-color: #c53030;
+            --bg-color: #f7fafc;
             --card-bg: #ffffff;
-            --text-dark: #2d3748;
+            --text-color: #2d3748;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--bg-color);
-            color: var(--text-dark);
-            margin: 0;
-            padding: 0;
+            color: var(--text-color);
             line-height: 1.6;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 40px auto;
             padding: 20px;
         }
 
-        .hidden {
-            display: none !important;
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
         }
 
-        /* Portal Screen styling */
-        .portal-card {
+        /* Card Styles */
+        .card {
             background: var(--card-bg);
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba=0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        /* Header Styles */
+        .school-header {
+            text-align: center;
+            border-bottom: 3px double var(--primary-color);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+
+        .school-header h1 {
+            color: var(--primary-color);
+            font-size: 24px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .school-header h2 {
+            font-size: 16px;
+            color: #4a5568;
+            font-weight: normal;
+            margin-bottom: 10px;
+        }
+
+        .school-header h3 {
+            color: var(--secondary-color);
+            font-size: 18px;
+            margin-top: 5px;
+        }
+
+        /* Registration Screen */
+        #registration-screen {
             text-align: center;
             max-width: 500px;
-            margin: 60px auto;
+            margin: 100px auto;
         }
 
-        .portal-card h1 {
-            color: var(--primary-color);
-            margin-bottom: 5px;
-            font-size: 26px;
-        }
-
-        .portal-card h2 {
-            color: #718096;
-            font-size: 18px;
-            margin-bottom: 25px;
-            font-weight: 400;
-        }
-
-        .input-group {
+        .form-group {
             margin-bottom: 20px;
             text-align: left;
         }
 
-        .input-group label {
+        .form-group label {
             display: block;
-            font-weight: 600;
             margin-bottom: 8px;
-            color: var(--text-dark);
+            font-weight: bold;
+            color: var(--primary-color);
         }
 
-        .input-group input {
+        .form-group input {
             width: 100%;
             padding: 12px;
             border: 2px solid #cbd5e0;
             border-radius: 6px;
             font-size: 16px;
-            box-sizing: border-box;
             transition: border-color 0.2s;
         }
 
-        .input-group input:focus {
-            border-color: var(--primary-color);
+        .form-group input:focus {
             outline: none;
+            border-color: var(--secondary-color);
         }
 
-        /* Action Buttons */
-        .btn {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 14px 28px;
-            border: none;
-            border-radius: 6px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.2s;
-            width: 100%;
-        }
-
-        .btn:hover {
-            background-color: #122834;
-        }
-
-        /* Fixed / Floating Top Banner */
-        .sticky-header {
-            position: sticky;
-            top: 0;
-            background-color: var(--primary-color);
-            color: white;
-            padding: 15px 30px;
+        /* Info Banner */
+        .info-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            z-index: 1000;
-            margin-bottom: 30px;
+            background: var(--primary-color);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 6px;
+            position: sticky;
+            top: 10px;
+            z-index: 100;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+            margin-bottom: 25px;
         }
 
-        .sticky-header h3 {
-            margin: 0;
-            font-size: 18px;
-        }
-
-        .timer-badge {
-            background-color: #ecc94b;
-            color: #744210;
-            padding: 8px 16px;
+        .timer {
+            font-size: 20px;
             font-weight: bold;
+            background: rgba(255,255,255,0.2);
+            padding: 5px 15px;
             border-radius: 4px;
-            font-size: 18px;
         }
 
-        /* Document Design Elements */
-        .paper-section {
-            background: var(--card-bg);
-            padding: 35px;
-            border-radius: 10px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+        .timer.warning {
+            background: var(--error-color);
+            animation: blink 1s infinite;
         }
 
-        .section-title {
-            border-bottom: 3px solid var(--primary-color);
-            padding-bottom: 8px;
-            color: var(--primary-color);
-            margin-top: 0;
-            text-transform: uppercase;
-            font-size: 22px;
+        @keyframes blink {
+            50% { opacity: 0.6; }
         }
 
-        .passage-box {
-            background-color: #f7fafc;
-            border-left: 4px solid #4a5568;
-            padding: 20px;
-            margin: 20px 0;
-            font-style: justify;
-            border-radius: 0 6px 6px 0;
-        }
-
-        .passage-box p {
-            margin-top: 0;
-            text-indent: 30px;
-        }
-
-        /* Question Layout cards */
-        .question-wrapper {
+        /* Question Styles */
+        .question-block {
             margin-bottom: 25px;
             padding-bottom: 20px;
-            border-bottom: 1px dashed #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
         }
 
         .question-text {
+            font-size: 17px;
             font-weight: 600;
-            font-size: 16px;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
+            color: var(--primary-color);
         }
 
         .options-list {
             list-style: none;
-            padding: 0;
-            margin: 0;
         }
 
         .option-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 8px;
-            padding: 10px;
-            border: 1px solid #edf2f7;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: background-color 0.2s;
+            margin-bottom: 10px;
         }
 
-        .option-item:hover {
+        .option-item label {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .option-item label:hover {
             background-color: #edf2f7;
         }
 
-        .option-item input {
+        .option-item input[type="radio"] {
             margin-right: 12px;
-            transform: scale(1.1);
+            transform: scale(1.2);
         }
 
-        /* Constructive text inputs */
-        .text-answer-field {
-            width: 100%;
-            padding: 10px;
-            border: 2px solid #cbd5e0;
-            border-radius: 6px;
-            font-size: 15px;
-            box-sizing: border-box;
-            margin-top: 5px;
-        }
-
-        .essay-area {
-            width: 100%;
-            height: 250px;
-            padding: 12px;
-            border: 2px solid #cbd5e0;
-            border-radius: 6px;
+        /* Buttons */
+        .btn {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 12px 30px;
             font-size: 16px;
-            box-sizing: border-box;
-            resize: vertical;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s;
+            width: 100%;
         }
 
-        /* Dynamic Marking Classes */
-        .status-correct {
-            background-color: #c6f6d5 !important;
-            border-color: var(--secondary-color) !important;
-            color: #22543d;
+        .btn:hover {
+            background-color: #2b6cb0;
         }
 
-        .status-incorrect {
-            background-color: #fed7d7 !important;
-            border-color: var(--error-color) !important;
-            color: #742a2a;
+        .btn-submit {
+            background-color: var(--success-color);
+            font-size: 18px;
+            margin-top: 20px;
         }
 
-        .correction-box {
-            margin-top: 8px;
-            padding: 10px;
-            background-color: #ebf8ff;
-            border-left: 4px solid #3182ce;
-            color: #2b6cb0;
-            font-size: 14px;
-            font-weight: 500;
-            border-radius: 0 4px 4px 0;
+        .btn-submit:hover {
+            background-color: #22543d;
         }
 
-        /* Results dashboard */
-        .results-panel {
-            background: #fff;
-            border: 2px solid var(--primary-color);
-            padding: 30px;
-            border-radius: 12px;
+        /* Results & Feedback Styles */
+        .results-header {
             text-align: center;
-            margin-bottom: 35px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
         }
 
         .score-display {
             font-size: 48px;
-            font-weight: 800;
-            color: var(--secondary-color);
+            font-weight: bold;
+            color: var(--primary-color);
             margin: 15px 0;
+        }
+
+        .correct-answer {
+            background-color: #c6f6d5 !important;
+            border-color: #38a169 !important;
+            color: #22543d;
+            position: relative;
+        }
+
+        .correct-answer::after {
+            content: "✓ Correct Choice";
+            position: absolute;
+            right: 15px;
+            font-size: 12px;
+            font-weight: bold;
+            background: #38a169;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .wrong-answer {
+            background-color: #fed7d7 !important;
+            border-color: #e53e3e !important;
+            color: #742a2a;
+        }
+
+        .wrong-choice-marker {
+            position: relative;
+        }
+
+        .wrong-choice-marker::after {
+            content: "✕ Your Selection";
+            position: absolute;
+            right: 15px;
+            font-size: 12px;
+            font-weight: bold;
+            background: #e53e3e;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .section-title {
+            background: #edf2f7;
+            padding: 10px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: var(--primary-color);
+            border-left: 5px solid var(--primary-color);
+        }
+
+        .hidden {
+            display: none !important;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <div id="portal-screen" class="portal-card">
-        <h1>PROMOTIONAL EXAMINATION</h1>
-        <h2>YEAR 7 ENGLISH LANGUAGE</h2>
-        <div class="input-group">
-            <label for="student-name">Candidate Full Name:</label>
-            <input type="text" id="student-name" placeholder="Surname Firstname Othes..." autocomplete="off">
+
+    <!-- REGISTRATION SCREEN -->
+    <div id="registration-screen" class="card">
+        <div class="school-header">
+            <h1>Royal Wunderkind Model School</h1>
+            <h2>Jalala Area, Tanke, Oke - Odo, Ilorin.</h2>
+            <h3>Promotional Examination 2025/2026</h3>
         </div>
-        <button type="button" class="btn" onclick="initializeExamination()">Start Examination</button>
-    </div>
-
-    <div id="examination-interface" class="hidden">
-        <div class="sticky-header">
-            <div>
-                <h3 id="manifest-name">Candidate: </h3>
-                <span style="font-size: 13px; opacity: 0.85;">Subject: English Language</span>
-            </div>
-            <div class="timer-badge" id="clock-display">45:00</div>
+        <div style="margin-bottom: 25px; font-weight: 500;">
+            <p><strong>Class:</strong> Key Stage 3 (Year 7)</p>
+            <p><strong>Subject:</strong> Horticulture</p>
+            <p><strong>Duration:</strong> 30 Minutes</p>
         </div>
-
-        <div id="results-summary" class="results-panel hidden"></div>
-
-        <form id="examination-form" onsubmit="return false;">
-            
-            <div class="paper-section">
-                <h2 class="section-title">PAPER 1: Comprehension Passage and Continuous Writing</h2>
-                <h3>Comprehension Passage</h3>
-                <div class="passage-box">
-                    <p>My name is Bode. My first day at Glory Secondary School was an eventful one. As it is natural for every student to remember the first day at school, I can remember vividly the things that happened. It was my father who prepared the way for my admission to the school. He collected the admission forms and my mother filled them in. I wrote the entrance examination some four weeks afterwards. The results were released and my name was first on the list of successful candidates. My sisters and my parents were very happy.</p>
-                    <p>Glory Secondary School was an old and well-known school in my locality. It had gigantic buildings with a large compound filled with beautiful well-arranged flowers. When I stepped into the school, I felt nervous at first because of the large crowd of people swarming around on the first day. Most parents, especially mothers, accompanied their children to school. My father accompanied me on that day because my mother had travelled. The atmosphere of the school was bustling and full of life as a lot of new and returning students were busy with one thing or another. Teacher after teacher went to different classes.</p>
-                    <p>When I had been enrolled as a student, I went to my class. The class teacher, Mrs Kofo Adebola, asked for my name, home address and age. I answered her questions quickly. She was so impressed, so she patted me on my back. Her kind of behaviour soothed my feelings. Other students in the class looked at me curiously. After three consecutive periods, there was a recess of fifteen minutes. I dashed to the playground with my classmates. I made friends with Chinedu, Adeola and Ahmed. We told stories of our primary school days. My initial anxiety vanished because of my friends.</p>
-                    <p>Soon the bell rang for us to go home after the eighth period. Many students were relieved to be with their parents again. I was delighted to see my father waiting for me at the school gate. My first day at school is pleasant to recollect.</p>
-                </div>
-
-                <div class="question-wrapper" id="block-c1">
-                    <div class="question-text">1. Why was Bode nervous on the first day at school?</div>
-                    <input type="text" class="text-answer-field" id="ans-c1" placeholder="Type your observation sentence here...">
-                </div>
-
-                <div class="question-wrapper" id="block-c2">
-                    <div class="question-text">2. Why did Bode’s mother not accompany him to school?</div>
-                    <input type="text" class="text-answer-field" id="ans-c2" placeholder="Type your structural sentence here...">
-                </div>
-
-                <div class="question-wrapper" id="block-c3">
-                    <div class="question-text">3. Mention three words from the passage that show the writer’s tone?</div>
-                    <input type="text" class="text-answer-field" id="ans-c3" placeholder="Provide words separated by commas...">
-                </div>
-
-                <div class="question-wrapper" id="block-c4">
-                    <div class="question-text">4. What is the purpose of the writer in the passage?</div>
-                    <input type="text" class="text-answer-field" id="ans-c4" placeholder="Explain the primary baseline purpose...">
-                </div>
-
-                <div class="question-wrapper" id="block-c5">
-                    <div class="question-text">5. What mood do you think would be evoked in the reader after reading this passage?</div>
-                    <input type="text" class="text-answer-field" id="ans-c5" placeholder="Describe the ambient reading mood...">
-                </div>
-
-                <div class="question-wrapper" id="block-mc1">
-                    <div class="question-text">6. Which word in the passage means the same as disappeared?</div>
-                    <ul class="options-list">
-                        <li class="option-item"><label><input type="radio" name="mc1" value="A"> Consecutive</label></li>
-                        <li class="option-item"><label><input type="radio" name="mc1" value="B"> Patted</label></li>
-                        <li class="option-item"><label><input type="radio" name="mc1" value="C"> Vanished</label></li>
-                        <li class="option-item"><label><input type="radio" name="mc1" value="D"> Soothes</label></li>
-                    </ul>
-                </div>
-
-                <div class="question-wrapper" id="block-mc2">
-                    <div class="question-text">7. Which one of the following is true about Bode’s first day at school?</div>
-                    <ul class="options-list">
-                        <li class="option-item"><label><input type="radio" name="mc2" value="A"> The writer’s mother quarreled with the principal.</label></li>
-                        <li class="option-item"><label><input type="radio" name="mc2" value="B"> The class teacher scolded the writer.</label></li>
-                        <li class="option-item"><label><input type="radio" name="mc2" value="C"> Bode’s sisters and parents accompanied him.</label></li>
-                        <li class="option-item"><label><input type="radio" name="mc2" value="D"> Bode had a pleasant experience on the first day.</label></li>
-                    </ul>
-                </div>
-
-                <div class="question-wrapper" id="block-mc3">
-                    <div class="question-text">8. The word enrolled in the third paragraph can mean__</div>
-                    <ul class="options-list">
-                        <li class="option-item"><label><input type="radio" name="mc3" value="A"> Released</label></li>
-                        <li class="option-item"><label><input type="radio" name="mc3" value="B"> Signed</label></li>
-                        <li class="option-item"><label><input type="radio" name="mc3" value="C"> Registered</label></li>
-                        <li class="option-item"><label><input type="radio" name="mc3" value="D"> Assessed</label></li>
-                    </ul>
-                </div>
-
-                <div class="question-wrapper" id="block-mc4">
-                    <div class="question-text">9. From the passage, we can conclude that ___</div>
-                    <ul class="options-list">
-                        <li class="option-item"><label><input type="radio" name="mc4" value="A"> Most fathers accompanied their children to school.</label></li>
-                        <li class="option-item"><label><input type="radio" name="mc4" value="B"> The writer hated the class teacher.</label></li>
-                        <li class="option-item"><label><input type="radio" name="mc4" value="C"> The bell rang before the eighth period.</label></li>
-                        <li class="option-item"><label><input type="radio" name="mc4" value="D"> The writer’s class teacher was a nice person.</label></li>
-                    </ul>
-                </div>
-
-                <div class="question-wrapper" id="block-mc5">
-                    <div class="question-text">10. Which word in the passage means ‘very huge?’</div>
-                    <ul class="options-list">
-                        <li class="option-item"><label><input type="radio" name="mc5" value="A"> Consecutive</label></li>
-                        <li class="option-item"><label><input type="radio" name="mc5" value="B"> Patted</label></li>
-                        <li class="option-item"><label><input type="radio" name="mc5" value="C"> Gigantic</label></li>
-                        <li class="option-item"><label><input type="radio" name="mc5" value="D"> Soothed</label></li>
-                    </ul>
-                </div>
-
-              
-            <div class="paper-section">
-                <h2 class="section-title">Objective Tests on Grammar</h2>
-                
-                <div class="question-wrapper" id="block-g11">
-                    <div class="question-text">11. Which of these is an abstract noun?</div>
-                    <ul class="options-list">
-                        <li class="option-item"><label><input type="radio" name="g11" value="A"> Chair</label></li>
-                        <li class="option-item"><label><input type="radio" name="g11" value="B"> Happiness</label></li>
-                        <li class="option-item"><label><input type="radio" name="g11" value="C"> Pencil</label></li>
-                        <li class="option-item"><label><input type="radio" name="g11" value="D"> Dog</label></li>
-                    </ul>
-                </div>
-
-                <div class="question-wrapper" id="block-g12">
-                    <div class="question-text">12. The __________ are asleep.</div>
-                    <ul class="options-list">
-                        <li class="option-item"><label><input type="radio" name="g12" value="A"> baby's</label></li>
-                        <li class="option-item"><label><input type="radio" name="g12" value="B"> babys</label></li>
-                        <li class="option-item"><label><input type="radio" name="g12" value="C"> babies</label></li>
-                        <li class="option-item"><label><input type="radio" name="g12" value="D"> babyes</label></li>
-                    </ul>
-                </div>
-
-                <div class="question-wrapper" id="block-g13">
-                    <div class="question-text">13. The new student needs an ___________.</div>
-                    <ul class="options-list">
-                        <li class="option-item"><label><input type="radio" name="g13" value="A"> accommodation</label></li>
-                        <li class="option-item"><label><input type="radio" name="g13" value="B"> acommodation</label></li>
-                        <li class="option-item"><label><input type="radio" name="g13" value="C"> acomodation</label></li>
-                        <li class="option-item"><label><input type="radio" name="g13" value="D"> accommodattion</label></li>
-                    </ul>
-                </div>
-
-                <div class="question-wrapper" id="block-g14">
-                    <div class="question-text">14. Divine _______ to be a doctor.</div>
-                    <ul class="options-list">
-                        <li class="option-item"><label><input type="radio" name="g14" value="A"> want</label></li>
-                        <li class="option-item"><label><input type="radio" name="g14" value="B"> wants</label></li>
-                        <li class="option-item"><label><input type="radio" name="g14" value="C"> wanted</label></li>
-                        <li class="option-item"><label><input type="radio" name="g14" value="D"> wanting</label></li>
-                    </ul>
-                </div>
-
-                <div class="question-wrapper" id="block-g15">
-                    <div class="question-text">15. I look forward to __________ you.</div>
-                    <ul class="options-list">
-                        <li class="option-item"><label><input type="radio" name="g15" value="A"> see</label></li>
-                        <li class="option-item"><label><input type="radio" name="g15" value="B"> saw</label></li>
-                        <li class="option-item"><label><input type="radio" name="g15" value="C"> will see</label></li>
-                        <li class="option-item"><label><input type="radio" name="g15" value="D"> seeing</label></li>
-                    </ul>
-                </div>
-
-                <div class="question-wrapper" id="block-g16">
-                    <div class="question-text">16. Which sentence is in the future tense?</div>
-                    <ul class="options-list">
-                        <li class="option-item"><label><input type="radio" name="g16" value="A"> We ate lunch.</label></li>
-                        <li class="option-item"><label><input type="radio" name="g16" value="B"> We eat lunch.</label></li>
-                        <li class="option-item"><label><input type="radio" name="g16" value="C"> We eats lunch.</label></li>
-                        <li class="option-item"><label><input type="radio" name="g16" value="D"> We will eat lunch.</label></li>
-                    </ul>
-                </div>
-
-                <div class="question-wrapper" id="block-g17">
-                    <div class="question-text">17. You can have tea ____ coffee.</div>
-                    <ul class="options-list">
-                        <li class="option-item"><label><input type="radio" name="g17" value="A"> because</label></li>
-                        <li class="option-item"><label><input type="radio" name="g17" value="B"> or</label></li>
-                        <li class="option-item"><label><input type="radio" name="g17" value="C"> but</label></li>
-                        <li class="option-item"><label><input type="radio" name="g17" value="D"> since</label></li>
-                    </ul>
-                </div>
-
-                <div class="question-wrapper" id="block-g18">
-                    <div class="question-text">18. I wanted to go, _____ it was raining.</div>
-                    <ul class="options-list">
-                        <li class="option-item"><label><input type="radio" name="g18" value="A"> but</label></li>
-                        <li class="option-item"><label><input type="radio" name="g18" value="B"> so</label></li>
-                        <li class="option-item"><label><input type="radio" name="g18" value="C"> and</label></li>
-                        <li class="option-item"><label><input type="radio" name="g18" value="D"> yet</label></li>
-                    </ul>
-                </div>
-
-                <div class="question-wrapper" id="block-g19">
-                    <div class="question-text">19. We walked ______ the bridge.</div>
-                    <ul class="options-list">
-                        <li class="option-item"><label><input type="radio" name="g19" value="A"> below</label></li>
-                        <li class="option-item"><label><input type="radio" name="g19" value="B"> between</label></li>
-                        <li class="option-item"><label><input type="radio" name="g19" value="C"> across</label></li>
-                        <li class="option-item"><label><input type="radio" name="g19" value="D"> quickly</label></li>
-                    </ul>
-                </div>
-
-                <div class="question-wrapper" id="block-g20">
-                    <div class="question-text">20. A stitch in time saves ______.</div>
-                    <ul class="options-list">
-                        <li class="option-item"><label><input type="radio" name="g20" value="A"> nine</label></li>
-                        <li class="option-item"><label><input type="radio" name="g20" value="B"> two</label></li>
-                        <li class="option-item"><label><input type="radio" name="g20" value="C"> one</label></li>
-                        <li class="option-item"><label><input type="radio" name="g20" value="D"> all</label></li>
-                    </ul>
-                </div>
-
-                <div class="question-wrapper" id="block-g21">
-                    <div class="question-text">21. She sang beautifully. What is beautifully?</div>
-                    <ul class="options-list">
-                        <li class="option-item"><label><input type="radio" name="g21" value="A"> Adjective</label></li>
-                        <li class="option-item"><label><input type="radio" name="g21" value="B"> Adverb</label></li>
-                        <li class="option-item"><label><input type="radio" name="g21" value="C"> Verb</label></li>
-                        <li class="option-item"><label><input type="radio" name="g21" value="D"> Noun</label></li>
-                    </ul>
-                </div>
-
-                <div class="question-wrapper" id="block-g22">
-                    <div class="question-text">22. "________ are my friends," said Billy to his mum.</div>
-                    <ul class="options-list">
-                        <li class="option-item"><label><input type="radio" name="g22" value="A"> That</label></li>
-                        <li class="option-item"><label><input type="radio" name="g22" value="B"> This</label></li>
-                        <li class="option-item"><label><input type="radio" name="g22" value="C"> These</label></li>
-                        <li class="option-item"><label><input type="radio" name="g22" value="D"> For</label></li>
-                    </ul>
-                </div>
-
-                <div class="question-wrapper" id="block-g23">
-                    <div class="question-text">23. It is you who _______ wrong.</div>
-                    <ul class="options-list">
-                        <li class="option-item"><label><input type="radio" name="g23" value="A"> is</label></li>
-                        <li class="option-item"><label><input type="radio" name="g23" value="B"> was</label></li>
-                        <li class="option-item"><label><input type="radio" name="g23" value="C"> has been</label></li>
-                        <li class="option-item"><label><input type="radio" name="g23" value="D"> are</label></li>
-                    </ul>
-                </div>
-
-                <div class="question-wrapper" id="block-g24">
-                    <div class="question-text">24. This book is mine; that is ________.</div>
-                    <ul class="options-list">
-                        <li class="option-item"><label><input type="radio" name="g24" value="A"> Brights'</label></li>
-                        <li class="option-item"><label><input type="radio" name="g24" value="B"> Bright's sown</label></li>
-                        <li class="option-item"><label><input type="radio" name="g24" value="C"> Bright's</label></li>
-                        <li class="option-item"><label><input type="radio" name="g24" value="D"> Brights's</label></li>
-                    </ul>
-                </div>
-
-                <div class="question-wrapper" id="block-g25">
-                    <div class="question-text">25. On my way to Abuja, I met my English teacher ____ the plane.</div>
-                    <ul class="options-list">
-                        <li class="option-item"><label><input type="radio" name="g25" value="A"> inside</label></li>
-                        <li class="option-item"><label><input type="radio" name="g25" value="B"> on</label></li>
-                        <li class="option-item"><label><input type="radio" name="g25" value="C"> under</label></li>
-                        <li class="option-item"><label><input type="radio" name="g25" value="D"> above</label></li>
-                    </ul>
-                </div>
-
-                <div class="question-wrapper" id="block-g26">
-                    <div class="question-text">26. Prof. Bayo said that the sun _____ from the east.</div>
-                    <ul class="options-list">
-                        <li class="option-item"><label><input type="radio" name="g26" value="A"> rose</label></li>
-                        <li class="option-item"><label><input type="radio" name="g26" value="B"> had risen</label></li>
-                        <li class="option-item"><label><input type="radio" name="g26" value="C"> rises</label></li>
-                        <li class="option-item"><label><input type="radio" name="g26" value="D"> has risen</label></li>
-                    </ul>
-                </div>
-
-                <div class="question-wrapper" id="block-g27">
-                    <div class="question-text">27. Miss. Blessed said that all that glitters ______ not gold.</div>
-                    <ul class="options-list">
-                        <li class="option-item"><label><input type="radio" name="g27" value="A"> is</label></li>
-                        <li class="option-item"><label><input type="radio" name="g27" value="B"> was</label></li>
-                        <li class="option-item"><label><input type="radio" name="g27" value="C"> were</label></li>
-                        <li class="option-item"><label><input type="radio" name="g27" value="D"> are</label></li>
-                    </ul>
-                </div>
-
-                <div class="question-wrapper" id="block-g28">
-                    <div class="question-text">28. No sooner had Jayden entered the room ______ the rain started.</div>
-                    <ul class="options-list">
-                        <li class="option-item"><label><input type="radio" name="g28" value="A"> when</label></li>
-                        <li class="option-item"><label><input type="radio" name="g28" value="B"> before</label></li>
-                        <li class="option-item"><label><input type="radio" name="g28" value="C"> than</label></li>
-                        <li class="option-item"><label><input type="radio" name="g28" value="D"> immediately</label></li>
-                    </ul>
-                </div>
-
-                <div class="question-wrapper" id="block-g29">
-                    <div class="question-text">29. The teacher asked the class whether they ____________.</div>
-                    <ul class="options-list">
-                        <li class="option-item"><label><input type="radio" name="g29" value="A"> know the boy</label></li>
-                        <li class="option-item"><label><input type="radio" name="g29" value="B"> have known the boy</label></li>
-                        <li class="option-item"><label><input type="radio" name="g29" value="C"> knew that boy</label></li>
-                        <li class="option-item"><label><input type="radio" name="g29" value="D"> knew the boy</label></li>
-                    </ul>
-                </div>
-
-                <div class="question-wrapper" id="block-g30">
-                    <div class="question-text">30. I want to use this medium to congratulate you _______ your brilliant performance in the last GCE.</div>
-                    <ul class="options-list">
-                        <li class="option-item"><label><input type="radio" name="g30" value="A"> for</label></li>
-                        <li class="option-item"><label><input type="radio" name="g30" value="B"> of</label></li>
-                        <li class="option-item"><label><input type="radio" name="g30" value="C"> in</label></li>
-                        <li class="option-item"><label><input type="radio" name="g30" value="D"> on</label></li>
-                    </ul>
-                </div>
-
-                <div class="question-wrapper" id="block-g31">
-                    <div class="question-text">31. I had the __________ of meeting the president last week.</div>
-                    <ul class="options-list">
-                        <li class="option-item"><label><input type="radio" name="g31" value="A"> previledge</label></li>
-                        <li class="option-item"><label><input type="radio" name="g31" value="B"> privilege</label></li>
-                        <li class="option-item"><label><input type="radio" name="g31" value="C"> previlege</label></li>
-                        <li class="option-item"><label><input type="radio" name="g31" value="D"> priviledge</label></li>
-                    </ul>
-                </div>
-
-                <div class="question-wrapper" id="block-g32">
-                    <div class="question-text">32. The ___________ attracted many people from different walks of life.</div>
-                    <ul class="options-list">
-                        <li class="option-item"><label><input type="radio" name="g32" value="A"> occassion</label></li>
-                        <li class="option-item"><label><input type="radio" name="g32" value="B"> ocassion</label></li>
-                        <li class="option-item"><label><input type="radio" name="g32" value="C"> occasion</label></li>
-                        <li class="option-item"><label><input type="radio" name="g32" value="D"> occason</label></li>
-                    </ul>
-                </div>
-
-                <div class="question-wrapper" id="block-g33">
-                    <div class="question-text">33. Of all the figures of speech, the one I like most is __________.</div>
-                    <ul class="options-list">
-                        <li class="option-item"><label><input type="radio" name="g33" value="A"> onomatopoeia</label></li>
-                        <li class="option-item"><label><input type="radio" name="g33" value="B"> onomatporea</label></li>
-                        <li class="option-item"><label><input type="radio" name="g33" value="C"> onomatopeia</label></li>
-                        <li class="option-item"><label><input type="radio" name="g33" value="D"> onoatopia</label></li>
-                    </ul>
-                </div>
-
-                <div class="question-wrapper" id="block-g34">
-                    <div class="question-text">34. The church ____________ will meet _____________ after the service.</div>
-                    <ul class="options-list">
-                        <li class="option-item"><label><input type="radio" name="g34" value="A"> commitee/tomorrow</label></li>
-                        <li class="option-item"><label><input type="radio" name="g34" value="B"> committee/tomorrow</label></li>
-                        <li class="option-item"><label><input type="radio" name="g34" value="C"> committee/tommorow</label></li>
-                        <li class="option-item"><label><input type="radio" name="g34" value="D"> commitee/tommorow</label></li>
-                    </ul>
-                </div>
-
-                <div class="question-wrapper" id="block-g35">
-                    <div class="question-text">35. My uncle _____________ ladies shoes.</div>
-                    <ul class="options-list">
-                        <li class="option-item"><label><input type="radio" name="g35" value="A"> deals on</label></li>
-                        <li class="option-item"><label><input type="radio" name="g35" value="B"> deals with</label></li>
-                        <li class="option-item"><label><input type="radio" name="g35" value="C"> deals in</label></li>
-                        <li class="option-item"><label><input type="radio" name="g35" value="D"> deals by</label></li>
-                    </ul>
-                </div>
-
-                <div class="question-wrapper" id="block-g36">
-                    <div class="question-text">36. <em>Choose the option nearest in meaning:</em> Her parents have <strong>endorsed</strong> her marriage to the widower.</div>
-                    <ul class="options-list">
-                        <li class="option-item"><label><input type="radio" name="g36" value="A"> examined</label></li>
-                        <li class="option-item"><label><input type="radio" name="g36" value="B"> criticized</label></li>
-                        <li class="option-item"><label><input type="radio" name="g36" value="C"> approved</label></li>
-                        <li class="option-item"><label><input type="radio" name="g36" value="D"> refused</label></li>
-                    </ul>
-                </div>
-
-                <div class="question-wrapper" id="block-g37">
-                    <div class="question-text">37. <em>Choose the option nearest in meaning:</em> I have a feeling that he is doing some <strong>shady</strong> business outside the country.</div>
-                    <ul class="options-list">
-                        <li class="option-item"><label><input type="radio" name="g37" value="A"> dishonest</label></li>
-                        <li class="option-item"><label><input type="radio" name="g37" value="B"> undisclosed</label></li>
-                        <li class="option-item"><label><input type="radio" name="g37" value="C"> unknown</label></li>
-                        <li class="option-item"><label><input type="radio" name="g37" value="D"> shadowy</label></li>
-                    </ul>
-                </div>
-
-                <div class="question-wrapper" id="block-g38">
-                    <div class="question-text">38. <em>Choose the option nearest in meaning:</em> The decision I have taken is <strong>irrevocable</strong>.</div>
-                    <ul class="options-list">
-                        <li class="option-item"><label><input type="radio" name="g38" value="A"> irreproachable</label></li>
-                        <li class="option-item"><label><input type="radio" name="g38" value="B"> irrefutable</label></li>
-                        <li class="option-item"><label><input type="radio" name="g38" value="C"> irreversible</label></li>
-                        <li class="option-item"><label><input type="radio" name="g38" value="D"> irresponsible</label></li>
-                    </ul>
-                </div>
-
-                <div class="question-wrapper" id="block-g39">
-                    <div class="question-text">39. <em>Choose the option nearest in meaning:</em> The accused <strong>vehemently</strong> denied the charges against him.</div>
-                    <ul class="options-list">
-                        <li class="option-item"><label><input type="radio" name="g39" value="A"> ignorantly</label></li>
-                        <li class="option-item"><label><input type="radio" name="g39" value="B"> stupidly</label></li>
-                        <li class="option-item"><label><input type="radio" name="g39" value="C"> deliberately</label></li>
-                        <li class="option-item"><label><input type="radio" name="g39" value="D"> strongly</label></li>
-                    </ul>
-                </div>
-
-                <div class="question-wrapper" id="block-g40">
-                    <div class="question-text">40. <em>Choose the option nearest in meaning:</em> The <strong>incessant</strong> chatter of the pupils irritated the teacher.</div>
-                    <ul class="options-list">
-                        <li class="option-item"><label><input type="radio" name="g40" value="A"> excited</label></li>
-                        <li class="option-item"><label><input type="radio" name="g40" value="B"> meaningless</label></li>
-                        <li class="option-item"><label><input type="radio" name="g40" value="C"> unceasing</label></li>
-                        <li class="option-item"><label><input type="radio" name="g40" value="D"> illogical</label></li>
-                    </ul>
-                </div>
-
-                <div class="question-wrapper" id="block-g41">
-                    <div class="question-text">41. <em>Choose the option opposite in meaning:</em> The principal was <strong>astounded</strong> by the boy's rudeness.</div>
-                    <ul class="options-list">
-                        <li class="option-item"><label><input type="radio" name="g41" value="A"> dumbfounded</label></li>
-                        <li class="option-item"><label><input type="radio" name="g41" value="B"> shocked</label></li>
-                        <li class="option-item"><label><input type="radio" name="g41" value="C"> furious</label></li>
-                        <li class="option-item"><label><input type="radio" name="g41" value="D"> unmoved</label></li>
-                    </ul>
-                </div>
-
-                <div class="question-wrapper" id="block-g42">
-                    <div class="question-text">42. <em>Choose the option opposite in meaning:</em> Only recently did Bayo <strong>come out of his shell</strong>.</div>
-                    <ul class="options-list">
-                        <li class="option-item"><label><input type="radio" name="g42" value="A"> become withdrawn</label></li>
-                        <li class="option-item"><label><input type="radio" name="g42" value="B"> become generous</label></li>
-                        <li class="option-item"><label><input type="radio" name="g42" value="C"> become friendly</label></li>
-                        <li class="option-item"><label><input type="radio" name="g42" value="D"> become aggressive</label></li>
-                    </ul>
-                </div>
-
-                <div class="question-wrapper" id="block-g43">
-                    <div class="question-text">43. <em>Choose the option opposite in meaning:</em> I watched a <strong>graceful</strong> dancer on television last night.</div>
-                    <ul class="options-list">
-                        <li class="option-item"><label><input type="radio" name="g43" value="A"> a clumsy</label></li>
-                        <li class="option-item"><label><input type="radio" name="g43" value="B"> a rough</label></li>
-                        <li class="option-item"><label><input type="radio" name="g43" value="C"> an expert</label></li>
-                        <li class="option-item"><label><input type="radio" name="g43" value="D"> a miserable</label></li>
-                    </ul>
-                </div>
-
-                <div class="question-wrapper" id="block-g44">
-                    <div class="question-text">44. <em>Choose the option opposite in meaning:</em> Steam produces a <strong>tremendous</strong> power.</div>
-                    <ul class="options-list">
-                        <li class="option-item"><label><input type="radio" name="g44" value="A"> influential</label></li>
-                        <li class="option-item"><label><input type="radio" name="g44" value="B"> great</label></li>
-                        <li class="option-item"><label><input type="radio" name="g44" value="C"> trivial</label></li>
-                        <li class="option-item"><label><input type="radio" name="g44" value="D"> extra</label></li>
-                    </ul>
-                </div>
-
-                <div class="question-wrapper" id="block-g45">
-                    <div class="question-text">45. <em>Choose the option opposite in meaning:</em> A <strong>fundamental</strong> problem in the country is how to reduce the cost of education.</div>
-                    <ul class="options-list">
-                        <li class="option-item"><label><input type="radio" name="g45" value="A"> A basic</label></li>
-                        <li class="option-item"><label><input type="radio" name="g45" value="B"> An important</label></li>
-                        <li class="option-item"><label><input type="radio" name="g45" value="C"> An accidental</label></li>
-                        <li class="option-item"><label><input type="radio" name="g45" value="D"> A minor</label></li>
-                    </ul>
-                </div>
-
-                <div class="question-wrapper" id="block-g46">
-                    <div class="question-text">46. Let's go, ________?</div>
-                    <ul class="options-list">
-                        <li class="option-item"><label><input type="radio" name="g46" value="A"> shall we</label></li>
-                        <li class="option-item"><label><input type="radio" name="g46" value="B"> do we</label></li>
-                        <li class="option-item"><label><input type="radio" name="g46" value="C"> will we</label></li>
-                        <li class="option-item"><label><input type="radio" name="g46" value="D"> shan't we</label></li>
-                    </ul>
-                </div>
-
-                <div class="question-wrapper" id="block-g47">
-                    <div class="question-text">47. Student: Must we complete the assignment today?<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Teacher: No, you _______.</div>
-                    <ul class="options-list">
-                        <li class="option-item"><label><input type="radio" name="g47" value="A"> mustn't</label></li>
-                        <li class="option-item"><label><input type="radio" name="g47" value="B"> must</label></li>
-                        <li class="option-item"><label><input type="radio" name="g47" value="C"> needn't</label></li>
-                        <li class="option-item"><label><input type="radio" name="g47" value="D"> need not to</label></li>
-                    </ul>
-                </div>
-
-                <div class="question-wrapper" id="block-g48">
-                    <div class="question-text">48. Jake sings beautifully, ________?</div>
-                    <ul class="options-list">
-                        <li class="option-item"><label><input type="radio" name="g48" value="A"> not so</label></li>
-                        <li class="option-item"><label><input type="radio" name="g48" value="B"> isn't it</label></li>
-                        <li class="option-item"><label><input type="radio" name="g48" value="C"> don't you</label></li>
-                        <li class="option-item"><label><input type="radio" name="g48" value="D"> doesn't he</label></li>
-                    </ul>
-                </div>
-
-                <div class="question-wrapper" id="block-g49">
-                    <div class="question-text">49. You like oranges, _________?</div>
-                    <ul class="options-list">
-                        <li class="option-item"><label><input type="radio" name="g49" value="A"> doesn't you</label></li>
-                        <li class="option-item"><label><input type="radio" name="g49" value="B"> didn't you</label></li>
-                        <li class="option-item"><label><input type="radio" name="g49" value="C"> don't you</label></li>
-                        <li class="option-item"><label><input type="radio" name="g49" value="D"> did he</label></li>
-                    </ul>
-                </div>
-
-                <div class="question-wrapper" id="block-g50">
-                    <div class="question-text">50. She caused the damage, __________?</div>
-                    <ul class="options-list">
-                        <li class="option-item"><label><input type="radio" name="g50" value="A"> didn't she</label></li>
-                        <li class="option-item"><label><input type="radio" name="g50" value="B"> isn't it</label></li>
-                        <li class="option-item"><label><input type="radio" name="g50" value="C"> doesn't he</label></li>
-                        <li class="option-item"><label><input type="radio" name="g50" value="D"> did he</label></li>
-                    </ul>
-                </div>
-
-                <div class="question-wrapper" id="block-g51">
-                    <div class="question-text">51. "I will meet you at the bank after school." What does "bank" mean here?</div>
-                    <ul class="options-list">
-                        <li class="option-item"><label><input type="radio" name="g51" value="A"> The side of a river</label></li>
-                        <li class="option-item"><label><input type="radio" name="g51" value="B"> A financial institution for money</label></li>
-                        <li class="option-item"><label><input type="radio" name="g51" value="C"> A row of seats</label></li>
-                        <li class="option-item"><label><input type="radio" name="g51" value="D"> To depend on</label></li>
-                    </ul>
-                </div>
-
-                <div class="question-wrapper" id="block-g52">
-                    <div class="question-text">52. What is the homophone of "four?"</div>
-                    <ul class="options-list">
-                        <li class="option-item"><label><input type="radio" name="g52" value="A"> For</label></li>
-                        <li class="option-item"><label><input type="radio" name="g52" value="B"> Far</label></li>
-                        <li class="option-item"><label><input type="radio" name="g52" value="C"> Fear</label></li>
-                        <li class="option-item"><label><input type="radio" name="g52" value="D"> Fire</label></li>
-                    </ul>
-                </div>
-
-                <div class="question-wrapper" id="block-g53">
-                    <div class="question-text">53. What's the homophone of "key?"</div>
-                    <ul class="options-list">
-                        <li class="option-item"><label><input type="radio" name="g53" value="A"> Kill</label></li>
-                        <li class="option-item"><label><input type="radio" name="g53" value="B"> Queue</label></li>
-                        <li class="option-item"><label><input type="radio" name="g53" value="C"> Quay</label></li>
-                        <li class="option-item"><label><input type="radio" name="g53" value="D"> Kii</label></li>
-                    </ul>
-                </div>
-
-                <div class="question-wrapper" id="block-g54">
-                    <div class="question-text">54. I bought a ________ of shoes yesterday.</div>
-                    <ul class="options-list">
-                        <li class="option-item"><label><input type="radio" name="g54" value="A"> pear</label></li>
-                        <li class="option-item"><label><input type="radio" name="g54" value="B"> pare</label></li>
-                        <li class="option-item"><label><input type="radio" name="g54" value="C"> pair</label></li>
-                        <li class="option-item"><label><input type="radio" name="g54" value="D"> prayer</label></li>
-                    </ul>
-                </div>
-
-                <div class="question-wrapper" id="block-g55">
-                    <div class="question-text">55. "The dog's loud bark woke me up." What's the meaning of "bark" here?</div>
-                    <ul class="options-list">
-                        <li class="option-item"><label><input type="radio" name="g55" value="A"> The outer covering of a tree</label></li>
-                        <li class="option-item"><label><input type="radio" name="g55" value="B"> The sound made by a dog</label></li>
-                        <li class="option-item"><label><input type="radio" name="g55" value="C"> To remove the human skin</label></li>
-                        <li class="option-item"><label><input type="radio" name="g55" value="D"> A small boat</label></li>
-                    </ul>
-                </div>
-
-                <h3>Reported Speech transformations</h3>
-                
-                <div class="question-wrapper" id="block-t56">
-                    <div class="question-text">56. Direct Speech: "Yesterday, I was in Abuja," said Bolu.<br>Reported Speech:</div>
-                    <input type="text" class="text-answer-field" id="ans-t56" placeholder="Type transformed reported speech...">
-                </div>
-
-                <div class="question-wrapper" id="block-t57">
-                    <div class="question-text">57. Direct Speech: "All that glitters is not gold," said the pastor.<br>Reported Speech:</div>
-                    <input type="text" class="text-answer-field" id="ans-t57" placeholder="Type transformed reported speech...">
-                </div>
-
-                <div class="question-wrapper" id="block-t58">
-                    <div class="question-text">58. Direct Speech: "I am getting married tomorrow," said Timmy.<br>Reported Speech:</div>
-                    <input type="text" class="text-answer-field" id="ans-t58" placeholder="Type transformed reported speech...">
-                </div>
-
-                <div class="question-wrapper" id="block-t59">
-                    <div class="question-text">59. Direct Speech: "I am free now," said the English Language teacher.<br>Reported Speech:</div>
-                    <input type="text" class="text-answer-field" id="ans-t59" placeholder="Type transformed reported speech...">
-                </div>
-
-                <div class="question-wrapper" id="block-t60">
-                    <div class="question-text">60. Direct Speech: "Class, do you know this boy?" asked the teacher.<br>Reported Speech:</div>
-                    <input type="text" class="text-answer-field" id="ans-t60" placeholder="Type transformed reported speech...">
-                </div>
-
-                <div class="question-wrapper" id="block-t61">
-                    <div class="question-text">61. Direct Speech: "I will overcome the temptation," said Bright.<br>Reported Speech:</div>
-                    <input type="text" class="text-answer-field" id="ans-t61" placeholder="Type transformed reported speech...">
-                </div>
-
-                <div class="question-wrapper" id="block-t62">
-                    <div class="question-text">62. Direct Speech: He asked, "Can you recite the national anthem?"<br>Reported Speech:</div>
-                    <input type="text" class="text-answer-field" id="ans-t62" placeholder="Type transformed reported speech...">
-                </div>
-
-                <h3>Active to Passive conversions</h3>
-
-                <div class="question-wrapper" id="block-t63">
-                    <div class="question-text">63. Active: The boys gathered the nuts.<br>Passive:</div>
-                    <input type="text" class="text-answer-field" id="ans-t63" placeholder="Type passive structure configuration...">
-                </div>
-
-                <div class="question-wrapper" id="block-t64">
-                    <div class="question-text">64. Active: Alero will buy some chocolates.<br>Passive:</div>
-                    <input type="text" class="text-answer-field" id="ans-t64" placeholder="Type passive structure configuration...">
-                </div>
-
-                <div class="question-wrapper" id="block-t65">
-                    <div class="question-text">65. Active: The government has destroyed a cargo of contraband.<br>Passive:</div>
-                    <input type="text" class="text-answer-field" id="ans-t65" placeholder="Type passive structure configuration...">
-                </div>
-
-                <div class="question-wrapper" id="block-t66">
-                    <div class="question-text">66. Active: The medical director held discussions with all the health workers.<br>Passive:</div>
-                    <input type="text" class="text-answer-field" id="ans-t66" placeholder="Type passive structure configuration...">
-                </div>
-
-                <h3>Passive to Active conversions</h3>
-
-                <div class="question-wrapper" id="block-t67">
-                    <div class="question-text">67. Passive: Cakes are baked by Billy.<br>Active:</div>
-                    <input type="text" class="text-answer-field" id="ans-t67" placeholder="Type active structure configuration...">
-                </div>
-
-                <div class="question-wrapper" id="block-t68">
-                    <div class="question-text">68. Passive: I was deserted by my friends.<br>Active:</div>
-                    <input type="text" class="text-answer-field" id="ans-t68" placeholder="Type active structure configuration...">
-                </div>
-
-                <div class="question-wrapper" id="block-t69">
-                    <div class="question-text">69. Passive: Public hospitals and schools have been built by the government.<br>Active:</div>
-                    <input type="text" class="text-answer-field" id="ans-t69" placeholder="Type active structure configuration...">
-                </div>
-
-                <div class="question-wrapper" id="block-t70">
-                    <div class="question-text">70. Passive: Their suitcase is going to be packed by them later.<br>Active:</div>
-                    <input type="text" class="text-answer-field" id="ans-t70" placeholder="Type active structure configuration...">
-                </div>
-
-                <h3>Punctuation Error Identification</h3>
-                <p style="font-size:14px; color:#4a5568;"><em>Instruction: Find the group of words with the punctuation mistake in it and select its letter label.</em></p>
-
-                <div class="question-wrapper" id="block-p71">
-                    <div class="question-text">71. ‘Why don’t (A) | you play outside (B) | today,’ suggested (C) | Tom’s aunt. (D)</div>
-                    <ul class="options-list">
-                        <li class="option-item"><label><input type="radio" name="p71" value="A"> A</label></li>
-                        <li class="option-item"><label><input type="radio" name="p71" value="B"> B</label></li>
-                        <li class="option-item"><label><input type="radio" name="p71" value="C"> C</label></li>
-                        <li class="option-item"><label><input type="radio" name="p71" value="D"> D</label></li>
-                    </ul>
-                </div>
-
-                <div class="question-wrapper" id="block-p72">
-                    <div class="question-text">72. If we hadnt seen (A) | the road sign, we (B) | would have ended (C) | up in Wales. (D)</div>
-                    <ul class="options-list">
-                        <li class="option-item"><label><input type="radio" name="p72" value="A"> A</label></li>
-                        <li class="option-item"><label><input type="radio" name="p72" value="B"> B</label></li>
-                        <li class="option-item"><label><input type="radio" name="p72" value="C"> C</label></li>
-                        <li class="option-item"><label><input type="radio" name="p72" value="D"> D</label></li>
-                    </ul>
-                </div>
-
-                <div class="question-wrapper" id="block-p73">
-                    <div class="question-text">73. ‘I’d book first (A) | because the restaurant is (B) | so popular especially (C) | on Fridays.’ (D)</div>
-                    <ul class="options-list">
-                        <li class="option-item"><label><input type="radio" name="p73" value="A"> A</label></li>
-                        <li class="option-item"><label><input type="radio" name="p73" value="B"> B</label></li>
-                        <li class="option-item"><label><input type="radio" name="p73" value="C"> C</label></li>
-                        <li class="option-item"><label><input type="radio" name="p73" value="D"> D</label></li>
-                    </ul>
-                </div>
-
-                <div class="question-wrapper" id="block-p74">
-                    <div class="question-text">74. Caitlin had (A) | carelessly lost Asaf’s (B) | charger (his (C) | brand new one) (D)</div>
-                    <ul class="options-list">
-                        <li class="option-item"><label><input type="radio" name="p74" value="A"> A</label></li>
-                        <li class="option-item"><label><input type="radio" name="p74" value="B"> B</label></li>
-                        <li class="option-item"><label><input type="radio" name="p74" value="C"> C</label></li>
-                        <li class="option-item"><label><input type="radio" name="p74" value="D"> D</label></li>
-                    </ul>
-                </div>
-
-                <div class="question-wrapper" id="block-p75">
-                    <div class="question-text">75. Looking through my (A) | parents music collection, (B) | I was amazed to (C) | see so many CDs! (D)</div>
-                    <ul class="options-list">
-                        <li class="option-item"><label><input type="radio" name="p75" value="A"> A</label></li>
-                        <li class="option-item"><label><input type="radio" name="p75" value="B"> B</label></li>
-                        <li class="option-item"><label><input type="radio" name="p75" value="C"> C</label></li>
-                        <li class="option-item"><label><input type="radio" name="p75" value="D"> D</label></li>
-                    </ul>
-                </div>
-
-                <h3>Spelling Error Identification</h3>
-                <p style="font-size:14px; color:#4a5568;"><em>Instruction: Find the group of words with the spelling mistake in it and select its letter label.</em></p>
-
-                <div class="question-wrapper" id="block-s76">
-                    <div class="question-text">76. I recieved an (A) | elaborate invitation (B) | to an exclusive (C) | party next week. (D)</div>
-                    <ul class="options-list">
-                        <li class="option-item"><label><input type="radio" name="s76" value="A"> A</label></li>
-                        <li class="option-item"><label><input type="radio" name="s76" value="B"> B</label></li>
-                        <li class="option-item"><label><input type="radio" name="s76" value="C"> C</label></li>
-                        <li class="option-item"><label><input type="radio" name="s76" value="D"> D</label></li>
-                    </ul>
-                </div>
-
-                <div class="question-wrapper" id="block-s77">
-                    <div class="question-text">77. Oli asked his (A) | mum for permision (B) | to attend the (C) | charity concert. (D)</div>
-                    <ul class="options-list">
-                        <li class="option-item"><label><input type="radio" name="s77" value="A"> A</label></li>
-                        <li class="option-item"><label><input type="radio" name="s77" value="B"> B</label></li>
-                        <li class="option-item"><label><input type="radio" name="s77" value="C"> C</label></li>
-                        <li class="option-item"><label><input type="radio" name="s77" value="D"> D</label></li>
-                    </ul>
-                </div>
-
-                <div class="question-wrapper" id="block-s78">
-                    <div class="question-text">78. Ezra’s adorable new (A) | puppy was obedient (B) | but also enthusiastic (C) | and playfull. (D)</div>
-                    <ul class="options-list">
-                        <li class="option-item"><label><input type="radio" name="s78" value="A"> A</label></li>
-                        <li class="option-item"><label><input type="radio" name="s78" value="B"> B</label></li>
-                        <li class="option-item"><label><input type="radio" name="s78" value="C"> C</label></li>
-                        <li class="option-item"><label><input type="radio" name="s78" value="D"> D</label></li>
-                    </ul>
-                </div>
-
-                <div class="question-wrapper" id="block-s79">
-                    <div class="question-text">79. Sam enjoyed (A) | climing mountains (B) | and spending time (C) | in the countryside. (D)</div>
-                    <ul class="options-list">
-                        <li class="option-item"><label><input type="radio" name="s79" value="A"> A</label></li>
-                        <li class="option-item"><label><input type="radio" name="s79" value="B"> B</label></li>
-                        <li class="option-item"><label><input type="radio" name="s79" value="C"> C</label></li>
-                        <li class="option-item"><label><input type="radio" name="s79" value="D"> D</label></li>
-                    </ul>
-                </div>
-
-                <div class="question-wrapper" id="block-s80">
-                    <div class="question-text">80. Consistant hard (A) | work has contributed (B) | to significant (C) | improvements. (D)</div>
-                    <ul class="options-list">
-                        <li class="option-item"><label><input type="radio" name="s80" value="A"> A</label></li>
-                        <li class="option-item"><label><input type="radio" name="s80" value="B"> B</label></li>
-                        <li class="option-item"><label><input type="radio" name="s80" value="C"> C</label></li>
-                        <li class="option-item"><label><input type="radio" name="s80" value="D"> D</label></li>
-                    </ul>
-                </div>
-
+        <form id="start-form" onsubmit="startExam(event)">
+            <div class="form-group">
+                <label for="candidate-name">Enter Candidate Full Name:</label>
+                <input type="text" id="candidate-name" required placeholder="Surname Firstname">
             </div>
-
-            <button type="button" class="btn" id="submit-btn" onclick="processExamSubmission()" style="font-size:18px; padding:16px; margin-bottom:60px;">Submit Examination Papers</button>
+            <button type="submit" class="btn">Start Examination</button>
         </form>
     </div>
+
+    <!-- EXAM SCREEN -->
+    <div id="exam-screen" class="hidden">
+        <div class="info-bar">
+            <div><strong>Candidate:</strong> <span id="display-name"></span></div>
+            <div class="timer" id="timer-display">30:00</div>
+        </div>
+
+        <div class="card">
+            <div class="school-header">
+                <h1>Royal Wunderkind Model School</h1>
+                <h3>Horticulture Examination</h3>
+            </div>
+            
+            <div class="section-title">SECTION A - Answer All Questions</div>
+
+            <form id="quiz-form" onsubmit="submitExam(event)">
+                <div id="questions-container"></div>
+                <button type="submit" class="btn btn-submit">Submit Examination</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- RESULTS SCREEN -->
+    <div id="results-screen" class="card hidden">
+        <div class="results-header">
+            <h2>Examination Summary</h2>
+            <p>Royal Wunderkind Model School</p>
+            <hr style="margin: 15px 0; border: 0; border-top: 1px solid #e2e8f0;">
+            <div style="text-align: left; margin-bottom: 20px;">
+                <p><strong>Candidate Name:</strong> <span id="res-name"></span></p>
+                <p><strong>Subject:</strong> Horticulture (Year 7)</p>
+                <p><strong>Status:</strong> Completed</p>
+            </div>
+            <div class="score-display" id="score-text">0 / 40</div>
+            <p id="score-percentage" style="font-size: 18px; font-weight: bold;"></p>
+        </div>
+
+        <div class="section-title">Review & Corrections</div>
+        <div id="corrections-container"></div>
+    </div>
+
 </div>
 
 <script>
-    // System evaluation metrics
-    const objectiveAnswers = {
-        mc1: 'C', mc2: 'D', mc3: 'C', mc4: 'D', mc5: 'C',
-        g11: 'B', g12: 'C', g13: 'A', g14: 'B', g15: 'D',
-        g16: 'D', g17: 'B', g18: 'A', g19: 'C', g20: 'A',
-        g21: 'B', g22: 'C', g23: 'D', g24: 'C', g25: 'B',
-        g26: 'C', g27: 'A', g28: 'C', g29: 'D', g30: 'D',
-        g31: 'B', g32: 'C', g33: 'A', g34: 'B', g35: 'C',
-        g36: 'C', g37: 'A', g38: 'C', g39: 'D', g40: 'C',
-        g41: 'D', g42: 'A', g43: 'A', g44: 'C', g45: 'D',
-        g46: 'A', g47: 'C', g48: 'D', g49: 'C', g50: 'A',
-        g51: 'B', g52: 'A', g53: 'C', g54: 'C', g55: 'B',
-        p71: 'C', p72: 'A', p73: 'C', p74: 'D', p75: 'B',
-        s76: 'A', s77: 'B', s78: 'D', s79: 'B', s80: 'A'
-    };
+    // System data holding definitions and key indexes mapped systematically
+    const questionsData = [
+        { q: "Farm tools are used for ______ activities.", options: ["cooking", "farming", "dancing", "painting"], ans: "B" },
+        { q: "A cutlass is mainly used for ________.", options: ["watering crops", "clearing bushes", "measuring land", "planting seeds"], ans: "B" },
+        { q: "A hoe is used for ______ the soil.", options: ["cooking", "loosening", "painting", "washing"], ans: "B" },
+        { q: "A rake is used for ______ the soil surface.", options: ["cutting", "levelling", "harvesting", "carrying"], ans: "B" },
+        { q: "A sickle is mainly used for ______ crops.", options: ["planting", "harvesting", "watering", "spraying"], ans: "B" },
+        { q: "A hand trowel is used for planting ______.", options: ["stones", "seedlings", "weeds", "ropes"], ans: "B" },
+        { q: "One importance of farm tools is that they make farm work ______.", options: ["slower", "more difficult", "easier and faster", "dangerous"], ans: "C" },
+        { q: "Carrying tools with sharp edges facing down is a ______ measure.", options: ["farming", "harvesting", "safety", "watering"], ans: "C" },
+        { q: "Farm tools should be cleaned after use to prevent ______.", options: ["growth", "rust", "watering", "harvesting"], ans: "B" },
+        { q: "Soil is the upper layer of the Earth where ______ grow.", options: ["animals", "machines", "plants", "stones"], ans: "C" },
+        { q: "Soil texture refers to the ______ of soil particles.", options: ["smell", "colour", "size", "taste"], ans: "C" },
+        { q: "Sandy soil feels ______ when touched.", options: ["sticky", "smooth", "rough", "oily"], ans: "C" },
+        { q: "Clay soil feels ______ when wet.", options: ["rough", "dry", "sticky", "sharp"], ans: "C" },
+        { q: "Loamy soil is a mixture of sand, silt, and ______.", options: ["leaves", "gravel", "clay", "stones"], ans: "C" },
+        { q: "The best soil for plant growth is ______ soil.", options: ["sandy", "rocky", "loamy", "dry"], ans: "C" },
+        { q: "In the jar test, sand settles at the ______.", options: ["top", "middle", "bottom", "side"], ans: "C" },
+        { q: "The hydrometer test is used to determine soil ______.", options: ["colour", "texture", "smell", "weight"], ans: "B" },
+        { q: "Organic matter in soil is also called ______.", options: ["gravel", "humus", "cement", "dust"], ans: "B" },
+        { q: "A nursery bed is a place where seeds are raised into ______.", options: ["fruits", "flowers", "seedlings", "weeds"], ans: "C" },
+        { q: "Young plants grown in a nursery bed are called ______.", options: ["crops", "seedlings", "roots", "stems"], ans: "B" },
+        { q: "Which of the following is a type of nursery bed?", options: ["Mud bed", "Raised bed", "Cement bed", "Gravel bed"], ans: "B" },
+        { q: "A nursery bed raised above the ground is called a ______ nursery bed.", options: ["flat", "sunken", "raised", "deep"], ans: "C" },
+        { q: "A sunken nursery bed is suitable for ______ areas.", options: ["dry", "swampy", "rocky", "forest"], ans: "A" },
+        { q: "Loamy soil is best for nursery beds because it is ______.", options: ["infertile", "balanced", "rough", "rocky"], ans: "B" },
+        { q: "Removing weeds and bushes from land is called ______.", options: ["clearing", "harvesting", "spraying", "mulching"], ans: "A" },
+        { q: "Compost manure is added to nursery beds to improve soil ______.", options: ["colour", "fertility", "dryness", "hardness"], ans: "B" },
+        { q: "A rake is used for ______ the nursery bed surface.", options: ["cutting", "levelling", "watering", "harvesting"], ans: "B" },
+        { q: "Watering the nursery bed before planting helps seed ______.", options: ["burning", "germination", "drying", "harvesting"], ans: "B" },
+        { q: "Which of the following crops can be raised in a nursery bed?", options: ["Tomato", "Cassava stem", "Yam tuber", "Sugarcane"], ans: "A" },
+        { q: "A fertilizer is added to soil to improve ______.", options: ["flooding", "fertility", "erosion", "stones"], ans: "B" },
+        { q: "Fertilizers can help to increase crop ______.", options: ["failure", "yield", "dryness", "pests"], ans: "B" },
+        { q: "Phosphorus mainly helps ______ development.", options: ["root", "flower", "leaf", "fruit"], ans: "A" },
+        { q: "Potassium helps plants resist ______.", options: ["sunlight", "diseases", "rainfall", "harvesting"], ans: "B" },
+        { q: "Poultry droppings are examples of ______ fertilizer.", options: ["inorganic", "organic", "chemical", "liquid"], ans: "B" },
+        { q: "NPK fertilizer is an example of ______ fertilizer.", options: ["natural", "organic", "inorganic", "local"], ans: "C" },
+        { q: "Broadcasting is a method of ______ application.", options: ["pesticide", "fertilizer", "irrigation", "harvesting"], ans: "B" },
+        { q: "Spot application involves putting fertilizer into small ______.", options: ["leaves", "holes", "baskets", "ropes"], ans: "B" },
+        { q: "Side band placement involves applying fertilizer ______ crop rows.", options: ["under", "beside", "above", "inside"], ans: "B" },
+        { q: "Over-application of fertilizer can ______ plant leaves.", options: ["wash", "burn", "water", "protect"], ans: "B" },
+        { q: "One safety precaution during fertilizer application is to wear protective ______.", options: ["books", "clothing", "pencils", "chairs"], ans: "B" }
+    ];
 
-    const answerExplanations = {
-        c1: "Bode was nervous because of the large crowd of people swarming around on his first day at school.",
-        c2: "His mother did not accompany him because she had travelled.",
-        c3: "Words indicating tone include 'vividly', 'happy', 'nervous', 'impressed', 'pleasant', 'delighted'.",
-        c4: "The writer's purpose is to share a nostalgic and personal recollection of their eventful first day at secondary school.",
-        c5: "The passage evokes a warm, pleasant, and encouraging mood regarding new beginnings and overcoming anxiety.",
-        mc1: "Correct Answer: C. 'Vanished' means to pass out of sight or disappear.",
-        mc2: "Correct Answer: D. The passage concludes explicitly stating his first day was pleasant to recollect.",
-        mc3: "Correct Answer: C. To be enrolled as a student means to be officially registered.",
-        mc4: "Correct Answer: D. Mrs. Kofo Adebola soothed his feelings and was encouraging, demonstrating she was a nice person.",
-        mc5: "Correct Answer: C. 'Gigantic' structurally corresponds directly to very huge.",
-        g11: "Correct Answer: B. 'Happiness' represents an abstract emotional state.",
-        g12: "Correct Answer: C. 'Babies' is the correct spelling for the plural of baby.",
-        g13: "Correct Answer: A. 'Accommodation' is spelled with double 'c' and double 'm'.",
-        g14: "Correct Answer: B. Singular subject 'Divine' takes the singular verb inflection 'wants'.",
-        g15: "Correct Answer: D. Phrasal structure 'look forward to' demands a gerund form ('seeing').",
-        g16: "Correct Answer: D. 'We will eat' marks future tense structure.",
-        g17: "Correct Answer: B. 'Or' presents alternative options.",
-        g18: "Correct Answer: A. 'But' coordinates clauses showing contrast.",
-        g19: "Correct Answer: C. 'Across' represents the path token of traversing over the surface of a bridge.",
-        g20: "Correct Answer: A. Complete classic proverb token: 'saves nine'.",
-        g21: "Correct Answer: B. 'Beautifully' modifies the active verb 'sang', meaning it functions as an adverb.",
-        g22: "Correct Answer: C. Plural nearby reference indicator matches 'These'.",
-        g23: "Correct Answer: D. The relative pronoun 'who' refers back to 'you', which correlates with the plural verb inflection 'are'.",
-        g24: "Correct Answer: C. Standard singular genitive form is 'Bright's'.",
-        g25: "Correct Answer: B. Preposition of transit on large commercial vehicles requires 'on the plane'.",
-        g26: "Correct Answer: C. Universal absolute factual statements retain simple present tense 'rises'.",
-        g27: "Correct Answer: A. Axiomatic proverbs use simple present: 'is not gold'.",
-        g28: "Correct Answer: C. Correlative parsing requirement for 'No sooner' pairs exclusively with 'than'.",
-        g29: "Correct Answer: D. Reported speech tracking back from a past reporting framework patterns down to past simple: 'knew the boy'.",
-        g30: "Correct Answer: D. The verb 'congratulate' takes the dependent preposition 'on'.",
-        g31: "Correct Answer: B. Correct orthography matching is 'privilege'.",
-        g32: "Correct Answer: C. Correct orthography matching is 'occasion'.",
-        g33: "Correct Answer: A. Correct orthography matching is 'onomatopoeia'.",
-        g34: "Correct Answer: B. Correct orthography matching is 'committee/tomorrow'.",
-        g35: "Correct Answer: C. Phrasal verb 'deals in' means to engage in the commercial trade of a commodity.",
-        g36: "Correct Answer: C. Endorsed corresponds directly to approved.",
-        g37: "Correct Answer: A. Shady corresponds to deceptive, questionable, or dishonest operations.",
-        g38: "Correct Answer: C. Irrevocable actions cannot be tracking backward, thus irreversible.",
-        g39: "Correct Answer: D. Vehemently implies high energetic push, matching strongly.",
-        g40: "Correct Answer: C. Incessant chatter defines continuous, unceasing speech flow.",
-        g41: "Correct Answer: D. Astounded means deeply shocked; its true opposite is being unmoved.",
-        g42: "Correct Answer: A. The idiom come out of his shell means to become less shy and more socially confident, outgoing, and talkative, its opposites revolve around being reserved, quiet, or withdrawn",
-        g43: "Correct Answer: A. Graceful properties find structural polar opposition in clumsy configurations.",
-        g44: "Correct Answer: C. Tremendous powers track large capacities; opposition lines track small/trivial parameters.",
-        g45: "Correct Answer: D. Fundamental core steps match minor variables in polar structures.",
-        g46: "Correct Answer: A. Inclusives built around 'Let's' resolve outward to question tag 'shall we'.",
-        g47: "Correct Answer: C. Absence of external compulsion responds to modern negative model option 'needn't'.",
-        g48: "Correct Answer: D. Affirmative simple present tracking 'sings' tag matches 'doesn't he'.",
-        g49: "Correct Answer: C. Second person present active requires tag 'don't you'.",
-        g50: "Correct Answer: A. Past simple active 'caused' resolves to tag 'didn't she'.",
-        g51: "Correct Answer: B. Contextual usage tracks commercial monetary establishments.",
-        g52: "Correct Answer: A. Homophones share phonetics; 'four' links with preposition 'for'.",
-        g53: "Correct Answer: C. 'Key' shares phonetic profiles exactly with harbor variant 'quay'.",
-        g54: "Correct Answer: C. Twin configurations of footwear are classified as a 'pair'.",
-        g55: "Correct Answer: B. Vocalization output of standard canines defines acoustic 'bark'.",
-        t56: "Expected conversion: Bolu said that he had been in Abuja the previous day (or the day before).",
-        t57: "Expected conversion: The pastor said that all that glitters is not gold (unchanged as it is a universal truth).",
-        t58: "Expected conversion: Timmy said that he was getting married the following day (or the next day).",
-        t59: "Expected conversion: The English Language teacher said that he/she was free then.",
-        t60: "Expected conversion: The teacher asked the class whether they knew that boy.",
-        t61: "Expected conversion: Bright said that he would overcome the temptation.",
-        t62: "Expected conversion: He asked if/whether I could recite the national anthem.",
-        t63: "Expected passive: The nuts were gathered by the boys.",
-        t64: "Expected passive: Some chocolates will be bought by Alero.",
-        t65: "Expected passive: A cargo of contraband has been destroyed by the government.",
-        t66: "Expected passive: Discussions were held with all the health workers by the medical director.",
-        t67: "Expected active: Billy bakes cakes.",
-        t68: "Expected active: My friends deserted me.",
-        t69: "Expected active: The government has built public hospitals and schools.",
-        t70: "Expected active: They are going to pack their suitcase later.",
-        p71: "Correct Answer: C. The closing punctuation at the end of the spoken words inside quotes should be a question mark ('today?'), not a comma.",
-        p72: "Correct Answer: A. 'hadnt' is missing a required contraction apostrophe; it must be written as 'hadn't'.",
-        p73: "Correct Answer: C. Missing a necessary comma break before the adverbial phrase modifier 'especially'.",
-        p74: "Correct Answer: D. Missing a closing sentence period (full stop) following the parenthetical statement envelope.",
-        p75: "Correct Answer: B. 'parents' requires a plural possessive punctuation layout: 'parents' music collection'.",
-        s76: "Correct Answer: A. 'recieved' is an orthographic misspelling; the 'i' before 'e' rule after 'c' dictates it must be written as 'received'.",
-        s77: "Correct Answer: B. 'permision' is misspelled; the correct spelling is 'permission' with a double 's'.",
-        s78: "Correct Answer: D. 'playfull' contains an incorrect duplicate terminal 'l'; the correct spelling is 'playful'.",
-        s79: "Correct Answer: B. 'climing' is missing its silent structural consonant; it must be written as 'climbing'.",
-        s80: "Correct Answer: A. 'Consistant' is a phonetic spelling error; it must be spelled as 'Consistent' with an 'e'."
-    };
+    let timerInterval;
+    let timeRemaining = 30 * 60; // 30 minutes in seconds
+    let candidateName = "";
 
-    let countdownInterval;
-    let secondsLeft = 45 * 60; // Total exam duration: 45 Minutes
+    // Generate examination structural view
+    function loadQuestions() {
+        const container = document.getElementById('questions-container');
+        let html = '';
+        
+        questionsData.forEach((question, index) => {
+            const qNum = index + 1;
+            html += `
+                <div class="question-block" id="q-block-${qNum}">
+                    <div class="question-text">${qNum}. ${question.q}</div>
+                    <ul class="options-list">
+            `;
+            
+            question.options.forEach((option, oIdx) => {
+                const letter = String.fromCharCode(65 + oIdx); // A, B, C, D
+                html += `
+                    <li class="option-item">
+                        <label for="q-${qNum}-${letter}" id="label-${qNum}-${letter}">
+                            <input type="radio" id="q-${qNum}-${letter}" name="question-${qNum}" value="${letter}">
+                            <strong>${letter}.</strong> &nbsp;${option}
+                        </label>
+                    </li>
+                `;
+            });
+            
+            html += `</ul></div>`;
+        });
+        
+        container.innerHTML = html;
+    }
 
-    function initializeExamination() {
-        const studentNameInput = document.getElementById('student-name').value.trim();
-        if (!studentNameInput) {
-            alert("Please input your candidate name profile before starting the exam.");
-            return;
-        }
+    // Navigation and Init
+    function startExam(event) {
+        event.preventDefault();
+        candidateName = document.getElementById('candidate-name').value.trim();
+        
+        if (!candidateName) return;
 
-        document.getElementById('manifest-name').innerText = "Candidate: " + studentNameInput;
-        document.getElementById('portal-screen').classList.add('hidden');
-        document.getElementById('examination-interface').classList.remove('hidden');
+        document.getElementById('display-name').textContent = candidateName;
+        document.getElementById('registration-screen').classList.add('hidden');
+        document.getElementById('exam-screen').classList.remove('hidden');
+        
+        loadQuestions();
+        startTimer();
+        window.scrollTo(0, 0);
+    }
 
-        // Start countdown timer ticking logic
-        countdownInterval = setInterval(() => {
-            if (secondsLeft <= 0) {
-                clearInterval(countdownInterval);
-                alert("Time is up! Your examination paper will now be marked automatically.");
-                processExamSubmission();
-                return;
+    // Core timing controls
+    function startTimer() {
+        const display = document.getElementById('timer-display');
+        
+        timerInterval = setInterval(() => {
+            timeRemaining--;
+            
+            let minutes = Math.floor(timeRemaining / 60);
+            let seconds = timeRemaining % 60;
+            
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+            
+            display.textContent = `${minutes}:${seconds}`;
+            
+            if (timeRemaining <= 300) { // 5 minutes left visual switch
+                display.classList.add('warning');
             }
-            secondsLeft--;
-            const mins = Math.floor(secondsLeft / 60);
-            const secs = secondsLeft % 60;
-            document.getElementById('clock-display').innerText = 
-                `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+            
+            if (timeRemaining <= 0) {
+                clearInterval(timerInterval);
+                alert("Time is up! Your examination will be submitted automatically.");
+                forceSubmit();
+            }
         }, 1000);
     }
 
-    function processExamSubmission() {
-        // Halt any further clock execution tracking
-        clearInterval(countdownInterval);
-        document.getElementById('clock-display').innerText = "Submitted";
-        window.scrollTo(0, 0);
+    function submitExam(event) {
+        if(event) event.preventDefault();
+        
+        if(timeRemaining > 0) {
+            const confirmSubmit = confirm("Are you sure you want to submit your examination?");
+            if (!confirmSubmit) return;
+        }
+        
+        forceSubmit();
+    }
 
-        let correctCount = 0;
-        let evaluatedObjectiveTotal = Object.keys(objectiveAnswers).length; // 60 structural MCQs
+    // Auto mark and correction engine
+    function forceSubmit() {
+        clearInterval(timerInterval);
+        let totalScore = 0;
+        const totalQuestions = questionsData.length;
+        
+        document.getElementById('exam-screen').classList.add('hidden');
+        document.getElementById('results-screen').classList.remove('hidden');
+        
+        document.getElementById('res-name').textContent = candidateName;
+        
+        const correctionsContainer = document.getElementById('corrections-container');
+        let correctionsHtml = '';
 
-        // Highlight and score Multiple Choice Questions
-        for (let key in objectiveAnswers) {
-            const questionGroup = document.getElementsByName(key);
-            let selectedOptionValue = null;
+        questionsData.forEach((question, index) => {
+            const qNum = index + 1;
+            const radioGroupName = `question-${qNum}`;
+            const selectedOption = document.querySelector(`input[name="${radioGroupName}"]:checked`);
+            const candidateAnswer = selectedOption ? selectedOption.value : null;
+            const correctAnswer = question.ans;
             
-            // Loop through options to find selected option
-            questionGroup.forEach(radio => {
-                if (radio.checked) {
-                    selectedOptionValue = radio.value;
+            let statusClass = '';
+            if (candidateAnswer === correctAnswer) {
+                totalScore++;
+                statusClass = 'correct-answer';
+            }
+
+            correctionsHtml += `
+                <div class="question-block" style="border-left: 4px solid ${candidateAnswer === correctAnswer ? 'var(--success-color)' : 'var(--error-color)'}; padding-left: 15px;">
+                    <div class="question-text">${qNum}. ${question.q}</div>
+                    <ul class="options-list">
+            `;
+
+            question.options.forEach((option, oIdx) => {
+                const letter = String.fromCharCode(65 + oIdx);
+                let itemClass = '';
+                
+                if (letter === correctAnswer) {
+                    itemClass = 'correct-answer';
+                } else if (letter === candidateAnswer && candidateAnswer !== correctAnswer) {
+                    itemClass = 'wrong-answer wrong-choice-marker';
                 }
-                // Lock option to prevent post-submission tampering
-                radio.disabled = true;
+
+                correctionsHtml += `
+                    <li class="option-item">
+                        <label class="${itemClass}" style="cursor: default;">
+                            <input type="radio" disabled ${letter === candidateAnswer ? 'checked' : ''}>
+                            <strong>${letter}.</strong> &nbsp;${option}
+                        </label>
+                    </li>
+                `;
             });
 
-            const parentWrapper = document.getElementById('block-' + key);
-            
-            if (selectedOptionValue === objectiveAnswers[key]) {
-                correctCount++;
-                if (parentWrapper) parentWrapper.classList.add('status-correct');
-            } else {
-                if (parentWrapper) parentWrapper.classList.add('status-incorrect');
-            }
-
-            // Append explanatory correction note beneath question
-            if (parentWrapper) {
-                const correctionNode = document.createElement('div');
-                correctionNode.className = 'correction-box';
-                correctionNode.innerText = answerExplanations[key];
-                parentWrapper.appendChild(correctionNode);
-            }
-        }
-
-        // Display constructive keys for subjective responses (Comprehension + Transformations)
-        const textQuestionKeys = ['c1', 'c2', 'c3', 'c4', 'c5', 't56', 't57', 't58', 't59', 't60', 't61', 't62', 't63', 't64', 't65', 't66', 't67', 't68', 't69', 't70'];
-        textQuestionKeys.forEach(id => {
-            const field = document.getElementById('ans-' + id);
-            if (field) field.disabled = true;
-            
-            const parentWrapper = document.getElementById('block-' + id);
-            if (parentWrapper) {
-                const correctionNode = document.createElement('div');
-                correctionNode.className = 'correction-box';
-                correctionNode.innerText = "Suggested Key / Model Criteria: " + answerExplanations[id];
-                parentWrapper.appendChild(correctionNode);
-            }
+            correctionsHtml += `
+                    </ul>
+                    <div style="margin-top: 10px; font-size: 14px;">
+                        <strong>Your Answer:</strong> ${candidateAnswer || '<span style="color:red">No Selection</span>'} | 
+                        <strong>Correct Answer:</strong> ${correctAnswer}
+                    </div>
+                </div>
+            `;
         });
 
-        // Lock essay structures
-        document.getElementById('essay-topic').disabled = true;
-        document.getElementById('essay-content').disabled = true;
+        // Set metrics summaries
+        document.getElementById('score-text').textContent = `${totalScore} / ${totalQuestions}`;
+        const percent = Math.round((totalScore / totalQuestions) * 100);
+        document.getElementById('score-percentage').textContent = `Percentage Score: ${percent}%`;
+        
+        if (percent >= 50) {
+            document.getElementById('score-percentage').style.color = 'var(--success-color)';
+        } else {
+            document.getElementById('score-percentage').style.color = 'var(--error-color)';
+        }
 
-        // Render summary score results block
-        const percentageScore = ((correctCount / evaluatedObjectiveTotal) * 100).toFixed(1);
-        const summaryElement = document.getElementById('results-summary');
-        summaryElement.innerHTML = `
-            <h2>Examination Results Dashboard</h2>
-            <p>Objective Test Score: <strong>${correctCount} / ${evaluatedObjectiveTotal}</strong></p>
-            <p>Objective Percentage: <strong>${percentageScore}%</strong></p>
-            <div style="font-size: 14px; text-align: left; margin-top: 15px; color: #4a5568;">
-                <strong>Note on Subjective Tasks:</strong> Continuous writing structures (30 Marks) and subjective transformations have been locked. Please review the highlighted system corrections and structural templates appended below each item.
-            </div>
-        `;
-        summaryElement.classList.remove('hidden');
-        document.getElementById('submit-btn').classList.add('hidden');
+        correctionsContainer.innerHTML = correctionsHtml;
+        window.scrollTo(0, 0);
     }
 </script>
 
