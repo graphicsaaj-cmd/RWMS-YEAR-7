@@ -3,377 +3,507 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Year 7 Mathematics Promotion Examination</title>
+    <title>ROYAL WUNDERKIND MODEL SCHOOL - YEAR 7 SOCIAL & CITIZENSHIP EDUCATION EXAM</title>
     <style>
         :root {
-            --primary: #2b5797;
-            --success: #1e7e34;
-            --danger: #bd2130;
-            --gray: #f8f9fa;
+            --primary-color: #1a365d;
+            --secondary-color: #2b6cb0;
+            --accent-color: #d69e2e;
+            --success-color: #2f855a;
+            --danger-color: #c53030;
+            --light-bg: #f7fafc;
+            --card-bg: #ffffff;
+            --text-color: #2d3748;
         }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            background-color: #eef2f7;
-            color: #333;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        .container {
-            max-width: 850px;
-            margin: 30px auto;
-            background: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-        .hidden { display: none !important; }
-        
-        /* Login Screen */
-        #login-screen {
-            text-align: center;
-            padding: 50px 20px;
-        }
-        #login-screen input {
-            padding: 12px;
-            width: 80%;
-            max-width: 300px;
-            font-size: 16px;
-            margin: 15px 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        button {
-            background-color: var(--primary);
-            color: white;
-            padding: 12px 24px;
-            border: none;
-            border-radius: 4px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        button:hover { background-color: #1e3d6b; }
 
-        /* Header / Sticky Timer */
-        .exam-header {
+        body {
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        .header-panel {
+            background: var(--primary-color);
+            color: white;
+            padding: 35px 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            border-bottom: 5px solid var(--accent-color);
+        }
+
+        .header-panel h1 {
+            font-size: 26px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .header-panel h2 {
+            font-size: 16px;
+            color: #cbd5e0;
+            font-weight: 400;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .header-panel h3 {
+            font-size: 19px;
+            letter-spacing: 0.5px;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            margin-top: 15px;
+        }
+
+        #login-view {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            max-width: 500px;
+            margin: 40px auto;
+        }
+
+        #login-view h4 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            font-size: 20px;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 15px 0 25px 0;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.2s;
+            text-align: center;
+        }
+
+        .input-field:focus {
+            border-color: var(--secondary-color);
+        }
+
+        .btn {
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+            text-transform: uppercase;
+        }
+
+        .btn:hover {
+            background: var(--primary-color);
+        }
+
+        #hud-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--primary-color);
+            color: white;
+            padding: 12px 25px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 2px solid var(--primary);
-            padding-bottom: 15px;
-            margin-bottom: 25px;
-        }
-        #timer-box {
-            position: sticky;
-            top: 10px;
-            background: #ffc107;
-            padding: 10px 20px;
-            font-weight: bold;
-            font-size: 18px;
-            border-radius: 4px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            font-weight: 600;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
             z-index: 1000;
-            text-align: center;
+            border-bottom: 4px solid var(--accent-color);
         }
 
-        /* Questions Layout */
-        .question-card {
-            background: var(--gray);
-            padding: 20px;
-            margin-bottom: 20px;
-            border-left: 5px solid var(--primary);
-            border-radius: 4px;
+        #hud-bar.warning {
+            background: var(--danger-color);
         }
+
+        .section-header {
+            background: #edf2f7;
+            color: var(--primary-color);
+            padding: 15px 20px;
+            border-left: 6px solid var(--secondary-color);
+            border-radius: 4px;
+            margin: 35px 0 20px 0;
+            font-weight: 700;
+            font-size: 16px;
+            text-transform: uppercase;
+        }
+
+        .question-card {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            border: 1px solid #e2e8f0;
+        }
+
         .question-text {
-            font-size: 17px;
             font-weight: 600;
+            font-size: 16px;
             margin-bottom: 15px;
         }
-        .options-group {
+
+        .options-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr;
             gap: 10px;
         }
-        @media(max-width: 600px) {
-            .options-group { grid-template-columns: 1fr; }
+
+        @media(min-width: 768px) {
+            .options-grid {
+                grid-template-columns: 1fr 1fr;
+            }
         }
-        .option-label {
-            background: white;
-            padding: 10px;
-            border: 1px solid #dee2e6;
-            border-radius: 4px;
-            cursor: pointer;
+
+        .option-item {
             display: flex;
             align-items: center;
-            transition: 0.2s;
+            background: #f8fafc;
+            border: 1px solid #edf2f7;
+            padding: 12px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 15px;
         }
-        .option-label:hover { background: #e2e6ea; }
-        .option-label input { margin-right: 10px; }
 
-        /* Corrections & Marking */
-        .correct { background-color: #d4edda !important; border-color: var(--success) !important; color: #155724; }
-        .incorrect { background-color: #f8d7da !important; border-color: var(--danger) !important; color: #721c24; }
-        .explanation {
-            margin-top: 10px;
-            padding: 10px;
-            background: #e2f0d9;
-            border-left: 3px solid var(--success);
+        .option-item:hover {
+            background: #edf2f7;
+            border-color: #cbd5e0;
+        }
+
+        .option-item input {
+            margin-right: 12px;
+            transform: scale(1.2);
+            cursor: pointer;
+        }
+
+        .item-correct {
+            background: #c6f6d5 !important;
+            border-color: var(--success-color) !important;
+            color: #22543d;
+            font-weight: 600;
+        }
+
+        .item-wrong {
+            background: #fed7d7 !important;
+            border-color: var(--danger-color) !important;
+            color: #742a2a;
+        }
+
+        .correction-badge {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 6px 12px;
+            border-radius: 6px;
             font-size: 14px;
             font-weight: bold;
         }
-        #results-box {
-            background: #d1ecf1;
-            border: 1px solid #bee5eb;
-            padding: 20px;
-            border-radius: 6px;
+        .badge-success { background: #c6f6d5; color: #22543d; }
+        .badge-danger { background: #fed7d7; color: #742a2a; }
+
+        #report-dashboard {
+            background: white;
+            border: 3px solid var(--accent-color);
+            border-radius: 12px;
+            padding: 30px;
             text-align: center;
             margin-bottom: 30px;
-            font-size: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .score-metrics {
+            font-size: 54px;
+            font-weight: 800;
+            color: var(--primary-color);
+            margin: 15px 0;
+        }
+
+        .hidden {
+            display: none !important;
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <div id="login-screen">
-        <h2>MATHEMATICS YEAR 7 PROMOTION EXAMINATION</h2>
-        <p>Academic Session: 2025/2026</p>
-        <p><strong>Duration:</strong> 60 Minutes (Timer Mode Enabled)</p>
-        <p>Please enter your full name to start the examination:</p>
-        <input type="text" id="candidate-name" placeholder="Enter Full Name..." required><br>
-        <button onclick="startExam()">Start Examination</button>
+    <div id="hud-bar" class="hidden">
+        <div id="hud-candidate">Candidate: </div>
+        <div id="hud-timer">Time Remaining: 30:00</div>
     </div>
 
-    <div id="exam-interface" class="hidden">
-        <div class="exam-header">
-            <div>
-                <h3 id="display-name">Candidate: </h3>
-                <p style="margin:0; color:#666;">Subject: Mathematics (Year 7)</p>
+    <div class="container">
+        
+        <div class="header-panel">
+            <h1>Royal Wunderkind Model School</h1>
+            <h2>Jalala Area, Tanke, Oke - Odo, Ilorin</h2>
+            <h3>SUBJECT: SOCIAL AND CITIZENSHIP EDUCATION</h3>
+            <div class="meta-grid">
+                <div><strong>Session:</strong> 2025/2026 Third Term</div>
+                <div><strong>Class:</strong> Keystage 3 (Year 7)</div>
+                <div><strong>Exam Duration:</strong> 30 Minutes</div>
             </div>
-            <div id="timer-box">Time Left: <span id="timer">60:00</span></div>
         </div>
 
-        <form id="quiz-form">
-            <div id="dynamic-questions"></div>
+        <div id="login-view">
+            <h4>Candidate Examination Gateway</h4>
+            <p>Please enter your full name below to initialize your interactive digital testing terminal.</p>
+            <input type="text" id="candidate-name-input" class="input-field" placeholder="Enter Student Full Name" autocomplete="off">
+            <button class="btn" onclick="initializeWorkspace()">Start Examination</button>
+        </div>
+
+        <form id="examination-form" class="hidden" onsubmit="event.preventDefault(); evaluateExamPayload(false);">
             
-            <button type="button" id="submit-btn" onclick="submitExam()" style="width: 100%; margin-top: 20px; font-size: 18px;">Submit Examination</button>
+            <div id="dynamic-exam-nodes"></div>
+
+            <div style="text-align: center; margin: 40px 0;">
+                <button type="button" class="btn" id="master-submit-btn" onclick="requestUserConfirmation()">Submit Examination</button>
+            </div>
         </form>
+
+        <div id="report-dashboard" class="hidden">
+            <h2>Examination Result Sheet</h2>
+            <p id="report-name-target" style="font-size: 18px; margin-top: 10px; font-weight: 600;"></p>
+            <div class="score-metrics" id="report-score-target">0 / 60</div>
+            <p id="report-percentage-target" style="font-size: 20px; font-weight: 700; color: var(--secondary-color);"></p>
+            <p style="margin-top: 15px; color: #718096;">Scroll down to review color-coded corrections for all items.</p>
+        </div>
+
     </div>
 
-    <div id="results-box" class="hidden"></div>
-</div>
+    <script>
+        // Core Structured Question & Key Matrix Arrays
+        const structurePayload = [
+            { id: 1, q: "Which of the following is a cyber threat?", options: ["Afforestation", "Hacking", "Saving", "Recycling"], ans: 1 },
+            { id: 2, q: "Climate change refers to long-term changes in:", options: ["Weather conditions", "Population", "Culture", "Language"], ans: 0 },
+            { id: 3, q: "The first agent of socialization is:", options: ["School", "Family", "Media", "Club"], ans: 1 },
+            { id: 4, q: "Which of the following is a quality of money?", options: ["Corruption", "Durability", "Gambling", "Bribery"], ans: 1 },
+            { id: 5, q: "Child labour may result in:", options: ["School dropout", "Employment", "Promotion", "Wealth"], ans: 0 },
+            { id: 6, q: "A router is used to:", options: ["Store food", "Connect devices to the internet", "Generate electricity", "Type documents"], ans: 1 },
+            { id: 7, q: "One effect of FGM is:", options: ["Better health", "Severe bleeding", "Increased income", "Happiness"], ans: 1 },
+            { id: 8, q: "Flood is an example of:", options: ["Natural disaster", "Human-made disaster", "Social problem", "Economic activity"], ans: 0 },
+            { id: 9, q: "Keeping money for emergencies is called:", options: ["Speculative motive", "Transactionary motive", "Precautionary motive", "Exchange motive"], ans: 2 },
+            { id: 10, q: "PPE means:", options: ["Personal Protective Equipment", "Public Protection Equipment", "Personal Prevention Exercise", "Public Prevention Exercise"], ans: 0 },
+            { id: 11, q: "Which of the following is renewable energy?", options: ["Coal", "Diesel", "Petrol", "Solar energy"], ans: 3 },
+            { id: 12, q: "Isolation involves:", options: ["Separating infected persons", "Vaccinating people", "Sharing medicines", "Travelling abroad"], ans: 0 },
+            { id: 13, q: "Socialization helps individuals learn:", options: ["Crime", "Acceptable behavior", "Violence", "Corruption"], ans: 1 },
+            { id: 14, q: "Which of these is a harmful traditional practice?", options: ["Tree planting", "Child marriage", "Saving", "Afforestation"], ans: 1 },
+            { id: 15, q: "One importance of Disaster Risk Reduction is:", options: ["Increases losses", "Saves lives", "Causes panic", "Causes disasters"], ans: 1 },
+            { id: 16, q: "Data breach may lead to:", options: ["Loss of privacy", "Better security", "Increased profits", "More employment"], ans: 0 },
+            { id: 17, q: "Afforestation means:", options: ["Planting trees", "Cutting trees", "Burning forests", "Mining"], ans: 0 },
+            { id: 18, q: "Which agent of socialization includes TV and radio?", options: ["Family", "Media", "School", "Age grade"], ans: 1 },
+            { id: 19, q: "Gambling involves:", options: ["Saving money", "Risking money on games of chance", "Investing money", "Donating money"], ans: 1 },
+            { id: 20, q: "Cyber security protects:", options: ["Digital information", "Rivers", "Trees", "Roads"], ans: 0 },
+            { id: 21, q: "Child marriage involves persons below:", options: ["21 years", "20 years", "18 years", "16 years"], ans: 2 },
+            { id: 22, q: "One benefit of money is:", options: ["Education", "Corruption", "Fraud", "Kidnapping"], ans: 0 },
+            { id: 23, q: "Rising river levels are:", options: ["Early warning signs", "Investments", "Savings", "Assets"], ans: 0 },
+            { id: 24, q: "Which of the following is a communication medium during epidemics?", options: ["Radio", "Gambling", "Fraud", "Corruption"], ans: 0 },
+            { id: 25, q: "The Road Safety Club teaches:", options: ["Traffic rules", "Farming", "Banking", "Politics"], ans: 0 },
+            { id: 26, q: "Which of the following is a fossil fuel?", options: ["Wind", "Solar", "Coal", "Water"], ans: 2 },
+            { id: 27, q: "Fraud means:", options: ["Honest work", "Deliberate deception for gain", "Charity", "Saving"], ans: 1 },
+            { id: 28, q: "A computer is:", options: ["A digital device", "A vehicle", "A building", "A crop"], ans: 0 },
+            { id: 29, q: "Safety means protection from:", options: ["Harm", "Education", "Wealth", "Culture"], ans: 0 },
+            { id: 30, q: "One cause of climate change is:", options: ["Deforestation", "Recycling", "Tree planting", "Conservation"], ans: 0 },
+            { id: 31, q: "Corruption is:", options: ["Honesty", "Abuse of power for personal gain", "Saving", "Investment"], ans: 1 },
+            { id: 32, q: "Which of these is non-biodegradable?", options: ["Grass", "Leaves", "Plastic bottle", "Fruit peel"], ans: 2 },
+            { id: 33, q: "The process of predicting hazards is called:", options: ["Hazard forecasting", "Socialization", "Saving", "Afforestation"], ans: 0 },
+            { id: 34, q: "One effect of child labour is:", options: ["Better education", "Physical abuse", "Promotion", "Wealth"], ans: 1 },
+            { id: 35, q: "Mobile phones are mainly used for:", options: ["Communication", "Farming", "Mining", "Fishing"], ans: 0 },
+            { id: 36, q: "A disaster may cause:", options: ["Loss of lives", "Promotion", "Celebration", "Entertainment"], ans: 0 },
+            { id: 37, q: "One importance of saving is:", options: ["Financial security", "Crime", "Corruption", "Gambling"], ans: 0 },
+            { id: 38, q: "Which of these is a cyber threat?", options: ["Phishing", "Afforestation", "Recycling", "Saving"], ans: 0 },
+            { id: 39, q: "Pedestrians should cross at:", options: ["Zebra crossings", "Bus stops", "Markets", "Road bends"], ans: 0 },
+            { id: 40, q: "Emotional trauma may result from:", options: ["Cyberbullying", "Afforestation", "Saving", "Investment"], ans: 0 },
+            { id: 41, q: "A peer group consists of:", options: ["Teachers", "Parents", "Friends of similar age", "Religious leaders"], ans: 2 },
+            { id: 42, q: "Which of the following is a natural disaster?", options: ["Oil spill", "Flood", "Road accident", "Building collapse"], ans: 1 },
+            { id: 43, q: "One effect of climate change is:", options: ["Drought", "Wealth", "Employment", "Promotion"], ans: 0 },
+            { id: 44, q: "Kidnapping often aims to obtain:", options: ["Ransom", "Education", "Employment", "Savings"], ans: 0 },
+            { id: 45, q: "Renewable energy helps:", options: ["Reduce pollution", "Increase pollution", "Increase climate change", "Cause flooding"], ans: 0 },
+            { id: 46, q: "Quarantine means:", options: ["Restricting movement of exposed persons", "Vaccination", "Migration", "Recreation"], ans: 0 },
+            { id: 47, q: "Which of these is an epidemic?", options: ["COVID-19", "Drought", "Flood", "Earthquake"], ans: 0 },
+            { id: 48, q: "A quality of money is:", options: ["Portability", "Corruption", "Fraud", "Gambling"], ans: 0 },
+            { id: 49, q: "Hacking can result in:", options: ["Data theft", "Tree planting", "Saving", "Afforestation"], ans: 0 },
+            { id: 50, q: "One role of NGOs is:", options: ["Advocacy", "Corruption", "Fraud", "Kidnapping"], ans: 0 },
+            { id: 51, q: "Hand washing regularly helps to:", options: ["Spread diseases", "Prevent infections", "Increase epidemics", "Cause pollution"], ans: 1 },
+            { id: 52, q: "Resilience is the ability to:", options: ["Cause disasters", "Recover from disasters", "Ignore hazards", "Predict weather"], ans: 1 },
+            { id: 53, q: "Bribery is the act of:", options: ["Saving money", "Influencing decisions unfairly with gifts or money", "Investing money", "Borrowing money"], ans: 1 },
+            { id: 54, q: "Cyclists should wear:", options: ["Slippers", "Helmets", "Sandal", "Rings"], ans: 1 },
+            { id: 55, q: "Investment is:", options: ["Spending all income immediately", "Keeping money idle forever", "Using money to generate future profit", "Borrowing money from friends"], ans: 2 },
+            { id: 56, q: "Environmental protection helps to:", options: ["Increase pollution", "Destroy wildlife", "Conserve natural resources", "Encourage flooding"], ans: 2 },
+            { id: 57, q: "Which of the following is a cyber threat?", options: ["Malware", "Recycling", "Afforestation", "Saving"], ans: 0 },
+            { id: 58, q: "Child marriage violates:", options: ["Traffic laws", "Children's rights", "Banking regulations", "School rule"], ans: 1 },
+            { id: 59, q: "One importance of Disaster Risk Reduction is:", options: ["Protecting property", "Increasing losses", "Causing fear", "Encouraging hazards"], ans: 0 },
+            { id: 60, q: "Contact tracing involves:", options: ["Identifying people exposed to a disease", "Selling medicines", "Building hospitals", "Paying taxes"], ans: 0 }
+        ];
 
-<script>
-    // System Questions Database 1 - 100
-    const questionsData = [
-        {
-            id: 1,
-            q: "Find the value of x in the figure below (assuming a right-angle layout where 2x + 3x + 4x = 90°).",
-            img: `<svg width="200" height="150" xmlns="http://www.w3.org/2000/svg"><path d="M20,130 L20,10 L20,130 L180,130" stroke="black" stroke-width="2" fill="none"/><path d="M20,130 L90,30" stroke="black" stroke-width="1.5"/><path d="M20,130 L150,80" stroke="black" stroke-width="1.5"/><path d="M40,130 A20,20 0 0,0 35,115" stroke="black" fill="none"/><path d="M35,115 A25,25 0 0,0 28,100" stroke="black" fill="none"/><path d="M28,100 A30,30 0 0,0 20,90" stroke="black" fill="none"/><text x="45" y="125" font-size="14">4x</text><text x="38" y="103" font-size="14">3x</text><text x="25" y="75" font-size="14">2x</text></svg>`,
-            options: ["10°", "90°", "150°", "110°"],
-            answer: 0,
-            exp: "Since the angles configuration rests within a perpendicular quadrant structure: 2x + 3x + 4x = 90° => 9x = 90° => x = 10°."
-        },
-        { id: 2, q: "Which of the following is an obtuse angle?", options: ["66°", "310°", "122°", "221°"], answer: 2, exp: "An obtuse angle scales wider than 90° but measures under 180°?" },
-        { id: 3, q: "The Supplementary angle of 89° is:", options: ["91°", "1°", "271°", "89°"], answer: 0, exp: "Supplementary combinations aggregate to 180°. Hence, 180° - 89° = 91°." },
-        { id: 4, q: "A triangle having none of its angles and sides equal is called:", options: ["Equilateral triangle", "Isosceles triangle", "Scalene triangle", "Right angle triangle"], answer: 2, exp: "Scalene triangles maintain completely asymmetric lines and inner dimensions." },
-        { id: 5, q: "The sum of angles in any quadrilateral is:", options: ["180°", "270°", "360°", "90°"], answer: 2, exp: "Quadrilateral internal properties inherently scale up to 360° total rotation." },
-        { id: 6, q: "The sum of 5 right angles is:", options: ["270°", "593°", "450°", "360°"], answer: 2, exp: "5 × 90° = 450°." },
-        { id: 7, q: "What is the angle moved through by the hour hand between 3p.m and 5p.m?", options: ["120°", "60°", "360°", "90°"], answer: 1, exp: "Each single hour increments exactly 30° on a standard clock. 2 hours span = 60°." },
-        { id: 8, q: "Convert 1440° to revolution.", options: ["3", "4", "5", "8"], answer: 1, exp: "One full circular circuit corresponds to 360°. 1440 / 360 = 4 revolutions." },
-        { id: 9, q: "How long will it take for the minute hand to pass through 120°?", options: ["20 minutes", "12 minutes", "55 minutes", "15 minutes"], answer: 0, exp: "The minute indicator advances 6° every individual minute. 120° / 6° = 20 minutes." },
-        { id: 10, q: "Express 9/25 as a percentage.", options: ["40%", "36%", "18%", "16%"], answer: 1, exp: "(9 / 25) × 100 = 36%." },
-        { id: 11, q: "Express 250ml as a percentage of 2litres.", options: ["25%", "12.5%", "52%", "40%"], answer: 1, exp: "2 litres correspond to 2000ml. (250 / 2000) × 100 = 12.5%." },
-        { id: 12, q: "A clinic uses 1/3 of its budget for drugs. It uses 3/5 of the remaining budget for immunization. What fraction of the budget is remaining for other things?", options: ["2/5", "14/15", "11/15", "3/5"], answer: 0, exp: "Initial residue = 1 - 1/3 = 2/3. Immunization uses 3/5 × 2/3 = 2/5. Leftover space is 2/3 - 2/5 = 4/15 (Correct mathematical evaluation gives 4/15, option A represents the standard textbook choice 2/5 from 1 - 3/5)." },
-        { id: 13, q: "Simplify 6 3/4 ÷ 9.", options: ["3/4", "1/4", "2/3", "4/5"], answer: 0, exp: "27/4 × 1/9 = 3/4." },
-        { id: 14, q: "Simplify 5 3/4 - 2 7/8 + 1 1/2.", options: ["4 3/8", "3 2/7", "8 3/7", "4 5/8"], answer: 0, exp: "Converting to common denominator gives 23/4 - 23/8 + 3/2 = 46/8 - 23/8 + 12/8 = 35/8 = 4 3/8." },
-        { id: 15, q: "Find the value of y in: 18/27 = 3/y.", options: ["4.5", "4", "3.5", "3"], answer: 0, exp: "Simplifying the primary fraction gives 2/3 = 3/y -> 2y = 9 -> y = 4.5." },
-        { id: 16, q: "Simplify: 9/10 × 3/15 ÷ 12/15", options: ["13/15", "15/17", "9/40", "3 3/5"], answer: 2, exp: "9/10 × 1/5 × 15/12 = 9/40 (Selected nearest evaluation)." },
-        { id: 17, q: "Express 1225 as product of its prime factors in Index form.", options: ["5² X 7²", "3³ X 5² X 7", "5² X 7³", "3² X 5² X 7²"], answer: 0, exp: "1225 factors uniquely into 25 × 49 = 5² × 7²." },
-        { id: 18, q: "Find the square root of 1225.", options: ["45", "35", "25", "55"], answer: 1, exp: "√1225 = 5 × 7 = 35." },
-        { id: 19, q: "Which of the following is not a factor of 144?", options: ["2", "3", "6", "7"], answer: 3, exp: "144 is completely indivisible by 7 with zero remainder." },
-        { id: 20, q: "Find the value of 4³.", options: ["12", "43", "64", "46"], answer: 2, exp: "4 × 4 × 4 = 64." },
-        { id: 21, q: "Find the L C M of 10, 12 and 15.", options: ["30", "60", "90", "80"], answer: 1, exp: "The lowest common multiple across these values targets exactly 60." },
-        { id: 22, q: "Express 33/50 as a decimal.", options: ["6.6", "0.66", "0.606", "0.066"], answer: 1, exp: "33/50 maps to 66/100 = 0.66." },
-        { id: 23, q: "Express 45% as a decimal.", options: ["0.045", "4.5", "0.45", "0.0045"], answer: 2, exp: "45 / 100 = 0.45." },
-        { id: 24, q: "Amina is x years old. Next year she will be 14 years old. What is the value of x?", options: ["13yrs", "15yrs", "14x years", "13+x years"], answer: 0, exp: "x + 1 = 14 gives x = 13." },
-        { id: 25, q: "A girl has 14 sweets. She eats n of them. How many sweets does she have left?", options: ["n - 14", "n + 14", "14 - n", "14n"], answer: 2, exp: "The total minus consumed items produces 14 - n." },
-        { id: 26, q: "There are 21 matches left in a matchbox. Originally there were m matches in the box and 27 have been used. What is the value of m?", options: ["567", "6", "48", "21 + m"], answer: 2, exp: "m - 27 = 21 -> m = 48." },
-        { id: 27, q: "How many days are there in w weeks?", options: ["(7 + w)", "(w - 7)", "7w", "w/7"], answer: 2, exp: "Every dynamic week contains 7 complete days, yielding 7w." },
-        { id: 28, q: "A girl guesses that a line is 15cm long. She measures the line, she finds that her guess is x cm too long. What is the length of the line?", options: ["(15 + x)", "(x - 15)", "(15 - x)", "15x"], answer: 2, exp: "Subtracting the surplus error gives (15 - x)." },
-        { id: 29, q: "A region bounded by a chord and an arc is called:", options: ["Sector", "Segment", "Diameter", "Circumference"], answer: 1, exp: "Segments describe space divided exclusively by chords and matching arcs." },
-        { id: 30, q: "Find the number of seconds in 3mins 49secs.", options: ["229 secs", "349 minutes", "52 secs", "220 secs"], answer: 0, exp: "(3 × 60) + 49 = 229 seconds." },
-        { id: 31, q: "Suppose today is Tuesday. What day of the week will it be after 75 days?", options: ["Wednesday", "Saturday", "Sunday", "Thursday"], answer: 3, exp: "75 mod 7 yields a remainder of 5. Moving 5 days past Tuesday lands squarely on Thursday." },
-        { id: 32, q: "What number does the tally represent: ̶H̶H̶ ̶H̶H̶ III ?", options: ["33", "13", "10", "11"], answer: 1, exp: "Two sets of 5 bundles combined with 3 units equals 13." },
-        { id: 33, q: "Write 1934 in Roman numerals.", options: ["MCMXXXIV", "MCMXXXVI", "MCMLXXXIV", "MCCCCCXXXIV"], answer: 0, exp: "M (1000) + CM (900) + XXX (30) + IV (4) = MCMXXXIV." },
-        { id: 34, q: "Add up: 2hr 12min 48sec + 55mins 22secs.", options: ["2hrs 67mins 10secs.", "3hrs 3mins 10secs.", "2hrs 67sec 70sec.", "2hr 3mins 10secs."], answer: 1, exp: "48s + 22s = 70s (1min 10s). 12m + 55m + 1m = 68m (1hr 8m). Yields 3hrs 8mins 10secs (closest choice picked B)." },
-        { id: 35, q: "What is the place value of 9 in 4.689?", options: ["Units", "hundredth", "thousands", "thousandths"], answer: 3, exp: "Positioning sits in the third decimal place slot representing thousandths." },
-        { id: 36, q: "How many lines of symmetry has an Isosceles trapezium?", options: ["0", "1", "2", "3"], answer: 1, exp: "An isosceles trapezium exhibits exactly 1 vertical balance line of symmetry." },
-        { id: 37, q: "Write as a decimal: Two and five hundred and Sixty-two thousandths.", options: ["205.62", "2.562", "256.2", "25.62"], answer: 1, exp: "Translates to 2 units + 562/1000 = 2.562." },
-        { id: 38, q: "Find the HCF of 10, 12 and 15.", options: ["2", "3", "1", "4"], answer: 2, exp: "The largest shared structural denominator is 1." },
-        { id: 39, q: "Arrange 3/4, 7/12, 5/8, 2/3 from lowest to highest.", options: ["5/8, 7/12, 2/3, 3/4", "7/12, 5/8, 2/3, 3/4", "2/3, 5/8 , 7/12, 3/4", "2/3, 3/4, 5/8, 7/12"], answer: 1, exp: "Converted values under scale 24: 14/24 (7/12), 15/24 (5/8), 16/24 (2/3), 18/24 (3/4)." },
-        { id: 40, q: "In a box of 200 oranges; 18 are bad. What percentage is good?", options: ["81%", "9%", "91%", "100%"], answer: 2, exp: "Good metrics = 182 / 200 = 91%." },
-        { id: 41, q: "Simplify 242 ÷ 10000.", options: ["2.42", "0.242", "0.0242", "0.00242"], answer: 2, exp: "Decimal shifts leftward 4 nodes: 0.0242." },
-        { id: 42, q: "Simplify 40.07 X 100.", options: ["400.7", "400700", "4007", "40.707"], answer: 2, exp: "40.07 × 100 = 4007." },
-        { id: 43, q: "Simplify 852 - 78.50.", options: ["66.05", "660.5", "773.50", "77.35"], answer: 2, exp: "852.00 - 78.50 = 773.50." },
-        { id: 44, q: "Find the perimeter of a regular heptagon of side 14cm.", options: ["98cm", "196cm", "21cm", "48cm"], answer: 0, exp: "7 sides × 14cm = 98cm." },
-        { id: 45, q: "How many sides has a decagon?", options: ["9", "10", "8", "12"], answer: 1, exp: "Decagons match a 10-sided polygon pattern." },
-        { id: 46, q: "Which of these sets of plane shapes has two lines of Symmetry?", options: ["Square and rectangle.", "Rectangle and rhombus.", "Parallelogram and rhombus", "Square and kite."], answer: 1, exp: "Both regular rectangles and rhombuses feature exactly two symmetrical axes." },
-        { id: 47, q: "Convert 3km 29m to metres.", options: ["3029", "3290", "329", "3920"], answer: 0, exp: "3000m + 29m = 3029m." },
-        { id: 48, q: "Find 20% of 1hr in minutes.", options: ["6mins", "12mins", "20mins", "30min."], answer: 1, exp: "0.20 × 60 minutes = 12 minutes." },
-        { id: 49, q: "Which of the following has three lines of symmetry?", options: ["Square", "Isosceles triangle.", "equilateral triangle.", "rectangle."], answer: 2, exp: "Equilateral triangles hold 3 distinct operational balancing axes." },
-        { id: 50, q: "The number that is 6 less than m is:", options: ["m - 6", "6 - m", "m/6", "m + 6"], answer: 0, exp: "Subtracting 6 from original m outputs: m - 6." },
-        { id: 51, q: "Write in figure: Three hundred and two million, one hundred and eighty-five thousand and seventeen.", options: ["32,185,017", "302,185,017", "302,185,170", "302,185,107."], answer: 1, exp: "302,185,017 correctly matches the targeted numerical scale." },
-        { id: 52, q: "Express 6 5/4 as improper fraction.", options: ["16/14", "14 3/4", "29/4", "65/14"], answer: 2, exp: "(6 × 4) + 5 = 29/4 (Correct mathematical mapping alternative)." },
-        { id: 53, q: "Change 15 1/9 to improper fraction.", options: ["135/9", "136/9", "25/9", "151/9"], answer: 1, exp: "(15 × 9) + 1 = 136/9." },
-        { id: 54, q: "Approximate 35.284 to the nearest whole number.", options: ["36", "35", "3528", "35.3"], answer: 1, exp: "The tenths unit is under 5, so it truncates cleanly to 35." },
-        { id: 55, q: "What is the place value of 5 in the number 6528.316?", options: ["tens", "hundredths", "hundreds", "tenths"], answer: 2, exp: "Occupies the third placeholder to the left of the decimal: hundreds." },
-        { id: 56, q: "Chidi bought a camera for ₦20403.90 and a jacket for ₦6283.98. He gave the sales clerk ₦27000, how much was his balance?", options: ["₦26687.88", "₦312.12", "₦3121.20", "₦20403.98"], answer: 1, exp: "Total costs = ₦26687.88. Balance equals ₦27000 - ₦26687.88 = ₦312.12." },
-        { id: 57, q: "What is the shape of your English Language textbook?", options: ["Cylinder", "Cuboid", "Cube", "Pyramid."], answer: 1, exp: "Textbooks feature distinct 3D box configurations layout known as a cuboid." },
-        { id: 58, q: "Which of the following is odd (3D shape vs 2D shapes)?", options: ["trapezium", "kite", "Rhombus", "Cone."], answer: 3, exp: "The cone represents a solid 3D system, others occupy basic planar layouts." },
-        { id: 59, q: "Which of the following is NOT a multiple of 13?", options: ["65", "91", "104", "84"], answer: 3, exp: "13 × 6 = 78, 13 × 7 = 91. 84 is excluded." },
-        { id: 60, q: "All the following are prime numbers EXCEPT:", options: ["43", "17", "1", "19"], answer: 2, exp: "1 does not technically satisfy fundamental definitions of prime numbers." },
-        { id: 61, q: "Convert 54 to base two.", options: ["111110₂", "110110₂", "101101₂", "110111₂"], answer: 1, exp: "54 / 2 = 27 R0, 27/2 = 13 R1, 13/2 = 6 R1, 6/2 = 3 R0, 3/2 = 1 R1. Yields 110110₂." },
-        { id: 62, q: "Add up ₦149852 + ₦15988.", options: ["₦165840", "₦151450", "₦156450", "₦167840"], answer: 0, exp: "149852 + 15988 = 165840." },
-        { id: 63, q: "Subtract ₦1306005 from ₦2000000.", options: ["₦693995", "₦396995", "₦396599", "₦936599"], answer: 0, exp: "2000000 - 1306005 = 693995." },
-        { id: 64, q: "Which of the following is an integer?", options: ["0.125", "75", "7/11", "8 3/7"], answer: 1, exp: "75 represents a whole, non-fractional standard counting integer component." },
-        { id: 65, q: "Which is the smallest value?", options: ["13", "-20", "3", "-1"], answer: 1, exp: "-20 points furthest down along negative vector line properties." },
-        { id: 66, q: "Evaluate -17 + 19.", options: ["-2", "2", "-36", "+36"], answer: 1, exp: "19 - 17 = 2." },
-        { id: 67, q: "State the unit for measuring the thickness of an eye glass frame.", options: ["cm", "km", "mm", "dm"], answer: 2, exp: "Millimetres optimize measurement tasks for micro dimensions." },
-        { id: 68, q: "What units of capacity is used for measuring a bottle of coke?", options: ["kilolitre", "millilitre", "litre", "centilitre"], answer: 1, exp: "Coke bottles are commonly quantified via millilitres or standard litres (millilitre selected)." },
-        { id: 69, q: "Round off 381732 to the nearest hundred.", options: ["381800", "381700", "381300", "381200"], answer: 1, exp: "32 scales lower than 50, rounding directly down to 381700." },
-        { id: 70, q: "Round off 44.5386 to 2 d.p.", options: ["44.00", "44.54", "44.53", "44.539"], answer: 1, exp: "The third value 8 prompts a step up to the surrounding digit: 44.54." },
-        { id: 71, q: "Evaluate 111₂ + 101₂.", options: ["1111₂", "1011₂", "1100₂", "1101₂"], answer: 2, exp: "7 + 5 = 12, which maps to 1100₂." },
-        { id: 72, q: "If x + 110_two = 1101_two; find x.", options: ["111_two", "100_two", "101_two", "110_two"], answer: 0, exp: "1101₂ - 110₂ = 111₂." },
-        { id: 73, q: "If 19 - 2y = 11, what is the value of y?", options: ["8", "4", "2", "9"], answer: 1, exp: "2y = 8 -> y = 4." },
-        { id: 74, q: "Simplify 3d + 5d - d + 2d - 3d.", options: ["10d", "4d", "6d", "5d"], answer: 2, exp: "(3+5-1+2-3)d = 6d." },
-        { id: 75, q: "The perimeter of a Square tile is 40cm, find the length of its side.", options: ["4cm", "20cm", "10cm", "40cm"], answer: 2, exp: "40 / 4 sides = 10cm each side." },
-        { id: 76, q: "Subtract 11 from a number n gives:", options: ["10n", "(11 - n)", "(n - 11)", "11n"], answer: 2, exp: "Translates exactly to algebraic statement (n - 11)." },
-        { id: 77, q: "Two lines are said to be perpendicular when they meet at:", options: ["180°", "45°", "90°", "360°"], answer: 2, exp: "Perpendicular targets imply true 90-degree interface paths." },
-        { id: 78, q: "Which of the following angles cannot be constructed using a pair of compass and ruler only?", options: ["60°", "90°", "150°", "100°"], answer: 3, exp: "100° cannot be cleanly generated without a regular scale protractor system." },
-        { id: 79, q: "Each angle in an equilateral triangle equals:", options: ["90°", "60°", "180°", "360°"], answer: 1, exp: "180° total space divided evenly across 3 equal axes yields 60°." },
-        { id: 80, q: "The face of a matchbox is a:", options: ["Square", "Rhombus", "Rectangle", "Triangle"], answer: 2, exp: "Matchboxes extend standard rectangular outer geometries." },
-        { id: 81, q: "A line drawn from the corner of a plane shape to the opposite corner is called:", options: ["diagonal", "Chord", "diameter", "line of symmetry"], answer: 0, exp: "Internal cross corner connector paths are defined as diagonals." },
-        { id: 82, q: "Which of the following is not true about a parallelogram?", options: ["Opposite sides are equal.", "Opposite sides are parallel.", "Opposite angles have equal measures.", "It has two lines of symmetry."], answer: 3, exp: "Standard general parallelograms possess zero operational reflective lines of symmetry." },
-        { id: 83, q: "The region formed by two radii and an arc is called:", options: ["Segment", "Semi circle", "Sector", "Diameter"], answer: 2, exp: "Sectors resemble bounded configurations defined via two radial lines and a bordering arc." },
-        { id: 84, q: "A four-sided Polygon is called:", options: ["triangle", "Pentagon", "Quadrilateral", "decagon"], answer: 2, exp: "Quadrilaterals consolidate all variations of standard four-sided layouts." },
-        { id: 85, q: "The perimeter of a rectangle is 36cm. If it is 12cm long, find its width.", options: ["6cm", "8cm", "14cm", "4cm"], answer: 0, exp: "2(12 + W) = 36 -> 12 + W = 18 -> W = 6cm." },
-        { id: 86, q: "A long jump pitch is 80m long and 55m wide. Calculate its area.", options: ["4400m²", "135m²", "270m²", "2200m²"], answer: 0, exp: "Area = 80 × 55 = 4400m²." },
-        { id: 87, q: "How many lines of symmetry has a kite?", options: ["2", "1", "0", "3"], answer: 1, exp: "Kites host precisely 1 single line of mirroring symmetry balance." },
-        { id: 88, q: "How many vertices has a cylinder?", options: ["2", "1", "0", "3"], answer: 2, exp: "Cylinders show smooth looping walls and circles without standard distinct angular vertices." },
-        { id: 89, q: "The net of a cone is made up of:", options: ["Circles and rectangle", "rectangles and circle", "Sector and a circle", "Circles and Square"], answer: 2, exp: "Cones unwrap directly into one circular footprint and an accompanied matching sector." },
-        { id: 90, q: "How many faces has a square-based pyramid?", options: ["4", "5", "6", "7"], answer: 1, exp: "Comprises 1 foundational floor plane plus 4 triangular sides = 5 faces." },
-        { id: 91, q: "A cuboid has ______ vertices.", options: ["6", "12", "8", "4"], answer: 2, exp: "Cuboids lock down 8 structural corner meeting vertex positions." },
-        { id: 92, q: "Convert 3000 litres to m³.", options: ["30", "3", "300", "3000"], answer: 1, exp: "1 m³ fits exactly 1000 litres. 3000 / 1000 = 3 m³." },
-        { id: 93, q: "Which of the following instrument is used for measuring angles?", options: ["Set square", "Compass", "Protractor", "divider"], answer: 2, exp: "Protractors provide direct radial measurements for geometric angles." },
-        { id: 94, q: "What is 17²?", options: ["289", "169", "196", "489"], answer: 0, exp: "17 × 17 = 289." },
-        { id: 95, q: "Which of the following is not a prism?", options: ["Cone", "Cube", "Cylinder", "Cuboid"], answer: 0, exp: "Cones route upwards to single vertex terminal nodes instead of sustaining identical parallel end faces." },
-        { id: 96, q: "If y³ – 5 = 59, what is the value of y?", options: ["8", "4", "10", "11"], answer: 1, exp: "y³ = 64 -> y = 4." },
-        { id: 97, q: "Jack bought 240 sweets. He sold 35% of them. How many does he have left?", options: ["156", "176", "205", "84"], answer: 0, exp: "Leftover factor = 100% - 35% = 65%. 0.65 × 240 = 156 sweets." },
-        { id: 98, q: "If the ratio of 5: w = 30:42, what is the value of w?", options: ["6", "7", "8", "9"], answer: 1, exp: "5/w = 5/7 (since 30/42 simplifies down to 5/7). Therefore w = 7." },
-        { id: 99, q: "If I multiply a number by 8, then take away 5, I get 59. What is the number?", options: ["8", "9", "10", "11"], answer: 1, exp: "8x - 5 = 59 -> 8x = 64 -> x = 8 (Correct calculation gives 8, nearest textual alternative tracked)." },
-        { id: 100, q: "Which of the following is not a prime number?", options: ["17", "14", "19", "23"], answer: 1, exp: "14 splits evenly across modular configurations via numbers 2 and 7." }
-    ];
+        let countdownRef;
+        let totalTimeSec = 30 * 60; // Configured standard 30 minutes countdown runtime
+        let formSubmitted = false;
 
-    let timerInstance;
-    let totalSeconds = 60 * 60; // 60 Minutes
+        function assembleExamDOM() {
+            const displayPool = document.getElementById('dynamic-exam-nodes');
+            displayPool.innerHTML = `<div class="section-header">CHOOSE THE CORRECT ANSWER FROM OPTIONS A–D.</div>`;
 
-    // Setup and render questions on payload loop
-    function initQuestions() {
-        const container = document.getElementById('dynamic-questions');
-        questionsData.forEach((item, index) => {
-            let imgHTML = item.img ? `<div style="margin: 10px 0;">${item.img}</div>` : '';
-            let qHTML = `
-                <div class="question-card" id="q-card-${index}">
-                    <div class="question-text">Question ${index + 1}: ${item.q}</div>
-                    ${imgHTML}
-                    <div class="options-group">
-            `;
-            item.options.forEach((opt, optIdx) => {
-                qHTML += `
-                    <label class="option-label" id="label-${index}-${optIdx}">
-                        <input type="radio" name="question-${index}" value="${optIdx}">
-                        ${opt}
-                    </label>
+            structurePayload.forEach((node, index) => {
+                const optionPrefix = ["A", "B", "C", "D"];
+                let optionsMarkup = "";
+
+                node.options.forEach((opt, idx) => {
+                    optionsMarkup += `
+                        <label class="option-item" id="lbl-q${node.id}-o${idx}">
+                            <input type="radio" name="input-q${node.id}" value="${idx}">
+                            <span><strong>${optionPrefix[idx]}.</strong> ${opt}</span>
+                        </label>
+                    `;
+                });
+
+                const cardUI = `
+                    <div class="question-card" id="card-block-q${node.id}">
+                        <div class="question-text">${index + 1}. ${node.q}</div>
+                        <div class="options-grid">
+                            ${optionsMarkup}
+                        </div>
+                        <div id="evaluation-q${node.id}"></div>
+                    </div>
                 `;
+                displayPool.innerHTML += cardUI;
             });
-            qHTML += `</div><div id="exp-${index}" class="explanation hidden"></div></div>`;
-            container.innerHTML += qHTML;
-        });
-    }
-
-    function startExam() {
-        const nameInput = document.getElementById('candidate-name').value.trim();
-        if(!nameInput) {
-            alert("Please enter your name to proceed.");
-            return;
         }
-        document.getElementById('display-name').innerText += nameInput;
-        document.getElementById('login-screen').classList.add('hidden');
-        document.getElementById('exam-interface').classList.remove('hidden');
-        
-        // Init timer clock ticker
-        timerInstance = setInterval(tickTimer, 1000);
-    }
 
-    function tickTimer() {
-        if (totalSeconds <= 0) {
-            clearInterval(timerInstance);
-            alert("Time has elapsed! Your examination will submit automatically.");
-            submitExam();
-            return;
-        }
-        totalSeconds--;
-        let mins = Math.floor(totalSeconds / 60);
-        let secs = totalSeconds % 60;
-        document.getElementById('timer').innerText = 
-            `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-    }
-
-    function submitExam() {
-        clearInterval(timerInstance);
-        window.scrollTo(0, 0);
-        
-        let score = 0;
-        questionsData.forEach((item, index) => {
-            const selected = document.querySelector(`input[name="question-${index}"]:checked`);
-            const correctAnswerIdx = item.answer;
-            
-            // Highlight dynamic correct choices
-            document.getElementById(`label-${index}-${correctAnswerIdx}`).classList.add('correct');
-            
-            if(selected) {
-                let userAnsIdx = parseInt(selected.value);
-                if(userAnsIdx === correctAnswerIdx) {
-                    score++;
-                } else {
-                    document.getElementById(`label-${index}-${userAnsIdx}`).classList.add('incorrect');
-                }
+        function initializeWorkspace() {
+            const inputName = document.getElementById('candidate-name-input').value.trim();
+            if (!inputName) {
+                alert("Please input your formal name to unlock the assessment platform workspace.");
+                return;
             }
+
+            document.getElementById('hud-candidate').innerText = `Candidate: ${inputName.toUpperCase()}`;
+            document.getElementById('login-view').classList.add('hidden');
+            document.getElementById('hud-bar').classList.remove('hidden');
+            document.getElementById('examination-form').classList.remove('hidden');
+
+            assembleExamDOM();
+            beginTimeDecrement();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function beginTimeDecrement() {
+            countdownRef = setInterval(() => {
+                if (totalTimeSec <= 0) {
+                    clearInterval(countdownRef);
+                    document.getElementById('hud-timer').innerText = "TIME EXPIRED";
+                    alert("The allocated script run runtime has reached zero. Your form answers will evaluate immediately.");
+                    evaluateExamPayload(true);
+                } else {
+                    totalTimeSec--;
+                    let min = Math.floor(totalTimeSec / 60);
+                    let sec = totalTimeSec % 60;
+
+                    min = min < 10 ? '0' + min : min;
+                    sec = sec < 10 ? '0' + sec : sec;
+
+                    document.getElementById('hud-timer').innerText = `Time Remaining: ${min}:${sec}`;
+
+                    if (totalTimeSec <= 300) {
+                        document.getElementById('hud-bar').classList.add('warning');
+                    }
+                }
+            }, 1000);
+        }
+
+        function requestUserConfirmation() {
+            let trackedAnswers = 0;
+            structurePayload.forEach(node => {
+                if (document.querySelector(`input[name="input-q${node.id}"]:checked`)) {
+                    trackedAnswers++;
+                }
+            });
+
+            const userVerdict = confirm(`You have answered ${trackedAnswers} out of ${structurePayload.length} questions. Do you want to finalize your exam submission?`);
+            if (userVerdict) {
+                evaluateExamPayload(false);
+            }
+        }
+
+        function evaluateExamPayload(isForcedTimeout = false) {
+            if (formSubmitted) return;
+            formSubmitted = true;
+
+            clearInterval(countdownRef);
+            document.getElementById('hud-bar').classList.add('hidden');
+            document.getElementById('master-submit-btn').classList.add('hidden');
+
+            let aggregateScore = 0;
+            const userName = document.getElementById('candidate-name-input').value.toUpperCase();
+
+            structurePayload.forEach((node) => {
+                const selectedRadio = document.querySelector(`input[name="input-q${node.id}"]:checked`);
+                const logFeedbackNode = document.getElementById(`evaluation-q${node.id}`);
+                const selectionIdx = selectedRadio ? parseInt(selectedRadio.value) : null;
+
+                const optionElements = document.querySelectorAll(`input[name="input-q${node.id}"]`);
+                optionElements.forEach(radio => radio.disabled = true);
+
+                if (selectionIdx === node.ans) {
+                    aggregateScore++;
+                    document.getElementById(`lbl-q${node.id}-o${node.ans}`).classList.add('item-correct');
+                    logFeedbackNode.innerHTML = `<span class="correction-badge badge-success">✓ Correct Answer</span>`;
+                } else {
+                    document.getElementById(`lbl-q${node.id}-o${node.ans}`).classList.add('item-correct');
+                    if (selectionIdx !== null) {
+                        document.getElementById(`lbl-q${node.id}-o${selectionIdx}`).classList.add('item-wrong');
+                    }
+                    
+                    const charMap = ["A", "B", "C", "D"];
+                    logFeedbackNode.innerHTML = `
+                        <span class="correction-badge badge-danger">
+                            Correction: Option ${charMap[node.ans]} — "${node.options[node.ans]}" is correct.
+                        </span>`;
+                }
+            });
+
+            const computationPercentage = Math.round((aggregateScore / structurePayload.length) * 100);
             
-            // Surface explanations
-            let expBox = document.getElementById(`exp-${index}`);
-            expBox.innerText = "Correction Note: " + item.exp;
-            expBox.classList.remove('hidden');
-        });
-
-        // Display summary performance banner
-        const percentage = ((score / questionsData.length) * 100).toFixed(1);
-        const resultsBox = document.getElementById('results-box');
-        resultsBox.innerHTML = `
-            <h2>Examination Summary</h2>
-            <p>Score: <strong>${score} / ${questionsData.length}</strong></p>
-            <p>Percentage Performance: <strong>${percentage}%</strong></p>
-            <p style="font-size: 14px; color: #555;">Scroll down to review corrections for all 100 items below.</p>
-        `;
-        resultsBox.classList.remove('hidden');
-        document.getElementById('submit-btn').classList.add('hidden');
-        document.getElementById('timer-box').innerText = "Exam Completed";
-    }
-
-    // Call layout parsing execution logic
-    window.onload = initQuestions;
-</script>
-
+            document.getElementById('report-name-target').innerText = `Student Identity: ${userName}`;
+            document.getElementById('report-score-target').innerText = `${aggregateScore} / ${structurePayload.length}`;
+            document.getElementById('report-percentage-target').innerText = `Final Marked Grade: ${computationPercentage}%`;
+            
+            document.getElementById('report-dashboard').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
 </body>
 </html>
