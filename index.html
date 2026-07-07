@@ -3,1237 +3,510 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JSS1 CCA Promotional Examination</title>
+    <title>ROYAL WUNDERKIND MODEL SCHOOL - YEAR 7 PHE EXAM</title>
     <style>
         :root {
-            --primary-color: #1e3a8a;
-            --secondary-color: #b45309;
-            --accent-color: #3b82f6;
-            --bg-color: #f3f4f6;
+            --primary-color: #1a365d;
+            --secondary-color: #2b6cb0;
+            --accent-color: #d69e2e;
+            --success-color: #2f855a;
+            --danger-color: #c53030;
+            --light-bg: #f7fafc;
             --card-bg: #ffffff;
-            --text-color: #1f2937;
-            --success: #155724;
-            --success-bg: #d4edda;
-            --danger: #721c24;
-            --danger-bg: #f8d7da;
+            --text-color: #2d3748;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            background-color: var(--bg-color);
+            background-color: var(--light-bg);
             color: var(--text-color);
-            margin: 0;
-            padding: 0;
-            line-height: 1.5;
-        }
-
-        header {
-            background-color: var(--primary-color);
-            color: white;
-            text-align: center;
-            padding: 25px 15px;
-            border-bottom: 5px solid var(--secondary-color);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 26px;
-            font-weight: 800;
-            letter-spacing: 0.5px;
-        }
-
-        header h2 {
-            margin: 6px 0;
-            font-size: 16px;
-            font-weight: 400;
-            color: #93c5fd;
-        }
-
-        header h3 {
-            margin: 5px 0 0 0;
-            font-size: 18px;
-            color: #fcd34d;
-            font-weight: 600;
+            line-height: 1.6;
+            padding-bottom: 60px;
         }
 
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 30px auto;
-            padding: 0 15px;
-            box-sizing: border-box;
+            padding: 20px;
         }
 
-        .card {
-            background: var(--card-bg);
-            padding: 35px;
-            border-radius: 12px;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
-            margin-bottom: 30px;
-        }
-
-        .hidden {
-            display: none !important;
-        }
-
-        /* Registration Screen Layout */
-        .welcome-screen h2 {
-            color: var(--primary-color);
-            margin-top: 0;
-            border-bottom: 2px solid #e5e7eb;
-            padding-bottom: 10px;
-        }
-
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #374151;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 12px 16px;
-            border: 2px solid #d1d5db;
-            border-radius: 6px;
-            font-size: 16px;
-            box-sizing: border-box;
-            transition: border-color 0.2s;
-        }
-
-        .form-group input:focus {
-            outline: none;
-            border-color: var(--accent-color);
-        }
-
-        .instructions {
-            background-color: #eff6ff;
-            border-left: 4px solid var(--accent-color);
-            padding: 15px 20px;
-            border-radius: 4px;
-            margin-bottom: 25px;
-        }
-
-        .instructions ul {
-            margin: 5px 0 0 0;
-            padding-left: 20px;
-        }
-
-        /* Buttons */
-        .btn {
-            background-color: var(--primary-color);
+        .header-panel {
+            background: var(--primary-color);
             color: white;
-            padding: 12px 30px;
+            padding: 35px 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            border-bottom: 5px solid var(--accent-color);
+        }
+
+        .header-panel h1 {
+            font-size: 26px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .header-panel h2 {
+            font-size: 16px;
+            color: #cbd5e0;
+            font-weight: 400;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .header-panel h3 {
+            font-size: 19px;
+            letter-spacing: 0.5px;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            margin-top: 15px;
+        }
+
+        #login-view {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            max-width: 500px;
+            margin: 40px auto;
+        }
+
+        #login-view h4 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            font-size: 20px;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 15px 0 25px 0;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.2s;
+            text-align: center;
+        }
+
+        .input-field:focus {
+            border-color: var(--secondary-color);
+        }
+
+        .btn {
+            background: var(--secondary-color);
+            color: white;
             border: none;
-            border-radius: 6px;
+            padding: 12px 30px;
             font-size: 16px;
             font-weight: 600;
+            border-radius: 8px;
             cursor: pointer;
-            transition: background-color 0.2s;
-            width: 100%;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: background 0.2s;
+            text-transform: uppercase;
         }
 
         .btn:hover {
-            background-color: #172554;
+            background: var(--primary-color);
         }
 
-        /* Floating Timer Badge */
-        .timer-badge {
+        #hud-bar {
             position: fixed;
-            top: 20px;
-            right: 20px;
-            background-color: #ef4444;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--primary-color);
             color: white;
-            padding: 10px 20px;
-            border-radius: 30px;
-            font-weight: 700;
-            font-size: 18px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            padding: 12px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
             z-index: 1000;
-            border: 2px solid white;
-            letter-spacing: 0.5px;
+            border-bottom: 4px solid var(--accent-color);
         }
 
-        /* Question Form Cards */
+        #hud-bar.warning {
+            background: var(--danger-color);
+        }
+
         .section-header {
-            background-color: #f3f4f6;
-            padding: 10px 15px;
+            background: #edf2f7;
+            color: var(--primary-color);
+            padding: 15px 20px;
+            border-left: 6px solid var(--secondary-color);
+            border-radius: 4px;
             margin: 35px 0 20px 0;
             font-weight: 700;
-            font-size: 14px;
-            color: var(--secondary-color);
-            border-left: 4px solid var(--secondary-color);
+            font-size: 16px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
 
         .question-card {
-            border-bottom: 1px solid #e5e7eb;
-            padding-bottom: 25px;
-            margin-bottom: 25px;
-        }
-
-        .question-card:last-child {
-            border-bottom: none;
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            border: 1px solid #e2e8f0;
         }
 
         .question-text {
-            font-size: 17px;
             font-weight: 600;
-            margin-bottom: 14px;
+            font-size: 16px;
+            margin-bottom: 15px;
         }
 
         .options-grid {
-            display: flex;
-            flex-direction: column;
+            display: grid;
+            grid-template-columns: 1fr;
             gap: 10px;
+        }
+
+        @media(min-width: 768px) {
+            .options-grid {
+                grid-template-columns: 1fr 1fr;
+            }
         }
 
         .option-item {
             display: flex;
             align-items: center;
-            padding: 12px 16px;
-            background-color: #f9fafb;
-            border: 1px solid #e5e7eb;
+            background: #f8fafc;
+            border: 1px solid #edf2f7;
+            padding: 12px 15px;
             border-radius: 6px;
             cursor: pointer;
-            transition: background-color 0.2s, border-color 0.2s;
+            transition: all 0.2s;
+            font-size: 15px;
         }
 
         .option-item:hover {
-            background-color: #f3f4f6;
-            border-color: #d1d5db;
+            background: #edf2f7;
+            border-color: #cbd5e0;
         }
 
         .option-item input {
-            margin-right: 14px;
+            margin-right: 12px;
             transform: scale(1.2);
             cursor: pointer;
         }
 
-        /* Correction Panel Styling */
-        .feedback-box {
-            margin-top: 15px;
-            padding: 12px 18px;
+        .item-correct {
+            background: #c6f6d5 !important;
+            border-color: var(--success-color) !important;
+            color: #22543d;
+            font-weight: 600;
+        }
+
+        .item-wrong {
+            background: #fed7d7 !important;
+            border-color: var(--danger-color) !important;
+            color: #742a2a;
+        }
+
+        .correction-badge {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 6px 12px;
             border-radius: 6px;
-            font-size: 15px;
-            font-weight: 500;
-            display: none;
+            font-size: 14px;
+            font-weight: bold;
         }
+        .badge-success { background: #c6f6d5; color: #22543d; }
+        .badge-danger { background: #fed7d7; color: #742a2a; }
 
-        .feedback-correct {
-            background-color: var(--success-bg);
-            color: var(--success);
-            border: 1px solid #c3e6cb;
-        }
-
-        .feedback-incorrect {
-            background-color: var(--danger-bg);
-            color: var(--danger);
-            border: 1px solid #f5c6cb;
-        }
-
-        /* Score Metrics Display */
-        .score-box {
+        #report-dashboard {
+            background: white;
+            border: 3px solid var(--accent-color);
+            border-radius: 12px;
+            padding: 30px;
             text-align: center;
-            padding: 20px;
-            background-color: #f8fafc;
-            border-radius: 8px;
-            border: 2px solid #e2e8f0;
             margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
         }
 
-        .score-num {
-            font-size: 42px;
+        .score-metrics {
+            font-size: 54px;
             font-weight: 800;
             color: var(--primary-color);
-            margin: 10px 0;
+            margin: 15px 0;
         }
 
-        .remark {
-            font-size: 20px;
-            font-weight: 700;
-        }
-
-        @media (max-width: 640px) {
-            .timer-badge {
-                position: static;
-                text-align: center;
-                margin: 0 auto 20px auto;
-                width: fit-content;
-            }
-            .card {
-                padding: 20px;
-            }
+        .hidden {
+            display: none !important;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>ROYAL WUNDERKIND MODEL SCHOOL</h1>
-        <h2>JALALA AREA, TANKE, OKE - ODO, ILORIN</h2>
-        <h3>CULTURAL AND CREATIVE ARTS EXAMINATION — JSS 1</h3>
-    </header>
+    <!-- Upper Interactive Dynamic Status Tracker HUD -->
+    <div id="hud-bar" class="hidden">
+        <div id="hud-candidate">Candidate: </div>
+        <div id="hud-timer">Time Remaining: 30:00</div>
+    </div>
 
     <div class="container">
-        <!-- REGISTRATION / WELCOME SCREEN -->
-        <div id="welcome-screen" class="card welcome-screen">
-            <h2>Candidate Registration</h2>
-            <div class="form-group">
-                <label for="student-name">Enter Full Name:</label>
-                <input type="text" id="student-name" placeholder="Surname Firstname Middlename" required>
+        
+        <!-- Institutional Header Layout Panel -->
+        <div class="header-panel">
+            <h1>Royal Wunderkind Model School</h1>
+            <h2>Jalala Area, Tanke, Oke - Odo, Ilorin</h2>
+            <h3>PHYSICAL & HEALTH EDUCATION (PHE)</h3>
+            <div class="meta-grid">
+                <div><strong>Session:</strong> 2025/2026 Third Term</div>
+                <div><strong>Class:</strong> Keystage 3 (Year 7)</div>
+                <div><strong>Duration:</strong> 30 Minutes</div>
             </div>
-            <div class="instructions">
-                <strong>Examination Guidelines:</strong>
-                <ul>
-                    <li><strong>Time Allowed:</strong> 30 Minutes</li>
-                    <li><strong>Questions:</strong> 60 Objective Multi-Choice Items</li>
-                    <li>Ensure you track your progress against the floating timer clock display on your screen.</li>
-                    <li>The application will auto-submit and mark your work immediately when the timer runs out.</li>
-                </ul>
-            </div>
-            <button type="button" class="btn" onclick="startExamination()">Start Examination</button>
         </div>
 
-        <!-- EXAM EXECUTABLE DISPLAY SCREEN -->
-        <div id="quiz-screen" class="card hidden">
-            <div id="countdown-timer" class="timer-badge">Time Left: 30:00</div>
-            <div id="candidate-meta" style="font-weight: bold; margin-bottom: 25px; color: #4b5563; border-bottom: 2px dashed #e5e7eb; padding-bottom: 10px;"></div>
-
-            <form id="cca-form" onsubmit="event.preventDefault(); submitExamination();">
-                
-                <div class="section-header">Performing Arts and Entertainment</div>
-
-                <!-- Q1 -->
-                <div class="question-card" id="q1-block">
-                    <div class="question-text">1. Performing arts involve the use of ________.</div>
-                    <div class="options-grid">
-                        <label class="option-item"><input type="radio" name="q1" value="A"> A. Computers</label>
-                        <label class="option-item"><input type="radio" name="q1" value="B"> B. Live performance before an audience</label>
-                        <label class="option-item"><input type="radio" name="q1" value="C"> C. Books only</label>
-                        <label class="option-item"><input type="radio" name="q1" value="D"> D. Paintings only</label>
-                    </div>
-                    <div class="feedback-box" id="q1-fb"></div>
-                </div>
-
-                <!-- Q2 -->
-                <div class="question-card" id="q2-block">
-                    <div class="question-text">2. Entertainment is meant to ________.</div>
-                    <div class="options-grid">
-                        <label class="option-item"><input type="radio" name="q2" value="A"> A. punish people</label>
-                        <label class="option-item"><input type="radio" name="q2" value="B"> B. educate only</label>
-                        <label class="option-item"><input type="radio" name="q2" value="C"> C. amuse and educate people</label>
-                        <label class="option-item"><input type="radio" name="q2" value="D"> D. destroy culture</label>
-                    </div>
-                    <div class="feedback-box" id="q2-fb"></div>
-                </div>
-
-                <!-- Q3 -->
-                <div class="question-card" id="q3-block">
-                    <div class="question-text">3. Which of these is NOT a performing art?</div>
-                    <div class="options-grid">
-                        <label class="option-item"><input type="radio" name="q3" value="A"> A. Dance</label>
-                        <label class="option-item"><input type="radio" name="q3" value="B"> B. Music</label>
-                        <label class="option-item"><input type="radio" name="q3" value="C"> C. Drama</label>
-                        <label class="option-item"><input type="radio" name="q3" value="D"> D. Carving</label>
-                    </div>
-                    <div class="feedback-box" id="q3-fb"></div>
-                </div>
-
-                <!-- Q4 -->
-                <div class="question-card" id="q4-block">
-                    <div class="question-text">4. One importance of performing arts is to ________.</div>
-                    <div class="options-grid">
-                        <label class="option-item"><input type="radio" name="q4" value="A"> A. waste time</label>
-                        <label class="option-item"><input type="radio" name="q4" value="B"> B. preserve culture</label>
-                        <label class="option-item"><input type="radio" name="q4" value="C"> C. reduce creativity</label>
-                        <label class="option-item"><input type="radio" name="q4" value="D"> D. encourage violence</label>
-                    </div>
-                    <div class="feedback-box" id="q4-fb"></div>
-                </div>
-
-                <div class="section-header">Art Tools and Equipment</div>
-
-                <!-- Q5 -->
-                <div class="question-card" id="q5-block">
-                    <div class="question-text">5. Which of these is an art tool?</div>
-                    <div class="options-grid">
-                        <label class="option-item"><input type="radio" name="q5" value="A"> A. Hammer</label>
-                        <label class="option-item"><input type="radio" name="q5" value="B"> B. Pencil</label>
-                        <label class="option-item"><input type="radio" name="q5" value="C"> C. Spoon</label>
-                        <label class="option-item"><input type="radio" name="q5" value="D"> D. Cup</label>
-                    </div>
-                    <div class="feedback-box" id="q5-fb"></div>
-                </div>
-
-                <!-- Q6 -->
-                <div class="question-card" id="q6-block">
-                    <div class="question-text">6. A paint brush is used for ________.</div>
-                    <div class="options-grid">
-                        <label class="option-item"><input type="radio" name="q6" value="A"> A. singing</label>
-                        <label class="option-item"><input type="radio" name="q6" value="B"> B. painting</label>
-                        <label class="option-item"><input type="radio" name="q6" value="C"> C. dancing</label>
-                        <label class="option-item"><input type="radio" name="q6" value="D"> D. weaving</label>
-                    </div>
-                    <div class="feedback-box" id="q6-fb"></div>
-                </div>
-
-                <!-- Q7 -->
-                <div class="question-card" id="q7-block">
-                    <div class="question-text">7. An eraser is used to ________.</div>
-                    <div class="options-grid">
-                        <label class="option-item"><input type="radio" name="q7" value="A"> A. sharpen pencils</label>
-                        <label class="option-item"><input type="radio" name="q7" value="B"> B. remove unwanted pencil marks</label>
-                        <label class="option-item"><input type="radio" name="q7" value="C"> C. mix colours</label>
-                        <label class="option-item"><input type="radio" name="q7" value="D"> D. paint objects</label>
-                    </div>
-                    <div class="feedback-box" id="q7-fb"></div>
-                </div>
-
-                <!-- Q8 -->
-                <div class="question-card" id="q8-block">
-                    <div class="question-text">8. A ruler is mainly used to draw ________.</div>
-                    <div class="options-grid">
-                        <label class="option-item"><input type="radio" name="q8" value="A"> A. circles</label>
-                        <label class="option-item"><input type="radio" name="q8" value="B"> B. curved lines</label>
-                        <label class="option-item"><input type="radio" name="q8" value="C"> C. straight lines</label>
-                        <label class="option-item"><input type="radio" name="q8" value="D"> D. zigzag lines</label>
-                    </div>
-                    <div class="feedback-box" id="q8-fb"></div>
-                </div>
-
-                <div class="section-header">Solfa Note</div>
-
-                <!-- Q9 -->
-                <div class="question-card" id="q9-block">
-                    <div class="question-text">9. The first note in tonic sol-fa is ________.</div>
-                    <div class="options-grid">
-                        <label class="option-item"><input type="radio" name="q9" value="A"> A. Re</label>
-                        <label class="option-item"><input type="radio" name="q9" value="B"> B. Mi</label>
-                        <label class="option-item"><input type="radio" name="q9" value="C"> C. Do</label>
-                        <label class="option-item"><input type="radio" name="q9" value="D"> D. Fa</label>
-                    </div>
-                    <div class="feedback-box" id="q9-fb"></div>
-                </div>
-
-                <!-- Q10 -->
-                <div class="question-card" id="q10-block">
-                    <div class="question-text">10. Which of these is NOT a sol-fa note?</div>
-                    <div class="options-grid">
-                        <label class="option-item"><input type="radio" name="q10" value="A"> A. So</label>
-                        <label class="option-item"><input type="radio" name="q10" value="B"> B. Ti</label>
-                        <label class="option-item"><input type="radio" name="q10" value="C"> C. La</label>
-                        <label class="option-item"><input type="radio" name="q10" value="D"> D. Ka</label>
-                    </div>
-                    <div class="feedback-box" id="q10-fb"></div>
-                </div>
-
-                <!-- Q11 -->
-                <div class="question-card" id="q11-block">
-                    <div class="question-text">11. The complete tonic sol-fa scale ends with ________.</div>
-                    <div class="options-grid">
-                        <label class="option-item"><input type="radio" name="q11" value="A"> A. So</label>
-                        <label class="option-item"><input type="radio" name="q11" value="B"> B. Ti</label>
-                        <label class="option-item"><input type="radio" name="q11" value="C"> C. Do</label>
-                        <label class="option-item"><input type="radio" name="q11" value="D"> D. Mi</label>
-                    </div>
-                    <div class="feedback-box" id="q11-fb"></div>
-                </div>
-
-                <!-- Q12 -->
-                <div class="question-card" id="q12-block">
-                    <div class="question-text">12. Sol-fa notes help us to ________.</div>
-                    <div class="options-grid">
-                        <label class="option-item"><input type="radio" name="q12" value="A"> A. draw pictures</label>
-                        <label class="option-item"><input type="radio" name="q12" value="B"> B. read and sing music</label>
-                        <label class="option-item"><input type="radio" name="q12" value="C"> C. carve wood</label>
-                        <label class="option-item"><input type="radio" name="q12" value="D"> D. mould clay</label>
-                    </div>
-                    <div class="feedback-box" id="q12-fb"></div>
-                </div>
-
-                <div class="section-header">Drawing and Shading</div>
-
-                <!-- Q13 -->
-                <div class="question-card" id="q13-block">
-                    <div class="question-text">13. Drawing is the art of making ________.</div>
-                    <div class="options-grid">
-                        <label class="option-item"><input type="radio" name="q13" value="A"> A. songs</label>
-                        <label class="option-item"><input type="radio" name="q13" value="B"> B. pictures</label>
-                        <label class="option-item"><input type="radio" name="q13" value="C"> C. dances</label>
-                        <label class="option-item"><input type="radio" name="q13" value="D"> D. speeches</label>
-                    </div>
-                    <div class="feedback-box" id="q13-fb"></div>
-                </div>
-
-                <!-- Q14 -->
-                <div class="question-card" id="q14-block">
-                    <div class="question-text">14. Shading helps to show ________.</div>
-                    <div class="options-grid">
-                        <label class="option-item"><input type="radio" name="q14" value="A"> A. movement only</label>
-                        <label class="option-item"><input type="radio" name="q14" value="B"> B. light and darkness</label>
-                        <label class="option-item"><input type="radio" name="q14" value="C"> C. sound</label>
-                        <label class="option-item"><input type="radio" name="q14" value="D"> D. colour only</label>
-                    </div>
-                    <div class="feedback-box" id="q14-fb"></div>
-                </div>
-
-                <!-- Q15 -->
-                <div class="question-card" id="q15-block">
-                    <div class="question-text">15. Which of these is a shading method?</div>
-                    <div class="options-grid">
-                        <label class="option-item"><input type="radio" name="q15" value="A"> A. Folding</label>
-                        <label class="option-item"><input type="radio" name="q15" value="B"> B. Hatching</label>
-                        <label class="option-item"><input type="radio" name="q15" value="C"> C. Tearing</label>
-                        <label class="option-item"><input type="radio" name="q15" value="D"> D. Coiling</label>
-                    </div>
-                    <div class="feedback-box" id="q15-fb"></div>
-                </div>
-
-                <!-- Q16 -->
-                <div class="question-card" id="q16-block">
-                    <div class="question-text">16. Hatching involves drawing ________.</div>
-                    <div class="options-grid">
-                        <label class="option-item"><input type="radio" name="q16" value="A"> A. dots</label>
-                        <label class="option-item"><input type="radio" name="q16" value="B"> B. straight parallel lines</label>
-                        <label class="option-item"><input type="radio" name="q16" value="C"> C. circles</label>
-                        <label class="option-item"><input type="radio" name="q16" value="D"> D. squares</label>
-                    </div>
-                    <div class="feedback-box" id="q16-fb"></div>
-                </div>
-
-                <!-- Q17 -->
-                <div class="question-card" id="q17-block">
-                    <div class="question-text">17. Cross-hatching is made by drawing ________.</div>
-                    <div class="options-grid">
-                        <label class="option-item"><input type="radio" name="q17" value="A"> A. one line</label>
-                        <label class="option-item"><input type="radio" name="q17" value="B"> B. crossing parallel lines</label>
-                        <label class="option-item"><input type="radio" name="q17" value="C"> C. curves only</label>
-                        <label class="option-item"><input type="radio" name="q17" value="D"> D. dots only</label>
-                    </div>
-                    <div class="feedback-box" id="q17-fb"></div>
-                </div>
-
-                <!-- Q18 -->
-                <div class="question-card" id="q18-block">
-                    <div class="question-text">18. Texture in drawing refers to ________.</div>
-                    <div class="options-grid">
-                        <label class="option-item"><input type="radio" name="q18" value="A"> A. smell</label>
-                        <label class="option-item"><input type="radio" name="q18" value="B"> B. surface quality</label>
-                        <label class="option-item"><input type="radio" name="q18" value="C"> C. sound</label>
-                        <label class="option-item"><input type="radio" name="q18" value="D"> D. movement</label>
-                    </div>
-                    <div class="feedback-box" id="q18-fb"></div>
-                </div>
-
-                <!-- Q19 -->
-                <div class="question-card" id="q19-block">
-                    <div class="question-text">19. Which line is used to show movement?</div>
-                    <div class="options-grid">
-                        <label class="option-item"><input type="radio" name="q19" value="A"> A. Straight line</label>
-                        <label class="option-item"><input type="radio" name="q19" value="B"> B. Curved line</label>
-                        <label class="option-item"><input type="radio" name="q19" value="C"> C. Broken line</label>
-                        <label class="option-item"><input type="radio" name="q19" value="D"> D. Horizontal line</label>
-                    </div>
-                    <div class="feedback-box" id="q19-fb"></div>
-                </div>
-
-                <!-- Q20 -->
-                <div class="question-card" id="q20-block">
-                    <div class="question-text">20. Line drawing is important because it ________.</div>
-                    <div class="options-grid">
-                        <label class="option-item"><input type="radio" name="q20" value="A"> A. creates confusion</label>
-                        <label class="option-item"><input type="radio" name="q20" value="B"> B. forms the outline of objects</label>
-                        <label class="option-item"><input type="radio" name="q20" value="C"> C. wastes time</label>
-                        <label class="option-item"><input type="radio" name="q20" value="D"> D. removes colour</label>
-                    </div>
-                    <div class="feedback-box" id="q20-fb"></div>
-                </div>
-
-                <div class="section-header">Perspective Drawing</div>
-
-                <!-- Q21 -->
-                <div class="question-card" id="q21-block">
-                    <div class="question-text">21. Perspective helps an artist show ________.</div>
-                    <div class="options-grid">
-                        <label class="option-item"><input type="radio" name="q21" value="A"> A. sound</label>
-                        <label class="option-item"><input type="radio" name="q21" value="B"> B. depth</label>
-                        <label class="option-item"><input type="radio" name="q21" value="C"> C. smell</label>
-                        <label class="option-item"><input type="radio" name="q21" value="D"> D. rhythm</label>
-                    </div>
-                    <div class="feedback-box" id="q21-fb"></div>
-                </div>
-
-                <!-- Q22 -->
-                <div class="question-card" id="q22-block">
-                    <div class="question-text">22. Which is a type of perspective?</div>
-                    <div class="options-grid">
-                        <label class="option-item"><input type="radio" name="q22" value="A"> A. One-point perspective</label>
-                        <label class="option-item"><input type="radio" name="q22" value="B"> B. Four-point music</label>
-                        <label class="option-item"><input type="radio" name="q22" value="C"> C. Double carving</label>
-                        <label class="option-item"><input type="radio" name="q22" value="D"> D. Flat modelling</label>
-                    </div>
-                    <div class="feedback-box" id="q22-fb"></div>
-                </div>
-
-                <!-- Q23 -->
-                <div class="question-card" id="q23-block">
-                    <div class="question-text">23. In one-point perspective, all lines meet at ________.</div>
-                    <div class="options-grid">
-                        <label class="option-item"><input type="radio" name="q23" value="A"> A. horizon</label>
-                        <label class="option-item"><input type="radio" name="q23" value="B"> B. vanishing point</label>
-                        <label class="option-item"><input type="radio" name="q23" value="C"> C. corner</label>
-                        <label class="option-item"><input type="radio" name="q23" value="D"> D. border</label>
-                    </div>
-                    <div class="feedback-box" id="q23-fb"></div>
-                </div>
-
-                <!-- Q24 -->
-                <div class="question-card" id="q24-block">
-                    <div class="question-text">24. Perspective drawing makes objects appear ________.</div>
-                    <div class="options-grid">
-                        <label class="option-item"><input type="radio" name="q24" value="A"> A. flat</label>
-                        <label class="option-item"><input type="radio" name="q24" value="B"> B. realistic</label>
-                        <label class="option-item"><input type="radio" name="q24" value="C"> C. invisible</label>
-                        <label class="option-item"><input type="radio" name="q24" value="D"> D. colourful</label>
-                    </div>
-                    <div class="feedback-box" id="q24-fb"></div>
-                </div>
-
-                <div class="section-header">Modelling</div>
-
-                <!-- Q25 -->
-                <div class="question-card" id="q25-block">
-                    <div class="question-text">25. Modelling involves shaping ________.</div>
-                    <div class="options-grid">
-                        <label class="option-item"><input type="radio" name="q25" value="A"> A. paper</label>
-                        <label class="option-item"><input type="radio" name="q25" value="B"> B. clay or similar materials</label>
-                        <label class="option-item"><input type="radio" name="q25" value="C"> C. water</label>
-                        <label class="option-item"><input type="radio" name="q25" value="D"> D. sand only</label>
-                    </div>
-                    <div class="feedback-box" id="q25-fb"></div>
-                </div>
-
-                <!-- Q26 -->
-                <div class="question-card" id="q26-block">
-                    <div class="question-text">26. Which is NOT a modelling technique?</div>
-                    <div class="options-grid">
-                        <label class="option-item"><input type="radio" name="q26" value="A"> A. Pinching</label>
-                        <label class="option-item"><input type="radio" name="q26" value="B"> B. Coiling</label>
-                        <label class="option-item"><input type="radio" name="q26" value="C"> C. Slab</label>
-                        <label class="option-item"><input type="radio" name="q26" value="D"> D. Hatching</label>
-                    </div>
-                    <div class="feedback-box" id="q26-fb"></div>
-                </div>
-
-                <!-- Q27 -->
-                <div class="question-card" id="q27-block">
-                    <div class="question-text">27. The pinching technique is mostly done with the ________.</div>
-                    <div class="options-grid">
-                        <label class="option-item"><input type="radio" name="q27" value="A"> A. machine</label>
-                        <label class="option-item"><input type="radio" name="q27" value="B"> B. fingers</label>
-                        <label class="option-item"><input type="radio" name="q27" value="C"> C. ruler</label>
-                        <label class="option-item"><input type="radio" name="q27" value="D"> D. knife</label>
-                    </div>
-                    <div class="feedback-box" id="q27-fb"></div>
-                </div>
-
-                <!-- Q28 -->
-                <div class="question-card" id="q28-block">
-                    <div class="question-text">28. Long rolls of clay are used in the ________ technique.</div>
-                    <div class="options-grid">
-                        <label class="option-item"><input type="radio" name="q28" value="A"> A. slab</label>
-                        <label class="option-item"><input type="radio" name="q28" value="B"> B. coiling</label>
-                        <label class="option-item"><input type="radio" name="q28" value="C"> C. carving</label>
-                        <label class="option-item"><input type="radio" name="q28" value="D"> D. folding</label>
-                    </div>
-                    <div class="feedback-box" id="q28-fb"></div>
-                </div>
-
-                <!-- Q29 -->
-                <div class="question-card" id="q29-block">
-                    <div class="question-text">29. Flat pieces of clay are used in the ________ method.</div>
-                    <div class="options-grid">
-                        <label class="option-item"><input type="radio" name="q29" value="A"> A. slab</label>
-                        <label class="option-item"><input type="radio" name="q29" value="B"> B. coiling</label>
-                        <label class="option-item"><input type="radio" name="q29" value="C"> C. painting</label>
-                        <label class="option-item"><input type="radio" name="q29" value="D"> D. hatching</label>
-                    </div>
-                    <div class="feedback-box" id="q29-fb"></div>
-                </div>
-
-                <!-- Q30 -->
-                <div class="question-card" id="q30-block">
-                    <div class="question-text">30. Which of these is a modelling tool?</div>
-                    <div class="options-grid">
-                        <label class="option-item"><input type="radio" name="q30" value="A"> A. Modelling stick</label>
-                        <label class="option-item"><input type="radio" name="q30" value="B"> B. Spoon</label>
-                        <label class="option-item"><input type="radio" name="q30" value="C"> C. Bottle</label>
-                        <label class="option-item"><input type="radio" name="q30" value="D"> D. Plate</label>
-                    </div>
-                    <div class="feedback-box" id="q30-fb"></div>
-                </div>
-
-                <!-- Q31 -->
-                <div class="question-card" id="q31-block">
-                    <div class="question-text">31. One importance of modelling is that it develops ________.</div>
-                    <div class="options-grid">
-                        <label class="option-item"><input type="radio" name="q31" value="A"> A. laziness</label>
-                        <label class="option-item"><input type="radio" name="q31" value="B"> B. creativity</label>
-                        <label class="option-item"><input type="radio" name="q31" value="C"> C. fear</label>
-                        <label class="option-item"><input type="radio" name="q31" value="D"> D. anger</label>
-                    </div>
-                    <div class="feedback-box" id="q31-fb"></div>
-                </div>
-
-                <div class="section-header">Paper Mache</div>
-
-                <!-- Q32 -->
-                <div class="question-card" id="q32-block">
-                    <div class="question-text">32. Paper mache is made mainly from ________.</div>
-                    <div class="options-grid">
-                        <label class="option-item"><input type="radio" name="q32" value="A"> A. cloth</label>
-                        <label class="option-item"><input type="radio" name="q32" value="B"> B. paper</label>
-                        <label class="option-item"><input type="radio" name="q32" value="C"> C. wood</label>
-                        <label class="option-item"><input type="radio" name="q32" value="D"> D. leather</label>
-                    </div>
-                    <div class="feedback-box" id="q32-fb"></div>
-                </div>
-
-                <!-- Q33 -->
-                <div class="question-card" id="q33-block">
-                    <div class="question-text">33. Which material is used in paper mache?</div>
-                    <div class="options-grid">
-                        <label class="option-item"><input type="radio" name="q33" value="A"> A. Gum</label>
-                        <label class="option-item"><input type="radio" name="q33" value="B"> B. Cement</label>
-                        <label class="option-item"><input type="radio" name="q33" value="C"> C. Iron</label>
-                        <label class="option-item"><input type="radio" name="q33" value="D"> D. Plastic</label>
-                    </div>
-                    <div class="feedback-box" id="q33-fb"></div>
-                </div>
-
-                <!-- Q34 -->
-                <div class="question-card" id="q34-block">
-                    <div class="question-text">34. The first step in making paper mache is to ________.</div>
-                    <div class="options-grid">
-                        <label class="option-item"><input type="radio" name="q34" value="A"> A. bake it</label>
-                        <label class="option-item"><input type="radio" name="q34" value="B"> B. tear paper into pieces</label>
-                        <label class="option-item"><input type="radio" name="q34" value="C"> C. paint it</label>
-                        <label class="option-item"><input type="radio" name="q34" value="D"> D. polish it</label>
-                    </div>
-                    <div class="feedback-box" id="q34-fb"></div>
-                </div>
-
-                <!-- Q35 -->
-                <div class="question-card" id="q35-block">
-                    <div class="question-text">35. Paper mache becomes strong after ________.</div>
-                    <div class="options-grid">
-                        <label class="option-item"><input type="radio" name="q35" value="A"> A. drying</label>
-                        <label class="option-item"><input type="radio" name="q35" value="B"> B. freezing</label>
-                        <label class="option-item"><input type="radio" name="q35" value="C"> C. boiling</label>
-                        <label class="option-item"><input type="radio" name="q35" value="D"> D. burning</label>
-                    </div>
-                    <div class="feedback-box" id="q35-fb"></div>
-                </div>
-
-                <div class="section-header">Clay</div>
-
-                <!-- Q36 -->
-                <div class="question-card" id="q36-block">
-                    <div class="question-text">36. Clay is commonly obtained from the ________.</div>
-                    <div class="options-grid">
-                        <label class="option-item"><input type="radio" name="q36" value="A"> A. river bank</label>
-                        <label class="option-item"><input type="radio" name="q36" value="B"> B. sky</label>
-                        <label class="option-item"><input type="radio" name="q36" value="C"> C. roof</label>
-                        <label class="option-item"><input type="radio" name="q36" value="D"> D. mountain top only</label>
-                    </div>
-                    <div class="feedback-box" id="q36-fb"></div>
-                </div>
-
-                <!-- Q37 -->
-                <div class="question-card" id="q37-block">
-                    <div class="question-text">37. Clay becomes hard after ________.</div>
-                    <div class="options-grid">
-                        <label class="option-item"><input type="radio" name="q37" value="A"> A. soaking</label>
-                        <label class="option-item"><input type="radio" name="q37" value="B"> B. drying or firing</label>
-                        <label class="option-item"><input type="radio" name="q37" value="C"> C. washing</label>
-                        <label class="option-item"><input type="radio" name="q37" value="D"> D. cutting</label>
-                    </div>
-                    <div class="feedback-box" id="q37-fb"></div>
-                </div>
-
-                <!-- Q38 -->
-                <div class="question-card" id="q38-block">
-                    <div class="question-text">38. Which is a property of clay?</div>
-                    <div class="options-grid">
-                        <label class="option-item"><input type="radio" name="q38" value="A"> A. Transparent</label>
-                        <label class="option-item"><input type="radio" name="q38" value="B"> B. Plastic</label>
-                        <label class="option-item"><input type="radio" name="q38" value="C"> C. Metallic</label>
-                        <label class="option-item"><input type="radio" name="q38" value="D"> D. Elastic</label>
-                    </div>
-                    <div class="feedback-box" id="q38-fb"></div>
-                </div>
-
-                <!-- Q39 -->
-                <div class="question-card" id="q39-block">
-                    <div class="question-text">39. Which is a type of clay?</div>
-                    <div class="options-grid">
-                        <label class="option-item"><input type="radio" name="q39" value="A"> A. Earthenware clay</label>
-                        <label class="option-item"><input type="radio" name="q39" value="B"> B. Gold clay</label>
-                        <label class="option-item"><input type="radio" name="q39" value="C"> C. Plastic clay</label>
-                        <label class="option-item"><input type="radio" name="q39" value="D"> D. Cotton clay</label>
-                    </div>
-                    <div class="feedback-box" id="q39-fb"></div>
-                </div>
-
-                <div class="section-header">Carving</div>
-
-                <!-- Q40 -->
-                <div class="question-card" id="q40-block">
-                    <div class="question-text">40. Carving is done by removing material from ________.</div>
-                    <div class="options-grid">
-                        <label class="option-item"><input type="radio" name="q40" value="A"> A. wood</label>
-                        <label class="option-item"><input type="radio" name="q40" value="B"> B. stone</label>
-                        <label class="option-item"><input type="radio" name="q40" value="C"> C. calabash</label>
-                        <label class="option-item"><input type="radio" name="q40" value="D"> D. All of the above</label>
-                    </div>
-                    <div class="feedback-box" id="q40-fb"></div>
-                </div>
-
-                <!-- Q41 -->
-                <div class="question-card" id="q41-block">
-                    <div class="question-text">41. Which of these can be carved?</div>
-                    <div class="options-grid">
-                        <label class="option-item"><input type="radio" name="q41" value="A"> A. Calabash</label>
-                        <label class="option-item"><input type="radio" name="q41" value="B"> B. Wood</label>
-                        <label class="option-item"><input type="radio" name="q41" value="C"> C. Ivory</label>
-                        <label class="option-item"><input type="radio" name="q41" value="D"> D. All of the above</label>
-                    </div>
-                    <div class="feedback-box" id="q41-fb"></div>
-                </div>
-
-                <!-- Q42 -->
-                <div class="question-card" id="q42-block">
-                    <div class="question-text">42. Which tool is commonly used for carving?</div>
-                    <div class="options-grid">
-                        <label class="option-item"><input type="radio" name="q42" value="A"> A. Chisel</label>
-                        <label class="option-item"><input type="radio" name="q42" value="B"> B. Brush</label>
-                        <label class="option-item"><input type="radio" name="q42" value="C"> C. Eraser</label>
-                        <label class="option-item"><input type="radio" name="q42" value="D"> D. Needle</label>
-                    </div>
-                    <div class="feedback-box" id="q42-fb"></div>
-                </div>
-
-                <!-- Q43 -->
-                <div class="question-card" id="q43-block">
-                    <div class="question-text">43. Which of these is a type of calabash?</div>
-                    <div class="options-grid">
-                        <label class="option-item"><input type="radio" name="q43" value="A"> A. Bottle calabash</label>
-                        <label class="option-item"><input type="radio" name="q43" value="B"> B. Sweet calabash</label>
-                        <label class="option-item"><input type="radio" name="q43" value="C"> C. Round calabash</label>
-                        <label class="option-item"><input type="radio" name="q43" value="D"> D. Both A and C</label>
-                    </div>
-                    <div class="feedback-box" id="q43-fb"></div>
-                </div>
-
-                <div class="section-header">Drama and Theatre</div>
-
-                <!-- Q44 -->
-                <div class="question-card" id="q44-block">
-                    <div class="question-text">44. Drama is the art of ________.</div>
-                    <div class="options-grid">
-                        <label class="option-item"><input type="radio" name="q44" value="A"> A. acting</label>
-                        <label class="option-item"><input type="radio" name="q44" value="B"> B. sewing</label>
-                        <label class="option-item"><input type="radio" name="q44" value="C"> C. carving</label>
-                        <label class="option-item"><input type="radio" name="q44" value="D"> D. drawing</label>
-                    </div>
-                    <div class="feedback-box" id="q44-fb"></div>
-                </div>
-
-                <!-- Q45 -->
-                <div class="question-card" id="q45-block">
-                    <div class="question-text">45. A theatre is a place where ________.</div>
-                    <div class="options-grid">
-                        <label class="option-item"><input type="radio" name="q45" value="A"> A. football is played</label>
-                        <label class="option-item"><input type="radio" name="q45" value="B"> B. drama is performed</label>
-                        <label class="option-item"><input type="radio" name="q45" value="C"> C. books are sold</label>
-                        <label class="option-item"><input type="radio" name="q45" value="D"> D. paintings are made</label>
-                    </div>
-                    <div class="feedback-box" id="q45-fb"></div>
-                </div>
-
-                <!-- Q46 -->
-                <div class="question-card" id="q46-block">
-                    <div class="question-text">46. The person who writes a play is called the ________.</div>
-                    <div class="options-grid">
-                        <label class="option-item"><input type="radio" name="q46" value="A"> A. producer</label>
-                        <label class="option-item"><input type="radio" name="q46" value="B"> B. playwright</label>
-                        <label class="option-item"><input type="radio" name="q46" value="C"> C. actor</label>
-                        <label class="option-item"><input type="radio" name="q46" value="D"> D. audience</label>
-                    </div>
-                    <div class="feedback-box" id="q46-fb"></div>
-                </div>
-
-                <!-- Q47 -->
-                <div class="question-card" id="q47-block">
-                    <div class="question-text">47. The person who interprets the script is the ________.</div>
-                    <div class="options-grid">
-                        <label class="option-item"><input type="radio" name="q47" value="A"> A. director</label>
-                        <label class="option-item"><input type="radio" name="q47" value="B"> B. singer</label>
-                        <label class="option-item"><input type="radio" name="q47" value="C"> C. dancer</label>
-                        <label class="option-item"><input type="radio" name="q47" value="D"> D. painter</label>
-                    </div>
-                    <div class="feedback-box" id="q47-fb"></div>
-                </div>
-
-                <!-- Q48 -->
-                <div class="question-card" id="q48-block">
-                    <div class="question-text">48. The producer mainly ________.</div>
-                    <div class="options-grid">
-                        <label class="option-item"><input type="radio" name="q48" value="A"> A. finances the production</label>
-                        <label class="option-item"><input type="radio" name="q48" value="B"> B. acts only</label>
-                        <label class="option-item"><input type="radio" name="q48" value="C"> C. writes songs</label>
-                        <label class="option-item"><input type="radio" name="q48" value="D"> D. paints scenery</label>
-                    </div>
-                    <div class="feedback-box" id="q48-fb"></div>
-                </div>
-
-                <!-- Q49 -->
-                <div class="question-card" id="q49-block">
-                    <div class="question-text">49. The people watching a drama are called the ________.</div>
-                    <div class="options-grid">
-                        <label class="option-item"><input type="radio" name="q49" value="A"> A. cast</label>
-                        <label class="option-item"><input type="radio" name="q49" value="B"> B. audience</label>
-                        <label class="option-item"><input type="radio" name="q49" value="C"> C. choir</label>
-                        <label class="option-item"><input type="radio" name="q49" value="D"> D. judges</label>
-                    </div>
-                    <div class="feedback-box" id="q49-fb"></div>
-                </div>
-
-                <!-- Q50 -->
-                <div class="question-card" id="q50-block">
-                    <div class="question-text">50. Costumes help actors to ________.</div>
-                    <div class="options-grid">
-                        <label class="option-item"><input type="radio" name="q50" value="A"> A. sleep</label>
-                        <label class="option-item"><input type="radio" name="q50" value="B"> B. look like their characters</label>
-                        <label class="option-item"><input type="radio" name="q50" value="C"> C. cook</label>
-                        <label class="option-item"><input type="radio" name="q50" value="D"> D. sing better</label>
-                    </div>
-                    <div class="feedback-box" id="q50-fb"></div>
-                </div>
-
-                <!-- Q51 -->
-                <div class="question-card" id="q51-block">
-                    <div class="question-text">51. Stage lighting helps to ________.</div>
-                    <div class="options-grid">
-                        <label class="option-item"><input type="radio" name="q51" value="A"> A. decorate classrooms</label>
-                        <label class="option-item"><input type="radio" name="q51" value="B"> B. improve visibility and mood</label>
-                        <label class="option-item"><input type="radio" name="q51" value="C"> C. make noise</label>
-                        <label class="option-item"><input type="radio" name="q51" value="D"> D. reduce acting</label>
-                    </div>
-                    <div class="feedback-box" id="q51-fb"></div>
-                </div>
-
-                <!-- Q52 -->
-                <div class="question-card" id="q52-block">
-                    <div class="question-text">52. Makeup is used to ________.</div>
-                    <div class="options-grid">
-                        <label class="option-item"><input type="radio" name="q52" value="A"> A. change an actor’s appearance</label>
-                        <label class="option-item"><input type="radio" name="q52" value="B"> B. repair costumes</label>
-                        <label class="option-item"><input type="radio" name="q52" value="C"> C. build stages</label>
-                        <label class="option-item"><input type="radio" name="q52" value="D"> D. write scripts</label>
-                    </div>
-                    <div class="feedback-box" id="q52-fb"></div>
-                </div>
-
-                <div class="section-header">Elements and Forms of Drama</div>
-
-                <!-- Q53 -->
-                <div class="question-card" id="q53-block">
-                    <div class="question-text">53. Conflict is an important ________ of drama.</div>
-                    <div class="options-grid">
-                        <label class="option-item"><input type="radio" name="q53" value="A"> A. tool</label>
-                        <label class="option-item"><input type="radio" name="q53" value="B"> B. element</label>
-                        <label class="option-item"><input type="radio" name="q53" value="C"> C. costume</label>
-                        <label class="option-item"><input type="radio" name="q53" value="D"> D. instrument</label>
-                    </div>
-                    <div class="feedback-box" id="q53-fb"></div>
-                </div>
-
-                <!-- Q54 -->
-                <div class="question-card" id="q54-block">
-                    <div class="question-text">54. Role playing means ________.</div>
-                    <div class="options-grid">
-                        <label class="option-item"><input type="radio" name="q54" value="A"> A. writing stories</label>
-                        <label class="option-item"><input type="radio" name="q54" value="B"> B. pretending to be another character</label>
-                        <label class="option-item"><input type="radio" name="q54" value="C"> C. drawing</label>
-                        <label class="option-item"><input type="radio" name="q54" value="D"> D. dancing</label>
-                    </div>
-                    <div class="feedback-box" id="q54-fb"></div>
-                </div>
-
-                <!-- Q55 -->
-                <div class="question-card" id="q55-block">
-                    <div class="question-text">55. Which is a form of drama?</div>
-                    <div class="options-grid">
-                        <label class="option-item"><input type="radio" name="q55" value="A"> A. Tragedy</label>
-                        <label class="option-item"><input type="radio" name="q55" value="B"> B. Comedy</label>
-                        <label class="option-item"><input type="radio" name="q55" value="C"> C. Tragicomedy</label>
-                        <label class="option-item"><input type="radio" name="q55" value="D"> D. All of the above</label>
-                    </div>
-                    <div class="feedback-box" id="q55-fb"></div>
-                </div>
-
-                <!-- Q56 -->
-                <div class="question-card" id="q56-block">
-                    <div class="question-text">56. A tragedy usually ends ________.</div>
-                    <div class="options-grid">
-                        <label class="option-item"><input type="radio" name="q56" value="A"> A. happily</label>
-                        <label class="option-item"><input type="radio" name="q56" value="B"> B. sadly</label>
-                        <label class="option-item"><input type="radio" name="q56" value="C"> C. with dancing</label>
-                        <label class="option-item"><input type="radio" name="q56" value="D"> D. with singing</label>
-                    </div>
-                    <div class="feedback-box" id="q56-fb"></div>
-                </div>
-
-                <!-- Q57 -->
-                <div class="question-card" id="q57-block">
-                    <div class="question-text">57. Comedy is meant to ________.</div>
-                    <div class="options-grid">
-                        <label class="option-item"><input type="radio" name="q57" value="A"> A. frighten</label>
-                        <label class="option-item"><input type="radio" name="q57" value="B"> B. entertain through humour</label>
-                        <label class="option-item"><input type="radio" name="q57" value="C"> C. punish</label>
-                        <label class="option-item"><input type="radio" name="q57" value="D"> D. confuse</label>
-                    </div>
-                    <div class="feedback-box" id="q57-fb"></div>
-                </div>
-
-                <!-- Q58 -->
-                <div class="question-card" id="q58-block">
-                    <div class="question-text">58. Tragicomedy combines ________.</div>
-                    <div class="options-grid">
-                        <label class="option-item"><input type="radio" name="q58" value="A"> A. music and dance</label>
-                        <label class="option-item"><input type="radio" name="q58" value="B"> B. tragedy and comedy</label>
-                        <label class="option-item"><input type="radio" name="q58" value="C"> C. drawing and painting</label>
-                        <label class="option-item"><input type="radio" name="q58" value="D"> D. carving and modelling</label>
-                    </div>
-                    <div class="feedback-box" id="q58-fb"></div>
-                </div>
-
-                <!-- Q59 -->
-                <div class="question-card" id="q59-block">
-                    <div class="question-text">59. Which of these is a characteristic of tragedy?</div>
-                    <div class="options-grid">
-                        <label class="option-item"><input type="radio" name="q59" value="A"> A. Happy ending</label>
-                        <label class="option-item"><input type="radio" name="q59" value="B"> B. Serious conflict</label>
-                        <label class="option-item"><input type="radio" name="q59" value="C"> C. Jokes only</label>
-                        <label class="option-item"><input type="radio" name="q59" value="D"> D. Singing competition</label>
-                    </div>
-                    <div class="feedback-box" id="q59-fb"></div>
-                </div>
-
-                <!-- Q60 -->
-                <div class="question-card" id="q60-block">
-                    <div class="question-text">60. One function of drama is to ________.</div>
-                    <div class="options-grid">
-                        <label class="option-item"><input type="radio" name="q60" value="A"> A. educate society</label>
-                        <label class="option-item"><input type="radio" name="q60" value="B"> B. preserve culture</label>
-                        <label class="option-item"><input type="radio" name="q60" value="C"> C. entertain people</label>
-                        <label class="option-item"><input type="radio" name="q60" value="D"> D. All of the above</label>
-                    </div>
-                    <div class="feedback-box" id="q60-fb"></div>
-                </div>
-
-                <button type="submit" class="btn" style="margin-top: 30px; font-size: 18px;">Submit Examination</button>
-            </form>
+        <!-- Student Verification Authorization Entrance Gateway -->
+        <div id="login-view">
+            <h4>Candidate Registration</h4>
+            <p>Please type your full name below to initialize your interactive Computer-Based Testing (CBT) sheet workspace.</p>
+            <input type="text" id="candidate-name-input" class="input-field" placeholder="Enter Student Full Name" autocomplete="off">
+            <button class="btn" onclick="initializeWorkspace()">Start Examination</button>
         </div>
 
-        <!-- ASSESSMENT SUMMARY DISPLAY -->
-        <div id="result-screen" class="card hidden">
-            <h2 style="color: var(--primary-color); text-align: center; margin-top: 0;">Performance Report Dashboard</h2>
-            <div class="score-box">
-                <div>Candidate Total Assessment Score:</div>
-                <div id="final-score" class="score-num">0 / 60</div>
-                <div id="final-remark" class="remark"></div>
+        <!-- Interactive Core Evaluation Test Canvas Sheet -->
+        <form id="examination-form" class="hidden" onsubmit="event.preventDefault(); evaluateExamPayload(false);">
+            
+            <div id="dynamic-exam-nodes"></div>
+
+            <div style="text-align: center; margin: 40px 0;">
+                <button type="button" class="btn" id="master-submit-btn" onclick="requestUserConfirmation()">Submit Examination</button>
             </div>
-            <h3 style="border-bottom: 2px solid #e5e7eb; padding-bottom: 8px; color: #374151;">Review & Corrections Summary</h3>
-            <p style="font-size: 14px; color: #6b7280; margin-bottom: 25px;">Scroll down to evaluate your selected responses alongside correct grading scripts.</p>
-            <div id="review-container"></div>
+        </form>
+
+        <!-- Final Performance Evaluation Grading Dashboard -->
+        <div id="report-dashboard" class="hidden">
+            <h2>Examination Evaluation Scorecard</h2>
+            <p id="report-name-target" style="font-size: 18px; margin-top: 10px; font-weight: 600;"></p>
+            <div class="score-metrics" id="report-score-target">0 / 60</div>
+            <p id="report-percentage-target" style="font-size: 20px; font-weight: 700; color: var(--secondary-color);"></p>
+            <p style="margin-top: 15px; color: #718096;">Review your graded answer sheet featuring detailed correction metrics underneath.</p>
         </div>
+
     </div>
 
     <script>
-        const answerKey = {
-            q1: "B", q2: "C", q3: "D", q4: "B", q5: "B", q6: "B", q7: "B", q8: "C", q9: "C", q10: "D",
-            q11: "C", q12: "B", q13: "B", q14: "B", q15: "B", q16: "B", q17: "B", q18: "B", q19: "B", q20: "B",
-            q21: "B", q22: "A", q23: "B", q24: "B", q25: "B", q26: "D", q27: "B", q28: "B", q29: "A", q30: "A",
-            q31: "B", q32: "B", q33: "A", q34: "B", q35: "A", q36: "A", q37: "B", q38: "B", q39: "A", q40: "D",
-            q41: "D", q42: "A", q43: "D", q44: "A", q45: "B", q46: "B", q47: "A", q48: "A", q49: "B", q50: "B",
-            q51: "B", q52: "A", q53: "B", q54: "B", q55: "D", q56: "B", q57: "B", q58: "B", q59: "B", q60: "D"
-        };
+        // Structural database holding questions data and corresponding keys
+        const structurePayload = [
+            { id: 1, q: "Which of the following is a contact sport?", options: ["Swimming", "Gymnastics", "Wrestling", "Athletics"], ans: 2 },
+            { id: 2, q: "Contact sports involve players making __________ contact with one another.", options: ["Indirect", "Visual", "Direct physical", "Verbal"], ans: 2 },
+            { id: 3, q: "Which of the following is an example of a non-contact sport?", options: ["Boxing", "Judo", "Wrestling", "Swimming"], ans: 3 },
+            { id: 4, q: "In wrestling, bringing an opponent to the ground is known as:", options: ["Bridging", "Takedown", "Dodging", "Gripping"], ans: 1 },
+            { id: 5, q: "Which of the following is a defensive wrestling skill?", options: ["Pinning", "Throwing", "Sprawling", "Body lock"], ans: 2 },
+            { id: 6, q: "Judo mainly emphasizes:", options: ["Brute strength", "Skill and balance", "Running speed", "Endurance only"], ans: 1 },
+            { id: 7, q: "Which skill in judo helps a player land safely?", options: ["Arm lock", "Foot sweep", "Hip throw", "Break fall"], ans: 3 },
+            { id: 8, q: "One physical benefit of contact sports is:", options: ["Poor coordination", "Increased laziness", "Improved strength", "Reduced balance"], ans: 2 },
+            { id: 9, q: "Which of these is a social benefit of contact sports?", options: ["Teamwork", "Weakness", "Isolation", "Fear"], ans: 0 },
+            { id: 10, q: "Which safety precaution should be observed before participating in contact sports?", options: ["Skip warm-up", "Wear sandals", "Warm up and stretch", "Ignore instructions"], ans: 2 },
+            { id: 11, q: "Non-contact sports emphasize:", options: ["Physical confrontation", "Tackling", "Skill and precision", "Aggression"], ans: 2 },
+            { id: 12, q: "Which of the following is a common stroke in swimming?", options: ["Freestyle", "Side kick", "Jump stroke", "Roll stroke"], ans: 0 },
+            { id: 13, q: "Gymnastics requires a high level of:", options: ["Aggression", "Flexibility", "Tackling", "Body contact"], ans: 1 },
+            { id: 14, q: "The ability to maintain body position is called:", options: ["Endurance", "Speed", "Balance", "Shooting"], ans: 2 },
+            { id: 15, q: "Which of these is a mental benefit of non-contact sports?", options: ["Anxiety", "Discipline and focus", "Fatigue", "Stress"], ans: 1 },
+            { id: 16, q: "Long jump is classified as a __________ event.", options: ["Swimming", "Field and track", "Combat", "Team"], ans: 1 },
+            { id: 17, q: "The first phase of long jump is:", options: ["Flight", "Landing", "Approach run", "Recovery"], ans: 2 },
+            { id: 18, q: "The moment an athlete leaves the ground is known as:", options: ["Landing", "Flight", "Take-off", "Recovery"], ans: 2 },
+            { id: 19, q: "Which of the following is a flight technique in long jump?", options: ["Sail technique", "Glide technique", "Roll technique", "Pivot technique"], ans: 0 },
+            { id: 20, q: "Distance in long jump is measured from the take-off line to the:", options: ["Furthest mark", "Nearest mark in the sand", "Athlete’s foot", "Landing board"], ans: 1 },
+            { id: 21, q: "Which official measures the jump distance in long jump?", options: ["Recorder", "Measurer", "Referee", "Coach"], ans: 1 },
+            { id: 22, q: "A jump is declared a foul when the athlete: ", options: ["Lands safely", "Runs fast", "Steps over the take-off line", "Uses one foot"], ans: 2 },
+            { id: 23, q: "High jump is a field event in which an athlete jumps over a:", options: ["Rope", "Pole", "Horizontal bar", "Net"], ans: 2 },
+            { id: 24, q: "An athlete must take off with __________ in high jump.", options: ["Two feet", "One foot", "One hand", "Both hands"], ans: 1 },
+            { id: 25, q: "Which of the following is a high jump technique?", options: ["Fosbury Flop", "Freestyle", "Breaststroke", "Takedown"], ans: 0 },
+            { id: 26, q: "The Fosbury Flop involves jumping over the bar:", options: ["Sideways", "Backward", "Forward", "Sitting"], ans: 1 },
+            { id: 27, q: "Which official ensures rules are obeyed in high jump?", options: ["Recorder", "Chief Judge", "Athlete", "Coach"], ans: 1 },
+            { id: 28, q: "Three consecutive failures in high jump will:", options: ["Award extra points", "End the event", "Eliminate the athlete", "Restart the jump"], ans: 2 },
+            { id: 29, q: "Shot put involves throwing a heavy metal ball called a:", options: ["Discus", "Shot", "Javelin", "Baton"], ans: 1 },
+            { id: 30, q: "In shot put, the shot rests on the:", options: ["Palm", "Fingers", "Wrist", "Elbow"], ans: 1 },
+            { id: 31, q: "The shot is __________ not thrown.", options: ["Kicked", "Pulled", "Pushed", "Dropped"], ans: 2 },
+            { id: 32, q: "Follow through in shot put helps to:", options: ["Cause fouls", "Maintain balance", "Reduce distance", "Stop movement"], ans: 1 },
+            { id: 33, q: "Discus is a field event in which a __________ is thrown.", options: ["Ball", "Stick", "Circular disc", "Pole"], ans: 2 },
+            { id: 34, q: "In discus, the athlete stands inside the:", options: ["Court", "Circle", "Pitch", "Track"], ans: 1 },
+            { id: 35, q: "Which of the following is a safety precaution in shot put?", options: ["Retrieve the shot during a throw", "Ignore officials", "Warm up properly", "Stand in the throwing area"], ans: 2 },
+            { id: 36, q: "Soccer is played between two teams of:", options: ["9 players", "10 players", "11 players", "12 players"], ans: 2 },
+            { id: 37, q: "The modern game of soccer developed in:", options: ["Nigeria", "England", "Brazil", "Egypt"], ans: 1 },
+            { id: 38, q: "FIFA was formed in:", options: ["1863", "1904", "1980", "2013"], ans: 1 },
+            { id: 39, q: "The governing body of football in Nigeria is:", options: ["CAF", "FIFA", "NFF", "IOC"], ans: 2 },
+            { id: 40, q: "Passing in soccer means:", options: ["Kicking at goal", "Moving the ball to another player", "Running with the ball", "Catching the ball"], ans: 1 },
+            { id: 41, q: "Which of the following is a type of pass?", options: ["Through pass", "Jump pass", "Circle pass", "Swing pass"], ans: 0 },
+            { id: 42, q: "Moving the ball while maintaining control is known as:", options: ["Shooting", "Trapping", "Dribbling", "Heading"], ans: 2 },
+            { id: 43, q: "The act of kicking the ball towards goal is called:", options: ["Passing", "Dribbling", "Trapping", "Shooting"], ans: 3 },
+            { id: 44, q: "Trapping is used to:", options: ["Stop a moving ball", "Score a goal", "Take a corner kick", "Award a penalty"], ans: 0 },
+            { id: 45, q: "Which player is allowed to use the hands within the penalty area?", options: ["Defender", "Striker", "Midfielder", "Goalkeeper"], ans: 3 },
+            { id: 46, q: "The chief official in soccer is the:", options: ["Coach", "Referee", "Recorder", "Captain"], ans: 1 },
+            { id: 47, q: "A yellow card indicates:", options: ["Goal", "Substitution", "Caution", "Victory"], ans: 2 },
+            { id: 48, q: "A red card means:", options: ["Warning", "Sending off", "Goal scored", "Kick-off"], ans: 1 },
+            { id: 49, q: "Which official signals offside offences?", options: ["Fourth Official", "Assistant Referee", "Coach", "Captain"], ans: 1 },
+            { id: 50, q: "The duration of a soccer match is:", options: ["60 minutes", "70 minutes", "80 minutes", "90 minutes"], ans: 3 },
+            { id: 51, q: "First aid is the immediate care given before:", options: ["School resumes", "Professional medical help arrives", "A game starts", "Transportation"], ans: 1 },
+            { id: 52, q: "One aim of first aid is to:", options: ["Cause pain", "Preserve life", "Delay treatment", "Spread infection"], ans: 1 },
+            { id: 53, q: "Which of the following may be found in a first aid box?", options: ["Television", "Thermometer", "Chalkboard", "Calculator"], ans: 1 },
+            { id: 54, q: "Which of the following can cause fainting?", options: ["Exercise only", "Hunger", "Happiness", "Reading"], ans: 1 },
+            { id: 55, q: "During fainting, the casualty should be:", options: ["Forced to stand", "Laid flat", "Made to run", "Left alone"], ans: 1 },
+            { id: 56, q: "Shock is a condition in which blood circulation becomes:", options: ["Faster", "Adequate", "Inadequate", "Balanced"], ans: 2 },
+            { id: 57, q: "Which of the following is a sign of shock?", options: ["Warm skin", "Strong pulse", "Pale skin", "Increased appetite"], ans: 2 },
+            { id: 58, q: "For a snake bite victim, the bitten limb should be:", options: ["Moved frequently", "Immobilized", "Cut open", "Heated"], ans: 1 },
+            { id: 59, q: "A bee sting may cause:", options: ["Redness", "Blindness", "Fracture", "Paralysis"], ans: 0 },
+            { id: 60, q: "One general rule of first aid is to:", options: ["Panic", "Stay calm", "Ignore the casualty", "Run away"], ans: 1 }
+        ];
 
-        const choiceLabels = {
-            A: "Computers", B: "Live performance before an audience", C: "Books only", D: "Paintings only",
-            q2_A: "punish people", q2_B: "educate only", q2_C: "amuse and educate people", q2_D: "destroy culture",
-            q3_A: "Dance", q3_B: "Music", q3_C: "Drama", q3_D: "Carving",
-            q4_A: "waste time", q4_B: "preserve culture", q4_C: "reduce creativity", q4_D: "encourage violence",
-            q5_A: "Hammer", q5_B: "Pencil", q5_C: "Spoon", q5_D: "Cup",
-            q6_A: "singing", q6_B: "painting", q6_C: "dancing", q6_D: "weaving",
-            q7_A: "sharpen pencils", q7_B: "remove unwanted pencil marks", q7_C: "mix colours", q7_D: "paint objects",
-            q8_A: "circles", q8_B: "curved lines", q8_C: "straight lines", q8_D: "zigzag lines",
-            q9_A: "Re", q9_B: "Mi", q9_C: "Do", q9_D: "Fa",
-            q10_A: "So", q10_B: "Ti", q10_C: "La", q10_D: "Ka",
-            q11_A: "So", q11_B: "Ti", q11_C: "Do", q11_D: "Mi",
-            q12_A: "draw pictures", q12_B: "read and sing music", q12_C: "carve wood", q12_D: "mould clay",
-            q13_A: "songs", q13_B: "pictures", q13_C: "dances", q13_D: "speeches",
-            q14_A: "movement only", q14_B: "light and darkness", q14_C: "sound", q14_D: "colour only",
-            q15_A: "Folding", q15_B: "Hatching", q15_C: "Tearing", q15_D: "Coiling",
-            q16_A: "dots", q16_B: "straight parallel lines", q16_C: "circles", q16_D: "squares",
-            q17_A: "one line", q17_B: "crossing parallel lines", q17_C: "curves only", q17_D: "dots only",
-            q18_A: "smell", q18_B: "surface quality", q18_C: "sound", q18_D: "movement",
-            q19_A: "Straight line", q19_B: "Curved line", q19_C: "Broken line", q19_D: "Horizontal line",
-            q20_A: "creates confusion", q20_B: "forms the outline of objects", q20_C: "wastes time", q20_D: "removes colour",
-            q21_A: "sound", q21_B: "depth", q21_C: "smell", q21_D: "rhythm",
-            q22_A: "One-point perspective", q22_B: "Four-point music", q22_C: "Double carving", q22_D: "Flat modelling",
-            q23_A: "horizon", q23_B: "vanishing point", q23_C: "corner", q23_D: "border",
-            q24_A: "flat", q24_B: "realistic", q24_C: "invisible", q24_D: "colourful",
-            q25_A: "paper", q25_B: "clay or similar materials", q25_C: "water", q25_D: "sand only",
-            q26_A: "Pinching", q26_B: "Coiling", q26_C: "Slab", q26_D: "Hatching",
-            q27_A: "machine", q27_B: "fingers", q27_C: "ruler", q27_D: "knife",
-            q28_A: "slab", q28_B: "coiling", q28_C: "carving", q28_D: "folding",
-            q29_A: "slab", q29_B: "coiling", q29_C: "painting", q29_D: "hatching",
-            q30_A: "Modelling stick", q30_B: "Spoon", q30_C: "Bottle", q30_D: "Plate",
-            q31_A: "laziness", q31_B: "creativity", q31_C: "fear", q31_D: "anger",
-            q32_A: "cloth", q32_B: "paper", q32_C: "wood", q32_D: "leather",
-            q33_A: "Gum", q33_B: "Cement", q33_C: "Iron", q33_D: "Plastic",
-            q34_A: "bake it", q34_B: "tear paper into pieces", q34_C: "paint it", q34_D: "polish it",
-            q35_A: "drying", q35_B: "freezing", q35_C: "boiling", q35_D: "burning",
-            q36_A: "river bank", q36_B: "sky", q36_C: "roof", q36_D: "mountain top only",
-            q37_A: "soaking", q37_B: "drying or firing", q37_C: "washing", q37_D: "cutting",
-            q38_A: "Transparent", q38_B: "Plastic", q38_C: "Metallic", q38_D: "Elastic",
-            q39_A: "Earthenware clay", q39_B: "Gold clay", q39_C: "Plastic clay", q39_D: "Cotton clay",
-            q40_A: "wood", q40_B: "stone", q40_C: "calabash", q40_D: "All of the above",
-            q41_A: "Calabash", q41_B: "Wood", q41_C: "Ivory", q41_D: "All of the above",
-            q42_A: "Chisel", q42_B: "Brush", q42_C: "Eraser", q42_D: "Needle",
-            q43_A: "Bottle calabash", q43_B: "Sweet calabash", q43_C: "Round calabash", q43_D: "Both A and C",
-            q44_A: "acting", q44_B: "sewing", q44_C: "carving", q44_D: "drawing",
-            q45_A: "football is played", q45_B: "drama is performed", q45_C: "books are sold", q45_D: "paintings are made",
-            q46_A: "producer", q46_B: "playwright", q46_C: "actor", q46_D: "audience",
-            q47_A: "director", q47_B: "singer", q47_C: "dancer", q47_D: "painter",
-            q48_A: "finances the production", q48_B: "acts only", q48_C: "writes songs", q48_D: "paints scenery",
-            q49_A: "cast", q49_B: "audience", q49_C: "choir", q49_D: "judges",
-            q50_A: "sleep", q50_B: "look like their characters", q50_C: "cook", q50_D: "sing better",
-            q51_A: "decorate classrooms", q51_B: "improve visibility and mood", q51_C: "make noise", q51_D: "reduce acting",
-            q52_A: "change an actor’s appearance", q52_B: "repair costumes", q52_C: "build stages", q52_D: "write scripts",
-            q53_A: "tool", q53_B: "element", q53_C: "costume", q53_D: "instrument",
-            q54_A: "writing stories", q54_B: "pretending to be another character", q54_C: "drawing", q54_D: "dancing",
-            q55_A: "Tragedy", q55_B: "Comedy", q55_C: "Tragicomedy", q55_D: "All of the above",
-            q56_A: "happily", q56_B: "sadly", q56_C: "with dancing", q56_D: "with singing",
-            q57_A: "frighten", q57_B: "entertain through humour", q57_C: "punish", q57_D: "confuse",
-            q58_A: "music and dance", q58_B: "tragedy and comedy", q58_C: "drawing and painting", q58_D: "carving and modelling",
-            q59_A: "Happy ending", q59_B: "Serious conflict", q59_C: "Jokes only", q59_D: "Singing competition",
-            q60_A: "educate society", q60_B: "preserve culture", q60_C: "entertain people", q60_D: "All of the above"
-        };
+        let countdownRef;
+        let totalTimeSec = 30 * 60; // 30 Minutes standard system time limit
+        let formSubmitted = false;
 
-        function getOptionText(qNum, optLetter) {
-            if(qNum === 1) return optLetter === 'A' ? "Computers" : optLetter === 'B' ? "Live performance before an audience" : optLetter === 'C' ? "Books only" : "Paintings only";
-            let key = 'q' + qNum + '_' + optLetter;
-            return choiceLabels[key] || optLetter;
+        function assembleExamDOM() {
+            const displayPool = document.getElementById('dynamic-exam-nodes');
+            displayPool.innerHTML = `<div class="section-header">INSTRUCTION: ANSWER ALL QUESTIONS IN THIS SECTION</div>`;
+
+            structurePayload.forEach((node, index) => {
+                const optionPrefix = ["A", "B", "C", "D"];
+                let optionsMarkup = "";
+
+                node.options.forEach((opt, idx) => {
+                    optionsMarkup += `
+                        <label class="option-item" id="lbl-q${node.id}-o${idx}">
+                            <input type="radio" name="input-q${node.id}" value="${idx}">
+                            <span><strong>${optionPrefix[idx]}.</strong> ${opt}</span>
+                        </label>
+                    `;
+                });
+
+                const cardUI = `
+                    <div class="question-card" id="card-block-q${node.id}">
+                        <div class="question-text">${index + 1}. ${node.q}</div>
+                        <div class="options-grid">
+                            ${optionsMarkup}
+                        </div>
+                        <div id="evaluation-q${node.id}"></div>
+                    </div>
+                `;
+                displayPool.innerHTML += cardUI;
+            });
         }
 
-        let timer;
-        let timeRemaining = 30 * 60; // 30 Minutes
-
-        function startExamination() {
-            const nameField = document.getElementById('student-name').value.trim();
-            if (!nameField) {
-                alert("Please type your name in the input box before launching the exam.");
+        function initializeWorkspace() {
+            const inputName = document.getElementById('candidate-name-input').value.trim();
+            if (!inputName) {
+                alert("Please enter your name to unlock the examination script layout.");
                 return;
             }
-            document.getElementById('welcome-screen').classList.add('hidden');
-            document.getElementById('quiz-screen').classList.remove('hidden');
-            document.getElementById('candidate-meta').innerText = "CANDIDATE: " + nameField.toUpperCase();
-            
-            beginTimerCountdown();
+
+            document.getElementById('hud-candidate').innerText = `Candidate: ${inputName.toUpperCase()}`;
+            document.getElementById('login-view').classList.add('hidden');
+            document.getElementById('hud-bar').classList.remove('hidden');
+            document.getElementById('examination-form').classList.remove('hidden');
+
+            assembleExamDOM();
+            beginTimeDecrement();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function beginTimerCountdown() {
-            timer = setInterval(() => {
-                timeRemaining--;
-                let min = Math.floor(timeRemaining / 60);
-                let sec = timeRemaining % 60;
-                
-                document.getElementById('countdown-timer').innerText = `Time Left: ${min.toString().padStart(2, '0')}:${sec.toString().padStart(2, '0')}`;
-                
-                if (timeRemaining <= 0) {
-                    clearInterval(timer);
-                    alert("Time has elapsed! Processing automated script evaluation.");
-                    submitExamination();
+        function beginTimeDecrement() {
+            countdownRef = setInterval(() => {
+                if (totalTimeSec <= 0) {
+                    clearInterval(countdownRef);
+                    document.getElementById('hud-timer').innerText = "TIME EXPIRED";
+                    alert("The allocated execution time has expired. Your script will submit automatically.");
+                    evaluateExamPayload(true);
+                } else {
+                    totalTimeSec--;
+                    let min = Math.floor(totalTimeSec / 60);
+                    let sec = totalTimeSec % 60;
+
+                    min = min < 10 ? '0' + min : min;
+                    sec = sec < 10 ? '0' + sec : sec;
+
+                    document.getElementById('hud-timer').innerText = `Time Remaining: ${min}:${sec}`;
+
+                    if (totalTimeSec <= 300) {
+                        document.getElementById('hud-bar').classList.add('warning');
+                    }
                 }
             }, 1000);
         }
 
-        function submitExamination() {
-            clearInterval(timer);
-            let score = 0;
-            const form = document.getElementById('cca-form');
-            const reviewContainer = document.getElementById('review-container');
-            reviewContainer.innerHTML = ''; 
-
-            for (let i = 1; i <= 60; i++) {
-                let qKey = 'q' + i;
-                let userSelection = form.elements[qKey] ? form.elements[qKey].value : '';
-                let correctAns = answerKey[qKey];
-                
-                let qCard = document.getElementById(`${qKey}-block`);
-                let textQuestion = qCard.querySelector('.question-text').innerText;
-
-                let logBlock = document.createElement('div');
-                logBlock.style.padding = '15px';
-                logBlock.style.marginBottom = '15px';
-                logBlock.style.borderRadius = '6px';
-                logBlock.style.border = '1px solid #e5e7eb';
-
-                let userText = userSelection ? getOptionText(i, userSelection) : "No choice selected";
-                let correctText = getOptionText(i, correctAns);
-
-                if (userSelection === correctAns) {
-                    score++;
-                    logBlock.style.backgroundColor = 'var(--success-bg)';
-                    logBlock.style.color = 'var(--success)';
-                    logBlock.innerHTML = `<strong>Question ${i}: CORRECT</strong><br>${textQuestion}<br><br>&bull; Your Selection: [${userSelection}] ${userText}`;
-                } else {
-                    logBlock.style.backgroundColor = 'var(--danger-bg)';
-                    logBlock.style.color = 'var(--danger)';
-                    logBlock.innerHTML = `<strong>Question ${i}: INCORRECT</strong><br>${textQuestion}<br><br>&bull; Selected Answer: [${userSelection || 'None'}] ${userText}<br>&bull; Correct Correction script: [${correctAns}] ${correctText}`;
+        function requestUserConfirmation() {
+            let trackedAnswers = 0;
+            structurePayload.forEach(node => {
+                if (document.querySelector(`input[name="input-q${node.id}"]:checked`)) {
+                    trackedAnswers++;
                 }
-                reviewContainer.appendChild(logBlock);
+            });
+
+            const userVerdict = confirm(`You have answered ${trackedAnswers} out of ${structurePayload.length} questions. Are you sure you want to finish and submit?`);
+            if (userVerdict) {
+                evaluateExamPayload(false);
             }
+        }
 
-            document.getElementById('quiz-screen').classList.add('hidden');
-            document.getElementById('result-screen').classList.remove('hidden');
+        function evaluateExamPayload(isForcedTimeout = false) {
+            if (formSubmitted) return;
+            formSubmitted = true;
 
-            const percent = ((score / 60) * 100).toFixed(1);
-            document.getElementById('final-score').innerText = `${score} / 60 (${percent}%)`;
+            clearInterval(countdownRef);
+            document.getElementById('hud-bar').classList.add('hidden');
+            document.getElementById('master-submit-btn').classList.add('hidden');
 
-            let remarkLabel = document.getElementById('final-remark');
-            if (percent >= 70) {
-                remarkLabel.innerText = "Remark: Excellent Performance! Distinction Grade.";
-                remarkLabel.style.color = "green";
-            } else if (percent >= 45) {
-                remarkLabel.innerText = "Remark: Good Performance! Pass Grade achieved.";
-                remarkLabel.style.color = "blue";
-            } else {
-                remarkLabel.innerText = "Remark: Poor Score. Re-evaluate metrics via review script below.";
-                remarkLabel.style.color = "red";
-            }
+            let aggregateScore = 0;
+            const userName = document.getElementById('candidate-name-input').value.toUpperCase();
 
+            structurePayload.forEach((node) => {
+                const selectedRadio = document.querySelector(`input[name="input-q${node.id}"]:checked`);
+                const logFeedbackNode = document.getElementById(`evaluation-q${node.id}`);
+                const selectionIdx = selectedRadio ? parseInt(selectedRadio.value) : null;
+
+                const optionElements = document.querySelectorAll(`input[name="input-q${node.id}"]`);
+                optionElements.forEach(radio => radio.disabled = true);
+
+                if (selectionIdx === node.ans) {
+                    aggregateScore++;
+                    document.getElementById(`lbl-q${node.id}-o${node.ans}`).classList.add('item-correct');
+                    logFeedbackNode.innerHTML = `<span class="correction-badge badge-success">✓ Correct Answer</span>`;
+                } else {
+                    document.getElementById(`lbl-q${node.id}-o${node.ans}`).classList.add('item-correct');
+                    if (selectionIdx !== null) {
+                        document.getElementById(`lbl-q${node.id}-o${selectionIdx}`).classList.add('item-wrong');
+                    }
+                    
+                    const charMap = ["A", "B", "C", "D"];
+                    logFeedbackNode.innerHTML = `
+                        <span class="correction-badge badge-danger">
+                            Correction: Option ${charMap[node.ans]} — "${node.options[node.ans]}" is correct.
+                        </span>`;
+                }
+            });
+
+            const computationPercentage = Math.round((aggregateScore / structurePayload.length) * 100);
+            
+            document.getElementById('report-name-target').innerText = `Performance metrics for candidate: ${userName}`;
+            document.getElementById('report-score-target').innerText = `${aggregateScore} / ${structurePayload.length}`;
+            document.getElementById('report-percentage-target').innerText = `Final Grade: ${computationPercentage}%`;
+            
+            document.getElementById('report-dashboard').classList.remove('hidden');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
