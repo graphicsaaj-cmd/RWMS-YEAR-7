@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ROYAL WUNDERKIND MODEL SCHOOL - YEAR 7 PHE EXAM</title>
+    <title>ROYAL WUNDERKIND MODEL SCHOOL - YEAR 7 BUSINESS STUDIES EXAM</title>
     <style>
         :root {
             --primary-color: #1a365d;
@@ -260,7 +260,6 @@
 </head>
 <body>
 
-    <!-- Upper Interactive Dynamic Status Tracker HUD -->
     <div id="hud-bar" class="hidden">
         <div id="hud-candidate">Candidate: </div>
         <div id="hud-timer">Time Remaining: 30:00</div>
@@ -268,27 +267,24 @@
 
     <div class="container">
         
-        <!-- Institutional Header Layout Panel -->
         <div class="header-panel">
             <h1>Royal Wunderkind Model School</h1>
             <h2>Jalala Area, Tanke, Oke - Odo, Ilorin</h2>
-            <h3>PHYSICAL & HEALTH EDUCATION (PHE)</h3>
+            <h3>SUBJECT: BUSINESS STUDIES</h3>
             <div class="meta-grid">
                 <div><strong>Session:</strong> 2025/2026 Third Term</div>
-                <div><strong>Class:</strong> Keystage 3 (Year 7)</div>
-                <div><strong>Duration:</strong> 30 Minutes</div>
+                <div><strong>Class:</strong> Year 7 (Keystage 3)</div>
+                <div><strong>Timer Limit:</strong> 30 Minutes</div>
             </div>
         </div>
 
-        <!-- Student Verification Authorization Entrance Gateway -->
         <div id="login-view">
-            <h4>Candidate Registration</h4>
-            <p>Please type your full name below to initialize your interactive Computer-Based Testing (CBT) sheet workspace.</p>
-            <input type="text" id="candidate-name-input" class="input-field" placeholder="Enter Student Full Name" autocomplete="off">
+            <h4>Candidate Examination Login</h4>
+            <p>Input your formal name into the entry field below to begin the assessment workspace.</p>
+            <input type="text" id="candidate-name-input" class="input-field" placeholder="Enter Student's Full Name" autocomplete="off">
             <button class="btn" onclick="initializeWorkspace()">Start Examination</button>
         </div>
 
-        <!-- Interactive Core Evaluation Test Canvas Sheet -->
         <form id="examination-form" class="hidden" onsubmit="event.preventDefault(); evaluateExamPayload(false);">
             
             <div id="dynamic-exam-nodes"></div>
@@ -298,89 +294,88 @@
             </div>
         </form>
 
-        <!-- Final Performance Evaluation Grading Dashboard -->
         <div id="report-dashboard" class="hidden">
             <h2>Examination Evaluation Scorecard</h2>
             <p id="report-name-target" style="font-size: 18px; margin-top: 10px; font-weight: 600;"></p>
             <div class="score-metrics" id="report-score-target">0 / 60</div>
             <p id="report-percentage-target" style="font-size: 20px; font-weight: 700; color: var(--secondary-color);"></p>
-            <p style="margin-top: 15px; color: #718096;">Review your graded answer sheet featuring detailed correction metrics underneath.</p>
+            <p style="margin-top: 15px; color: #718096;">Scroll down to evaluate your graded submission with marked corrections.</p>
         </div>
 
     </div>
 
     <script>
-        // Structural database holding questions data and corresponding keys
+        // Formulated structured database items populated with key mappings from exam contents
         const structurePayload = [
-            { id: 1, q: "Which of the following is a contact sport?", options: ["Swimming", "Gymnastics", "Wrestling", "Athletics"], ans: 2 },
-            { id: 2, q: "Contact sports involve players making __________ contact with one another.", options: ["Indirect", "Visual", "Direct physical", "Verbal"], ans: 2 },
-            { id: 3, q: "Which of the following is an example of a non-contact sport?", options: ["Boxing", "Judo", "Wrestling", "Swimming"], ans: 3 },
-            { id: 4, q: "In wrestling, bringing an opponent to the ground is known as:", options: ["Bridging", "Takedown", "Dodging", "Gripping"], ans: 1 },
-            { id: 5, q: "Which of the following is a defensive wrestling skill?", options: ["Pinning", "Throwing", "Sprawling", "Body lock"], ans: 2 },
-            { id: 6, q: "Judo mainly emphasizes:", options: ["Brute strength", "Skill and balance", "Running speed", "Endurance only"], ans: 1 },
-            { id: 7, q: "Which skill in judo helps a player land safely?", options: ["Arm lock", "Foot sweep", "Hip throw", "Break fall"], ans: 3 },
-            { id: 8, q: "One physical benefit of contact sports is:", options: ["Poor coordination", "Increased laziness", "Improved strength", "Reduced balance"], ans: 2 },
-            { id: 9, q: "Which of these is a social benefit of contact sports?", options: ["Teamwork", "Weakness", "Isolation", "Fear"], ans: 0 },
-            { id: 10, q: "Which safety precaution should be observed before participating in contact sports?", options: ["Skip warm-up", "Wear sandals", "Warm up and stretch", "Ignore instructions"], ans: 2 },
-            { id: 11, q: "Non-contact sports emphasize:", options: ["Physical confrontation", "Tackling", "Skill and precision", "Aggression"], ans: 2 },
-            { id: 12, q: "Which of the following is a common stroke in swimming?", options: ["Freestyle", "Side kick", "Jump stroke", "Roll stroke"], ans: 0 },
-            { id: 13, q: "Gymnastics requires a high level of:", options: ["Aggression", "Flexibility", "Tackling", "Body contact"], ans: 1 },
-            { id: 14, q: "The ability to maintain body position is called:", options: ["Endurance", "Speed", "Balance", "Shooting"], ans: 2 },
-            { id: 15, q: "Which of these is a mental benefit of non-contact sports?", options: ["Anxiety", "Discipline and focus", "Fatigue", "Stress"], ans: 1 },
-            { id: 16, q: "Long jump is classified as a __________ event.", options: ["Swimming", "Field and track", "Combat", "Team"], ans: 1 },
-            { id: 17, q: "The first phase of long jump is:", options: ["Flight", "Landing", "Approach run", "Recovery"], ans: 2 },
-            { id: 18, q: "The moment an athlete leaves the ground is known as:", options: ["Landing", "Flight", "Take-off", "Recovery"], ans: 2 },
-            { id: 19, q: "Which of the following is a flight technique in long jump?", options: ["Sail technique", "Glide technique", "Roll technique", "Pivot technique"], ans: 0 },
-            { id: 20, q: "Distance in long jump is measured from the take-off line to the:", options: ["Furthest mark", "Nearest mark in the sand", "Athlete’s foot", "Landing board"], ans: 1 },
-            { id: 21, q: "Which official measures the jump distance in long jump?", options: ["Recorder", "Measurer", "Referee", "Coach"], ans: 1 },
-            { id: 22, q: "A jump is declared a foul when the athlete: ", options: ["Lands safely", "Runs fast", "Steps over the take-off line", "Uses one foot"], ans: 2 },
-            { id: 23, q: "High jump is a field event in which an athlete jumps over a:", options: ["Rope", "Pole", "Horizontal bar", "Net"], ans: 2 },
-            { id: 24, q: "An athlete must take off with __________ in high jump.", options: ["Two feet", "One foot", "One hand", "Both hands"], ans: 1 },
-            { id: 25, q: "Which of the following is a high jump technique?", options: ["Fosbury Flop", "Freestyle", "Breaststroke", "Takedown"], ans: 0 },
-            { id: 26, q: "The Fosbury Flop involves jumping over the bar:", options: ["Sideways", "Backward", "Forward", "Sitting"], ans: 1 },
-            { id: 27, q: "Which official ensures rules are obeyed in high jump?", options: ["Recorder", "Chief Judge", "Athlete", "Coach"], ans: 1 },
-            { id: 28, q: "Three consecutive failures in high jump will:", options: ["Award extra points", "End the event", "Eliminate the athlete", "Restart the jump"], ans: 2 },
-            { id: 29, q: "Shot put involves throwing a heavy metal ball called a:", options: ["Discus", "Shot", "Javelin", "Baton"], ans: 1 },
-            { id: 30, q: "In shot put, the shot rests on the:", options: ["Palm", "Fingers", "Wrist", "Elbow"], ans: 1 },
-            { id: 31, q: "The shot is __________ not thrown.", options: ["Kicked", "Pulled", "Pushed", "Dropped"], ans: 2 },
-            { id: 32, q: "Follow through in shot put helps to:", options: ["Cause fouls", "Maintain balance", "Reduce distance", "Stop movement"], ans: 1 },
-            { id: 33, q: "Discus is a field event in which a __________ is thrown.", options: ["Ball", "Stick", "Circular disc", "Pole"], ans: 2 },
-            { id: 34, q: "In discus, the athlete stands inside the:", options: ["Court", "Circle", "Pitch", "Track"], ans: 1 },
-            { id: 35, q: "Which of the following is a safety precaution in shot put?", options: ["Retrieve the shot during a throw", "Ignore officials", "Warm up properly", "Stand in the throwing area"], ans: 2 },
-            { id: 36, q: "Soccer is played between two teams of:", options: ["9 players", "10 players", "11 players", "12 players"], ans: 2 },
-            { id: 37, q: "The modern game of soccer developed in:", options: ["Nigeria", "England", "Brazil", "Egypt"], ans: 1 },
-            { id: 38, q: "FIFA was formed in:", options: ["1863", "1904", "1980", "2013"], ans: 1 },
-            { id: 39, q: "The governing body of football in Nigeria is:", options: ["CAF", "FIFA", "NFF", "IOC"], ans: 2 },
-            { id: 40, q: "Passing in soccer means:", options: ["Kicking at goal", "Moving the ball to another player", "Running with the ball", "Catching the ball"], ans: 1 },
-            { id: 41, q: "Which of the following is a type of pass?", options: ["Through pass", "Jump pass", "Circle pass", "Swing pass"], ans: 0 },
-            { id: 42, q: "Moving the ball while maintaining control is known as:", options: ["Shooting", "Trapping", "Dribbling", "Heading"], ans: 2 },
-            { id: 43, q: "The act of kicking the ball towards goal is called:", options: ["Passing", "Dribbling", "Trapping", "Shooting"], ans: 3 },
-            { id: 44, q: "Trapping is used to:", options: ["Stop a moving ball", "Score a goal", "Take a corner kick", "Award a penalty"], ans: 0 },
-            { id: 45, q: "Which player is allowed to use the hands within the penalty area?", options: ["Defender", "Striker", "Midfielder", "Goalkeeper"], ans: 3 },
-            { id: 46, q: "The chief official in soccer is the:", options: ["Coach", "Referee", "Recorder", "Captain"], ans: 1 },
-            { id: 47, q: "A yellow card indicates:", options: ["Goal", "Substitution", "Caution", "Victory"], ans: 2 },
-            { id: 48, q: "A red card means:", options: ["Warning", "Sending off", "Goal scored", "Kick-off"], ans: 1 },
-            { id: 49, q: "Which official signals offside offences?", options: ["Fourth Official", "Assistant Referee", "Coach", "Captain"], ans: 1 },
-            { id: 50, q: "The duration of a soccer match is:", options: ["60 minutes", "70 minutes", "80 minutes", "90 minutes"], ans: 3 },
-            { id: 51, q: "First aid is the immediate care given before:", options: ["School resumes", "Professional medical help arrives", "A game starts", "Transportation"], ans: 1 },
-            { id: 52, q: "One aim of first aid is to:", options: ["Cause pain", "Preserve life", "Delay treatment", "Spread infection"], ans: 1 },
-            { id: 53, q: "Which of the following may be found in a first aid box?", options: ["Television", "Thermometer", "Chalkboard", "Calculator"], ans: 1 },
-            { id: 54, q: "Which of the following can cause fainting?", options: ["Exercise only", "Hunger", "Happiness", "Reading"], ans: 1 },
-            { id: 55, q: "During fainting, the casualty should be:", options: ["Forced to stand", "Laid flat", "Made to run", "Left alone"], ans: 1 },
-            { id: 56, q: "Shock is a condition in which blood circulation becomes:", options: ["Faster", "Adequate", "Inadequate", "Balanced"], ans: 2 },
-            { id: 57, q: "Which of the following is a sign of shock?", options: ["Warm skin", "Strong pulse", "Pale skin", "Increased appetite"], ans: 2 },
-            { id: 58, q: "For a snake bite victim, the bitten limb should be:", options: ["Moved frequently", "Immobilized", "Cut open", "Heated"], ans: 1 },
-            { id: 59, q: "A bee sting may cause:", options: ["Redness", "Blindness", "Fracture", "Paralysis"], ans: 0 },
-            { id: 60, q: "One general rule of first aid is to:", options: ["Panic", "Stay calm", "Ignore the casualty", "Run away"], ans: 1 }
+            { id: 1, q: "Digital technology processes data using the ______ system.", options: ["Decimal", "Binary", "Roman", "Metric"], ans: 1 },
+            { id: 2, q: "Which of the following is NOT an example of digital technology?", options: ["Smartphone", "Computer", "Internet", "Cowrie shells"], ans: 3 },
+            { id: 3, q: "One major importance of digital technology in business is:", options: ["Increased manual work", "Reduced communication", "Improved efficiency", "Higher paperwork"], ans: 2 },
+            { id: 4, q: "Which digital tool is mainly used for video meetings?", options: ["Excel", "Zoom", "Canva", "POS"], ans: 1 },
+            { id: 5, q: "Microsoft Excel is an example of a:", options: ["Spreadsheet", "Browser", "Database", "Antivirus"], ans: 0 },
+            { id: 6, q: "Which factor should be considered when selecting digital technology?", options: ["Color of device", "Security", "Brand popularity only", "Shape"], ans: 1 },
+            { id: 7, q: "Digital citizenship refers to:", options: ["Owning a computer", "Responsible use of technology", "Buying phones", "Internet ownership"], ans: 1 },
+            { id: 8, q: "Cyberbullying violates the principle of:", options: ["Digital etiquette", "Scalability", "Compatibility", "Automation"], ans: 0 },
+            { id: 9, q: "Which of the following promotes digital safety?", options: ["Sharing passwords", "Using weak PIN", "Strong passwords", "Ignoring updates"], ans: 2 },
+            { id: 10, q: "Digital literacy means:", options: ["Ability to use digital tools effectively", "Ability to repair phones", "Ability to manufacture computers", "Ability to sell technology"], ans: 0 },
+            { id: 11, q: "Money is generally accepted as a:", options: ["Gift", "Medium of exchange", "Punishment", "Commodity only"], ans: 1 },
+            { id: 12, q: "Which is a characteristic of money?", options: ["Fragility", "Scarcity", "Weight", "Complexity"], ans: 1 },
+            { id: 13, q: "The primary function of money as a medium of exchange means:", options: ["Saving wealth", "Measuring value", "Buying and selling goods", "Paying taxes only"], ans: 2 },
+            { id: 14, q: "Which stage came first in the evolution of money?", options: ["Electronic money", "Paper money", "Barter system", "Credit money"], ans: 2 },
+            { id: 15, q: "A major problem of the barter system is:", options: ["Easy storage", "Double coincidence of wants", "Uniformity", "Divisibility"], ans: 1 },
+            { id: 16, q: "Government-issued money is known as:", options: ["Commodity money", "Fiat money", "Bank money", "Credit money"], ans: 1 },
+            { id: 17, q: "Salary and wages are examples of:", options: ["Sources of money", "Uses of money", "Credit facilities", "Savings plans"], ans: 0 },
+            { id: 18, q: "Spending wisely is an example of:", options: ["Money etiquette", "Barter trade", "Credit policy", "Inflation"], ans: 0 },
+            { id: 19, q: "A cashless economy involves:", options: ["No banking system", "No transactions", "Electronic transactions", "Only cash payments"], ans: 2 },
+            { id: 20, q: "Which is NOT a feature of a cashless economy?", options: ["Faster transactions", "Electronic records", "Dependence on technology", "Increased use of cash"], ans: 3 },
+            { id: 21, q: "One advantage of a cashless economy is:", options: ["Theft increase", "Convenience", "Slow transactions", "More paperwork"], ans: 1 },
+            { id: 22, q: "Cybercrime is a ____ of a cashless economy.", options: ["Benefit", "Feature", "Disadvantage", "Objective"], ans: 2 },
+            { id: 23, q: "The cashless policy in Nigeria was introduced by the:", options: ["NNPC", "CBN", "WAEC", "EFCC"], ans: 1 },
+            { id: 24, q: "Which is a cashless payment method?", options: ["Cowries", "ATM", "Barter", "Commodity exchange"], ans: 1 },
+            { id: 25, q: "Poor network infrastructure is a challenge to:", options: ["Saving", "Credit", "Cashless economy", "Barter trade"], ans: 2 },
+            { id: 26, q: "Digital currency exists in:", options: ["Paper form", "Coin form", "Electronic form", "Metallic form"], ans: 2 },
+            { id: 27, q: "Which of the following is a cryptocurrency?", options: ["Naira", "Dollar", "Bitcoin", "Cowrie"], ans: 2 },
+            { id: 28, q: "Digital currency is:", options: ["Tangible", "Intangible", "Metallic", "Printed"], ans: 1 },
+            { id: 29, q: "One use of digital currency is:", options: ["Buying airtime", "Printing books", "Mining gold", "Manufacturing phones"], ans: 0 },
+            { id: 30, q: "Which is an advantage of digital currency?", options: ["Slow transactions", "Convenience", "Requires no security", "Difficult record keeping"], ans: 1 },
+            { id: 31, q: "One disadvantage of digital currency is:", options: ["Fast transfer", "Cybercrime risk", "Convenience", "Easy tracking"], ans: 1 },
+            { id: 32, q: "Which technology allows cash withdrawal without entering a bank?", options: ["Blockchain", "ATM", "Cloud storage", "AI"], ans: 1 },
+            { id: 33, q: "POS stands for:", options: ["Point of Sale", "Price of Service", "Place of Security", "Product of Sale"], ans: 0 },
+            { id: 34, q: "Blockchain is mainly used for:", options: ["Recording transactions securely", "Cooking food", "Printing money", "Repairing computers"], ans: 0 },
+            { id: 35, q: "Artificial Intelligence is used for:", options: ["Fraud detection", "Farming only", "Printing notes", "Road construction"], ans: 0 },
+            { id: 36, q: "Cloud computing stores data:", options: ["In paper files", "On the internet", "Under the ground", "In wallets"], ans: 1 },
+            { id: 37, q: "Which of the following is a financial service?", options: ["Savings account", "Farming", "Mining", "Construction"], ans: 0 },
+            { id: 38, q: "One importance of becoming informed is:", options: ["Increases fraud", "Prevents scams", "Reduces savings", "Encourages waste"], ans: 1 },
+            { id: 39, q: "Which is an example of financial fraud?", options: ["Budgeting", "Ponzi scheme", "Book-keeping", "Marketing"], ans: 1 },
+            { id: 40, q: "Lack of financial literacy may result in:", options: ["Wise decisions", "Poor decisions", "More savings", "Growth"], ans: 1 },
+            { id: 41, q: "ATM withdrawal fee is an example of:", options: ["Interest", "Hidden charge", "Capital", "Asset"], ans: 1 },
+            { id: 42, q: "Cybercrime includes:", options: ["Hacking", "Farming", "Branding", "Warehousing"], ans: 0 },
+            { id: 43, q: "Excessive borrowing may lead to:", options: ["Financial stress", "More profit", "Investment growth", "Business expansion"], ans: 0 },
+            { id: 44, q: "NDIC means:", options: ["Nigeria Deposit Insurance Corporation", "National Deposit Investment Commission", "Nigerian Debt Insurance Council", "National Development Insurance Corporation"], ans: 0 },
+            { id: 45, q: "Insurance is a:", options: ["Financial arrangement", "Political activity", "Religious ceremony", "Government tax"], ans: 0 },
+            { id: 46, q: "The amount paid for insurance coverage is:", options: ["Claim", "Premium", "Policy", "Peril"], ans: 1 },
+            { id: 47, q: "The person covered by insurance is the:", options: ["Insurer", "Insured", "Broker", "Agent"], ans: 1 },
+            { id: 48, q: "The insurance company is called:", options: ["Payee", "Insurer", "Drawer", "Auditor"], ans: 1 },
+            { id: 49, q: "Insurance promotes peace of mind because it:", options: ["Removes risks completely", "Provides protection", "Prevents accidents", "Eliminates losses"], ans: 1 },
+            { id: 50, q: "Takaful insurance is based on:", options: ["Gambling", "Mutual cooperation", "Speculation", "Interest"], ans: 1 },
+            { id: 51, q: "Microinsurance is designed mainly for:", options: ["Rich people", "Low-income earners", "Exporters", "Manufacturers"], ans: 1 },
+            { id: 52, q: "Which is a type of life assurance?", options: ["Fire insurance", "Annuity", "Burglary insurance", "Marine insurance"], ans: 1 },
+            { id: 53, q: "Motor insurance protects against:", options: ["Vehicle losses", "Death", "Drought", "Inflation"], ans: 0 },
+            { id: 54, q: "Reinsurance means:", options: ["Insurer insures itself with another insurer", "Customer buys two policies", "Bank grants loan", "Agent changes company"], ans: 0 },
+            { id: 55, q: "Life insurance covers:", options: ["Property", "Human life", "Ships", "Goods"], ans: 1 },
+            { id: 56, q: "General insurance covers:", options: ["Human life only", "Property and risks", "Retirement", "Education"], ans: 1 },
+            { id: 57, q: "Marketing is the process of:", options: ["Satisfying customer needs profitably", "Manufacturing only", "Accounting only", "Tax collection"], ans: 0 },
+            { id: 58, q: "Which is not a component of the 4Ps?", options: ["Product", "Price", "Promotion", "Profit"], ans: 3 },
+            { id: 59, q: "QuickBooks is:", options: ["Accounting software", "Vehicle", "Insurance type", "Journal"], ans: 0 },
+            { id: 60, q: "The first P in marketing mix stands for", options: ["Promotion", "price", "prompt", "product"], ans: 3 }
         ];
 
         let countdownRef;
-        let totalTimeSec = 30 * 60; // 30 Minutes standard system time limit
+        let totalTimeSec = 30 * 60; // 30 Minute Standard Exam Countdown configuration
         let formSubmitted = false;
 
         function assembleExamDOM() {
             const displayPool = document.getElementById('dynamic-exam-nodes');
-            displayPool.innerHTML = `<div class="section-header">INSTRUCTION: ANSWER ALL QUESTIONS IN THIS SECTION</div>`;
+            displayPool.innerHTML = `<div class="section-header">SECTION A (MULTIPLE CHOICE QUESTIONS)</div>`;
 
             structurePayload.forEach((node, index) => {
                 const optionPrefix = ["A", "B", "C", "D"];
@@ -411,7 +406,7 @@
         function initializeWorkspace() {
             const inputName = document.getElementById('candidate-name-input').value.trim();
             if (!inputName) {
-                alert("Please enter your name to unlock the examination script layout.");
+                alert("Please input your formal name to configure authorization flags.");
                 return;
             }
 
@@ -430,7 +425,7 @@
                 if (totalTimeSec <= 0) {
                     clearInterval(countdownRef);
                     document.getElementById('hud-timer').innerText = "TIME EXPIRED";
-                    alert("The allocated execution time has expired. Your script will submit automatically.");
+                    alert("The allocated runtime has reached zero. Your work sheet will submit automatically.");
                     evaluateExamPayload(true);
                 } else {
                     totalTimeSec--;
@@ -457,7 +452,7 @@
                 }
             });
 
-            const userVerdict = confirm(`You have answered ${trackedAnswers} out of ${structurePayload.length} questions. Are you sure you want to finish and submit?`);
+            const userVerdict = confirm(`You have handled ${trackedAnswers} out of ${structurePayload.length} questions. Submit the exam?`);
             if (userVerdict) {
                 evaluateExamPayload(false);
             }
@@ -502,9 +497,9 @@
 
             const computationPercentage = Math.round((aggregateScore / structurePayload.length) * 100);
             
-            document.getElementById('report-name-target').innerText = `Performance metrics for candidate: ${userName}`;
+            document.getElementById('report-name-target').innerText = `Performance Metrics for: ${userName}`;
             document.getElementById('report-score-target').innerText = `${aggregateScore} / ${structurePayload.length}`;
-            document.getElementById('report-percentage-target').innerText = `Final Grade: ${computationPercentage}%`;
+            document.getElementById('report-percentage-target').innerText = `Total Grade: ${computationPercentage}%`;
             
             document.getElementById('report-dashboard').classList.remove('hidden');
             window.scrollTo({ top: 0, behavior: 'smooth' });
