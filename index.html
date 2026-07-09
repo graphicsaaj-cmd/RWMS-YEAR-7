@@ -3,507 +3,508 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ROYAL WUNDERKIND MODEL SCHOOL - YEAR 7 BUSINESS STUDIES EXAM</title>
+    <title>Year 7 Digital Art Examination - RWMS</title>
     <style>
         :root {
-            --primary-color: #1a365d;
-            --secondary-color: #2b6cb0;
-            --accent-color: #d69e2e;
-            --success-color: #2f855a;
-            --danger-color: #c53030;
-            --light-bg: #f7fafc;
-            --card-bg: #ffffff;
-            --text-color: #2d3748;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --primary-color: #002060;
+            --secondary-color: #D4AF37;
+            --success-color: #28a745;
+            --fail-color: #dc3545;
+            --light-bg: #f4f6f9;
+            --text-color: #333;
         }
 
         body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
             background-color: var(--light-bg);
             color: var(--text-color);
-            line-height: 1.6;
-            padding-bottom: 60px;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 25px 15px;
+            border-bottom: 5px solid var(--secondary-color);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        header h2 {
+            margin: 6px 0;
+            font-size: 16px;
+            font-weight: normal;
+            color: #e0e0e0;
+            letter-spacing: 0.5px;
+        }
+
+        header h3 {
+            margin: 5px 0 0 0;
+            font-size: 14px;
+            font-weight: bold;
+            color: var(--secondary-color);
         }
 
         .container {
-            max-width: 900px;
+            max-width: 850px;
             margin: 30px auto;
-            padding: 20px;
+            padding: 0 20px;
         }
 
-        .header-panel {
-            background: var(--primary-color);
+        .card {
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            padding: 30px;
+            margin-bottom: 25px;
+        }
+
+        #timer-banner {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--fail-color);
             color: white;
-            padding: 35px 30px;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin-bottom: 30px;
-            border-bottom: 5px solid var(--accent-color);
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: bold;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 1000;
+            display: none;
+            border: 2px solid white;
         }
 
-        .header-panel h1 {
-            font-size: 26px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 5px;
-        }
-
-        .header-panel h2 {
-            font-size: 16px;
-            color: #cbd5e0;
-            font-weight: 400;
-            text-transform: uppercase;
-            margin-bottom: 15px;
-        }
-
-        .header-panel h3 {
-            font-size: 19px;
-            letter-spacing: 0.5px;
-            color: #fff;
-            margin-bottom: 10px;
-        }
-
-        .meta-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 15px;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 15px;
-            border-radius: 8px;
-            font-size: 14px;
-            margin-top: 15px;
-        }
-
-        #login-view {
-            background: var(--card-bg);
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        #login-screen {
             text-align: center;
             max-width: 500px;
-            margin: 40px auto;
+            margin: 50px auto;
         }
 
-        #login-view h4 {
-            margin-bottom: 15px;
-            color: var(--primary-color);
-            font-size: 20px;
-        }
-
-        .input-field {
-            width: 100%;
-            padding: 12px 20px;
-            margin: 15px 0 25px 0;
-            border: 2px solid #e2e8f0;
-            border-radius: 8px;
+        .input-gate {
+            width: 85%;
+            padding: 14px 20px;
+            margin: 20px 0;
             font-size: 16px;
+            border: 2px solid #bdc3c7;
+            border-radius: 8px;
+            text-align: center;
             outline: none;
             transition: border-color 0.2s;
-            text-align: center;
         }
 
-        .input-field:focus {
-            border-color: var(--secondary-color);
+        .input-gate:focus {
+            border-color: var(--primary-color);
         }
 
         .btn {
-            background: var(--secondary-color);
+            background-color: var(--primary-color);
             color: white;
             border: none;
-            padding: 12px 30px;
+            padding: 14px 40px;
             font-size: 16px;
-            font-weight: 600;
+            font-weight: bold;
             border-radius: 8px;
             cursor: pointer;
             transition: background 0.2s;
-            text-transform: uppercase;
         }
 
         .btn:hover {
-            background: var(--primary-color);
+            background-color: #001238;
         }
 
-        #hud-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: var(--primary-color);
-            color: white;
-            padding: 12px 25px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 600;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
-            z-index: 1000;
-            border-bottom: 4px solid var(--accent-color);
-        }
-
-        #hud-bar.warning {
-            background: var(--danger-color);
+        #quiz-screen, #result-screen {
+            display: none;
         }
 
         .section-header {
-            background: #edf2f7;
+            background: #eef2f7;
             color: var(--primary-color);
-            padding: 15px 20px;
-            border-left: 6px solid var(--secondary-color);
-            border-radius: 4px;
+            padding: 14px 18px;
+            border-radius: 6px;
+            font-weight: bold;
             margin: 35px 0 20px 0;
-            font-weight: 700;
-            font-size: 16px;
+            border-left: 5px solid var(--secondary-color);
+            font-size: 18px;
             text-transform: uppercase;
         }
 
-        .question-card {
-            background: var(--card-bg);
-            padding: 20px;
+        .meta-info-strip {
+            font-size: 16px;
+            background: #eef2f7;
+            padding: 15px 20px;
             border-radius: 8px;
+            margin-bottom: 25px;
+            font-weight: bold;
+            border-left: 5px solid var(--secondary-color);
+        }
+
+        .question-box {
+            border-left: 5px solid var(--primary-color);
+            background: #fafafa;
+            padding: 20px;
             margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-            border: 1px solid #e2e8f0;
+            border-radius: 0 8px 8px 0;
         }
 
         .question-text {
-            font-weight: 600;
             font-size: 16px;
+            font-weight: bold;
             margin-bottom: 15px;
+            line-height: 1.5;
         }
 
         .options-grid {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 10px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 12px;
         }
 
-        @media(min-width: 768px) {
-            .options-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        .option-item {
+        .option-node {
             display: flex;
             align-items: center;
-            background: #f8fafc;
-            border: 1px solid #edf2f7;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
             padding: 12px 15px;
             border-radius: 6px;
             cursor: pointer;
             transition: all 0.2s;
-            font-size: 15px;
         }
 
-        .option-item:hover {
-            background: #edf2f7;
-            border-color: #cbd5e0;
+        .option-node:hover {
+            background: #f1f5f9;
+            border-color: #cbd5e1;
         }
 
-        .option-item input {
+        .option-node input {
             margin-right: 12px;
             transform: scale(1.2);
-            cursor: pointer;
         }
 
-        .item-correct {
-            background: #c6f6d5 !important;
-            border-color: var(--success-color) !important;
-            color: #22543d;
-            font-weight: 600;
-        }
-
-        .item-wrong {
-            background: #fed7d7 !important;
-            border-color: var(--danger-color) !important;
-            color: #742a2a;
-        }
-
-        .correction-badge {
-            display: inline-block;
-            margin-top: 12px;
-            padding: 6px 12px;
+        /* Gap Input Styling */
+        .gap-input {
+            width: 220px;
+            padding: 8px 12px;
+            font-size: 15px;
+            border: 2px solid #bdc3c7;
             border-radius: 6px;
-            font-size: 14px;
+            outline: none;
+            font-weight: bold;
+            color: var(--primary-color);
+            transition: border-color 0.2s;
+        }
+
+        .gap-input:focus {
+            border-color: var(--primary-color);
+        }
+
+        .gap-input.correct-input {
+            border-color: var(--success-color) !important;
+            background-color: #d4edda !important;
+            color: #155724;
+        }
+
+        .gap-input.wrong-input {
+            border-color: var(--fail-color) !important;
+            background-color: #f8d7da !important;
+            color: #721c24;
+        }
+
+        /* Auto-Marking UI Mechanics */
+        .option-node.correct-state {
+            background-color: #d4edda !important;
+            border-color: var(--success-color) !important;
+            color: #155724;
             font-weight: bold;
         }
-        .badge-success { background: #c6f6d5; color: #22543d; }
-        .badge-danger { background: #fed7d7; color: #742a2a; }
 
-        #report-dashboard {
-            background: white;
-            border: 3px solid var(--accent-color);
-            border-radius: 12px;
-            padding: 30px;
+        .option-node.wrong-state {
+            background-color: #f8d7da !important;
+            border-color: var(--fail-color) !important;
+            color: #721c24;
+        }
+
+        .correction-box {
+            margin-top: 12px;
+            font-weight: bold;
+            font-size: 14px;
+            display: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+        }
+        
+        .correction-box.correct-banner {
+            background-color: #d4edda;
+            color: #155724;
+            display: block;
+        }
+
+        .correction-box.wrong-banner {
+            background-color: #f8d7da;
+            color: #721c24;
+            display: block;
+        }
+
+        .summary-dashboard {
             text-align: center;
+            background: #e8f8f5;
+            border: 2px solid var(--success-color);
+            padding: 25px;
+            border-radius: 12px;
             margin-bottom: 30px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
         }
 
-        .score-metrics {
-            font-size: 54px;
-            font-weight: 800;
-            color: var(--primary-color);
-            margin: 15px 0;
-        }
-
-        .hidden {
-            display: none !important;
+        .summary-dashboard h2 {
+            margin: 0 0 10px 0;
+            color: #117a65;
+            font-size: 24px;
         }
     </style>
 </head>
 <body>
 
-    <div id="hud-bar" class="hidden">
-        <div id="hud-candidate">Candidate: </div>
-        <div id="hud-timer">Time Remaining: 30:00</div>
+<div id="timer-banner">Time Left: 20:00</div>
+
+<header>
+    <h1>ROYAL WUNDERKIND MODEL SCHOOL</h1>
+    <h2>TERM 3 EXAMINATION, 2025/2026 ACADEMIC SESSION</h2>
+    <h3>SUBJECT: YEAR 7 DIGITAL ART</h3>
+</header>
+
+<div class="container">
+    
+    <!-- Candidate Verification Gate -->
+    <div id="login-screen" class="card">
+        <h2 style="margin-top:0; color: var(--primary-color);">Candidate Validation</h2>
+        <p>Please enter your full name below to access your examination paper.</p>
+        <input type="text" id="candidate-fullname" class="input-gate" placeholder="Surname & First Name" autocomplete="off">
+        <br>
+        <button class="btn" onclick="startAssessment()">Begin Examination</button>
     </div>
 
-    <div class="container">
+    <!-- Main CBT Sheet -->
+    <div id="quiz-screen">
+        <div class="meta-info-strip" id="student-details"></div>
         
-        <div class="header-panel">
-            <h1>Royal Wunderkind Model School</h1>
-            <h2>Jalala Area, Tanke, Oke - Odo, Ilorin</h2>
-            <h3>SUBJECT: BUSINESS STUDIES</h3>
-            <div class="meta-grid">
-                <div><strong>Session:</strong> 2025/2026 Third Term</div>
-                <div><strong>Class:</strong> Year 7 (Keystage 3)</div>
-                <div><strong>Timer Limit:</strong> 30 Minutes</div>
-            </div>
+        <!-- Score Feedback View Panel -->
+        <div id="result-screen" class="summary-dashboard">
+            <h2 id="total-score-text"></h2>
+            <p>Please scroll down to review your performance metrics and structural automated corrections.</p>
         </div>
 
-        <div id="login-view">
-            <h4>Candidate Examination Login</h4>
-            <p>Input your formal name into the entry field below to begin the assessment workspace.</p>
-            <input type="text" id="candidate-name-input" class="input-field" placeholder="Enter Student's Full Name" autocomplete="off">
-            <button class="btn" onclick="initializeWorkspace()">Start Examination</button>
-        </div>
+        <form id="cbt-form">
+            <!-- Part 1: Multiple Choice Objectives -->
+            <div class="section-header">Multiple Choice Questions (Instructions: Answer all questions completely)</div>
+            <div id="objective-outlet"></div>
 
-        <form id="examination-form" class="hidden" onsubmit="event.preventDefault(); evaluateExamPayload(false);">
+            <!-- Part 2: Fill in the Gaps -->
+            <div class="section-header">Fill in the Gaps</div>
+            <div id="gap-outlet"></div>
             
-            <div id="dynamic-exam-nodes"></div>
-
-            <div style="text-align: center; margin: 40px 0;">
-                <button type="button" class="btn" id="master-submit-btn" onclick="requestUserConfirmation()">Submit Examination</button>
+            <div style="text-align: center; margin-top: 40px; margin-bottom: 40px;">
+                <button type="button" id="submit-exam-btn" class="btn" style="background-color: var(--success-color);" onclick="gradeAssessment()">Submit Examination</button>
             </div>
         </form>
-
-        <div id="report-dashboard" class="hidden">
-            <h2>Examination Evaluation Scorecard</h2>
-            <p id="report-name-target" style="font-size: 18px; margin-top: 10px; font-weight: 600;"></p>
-            <div class="score-metrics" id="report-score-target">0 / 60</div>
-            <p id="report-percentage-target" style="font-size: 20px; font-weight: 700; color: var(--secondary-color);"></p>
-            <p style="margin-top: 15px; color: #718096;">Scroll down to evaluate your graded submission with marked corrections.</p>
-        </div>
-
     </div>
+</div>
 
-    <script>
-        // Formulated structured database items populated with key mappings from exam contents
-        const structurePayload = [
-            { id: 1, q: "Digital technology processes data using the ______ system.", options: ["Decimal", "Binary", "Roman", "Metric"], ans: 1 },
-            { id: 2, q: "Which of the following is NOT an example of digital technology?", options: ["Smartphone", "Computer", "Internet", "Cowrie shells"], ans: 3 },
-            { id: 3, q: "One major importance of digital technology in business is:", options: ["Increased manual work", "Reduced communication", "Improved efficiency", "Higher paperwork"], ans: 2 },
-            { id: 4, q: "Which digital tool is mainly used for video meetings?", options: ["Excel", "Zoom", "Canva", "POS"], ans: 1 },
-            { id: 5, q: "Microsoft Excel is an example of a:", options: ["Spreadsheet", "Browser", "Database", "Antivirus"], ans: 0 },
-            { id: 6, q: "Which factor should be considered when selecting digital technology?", options: ["Color of device", "Security", "Brand popularity only", "Shape"], ans: 1 },
-            { id: 7, q: "Digital citizenship refers to:", options: ["Owning a computer", "Responsible use of technology", "Buying phones", "Internet ownership"], ans: 1 },
-            { id: 8, q: "Cyberbullying violates the principle of:", options: ["Digital etiquette", "Scalability", "Compatibility", "Automation"], ans: 0 },
-            { id: 9, q: "Which of the following promotes digital safety?", options: ["Sharing passwords", "Using weak PIN", "Strong passwords", "Ignoring updates"], ans: 2 },
-            { id: 10, q: "Digital literacy means:", options: ["Ability to use digital tools effectively", "Ability to repair phones", "Ability to manufacture computers", "Ability to sell technology"], ans: 0 },
-            { id: 11, q: "Money is generally accepted as a:", options: ["Gift", "Medium of exchange", "Punishment", "Commodity only"], ans: 1 },
-            { id: 12, q: "Which is a characteristic of money?", options: ["Fragility", "Scarcity", "Weight", "Complexity"], ans: 1 },
-            { id: 13, q: "The primary function of money as a medium of exchange means:", options: ["Saving wealth", "Measuring value", "Buying and selling goods", "Paying taxes only"], ans: 2 },
-            { id: 14, q: "Which stage came first in the evolution of money?", options: ["Electronic money", "Paper money", "Barter system", "Credit money"], ans: 2 },
-            { id: 15, q: "A major problem of the barter system is:", options: ["Easy storage", "Double coincidence of wants", "Uniformity", "Divisibility"], ans: 1 },
-            { id: 16, q: "Government-issued money is known as:", options: ["Commodity money", "Fiat money", "Bank money", "Credit money"], ans: 1 },
-            { id: 17, q: "Salary and wages are examples of:", options: ["Sources of money", "Uses of money", "Credit facilities", "Savings plans"], ans: 0 },
-            { id: 18, q: "Spending wisely is an example of:", options: ["Money etiquette", "Barter trade", "Credit policy", "Inflation"], ans: 0 },
-            { id: 19, q: "A cashless economy involves:", options: ["No banking system", "No transactions", "Electronic transactions", "Only cash payments"], ans: 2 },
-            { id: 20, q: "Which is NOT a feature of a cashless economy?", options: ["Faster transactions", "Electronic records", "Dependence on technology", "Increased use of cash"], ans: 3 },
-            { id: 21, q: "One advantage of a cashless economy is:", options: ["Theft increase", "Convenience", "Slow transactions", "More paperwork"], ans: 1 },
-            { id: 22, q: "Cybercrime is a ____ of a cashless economy.", options: ["Benefit", "Feature", "Disadvantage", "Objective"], ans: 2 },
-            { id: 23, q: "The cashless policy in Nigeria was introduced by the:", options: ["NNPC", "CBN", "WAEC", "EFCC"], ans: 1 },
-            { id: 24, q: "Which is a cashless payment method?", options: ["Cowries", "ATM", "Barter", "Commodity exchange"], ans: 1 },
-            { id: 25, q: "Poor network infrastructure is a challenge to:", options: ["Saving", "Credit", "Cashless economy", "Barter trade"], ans: 2 },
-            { id: 26, q: "Digital currency exists in:", options: ["Paper form", "Coin form", "Electronic form", "Metallic form"], ans: 2 },
-            { id: 27, q: "Which of the following is a cryptocurrency?", options: ["Naira", "Dollar", "Bitcoin", "Cowrie"], ans: 2 },
-            { id: 28, q: "Digital currency is:", options: ["Tangible", "Intangible", "Metallic", "Printed"], ans: 1 },
-            { id: 29, q: "One use of digital currency is:", options: ["Buying airtime", "Printing books", "Mining gold", "Manufacturing phones"], ans: 0 },
-            { id: 30, q: "Which is an advantage of digital currency?", options: ["Slow transactions", "Convenience", "Requires no security", "Difficult record keeping"], ans: 1 },
-            { id: 31, q: "One disadvantage of digital currency is:", options: ["Fast transfer", "Cybercrime risk", "Convenience", "Easy tracking"], ans: 1 },
-            { id: 32, q: "Which technology allows cash withdrawal without entering a bank?", options: ["Blockchain", "ATM", "Cloud storage", "AI"], ans: 1 },
-            { id: 33, q: "POS stands for:", options: ["Point of Sale", "Price of Service", "Place of Security", "Product of Sale"], ans: 0 },
-            { id: 34, q: "Blockchain is mainly used for:", options: ["Recording transactions securely", "Cooking food", "Printing money", "Repairing computers"], ans: 0 },
-            { id: 35, q: "Artificial Intelligence is used for:", options: ["Fraud detection", "Farming only", "Printing notes", "Road construction"], ans: 0 },
-            { id: 36, q: "Cloud computing stores data:", options: ["In paper files", "On the internet", "Under the ground", "In wallets"], ans: 1 },
-            { id: 37, q: "Which of the following is a financial service?", options: ["Savings account", "Farming", "Mining", "Construction"], ans: 0 },
-            { id: 38, q: "One importance of becoming informed is:", options: ["Increases fraud", "Prevents scams", "Reduces savings", "Encourages waste"], ans: 1 },
-            { id: 39, q: "Which is an example of financial fraud?", options: ["Budgeting", "Ponzi scheme", "Book-keeping", "Marketing"], ans: 1 },
-            { id: 40, q: "Lack of financial literacy may result in:", options: ["Wise decisions", "Poor decisions", "More savings", "Growth"], ans: 1 },
-            { id: 41, q: "ATM withdrawal fee is an example of:", options: ["Interest", "Hidden charge", "Capital", "Asset"], ans: 1 },
-            { id: 42, q: "Cybercrime includes:", options: ["Hacking", "Farming", "Branding", "Warehousing"], ans: 0 },
-            { id: 43, q: "Excessive borrowing may lead to:", options: ["Financial stress", "More profit", "Investment growth", "Business expansion"], ans: 0 },
-            { id: 44, q: "NDIC means:", options: ["Nigeria Deposit Insurance Corporation", "National Deposit Investment Commission", "Nigerian Debt Insurance Council", "National Development Insurance Corporation"], ans: 0 },
-            { id: 45, q: "Insurance is a:", options: ["Financial arrangement", "Political activity", "Religious ceremony", "Government tax"], ans: 0 },
-            { id: 46, q: "The amount paid for insurance coverage is:", options: ["Claim", "Premium", "Policy", "Peril"], ans: 1 },
-            { id: 47, q: "The person covered by insurance is the:", options: ["Insurer", "Insured", "Broker", "Agent"], ans: 1 },
-            { id: 48, q: "The insurance company is called:", options: ["Payee", "Insurer", "Drawer", "Auditor"], ans: 1 },
-            { id: 49, q: "Insurance promotes peace of mind because it:", options: ["Removes risks completely", "Provides protection", "Prevents accidents", "Eliminates losses"], ans: 1 },
-            { id: 50, q: "Takaful insurance is based on:", options: ["Gambling", "Mutual cooperation", "Speculation", "Interest"], ans: 1 },
-            { id: 51, q: "Microinsurance is designed mainly for:", options: ["Rich people", "Low-income earners", "Exporters", "Manufacturers"], ans: 1 },
-            { id: 52, q: "Which is a type of life assurance?", options: ["Fire insurance", "Annuity", "Burglary insurance", "Marine insurance"], ans: 1 },
-            { id: 53, q: "Motor insurance protects against:", options: ["Vehicle losses", "Death", "Drought", "Inflation"], ans: 0 },
-            { id: 54, q: "Reinsurance means:", options: ["Insurer insures itself with another insurer", "Customer buys two policies", "Bank grants loan", "Agent changes company"], ans: 0 },
-            { id: 55, q: "Life insurance covers:", options: ["Property", "Human life", "Ships", "Goods"], ans: 1 },
-            { id: 56, q: "General insurance covers:", options: ["Human life only", "Property and risks", "Retirement", "Education"], ans: 1 },
-            { id: 57, q: "Marketing is the process of:", options: ["Satisfying customer needs profitably", "Manufacturing only", "Accounting only", "Tax collection"], ans: 0 },
-            { id: 58, q: "Which is not a component of the 4Ps?", options: ["Product", "Price", "Promotion", "Profit"], ans: 3 },
-            { id: 59, q: "QuickBooks is:", options: ["Accounting software", "Vehicle", "Insurance type", "Journal"], ans: 0 },
-            { id: 60, q: "The first P in marketing mix stands for", options: ["Promotion", "price", "prompt", "product"], ans: 3 }
-        ];
+<script>
+    // Multiple Choice Configuration
+    const objectiveDatabase = [
+        { q: "Which of the following AI tools is specifically designed for generating AI voiceovers and music for faceless content?", o: ["ImageFx", "Suno AI", "Microsoft Teams", "Zoom"], a: "B" },
+        { q: "What is the primary limitation for users on the Zoom Free plan?", o: ["No video allowed", "40-minute group meeting limit", "Cannot use mobile devices", "No chat functionality"], a: "B" },
+        { q: "Which platform is described as a \"full collaboration hub\" because it combines chat, file sharing, and video calls?", o: ["WhatsApp", "FaceTime", "Microsoft Teams", "Restream"], a: "C" },
+        { q: "What makes Riverside a unique choice for online teachers and podcasters compared to standard meeting apps?", o: ["It is only for Apple devices", "High-quality recording despite slow internet", "It is completely free with no limits", "It only allows one person at a time"], a: "B" },
+        { q: "According to the safety rules for young creators, what should you do before posting anything online?", o: ["Buy the most expensive camera", "Ask an adult for permission", "Share your school location", "Use someone else's copyrighted work"], a: "B" }
+    ];
 
-        let countdownRef;
-        let totalTimeSec = 30 * 60; // 30 Minute Standard Exam Countdown configuration
-        let formSubmitted = false;
+    // Fill in the Gaps Configuration
+    const gapDatabase = [
+        { prefix: "Content creation is the process of ", suffix: ", making, and sharing information or creative work.", a: "planning" },
+        { prefix: "Faceless creation tools are perfect if you are a little ", suffix: " or want to stay private.", a: "shy" },
+        { prefix: "", suffix: " is a browser-based video tool that requires no download to join a meeting.", a: "Google Meet" },
+        { prefix: "FaceTime is known for its high-quality video specifically on ", suffix: " devices.", a: "Apple" },
+        { prefix: "", suffix: " helps creators broadcast one live video to many platforms at the same time.", a: "Restream or Obs" },
+        { prefix: "WhatsApp video calls are limited to a maximum of ", suffix: " people.", a: "32" },
+        { prefix: "In content creation, you should always use your own work or ", suffix: " materials that allow reuse.", a: "free" },
+        { prefix: "Tools like Capcut and Inshot are examples of online ", suffix: " editors.", a: "video" },
+        { prefix: "Microsoft Teams offers deep integration with ", suffix: " 365, including Word and Excel.", a: "Microsoft" },
+        { prefix: "When creating content, you must not share ", suffix: " details like your school or location.", a: "personal" },
+        { prefix: "Zoom features \"breakout rooms\" and an AI ", suffix: " for meeting summaries.", a: "companion" },
+        { prefix: "Live-streaming apps allow users to add text, backgrounds, and ", suffix: " to look professional.", a: "graphics" },
+        { prefix: "Great creators always ", suffix: " their work by cutting or trimming videos.", a: "improve" },
+        { prefix: "ImageFx and Whisk are AI tools used for generating ", suffix: ".", a: "images" },
+        { prefix: "Content creators turn their ideas and talents into something others can ", suffix: ".", a: "enjoy" }
+    ];
 
-        function assembleExamDOM() {
-            const displayPool = document.getElementById('dynamic-exam-nodes');
-            displayPool.innerHTML = `<div class="section-header">SECTION A (MULTIPLE CHOICE QUESTIONS)</div>`;
+    let countdownTracker;
+    let timeRemainingSeconds = 20 * 60; // Configured directly to 20 Minutes
+    const lettersMap = ["A", "B", "C", "D"];
 
-            structurePayload.forEach((node, index) => {
-                const optionPrefix = ["A", "B", "C", "D"];
-                let optionsMarkup = "";
+    function startAssessment() {
+        const inputName = document.getElementById('candidate-fullname').value.trim();
+        if (inputName === "") {
+            alert("Access Denied: Please fill in the candidate's complete name setup.");
+            return;
+        }
 
-                node.options.forEach((opt, idx) => {
-                    optionsMarkup += `
-                        <label class="option-item" id="lbl-q${node.id}-o${idx}">
-                            <input type="radio" name="input-q${node.id}" value="${idx}">
-                            <span><strong>${optionPrefix[idx]}.</strong> ${opt}</span>
-                        </label>
-                    `;
-                });
+        document.getElementById('login-screen').style.display = 'none';
+        document.getElementById('quiz-screen').style.display = 'block';
+        document.getElementById('timer-banner').style.display = 'block';
+        
+        document.getElementById('student-details').innerText = `CANDIDATE: ${inputName.toUpperCase()} | CLASS: YEAR 7 | DURATION: 20 MINS`;
 
-                const cardUI = `
-                    <div class="question-card" id="card-block-q${node.id}">
-                        <div class="question-text">${index + 1}. ${node.q}</div>
-                        <div class="options-grid">
-                            ${optionsMarkup}
-                        </div>
-                        <div id="evaluation-q${node.id}"></div>
-                    </div>
+        buildQuizSheet();
+        runClockCounter();
+    }
+
+    function buildQuizSheet() {
+        // Construct Multiple Choice Section
+        const objOutlet = document.getElementById('objective-outlet');
+        objOutlet.innerHTML = "";
+        objectiveDatabase.forEach((questionItem, qIndex) => {
+            const displayIndex = qIndex + 1;
+            const block = document.createElement('div');
+            block.className = 'card question-box';
+
+            let optionsMarkup = "";
+            questionItem.o.forEach((optionValue, oIndex) => {
+                const currentLetter = lettersMap[oIndex];
+                optionsMarkup += `
+                    <label class="option-node" id="node-box-${displayIndex}-${currentLetter}">
+                        <input type="radio" name="obj-id-${displayIndex}" value="${currentLetter}">
+                        <span><strong>${currentLetter.toLowerCase()})</strong> ${optionValue}</span>
+                    </label>
                 `;
-                displayPool.innerHTML += cardUI;
             });
-        }
 
-        function initializeWorkspace() {
-            const inputName = document.getElementById('candidate-name-input').value.trim();
-            if (!inputName) {
-                alert("Please input your formal name to configure authorization flags.");
-                return;
+            block.innerHTML = `
+                <div class="question-text">${displayIndex}. ${questionItem.q}</div>
+                <div class="options-grid">${optionsMarkup}</div>
+                <div class="correction-box" id="obj-feedback-${displayIndex}"></div>
+            `;
+            objOutlet.appendChild(block);
+        });
+
+        // Construct Fill in the Gaps Section
+        const gapOutlet = document.getElementById('gap-outlet');
+        gapOutlet.innerHTML = "";
+        gapDatabase.forEach((gapItem, gIndex) => {
+            const displayIndex = gIndex + 6; // Starts layout numbering tracking from index 6
+            const block = document.createElement('div');
+            block.className = 'card question-box';
+
+            // Construct structural textual display containing the textual input parameters
+            let inlineMarkup = `<strong>${displayIndex}. </strong> `;
+            if (gapItem.prefix !== "") inlineMarkup += gapItem.prefix;
+            inlineMarkup += `<input type="text" class="gap-input" id="gap-input-${displayIndex}" placeholder="Type answer here..." autocomplete="off">`;
+            if (gapItem.suffix !== "") inlineMarkup += gapItem.suffix;
+
+            block.innerHTML = `
+                <div style="font-size: 16px; line-height: 1.8;">${inlineMarkup}</div>
+                <div class="correction-box" id="gap-feedback-${displayIndex}"></div>
+            `;
+            gapOutlet.appendChild(block);
+        });
+    }
+
+    function runClockCounter() {
+        countdownTracker = setInterval(() => {
+            timeRemainingSeconds--;
+            let computedMinutes = Math.floor(timeRemainingSeconds / 60);
+            let computedSeconds = timeRemainingSeconds % 60;
+
+            computedMinutes = computedMinutes < 10 ? "0" + computedMinutes : computedMinutes;
+            computedSeconds = computedSeconds < 10 ? "0" + computedSeconds : computedSeconds;
+
+            document.getElementById('timer-banner').innerText = `Time Left: ${computedMinutes}:${computedSeconds}`;
+
+            if (timeRemainingSeconds <= 0) {
+                clearInterval(countdownTracker);
+                alert("Time Limit Expired! Running automated system submission configuration.");
+                gradeAssessment();
             }
+        }, 1000);
+    }
 
-            document.getElementById('hud-candidate').innerText = `Candidate: ${inputName.toUpperCase()}`;
-            document.getElementById('login-view').classList.add('hidden');
-            document.getElementById('hud-bar').classList.remove('hidden');
-            document.getElementById('examination-form').classList.remove('hidden');
+    function gradeAssessment() {
+        clearInterval(countdownTracker);
+        document.getElementById('timer-banner').style.display = 'none';
+        document.getElementById('submit-exam-btn').style.display = 'none';
 
-            assembleExamDOM();
-            beginTimeDecrement();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+        let accurateAnswersTally = 0;
+        const totalObjectiveCount = objectiveDatabase.length;
+        const totalGapCount = gapDatabase.length;
+        const completeCount = totalObjectiveCount + totalGapCount;
 
-        function beginTimeDecrement() {
-            countdownRef = setInterval(() => {
-                if (totalTimeSec <= 0) {
-                    clearInterval(countdownRef);
-                    document.getElementById('hud-timer').innerText = "TIME EXPIRED";
-                    alert("The allocated runtime has reached zero. Your work sheet will submit automatically.");
-                    evaluateExamPayload(true);
-                } else {
-                    totalTimeSec--;
-                    let min = Math.floor(totalTimeSec / 60);
-                    let sec = totalTimeSec % 60;
+        // Process Evaluation Loop for Objectives
+        objectiveDatabase.forEach((questionItem, qIndex) => {
+            const displayIndex = qIndex + 1;
+            const checkedRadio = document.querySelector(`input[name="obj-id-${displayIndex}"]:checked`);
+            const checkedLetter = checkedRadio ? checkedRadio.value : null;
+            const targetCorrectLetter = questionItem.a;
 
-                    min = min < 10 ? '0' + min : min;
-                    sec = sec < 10 ? '0' + sec : sec;
+            const choicesElements = document.querySelectorAll(`input[name="obj-id-${displayIndex}"]`);
+            choicesElements.forEach(input => input.disabled = true);
 
-                    document.getElementById('hud-timer').innerText = `Time Remaining: ${min}:${sec}`;
+            const feedbackDiv = document.getElementById(`obj-feedback-${displayIndex}`);
 
-                    if (totalTimeSec <= 300) {
-                        document.getElementById('hud-bar').classList.add('warning');
-                    }
+            if (checkedLetter === targetCorrectLetter) {
+                accurateAnswersTally++;
+                document.getElementById(`node-box-${displayIndex}-${targetCorrectLetter}`).classList.add('correct-state');
+                feedbackDiv.className = "correction-box correct-banner";
+                feedbackDiv.innerHTML = `Correct!`;
+            } else {
+                if (checkedLetter) {
+                    document.getElementById(`node-box-${displayIndex}-${checkedLetter}`).classList.add('wrong-state');
                 }
-            }, 1000);
-        }
-
-        function requestUserConfirmation() {
-            let trackedAnswers = 0;
-            structurePayload.forEach(node => {
-                if (document.querySelector(`input[name="input-q${node.id}"]:checked`)) {
-                    trackedAnswers++;
-                }
-            });
-
-            const userVerdict = confirm(`You have handled ${trackedAnswers} out of ${structurePayload.length} questions. Submit the exam?`);
-            if (userVerdict) {
-                evaluateExamPayload(false);
+                document.getElementById(`node-box-${displayIndex}-${targetCorrectLetter}`).classList.add('correct-state');
+                
+                const solutionIndex = lettersMap.indexOf(targetCorrectLetter);
+                const explicitSolutionString = questionItem.o[solutionIndex];
+                feedbackDiv.className = "correction-box wrong-banner";
+                feedbackDiv.innerHTML = `Incorrect. The correct answer is <strong>${targetCorrectLetter.toLowerCase()}) ${explicitSolutionString}</strong>`;
             }
-        }
+        });
 
-        function evaluateExamPayload(isForcedTimeout = false) {
-            if (formSubmitted) return;
-            formSubmitted = true;
+        // Process Evaluation Loop for Fill in the Gaps
+        gapDatabase.forEach((gapItem, gIndex) => {
+            const displayIndex = gIndex + 6;
+            const inputField = document.getElementById(`gap-input-${displayIndex}`);
+            const candidateAnswer = inputField.value.trim().toLowerCase();
+            const correctKey = gapItem.a.toLowerCase();
 
-            clearInterval(countdownRef);
-            document.getElementById('hud-bar').classList.add('hidden');
-            document.getElementById('master-submit-btn').classList.add('hidden');
+            inputField.disabled = true;
+            const feedbackDiv = document.getElementById(`gap-feedback-${displayIndex}`);
 
-            let aggregateScore = 0;
-            const userName = document.getElementById('candidate-name-input').value.toUpperCase();
+            if (candidateAnswer === correctKey) {
+                accurateAnswersTally++;
+                inputField.classList.add('correct-input');
+                feedbackDiv.className = "correction-box correct-banner";
+                feedbackDiv.innerHTML = `Correct! Answer is "${gapItem.a}"`;
+            } else {
+                inputField.classList.add('wrong-input');
+                feedbackDiv.className = "correction-box wrong-banner";
+                feedbackDiv.innerHTML = `Incorrect. The expected answer is: <strong>${gapItem.a}</strong>`;
+            }
+        });
 
-            structurePayload.forEach((node) => {
-                const selectedRadio = document.querySelector(`input[name="input-q${node.id}"]:checked`);
-                const logFeedbackNode = document.getElementById(`evaluation-q${node.id}`);
-                const selectionIdx = selectedRadio ? parseInt(selectedRadio.value) : null;
+        // Render Comprehensive Score Breakdown Summary
+        const calculationPercentage = Math.round((accurateAnswersTally / completeCount) * 100);
+        document.getElementById('total-score-text').innerText = `Examination Completed! Score: ${accurateAnswersTally} / ${completeCount} (${calculationPercentage}%)`;
+        document.getElementById('result-screen').style.display = 'block';
 
-                const optionElements = document.querySelectorAll(`input[name="input-q${node.id}"]`);
-                optionElements.forEach(radio => radio.disabled = true);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+</script>
 
-                if (selectionIdx === node.ans) {
-                    aggregateScore++;
-                    document.getElementById(`lbl-q${node.id}-o${node.ans}`).classList.add('item-correct');
-                    logFeedbackNode.innerHTML = `<span class="correction-badge badge-success">✓ Correct Answer</span>`;
-                } else {
-                    document.getElementById(`lbl-q${node.id}-o${node.ans}`).classList.add('item-correct');
-                    if (selectionIdx !== null) {
-                        document.getElementById(`lbl-q${node.id}-o${selectionIdx}`).classList.add('item-wrong');
-                    }
-                    
-                    const charMap = ["A", "B", "C", "D"];
-                    logFeedbackNode.innerHTML = `
-                        <span class="correction-badge badge-danger">
-                            Correction: Option ${charMap[node.ans]} — "${node.options[node.ans]}" is correct.
-                        </span>`;
-                }
-            });
-
-            const computationPercentage = Math.round((aggregateScore / structurePayload.length) * 100);
-            
-            document.getElementById('report-name-target').innerText = `Performance Metrics for: ${userName}`;
-            document.getElementById('report-score-target').innerText = `${aggregateScore} / ${structurePayload.length}`;
-            document.getElementById('report-percentage-target').innerText = `Total Grade: ${computationPercentage}%`;
-            
-            document.getElementById('report-dashboard').classList.remove('hidden');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-    </script>
 </body>
 </html>
