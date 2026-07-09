@@ -1,510 +1,510 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Year 7 Digital Art Examination - RWMS</title>
-    <style>
-        :root {
-            --primary-color: #002060;
-            --secondary-color: #D4AF37;
-            --success-color: #28a745;
-            --fail-color: #dc3545;
-            --light-bg: #f4f6f9;
-            --text-color: #333;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Physics Practical Examination Quiz</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0f14;
+    --surface: #161b24;
+    --card: #1e2535;
+    --border: #2a3448;
+    --accent: #4af0b0;
+    --accent2: #f0a94a;
+    --text: #e8edf5;
+    --muted: #7a8aa0;
+    --correct: #2dd69a;
+    --wrong: #f05a5a;
+    --correct-bg: rgba(45,214,154,0.1);
+    --wrong-bg: rgba(240,90,90,0.1);
+  }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--light-bg);
-            color: var(--text-color);
-        }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
 
-        header {
-            background-color: var(--primary-color);
-            color: white;
-            text-align: center;
-            padding: 25px 15px;
-            border-bottom: 5px solid var(--secondary-color);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
+  body {
+    font-family: 'DM Mono', monospace;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 2rem 1rem 4rem;
+  }
 
-        header h1 {
-            margin: 0;
-            font-size: 24px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
+  .header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
 
-        header h2 {
-            margin: 6px 0;
-            font-size: 16px;
-            font-weight: normal;
-            color: #e0e0e0;
-            letter-spacing: 0.5px;
-        }
+  .lab-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    border: 1px solid var(--accent);
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 2px;
+    margin-bottom: 1rem;
+  }
 
-        header h3 {
-            margin: 5px 0 0 0;
-            font-size: 14px;
-            font-weight: bold;
-            color: var(--secondary-color);
-        }
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 800;
+    line-height: 1.1;
+    background: linear-gradient(135deg, var(--text) 40%, var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+  }
 
-        .container {
-            max-width: 850px;
-            margin: 30px auto;
-            padding: 0 20px;
-        }
+  .subtitle {
+    color: var(--muted);
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+  }
 
-        .card {
-            background: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            padding: 30px;
-            margin-bottom: 25px;
-        }
+  .school-name {
+    color: var(--muted);
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+  }
 
-        #timer-banner {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: var(--fail-color);
-            color: white;
-            padding: 12px 24px;
-            border-radius: 30px;
-            font-size: 18px;
-            font-weight: bold;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            z-index: 1000;
-            display: none;
-            border: 2px solid white;
-        }
+  .progress-bar-wrap {
+    max-width: 680px;
+    margin: 0 auto 2.5rem;
+    background: var(--border);
+    border-radius: 4px;
+    height: 4px;
+    overflow: hidden;
+  }
 
-        #login-screen {
-            text-align: center;
-            max-width: 500px;
-            margin: 50px auto;
-        }
+  .progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    transition: width 0.4s ease;
+    width: 0%;
+  }
 
-        .input-gate {
-            width: 85%;
-            padding: 14px 20px;
-            margin: 20px 0;
-            font-size: 16px;
-            border: 2px solid #bdc3c7;
-            border-radius: 8px;
-            text-align: center;
-            outline: none;
-            transition: border-color 0.2s;
-        }
+  .progress-label {
+    max-width: 680px;
+    margin: 0 auto 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+  }
 
-        .input-gate:focus {
-            border-color: var(--primary-color);
-        }
+  .lab-divider {
+    max-width: 680px;
+    margin: 2.5rem auto 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+  }
 
-        .btn {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 14px 40px;
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
+  .lab-divider:first-of-type { margin-top: 0; }
 
-        .btn:hover {
-            background-color: #001238;
-        }
+  .lab-divider .line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
 
-        #quiz-screen, #result-screen {
-            display: none;
-        }
+  .lab-divider .label {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--accent2);
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
 
-        .section-header {
-            background: #eef2f7;
-            color: var(--primary-color);
-            padding: 14px 18px;
-            border-radius: 6px;
-            font-weight: bold;
-            margin: 35px 0 20px 0;
-            border-left: 5px solid var(--secondary-color);
-            font-size: 18px;
-            text-transform: uppercase;
-        }
+  .quiz-container {
+    max-width: 680px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
 
-        .meta-info-strip {
-            font-size: 16px;
-            background: #eef2f7;
-            padding: 15px 20px;
-            border-radius: 8px;
-            margin-bottom: 25px;
-            font-weight: bold;
-            border-left: 5px solid var(--secondary-color);
-        }
+  .question-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: border-color 0.3s;
+  }
 
-        .question-box {
-            border-left: 5px solid var(--primary-color);
-            background: #fafafa;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 0 8px 8px 0;
-        }
+  .question-card.answered-correct {
+    border-color: var(--correct);
+    background: linear-gradient(135deg, var(--card), rgba(45,214,154,0.04));
+  }
 
-        .question-text {
-            font-size: 16px;
-            font-weight: bold;
-            margin-bottom: 15px;
-            line-height: 1.5;
-        }
+  .question-card.answered-wrong {
+    border-color: var(--wrong);
+    background: linear-gradient(135deg, var(--card), rgba(240,90,90,0.04));
+  }
 
-        .options-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 12px;
-        }
+  .q-num {
+    font-size: 0.68rem;
+    color: var(--accent2);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+  }
 
-        .option-node {
-            display: flex;
-            align-items: center;
-            background: #ffffff;
-            border: 1px solid #e2e8f0;
-            padding: 12px 15px;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
+  .q-text {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.55;
+    margin-bottom: 1.2rem;
+    color: var(--text);
+  }
 
-        .option-node:hover {
-            background: #f1f5f9;
-            border-color: #cbd5e1;
-        }
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
 
-        .option-node input {
-            margin-right: 12px;
-            transform: scale(1.2);
-        }
+  .option-btn {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.7rem 1rem;
+    cursor: pointer;
+    text-align: left;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.82rem;
+    color: var(--text);
+    transition: border-color 0.2s, background 0.2s, transform 0.1s;
+    line-height: 1.4;
+  }
 
-        /* Gap Input Styling */
-        .gap-input {
-            width: 220px;
-            padding: 8px 12px;
-            font-size: 15px;
-            border: 2px solid #bdc3c7;
-            border-radius: 6px;
-            outline: none;
-            font-weight: bold;
-            color: var(--primary-color);
-            transition: border-color 0.2s;
-        }
+  .option-btn:hover:not(:disabled) {
+    border-color: var(--accent);
+    background: rgba(74,240,176,0.06);
+    transform: translateX(2px);
+  }
 
-        .gap-input:focus {
-            border-color: var(--primary-color);
-        }
+  .option-btn:disabled { cursor: default; }
 
-        .gap-input.correct-input {
-            border-color: var(--success-color) !important;
-            background-color: #d4edda !important;
-            color: #155724;
-        }
+  .option-btn.correct {
+    border-color: var(--correct);
+    background: var(--correct-bg);
+    color: var(--correct);
+  }
 
-        .gap-input.wrong-input {
-            border-color: var(--fail-color) !important;
-            background-color: #f8d7da !important;
-            color: #721c24;
-        }
+  .option-btn.wrong {
+    border-color: var(--wrong);
+    background: var(--wrong-bg);
+    color: var(--wrong);
+  }
 
-        /* Auto-Marking UI Mechanics */
-        .option-node.correct-state {
-            background-color: #d4edda !important;
-            border-color: var(--success-color) !important;
-            color: #155724;
-            font-weight: bold;
-        }
+  .option-letter {
+    font-weight: 500;
+    color: var(--muted);
+    flex-shrink: 0;
+    min-width: 1rem;
+  }
 
-        .option-node.wrong-state {
-            background-color: #f8d7da !important;
-            border-color: var(--fail-color) !important;
-            color: #721c24;
-        }
+  .option-btn.correct .option-letter { color: var(--correct); }
+  .option-btn.wrong .option-letter { color: var(--wrong); }
 
-        .correction-box {
-            margin-top: 12px;
-            font-weight: bold;
-            font-size: 14px;
-            display: none;
-            padding: 8px 12px;
-            border-radius: 4px;
-        }
-        
-        .correction-box.correct-banner {
-            background-color: #d4edda;
-            color: #155724;
-            display: block;
-        }
+  .feedback {
+    margin-top: 1rem;
+    font-size: 0.78rem;
+    padding: 0.6rem 0.9rem;
+    border-radius: 4px;
+    line-height: 1.5;
+    display: none;
+  }
 
-        .correction-box.wrong-banner {
-            background-color: #f8d7da;
-            color: #721c24;
-            display: block;
-        }
+  .feedback.show { display: block; }
+  .feedback.correct { background: var(--correct-bg); color: var(--correct); border-left: 3px solid var(--correct); }
+  .feedback.wrong { background: var(--wrong-bg); color: var(--wrong); border-left: 3px solid var(--wrong); }
 
-        .summary-dashboard {
-            text-align: center;
-            background: #e8f8f5;
-            border: 2px solid var(--success-color);
-            padding: 25px;
-            border-radius: 12px;
-            margin-bottom: 30px;
-        }
+  .results-panel {
+    max-width: 680px;
+    margin: 2rem auto 0;
+    background: var(--card);
+    border: 1px solid var(--accent);
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+    display: none;
+  }
 
-        .summary-dashboard h2 {
-            margin: 0 0 10px 0;
-            color: #117a65;
-            font-size: 24px;
-        }
-    </style>
+  .results-panel.show { display: block; }
+
+  .score-display {
+    font-family: 'Syne', sans-serif;
+    font-size: 4rem;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+    margin: 0.5rem 0;
+  }
+
+  .score-label {
+    font-size: 0.75rem;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .score-message {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem;
+    margin: 1rem 0 1.5rem;
+    color: var(--text);
+  }
+
+  .retry-btn {
+    background: var(--accent);
+    color: var(--bg);
+    border: none;
+    border-radius: 4px;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    padding: 0.7rem 2rem;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+
+  .retry-btn:hover { opacity: 0.85; }
+
+  .jump-btn {
+    background: transparent;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+    padding: 0.6rem 1.2rem;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+    margin: 0 auto 2rem;
+    display: block;
+  }
+
+  .jump-btn:hover { border-color: var(--accent); color: var(--accent); }
+</style>
 </head>
 <body>
 
-<div id="timer-banner">Time Left: 20:00</div>
+<div class="header">
+  <div class="school-name">Royal Wunderkind Model School</div>
+  <div class="lab-tag">Science Assessment</div>
+  <h1>Physics Practical Examination</h1>
+  <p class="subtitle">60 multiple choice questions · click an option to answer</p>
+</div>
 
-<header>
-    <h1>ROYAL WUNDERKIND MODEL SCHOOL</h1>
-    <h2>TERM 3 EXAMINATION, 2025/2026 ACADEMIC SESSION</h2>
-    <h3>SUBJECT: YEAR 7 DIGITAL ART</h3>
-</header>
+<div class="progress-label" id="progressLabel">
+  <span>Progress</span><span id="progressCount">0 / 60</span>
+</div>
+<div class="progress-bar-wrap">
+  <div class="progress-bar" id="progressBar"></div>
+</div>
 
-<div class="container">
-    
-    <!-- Candidate Verification Gate -->
-    <div id="login-screen" class="card">
-        <h2 style="margin-top:0; color: var(--primary-color);">Candidate Validation</h2>
-        <p>Please enter your full name below to access your examination paper.</p>
-        <input type="text" id="candidate-fullname" class="input-gate" placeholder="Surname & First Name" autocomplete="off">
-        <br>
-        <button class="btn" onclick="startAssessment()">Begin Examination</button>
-    </div>
+<button class="jump-btn" onclick="document.getElementById('resultsPanel').scrollIntoView({behavior:'smooth', block:'center'})">↓ Jump to results</button>
 
-    <!-- Main CBT Sheet -->
-    <div id="quiz-screen">
-        <div class="meta-info-strip" id="student-details"></div>
-        
-        <!-- Score Feedback View Panel -->
-        <div id="result-screen" class="summary-dashboard">
-            <h2 id="total-score-text"></h2>
-            <p>Please scroll down to review your performance metrics and structural automated corrections.</p>
-        </div>
-
-        <form id="cbt-form">
-            <!-- Part 1: Multiple Choice Objectives -->
-            <div class="section-header">Multiple Choice Questions (Instructions: Answer all questions completely)</div>
-            <div id="objective-outlet"></div>
-
-            <!-- Part 2: Fill in the Gaps -->
-            <div class="section-header">Fill in the Gaps</div>
-            <div id="gap-outlet"></div>
-            
-            <div style="text-align: center; margin-top: 40px; margin-bottom: 40px;">
-                <button type="button" id="submit-exam-btn" class="btn" style="background-color: var(--success-color);" onclick="gradeAssessment()">Submit Examination</button>
-            </div>
-        </form>
-    </div>
+<div class="quiz-container" id="quizContainer"></div>
+<div class="results-panel" id="resultsPanel">
+  <div class="score-label">Your Score</div>
+  <div class="score-display" id="scoreDisplay"></div>
+  <div style="color:var(--muted);font-size:0.8rem;margin-bottom:0.5rem">out of 60</div>
+  <div class="score-message" id="scoreMessage"></div>
+  <button class="retry-btn" onclick="retryQuiz()">↺ Try Again</button>
 </div>
 
 <script>
-    // Multiple Choice Configuration
-    const objectiveDatabase = [
-        { q: "Which of the following AI tools is specifically designed for generating AI voiceovers and music for faceless content?", o: ["ImageFx", "Suno AI", "Microsoft Teams", "Zoom"], a: "B" },
-        { q: "What is the primary limitation for users on the Zoom Free plan?", o: ["No video allowed", "40-minute group meeting limit", "Cannot use mobile devices", "No chat functionality"], a: "B" },
-        { q: "Which platform is described as a \"full collaboration hub\" because it combines chat, file sharing, and video calls?", o: ["WhatsApp", "FaceTime", "Microsoft Teams", "Restream"], a: "C" },
-        { q: "What makes Riverside a unique choice for online teachers and podcasters compared to standard meeting apps?", o: ["It is only for Apple devices", "High-quality recording despite slow internet", "It is completely free with no limits", "It only allows one person at a time"], a: "B" },
-        { q: "According to the safety rules for young creators, what should you do before posting anything online?", o: ["Buy the most expensive camera", "Ask an adult for permission", "Share your school location", "Use someone else's copyrighted work"], a: "B" }
-    ];
+const questions = [
+  // Lab 1: Measurement, Precision, and Accuracy
+  { lab: "Lab 1 · Measurement, Precision & Accuracy", q: "Accuracy refers to how close a measurement is to:", options: ["Another measurement", "The correct value", "Zero", "The average value"], answer: 1, feedback: "Accuracy is about correctness — how near a reading is to the true, accepted value." },
+  { lab: "Lab 1 · Measurement, Precision & Accuracy", q: "Precision refers to:", options: ["The size of the object", "How close repeated measurements are to one another", "The speed of measurement", "The unit of measurement"], answer: 1, feedback: "Precision describes consistency — how tightly repeated readings cluster together, regardless of the true value." },
+  { lab: "Lab 1 · Measurement, Precision & Accuracy", q: "Which instrument is best used to measure the length of a classroom?", options: ["Stopwatch", "Measuring tape", "Thermometer", "Spring balance"], answer: 1, feedback: "A measuring tape is designed for long-distance length measurements like the dimensions of a room." },
+  { lab: "Lab 1 · Measurement, Precision & Accuracy", q: "The SI unit of distance is:", options: ["Centimeter", "Millimeter", "Meter", "Kilometer"], answer: 2, feedback: "The metre is the base SI unit for length/distance; other units are derived from it." },
+  { lab: "Lab 1 · Measurement, Precision & Accuracy", q: "Which instrument is commonly used to measure the dimensions of a small block?", options: ["Ruler", "Beaker", "Stopwatch", "Balance"], answer: 0, feedback: "A ruler gives quick, direct readings of length, width, and height for small regular objects." },
+  { lab: "Lab 1 · Measurement, Precision & Accuracy", q: "The smallest division on a measuring instrument determines its:", options: ["Accuracy", "Resolution", "Density", "Weight"], answer: 1, feedback: "Resolution (or precision limit) is set by the smallest marked division an instrument can read." },
+  { lab: "Lab 1 · Measurement, Precision & Accuracy", q: "Which instrument measures mass directly?", options: ["Spring scale", "Digital scale", "Stopwatch", "Measuring tape"], answer: 1, feedback: "A digital scale measures mass directly in grams or kilograms." },
+  { lab: "Lab 1 · Measurement, Precision & Accuracy", q: "A spring scale measures:", options: ["Density", "Weight", "Volume", "Mass"], answer: 1, feedback: "A spring scale reads the pull of gravity on an object, which is its weight, measured in newtons." },
+  { lab: "Lab 1 · Measurement, Precision & Accuracy", q: "Weight is measured in:", options: ["Kilograms", "Grams", "Newtons", "Meters"], answer: 2, feedback: "Weight is a force, so its SI unit is the newton (N), unlike mass which is measured in kilograms." },
+  { lab: "Lab 1 · Measurement, Precision & Accuracy", q: "The value of gravitational acceleration used in calculations is:", options: ["10.8 m/s²", "8.9 m/s²", "9.8 m/s²", "9.0 m/s²"], answer: 2, feedback: "The standard value used for gravitational acceleration near Earth's surface is 9.8 m/s²." },
+  { lab: "Lab 1 · Measurement, Precision & Accuracy", q: "Volume of an irregular object is best measured using:", options: ["Formula", "Ruler", "Displacement method", "Vernier caliper"], answer: 2, feedback: "Irregular shapes don't fit neat formulas, so the water displacement method is used instead." },
+  { lab: "Lab 1 · Measurement, Precision & Accuracy", q: "One milliliter (mL) is equal to:", options: ["10 cm³", "100 cm³", "1 cm³", "0.1 cm³"], answer: 2, feedback: "1 millilitre and 1 cubic centimetre represent exactly the same volume." },
+  { lab: "Lab 1 · Measurement, Precision & Accuracy", q: "When reading a measuring cylinder, your eye should be:", options: ["Above the water level", "Below the water level", "At eye level", "Anywhere"], answer: 2, feedback: "Reading at eye level with the meniscus avoids parallax error, which distorts the reading if viewed from above or below." },
+  { lab: "Lab 1 · Measurement, Precision & Accuracy", q: "Air bubbles attached to an object during displacement will make the measured volume:", options: ["Smaller", "Larger", "Unchanged", "Zero"], answer: 1, feedback: "Trapped air takes up extra space, pushing the water level higher and making the volume appear larger than it really is." },
+  { lab: "Lab 1 · Measurement, Precision & Accuracy", q: "Which precaution should be taken when using glassware?", options: ["Shake it vigorously", "Handle carefully", "Heat it immediately", "Drop the object into it"], answer: 1, feedback: "Glassware is fragile and should always be handled with care to prevent breakage and injury." },
 
-    // Fill in the Gaps Configuration
-    const gapDatabase = [
-        { prefix: "Content creation is the process of ", suffix: ", making, and sharing information or creative work.", a: "planning" },
-        { prefix: "Faceless creation tools are perfect if you are a little ", suffix: " or want to stay private.", a: "shy" },
-        { prefix: "", suffix: " is a browser-based video tool that requires no download to join a meeting.", a: "Google Meet" },
-        { prefix: "FaceTime is known for its high-quality video specifically on ", suffix: " devices.", a: "Apple" },
-        { prefix: "", suffix: " helps creators broadcast one live video to many platforms at the same time.", a: "Restream or Obs" },
-        { prefix: "WhatsApp video calls are limited to a maximum of ", suffix: " people.", a: "32" },
-        { prefix: "In content creation, you should always use your own work or ", suffix: " materials that allow reuse.", a: "free" },
-        { prefix: "Tools like Capcut and Inshot are examples of online ", suffix: " editors.", a: "video" },
-        { prefix: "Microsoft Teams offers deep integration with ", suffix: " 365, including Word and Excel.", a: "Microsoft" },
-        { prefix: "When creating content, you must not share ", suffix: " details like your school or location.", a: "personal" },
-        { prefix: "Zoom features \"breakout rooms\" and an AI ", suffix: " for meeting summaries.", a: "companion" },
-        { prefix: "Live-streaming apps allow users to add text, backgrounds, and ", suffix: " to look professional.", a: "graphics" },
-        { prefix: "Great creators always ", suffix: " their work by cutting or trimming videos.", a: "improve" },
-        { prefix: "ImageFx and Whisk are AI tools used for generating ", suffix: ".", a: "images" },
-        { prefix: "Content creators turn their ideas and talents into something others can ", suffix: ".", a: "enjoy" }
-    ];
+  // Lab 2: Position and Speed
+  { lab: "Lab 2 · Position & Speed", q: "Speed is calculated as:", options: ["Distance × Time", "Distance ÷ Time", "Time ÷ Distance", "Mass × Acceleration"], answer: 1, feedback: "Speed tells you how much distance is covered per unit of time, so speed = distance ÷ time." },
+  { lab: "Lab 2 · Position & Speed", q: "The SI unit of speed is:", options: ["km/h", "cm/s", "m/s", "m²/s"], answer: 2, feedback: "Metres per second (m/s) combines the SI base units of distance and time." },
+  { lab: "Lab 2 · Position & Speed", q: "Which instrument is used to measure time?", options: ["Meter rule", "Stopwatch", "Spring balance", "Thermometer"], answer: 1, feedback: "A stopwatch precisely records elapsed time during an experiment." },
+  { lab: "Lab 2 · Position & Speed", q: "Repeating measurements during an experiment helps to:", options: ["Waste time", "Improve reliability", "Increase distance", "Reduce mass"], answer: 1, feedback: "Taking repeats and averaging reduces the effect of random errors, making results more reliable." },
+  { lab: "Lab 2 · Position & Speed", q: "If the same distance is covered in less time, the speed:", options: ["Decreases", "Remains constant", "Increases", "Becomes zero"], answer: 2, feedback: "Since speed = distance ÷ time, covering the same distance in less time means the speed is greater." },
+  { lab: "Lab 2 · Position & Speed", q: "A line of best fit is drawn:", options: ["Through every point", "Randomly", "Through the general trend of the data", "Along the axes"], answer: 2, feedback: "A line of best fit follows the overall pattern of the plotted points rather than connecting each one exactly." },
+  { lab: "Lab 2 · Position & Speed", q: "In a scatter graph, the dots should:", options: ["Be connected", "Not be connected", "Form a circle", "Be colored differently"], answer: 1, feedback: "Scatter plot points are left unconnected so the overall trend can be judged with a separate line of best fit." },
+  { lab: "Lab 2 · Position & Speed", q: "A positive trend means:", options: ["One variable decreases as the other increases.", "Both variables increase together.", "Both variables decrease together.", "There is no relationship."], answer: 1, feedback: "In a positive trend, as one variable rises, the other rises with it." },
+  { lab: "Lab 2 · Position & Speed", q: "Which variable is plotted on the horizontal axis?", options: ["Dependent variable", "Independent variable", "Constant", "Control"], answer: 1, feedback: "By convention, the variable the experimenter changes (the independent variable) goes on the x-axis." },
+  { lab: "Lab 2 · Position & Speed", q: "A line of best fit helps scientists:", options: ["Decorate graphs", "Make predictions", "Count points", "Measure mass"], answer: 1, feedback: "The line summarises the trend in the data, allowing values to be predicted beyond the measured points." },
 
-    let countdownTracker;
-    let timeRemainingSeconds = 20 * 60; // Configured directly to 20 Minutes
-    const lettersMap = ["A", "B", "C", "D"];
+  // Lab 3: Density
+  { lab: "Lab 3 · Density", q: "Density is defined as:", options: ["Volume ÷ Mass", "Mass ÷ Volume", "Mass × Volume", "Weight ÷ Volume"], answer: 1, feedback: "Density (ρ) = Mass ÷ Volume — it measures how much mass is packed into a given space." },
+  { lab: "Lab 3 · Density", q: "The SI-related unit used in the laboratory for density is:", options: ["kg/m", "g/cm³", "N/m²", "kg/L"], answer: 1, feedback: "In the lab, mass is usually in grams and volume in cm³, giving density in g/cm³." },
+  { lab: "Lab 3 · Density", q: "An object with density less than water will:", options: ["Sink", "Float", "Explode", "Dissolve"], answer: 1, feedback: "Objects less dense than water (1 g/cm³) are buoyed up and float on its surface." },
+  { lab: "Lab 3 · Density", q: "Water has a density of approximately:", options: ["0.5 g/cm³", "2 g/cm³", "1 g/cm³", "10 g/cm³"], answer: 2, feedback: "Pure water has a density of about 1 g/cm³, which serves as a reference point for floating and sinking." },
+  { lab: "Lab 3 · Density", q: "The volume of a rectangular block is:", options: ["Length + Width + Height", "Length × Width × Height", "Length × Width", "Mass × Volume"], answer: 1, feedback: "For a rectangular block, volume is found by multiplying its three dimensions together." },
+  { lab: "Lab 3 · Density", q: "Which object generally has the highest density?", options: ["Wood", "Plastic", "Metal", "Rubber"], answer: 2, feedback: "Metals typically pack a large mass into a small volume, giving them much higher densities than wood, plastic, or rubber." },
+  { lab: "Lab 3 · Density", q: "Density of an irregular object requires measuring:", options: ["Area only", "Weight only", "Volume by displacement", "Temperature"], answer: 2, feedback: "Since an irregular shape can't be measured with a formula, its volume is found using water displacement." },
+  { lab: "Lab 3 · Density", q: "Cooking oil poured into water usually:", options: ["Sinks", "Mixes completely", "Floats", "Evaporates"], answer: 2, feedback: "Cooking oil is less dense than water, so it forms a layer that floats on top." },
+  { lab: "Lab 3 · Density", q: "Salt water is denser than fresh water because it contains:", options: ["Less water", "Dissolved salt", "Air", "Oil"], answer: 1, feedback: "Dissolved salt adds extra mass to the same volume of water, increasing its density." },
+  { lab: "Lab 3 · Density", q: "Liquids in a container arrange themselves according to:", options: ["Color", "Temperature", "Density", "Volume"], answer: 2, feedback: "Denser liquids sink below less dense ones, so layers settle in order of density." },
 
-    function startAssessment() {
-        const inputName = document.getElementById('candidate-fullname').value.trim();
-        if (inputName === "") {
-            alert("Access Denied: Please fill in the candidate's complete name setup.");
-            return;
-        }
+  // Lab 4: Stretching and Forces
+  { lab: "Lab 4 · Stretching & Forces", q: "Hooke's Law states that:", options: ["Force is inversely proportional to extension.", "Extension is directly proportional to force.", "Force equals mass × acceleration.", "Density equals mass ÷ volume."], answer: 1, feedback: "Hooke's Law says a spring's extension increases in direct proportion to the applied force, up to its elastic limit." },
+  { lab: "Lab 4 · Stretching & Forces", q: "The formula for Hooke's Law is:", options: ["F = ma", "F = kx", "V = lwh", "D = m/V"], answer: 1, feedback: "F = kx relates force (F) to the spring constant (k) and extension (x)." },
+  { lab: "Lab 4 · Stretching & Forces", q: "The spring constant is represented by:", options: ["F", "x", "k", "g"], answer: 2, feedback: "The letter k stands for the spring constant, which measures a spring's stiffness." },
+  { lab: "Lab 4 · Stretching & Forces", q: "Extension is calculated by:", options: ["New length + Natural length", "Natural length - New length", "New length - Natural length", "Force - Length"], answer: 2, feedback: "Extension is how much longer the spring has stretched, so it equals the new length minus the original (natural) length." },
+  { lab: "Lab 4 · Stretching & Forces", q: "The SI unit of force is:", options: ["Joule", "Newton", "Watt", "Pascal"], answer: 1, feedback: "Force is measured in newtons (N) in the SI system." },
+  { lab: "Lab 4 · Stretching & Forces", q: "Before recording the spring length, you should:", options: ["Shake the spring", "Wait until it stops moving", "Remove the mass", "Stretch it further"], answer: 1, feedback: "Letting the spring settle before reading avoids errors caused by it still oscillating." },
+  { lab: "Lab 4 · Stretching & Forces", q: "The graph of Force against Extension follows Hooke's Law by being:", options: ["Circular", "Curved", "Straight", "Zigzag"], answer: 2, feedback: "As long as the spring obeys Hooke's Law, plotting force against extension gives a straight line through the origin." },
+  { lab: "Lab 4 · Stretching & Forces", q: "The gradient of a Force-Extension graph represents:", options: ["Density", "Speed", "Spring constant", "Mass"], answer: 2, feedback: "Since F = kx, the slope of a force-extension graph gives the spring constant, k." },
+  { lab: "Lab 4 · Stretching & Forces", q: "A stiffer spring has:", options: ["Smaller spring constant", "Greater spring constant", "Zero extension", "Lower force"], answer: 1, feedback: "A larger spring constant means more force is needed to produce the same extension, so the spring is stiffer." },
+  { lab: "Lab 4 · Stretching & Forces", q: "Stretching beyond the elastic limit means the spring:", options: ["Returns completely", "Becomes permanently deformed", "Gets lighter", "Stops moving"], answer: 1, feedback: "Past the elastic limit, the spring is permanently stretched and no longer returns to its original length." },
 
-        document.getElementById('login-screen').style.display = 'none';
-        document.getElementById('quiz-screen').style.display = 'block';
-        document.getElementById('timer-banner').style.display = 'block';
-        
-        document.getElementById('student-details').innerText = `CANDIDATE: ${inputName.toUpperCase()} | CLASS: YEAR 7 | DURATION: 20 MINS`;
+  // Lab 6: The Pendulum
+  { lab: "Lab 6 · The Pendulum", q: "The time taken for one complete swing is called the:", options: ["Frequency", "Period", "Velocity", "Amplitude"], answer: 1, feedback: "The period is the time for one full back-and-forth swing of the pendulum." },
+  { lab: "Lab 6 · The Pendulum", q: "The period of a pendulum is measured in:", options: ["Meters", "Seconds", "Newtons", "Kilograms"], answer: 1, feedback: "Since the period is a measure of time, it is recorded in seconds." },
+  { lab: "Lab 6 · The Pendulum", q: "The main factor affecting the period of a pendulum is:", options: ["Mass", "Color", "Length", "Shape"], answer: 2, feedback: "A pendulum's period depends mainly on its length — longer pendulums swing more slowly." },
+  { lab: "Lab 6 · The Pendulum", q: "The recommended release angle is approximately:", options: ["45°", "30°", "10°", "90°"], answer: 2, feedback: "A small release angle, around 10°, keeps the swing close to simple harmonic motion for accurate timing." },
+  { lab: "Lab 6 · The Pendulum", q: "Timing ten swings instead of one:", options: ["Increases error", "Improves accuracy", "Changes gravity", "Changes the length"], answer: 1, feedback: "Timing multiple swings and dividing by the count spreads out reaction-time error, giving a more accurate period." },
+  { lab: "Lab 6 · The Pendulum", q: "The pendulum length is measured from:", options: ["Top of the stand", "Pivot to the center of the bob", "Bottom of the bob", "End of the string"], answer: 1, feedback: "Pendulum length is taken from the fixed pivot point down to the centre of the swinging bob." },
+  { lab: "Lab 6 · The Pendulum", q: "A longer pendulum generally has:", options: ["A shorter period", "The same period", "A longer period", "Zero period"], answer: 2, feedback: "Increasing the length of a pendulum increases the time it takes to complete each swing." },
+  { lab: "Lab 6 · The Pendulum", q: "Which instrument is used to measure the release angle?", options: ["Stopwatch", "Meter rule", "Protractor", "Thermometer"], answer: 2, feedback: "A protractor measures angles, making it the right tool for setting the pendulum's release angle." },
 
-        buildQuizSheet();
-        runClockCounter();
-    }
+  // General Questions
+  { lab: "General Questions", q: "Which of the following is not a laboratory measuring instrument?", options: ["Stopwatch", "Measuring tape", "Spring scale", "Microscope"], answer: 3, feedback: "A microscope magnifies objects for viewing rather than producing a numerical measurement like the others." },
+  { lab: "General Questions", q: "Which unit is used to measure mass?", options: ["Newton", "Gram", "Meter", "Second"], answer: 1, feedback: "Mass is measured in grams or kilograms, not newtons, meters, or seconds." },
+  { lab: "General Questions", q: "Scientists repeat experiments mainly to:", options: ["Increase speed", "Improve reliability", "Reduce mass", "Save time"], answer: 1, feedback: "Repeating experiments and averaging results reduces the impact of random error, improving reliability." },
+  { lab: "General Questions", q: "Which of the following is an example of an irregular object?", options: ["Cube", "Stone", "Rectangular block", "Box"], answer: 1, feedback: "A stone has no uniform geometric shape, unlike a cube, block, or box, so its volume must be found by displacement." },
+  { lab: "General Questions", q: "A graph showing no relationship between variables indicates:", options: ["Positive trend", "Negative trend", "No clear trend", "Constant speed"], answer: 2, feedback: "When points are scattered with no visible pattern, this shows there is no clear trend between the variables." },
+  { lab: "General Questions", q: "Which laboratory activity investigates floating and sinking?", options: ["Speed", "Density", "Hooke's Law", "Pendulum"], answer: 1, feedback: "Floating and sinking are explained by density — whether an object is more or less dense than the fluid it's in." },
+  { lab: "General Questions", q: "Which scientific skill is emphasized throughout all the laboratory activities?", options: ["Memorization", "Accurate measurement and observation", "Guessing", "Drawing only"], answer: 1, feedback: "Every lab activity, from measuring length to timing a pendulum, relies on careful, accurate measurement and observation." }
+];
 
-    function buildQuizSheet() {
-        // Construct Multiple Choice Section
-        const objOutlet = document.getElementById('objective-outlet');
-        objOutlet.innerHTML = "";
-        objectiveDatabase.forEach((questionItem, qIndex) => {
-            const displayIndex = qIndex + 1;
-            const block = document.createElement('div');
-            block.className = 'card question-box';
+let answered = 0;
+let correct = 0;
 
-            let optionsMarkup = "";
-            questionItem.o.forEach((optionValue, oIndex) => {
-                const currentLetter = lettersMap[oIndex];
-                optionsMarkup += `
-                    <label class="option-node" id="node-box-${displayIndex}-${currentLetter}">
-                        <input type="radio" name="obj-id-${displayIndex}" value="${currentLetter}">
-                        <span><strong>${currentLetter.toLowerCase()})</strong> ${optionValue}</span>
-                    </label>
-                `;
-            });
+function buildQuiz() {
+  const container = document.getElementById('quizContainer');
+  container.innerHTML = '';
+  answered = 0;
+  correct = 0;
+  updateProgress();
 
-            block.innerHTML = `
-                <div class="question-text">${displayIndex}. ${questionItem.q}</div>
-                <div class="options-grid">${optionsMarkup}</div>
-                <div class="correction-box" id="obj-feedback-${displayIndex}"></div>
-            `;
-            objOutlet.appendChild(block);
-        });
+  const letters = ['A', 'B', 'C', 'D'];
 
-        // Construct Fill in the Gaps Section
-        const gapOutlet = document.getElementById('gap-outlet');
-        gapOutlet.innerHTML = "";
-        gapDatabase.forEach((gapItem, gIndex) => {
-            const displayIndex = gIndex + 6; // Starts layout numbering tracking from index 6
-            const block = document.createElement('div');
-            block.className = 'card question-box';
+  questions.forEach((q, i) => {
+    const card = document.createElement('div');
+    card.className = 'question-card';
+    card.id = `card-${i}`;
 
-            // Construct structural textual display containing the textual input parameters
-            let inlineMarkup = `<strong>${displayIndex}. </strong> `;
-            if (gapItem.prefix !== "") inlineMarkup += gapItem.prefix;
-            inlineMarkup += `<input type="text" class="gap-input" id="gap-input-${displayIndex}" placeholder="Type answer here..." autocomplete="off">`;
-            if (gapItem.suffix !== "") inlineMarkup += gapItem.suffix;
+    const optionsHTML = q.options.map((opt, oi) => `
+      <button class="option-btn" onclick="selectAnswer(${i}, ${oi})" id="opt-${i}-${oi}">
+        <span class="option-letter">${letters[oi]}.</span>
+        <span>${opt}</span>
+      </button>
+    `).join('');
 
-            block.innerHTML = `
-                <div style="font-size: 16px; line-height: 1.8;">${inlineMarkup}</div>
-                <div class="correction-box" id="gap-feedback-${displayIndex}"></div>
-            `;
-            gapOutlet.appendChild(block);
-        });
-    }
+    card.innerHTML = `
+      <div class="q-num">Question ${i + 1} of ${questions.length}</div>
+      <div class="q-text">${q.q}</div>
+      <div class="options">${optionsHTML}</div>
+      <div class="feedback" id="fb-${i}"></div>
+    `;
+    container.appendChild(card);
+  });
 
-    function runClockCounter() {
-        countdownTracker = setInterval(() => {
-            timeRemainingSeconds--;
-            let computedMinutes = Math.floor(timeRemainingSeconds / 60);
-            let computedSeconds = timeRemainingSeconds % 60;
+  document.getElementById('resultsPanel').classList.remove('show');
+}
 
-            computedMinutes = computedMinutes < 10 ? "0" + computedMinutes : computedMinutes;
-            computedSeconds = computedSeconds < 10 ? "0" + computedSeconds : computedSeconds;
+function selectAnswer(qIdx, optIdx) {
+  const q = questions[qIdx];
+  const card = document.getElementById(`card-${qIdx}`);
 
-            document.getElementById('timer-banner').innerText = `Time Left: ${computedMinutes}:${computedSeconds}`;
+  const btns = card.querySelectorAll('.option-btn');
+  btns.forEach(b => b.disabled = true);
 
-            if (timeRemainingSeconds <= 0) {
-                clearInterval(countdownTracker);
-                alert("Time Limit Expired! Running automated system submission configuration.");
-                gradeAssessment();
-            }
-        }, 1000);
-    }
+  const chosen = document.getElementById(`opt-${qIdx}-${optIdx}`);
+  const correctBtn = document.getElementById(`opt-${qIdx}-${q.answer}`);
 
-    function gradeAssessment() {
-        clearInterval(countdownTracker);
-        document.getElementById('timer-banner').style.display = 'none';
-        document.getElementById('submit-exam-btn').style.display = 'none';
+  const isCorrect = optIdx === q.answer;
 
-        let accurateAnswersTally = 0;
-        const totalObjectiveCount = objectiveDatabase.length;
-        const totalGapCount = gapDatabase.length;
-        const completeCount = totalObjectiveCount + totalGapCount;
+  if (isCorrect) {
+    chosen.classList.add('correct');
+    card.classList.add('answered-correct');
+    correct++;
+  } else {
+    chosen.classList.add('wrong');
+    correctBtn.classList.add('correct');
+    card.classList.add('answered-wrong');
+  }
 
-        // Process Evaluation Loop for Objectives
-        objectiveDatabase.forEach((questionItem, qIndex) => {
-            const displayIndex = qIndex + 1;
-            const checkedRadio = document.querySelector(`input[name="obj-id-${displayIndex}"]:checked`);
-            const checkedLetter = checkedRadio ? checkedRadio.value : null;
-            const targetCorrectLetter = questionItem.a;
+  const fb = document.getElementById(`fb-${qIdx}`);
+  fb.textContent = (isCorrect ? '✓ Correct! ' : '✗ Incorrect. ') + q.feedback;
+  fb.className = `feedback show ${isCorrect ? 'correct' : 'wrong'}`;
 
-            const choicesElements = document.querySelectorAll(`input[name="obj-id-${displayIndex}"]`);
-            choicesElements.forEach(input => input.disabled = true);
+  answered++;
+  updateProgress();
 
-            const feedbackDiv = document.getElementById(`obj-feedback-${displayIndex}`);
+  if (answered === questions.length) {
+    setTimeout(showResults, 600);
+  }
+}
 
-            if (checkedLetter === targetCorrectLetter) {
-                accurateAnswersTally++;
-                document.getElementById(`node-box-${displayIndex}-${targetCorrectLetter}`).classList.add('correct-state');
-                feedbackDiv.className = "correction-box correct-banner";
-                feedbackDiv.innerHTML = `Correct!`;
-            } else {
-                if (checkedLetter) {
-                    document.getElementById(`node-box-${displayIndex}-${checkedLetter}`).classList.add('wrong-state');
-                }
-                document.getElementById(`node-box-${displayIndex}-${targetCorrectLetter}`).classList.add('correct-state');
-                
-                const solutionIndex = lettersMap.indexOf(targetCorrectLetter);
-                const explicitSolutionString = questionItem.o[solutionIndex];
-                feedbackDiv.className = "correction-box wrong-banner";
-                feedbackDiv.innerHTML = `Incorrect. The correct answer is <strong>${targetCorrectLetter.toLowerCase()}) ${explicitSolutionString}</strong>`;
-            }
-        });
+function updateProgress() {
+  const pct = (answered / questions.length) * 100;
+  document.getElementById('progressBar').style.width = pct + '%';
+  document.getElementById('progressCount').textContent = `${answered} / ${questions.length}`;
+}
 
-        // Process Evaluation Loop for Fill in the Gaps
-        gapDatabase.forEach((gapItem, gIndex) => {
-            const displayIndex = gIndex + 6;
-            const inputField = document.getElementById(`gap-input-${displayIndex}`);
-            const candidateAnswer = inputField.value.trim().toLowerCase();
-            const correctKey = gapItem.a.toLowerCase();
+function showResults() {
+  const panel = document.getElementById('resultsPanel');
+  panel.classList.add('show');
+  document.getElementById('scoreDisplay').textContent = correct;
 
-            inputField.disabled = true;
-            const feedbackDiv = document.getElementById(`gap-feedback-${displayIndex}`);
+  const pct = Math.round((correct / questions.length) * 100);
+  let msg;
+  if (pct >= 90) msg = "Outstanding! You have mastered the entire practical syllabus.";
+  else if (pct >= 75) msg = "Great work! Strong understanding of the concepts.";
+  else if (pct >= 60) msg = "Good effort! Review the labs you missed.";
+  else msg = "Keep practising! Re-read the lab notes and try again.";
+  document.getElementById('scoreMessage').textContent = `${pct}% — ${msg}`;
 
-            if (candidateAnswer === correctKey) {
-                accurateAnswersTally++;
-                inputField.classList.add('correct-input');
-                feedbackDiv.className = "correction-box correct-banner";
-                feedbackDiv.innerHTML = `Correct! Answer is "${gapItem.a}"`;
-            } else {
-                inputField.classList.add('wrong-input');
-                feedbackDiv.className = "correction-box wrong-banner";
-                feedbackDiv.innerHTML = `Incorrect. The expected answer is: <strong>${gapItem.a}</strong>`;
-            }
-        });
+  panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
 
-        // Render Comprehensive Score Breakdown Summary
-        const calculationPercentage = Math.round((accurateAnswersTally / completeCount) * 100);
-        document.getElementById('total-score-text').innerText = `Examination Completed! Score: ${accurateAnswersTally} / ${completeCount} (${calculationPercentage}%)`;
-        document.getElementById('result-screen').style.display = 'block';
+function retryQuiz() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  setTimeout(buildQuiz, 300);
+}
 
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+buildQuiz();
 </script>
-
 </body>
 </html>
