@@ -3,497 +3,452 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ROYAL WUNDERKIND MODEL SCHOOL - JSS 1 CRS PROMOTIONAL EXAM</title>
+    <title>Year 7 History Promotional Examination - RWMS</title>
     <style>
         :root {
-            --primary-color: #1a365d;
-            --secondary-color: #2b6cb0;
-            --accent-color: #d69e2e;
-            --success-color: #2f855a;
-            --danger-color: #c53030;
-            --light-bg: #f7fafc;
-            --card-bg: #ffffff;
-            --text-color: #2d3748;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --primary-color: #002060;
+            --secondary-color: #D4AF37;
+            --success-color: #28a745;
+            --fail-color: #dc3545;
+            --light-bg: #f4f6f9;
+            --text-color: #333;
         }
 
         body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
             background-color: var(--light-bg);
             color: var(--text-color);
-            line-height: 1.6;
-            padding-bottom: 60px;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 25px 15px;
+            border-bottom: 5px solid var(--secondary-color);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        header h2 {
+            margin: 6px 0;
+            font-size: 16px;
+            font-weight: normal;
+            color: #e0e0e0;
+            letter-spacing: 0.5px;
+        }
+
+        header h3 {
+            margin: 5px 0 0 0;
+            font-size: 14px;
+            font-weight: bold;
+            color: var(--secondary-color);
         }
 
         .container {
-            max-width: 900px;
+            max-width: 850px;
             margin: 30px auto;
-            padding: 20px;
+            padding: 0 20px;
         }
 
-        .header-panel {
-            background: var(--primary-color);
+        .card {
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            padding: 30px;
+            margin-bottom: 25px;
+        }
+
+        #timer-banner {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--fail-color);
             color: white;
-            padding: 35px 30px;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin-bottom: 30px;
-            border-bottom: 5px solid var(--accent-color);
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: bold;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 1000;
+            display: none;
+            border: 2px solid white;
         }
 
-        .header-panel h1 {
-            font-size: 26px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 5px;
-        }
-
-        .header-panel h2 {
-            font-size: 16px;
-            color: #cbd5e0;
-            font-weight: 400;
-            text-transform: uppercase;
-            margin-bottom: 15px;
-        }
-
-        .header-panel h3 {
-            font-size: 19px;
-            letter-spacing: 0.5px;
-            color: #fff;
-            margin-bottom: 10px;
-        }
-
-        .meta-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 15px;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 15px;
-            border-radius: 8px;
-            font-size: 14px;
-            margin-top: 15px;
-        }
-
-        #login-view {
-            background: var(--card-bg);
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        #login-screen {
             text-align: center;
             max-width: 500px;
-            margin: 40px auto;
+            margin: 50px auto;
         }
 
-        #login-view h4 {
-            margin-bottom: 15px;
-            color: var(--primary-color);
-            font-size: 20px;
-        }
-
-        .input-field {
-            width: 100%;
-            padding: 12px 20px;
-            margin: 15px 0 25px 0;
-            border: 2px solid #e2e8f0;
-            border-radius: 8px;
+        .input-gate {
+            width: 85%;
+            padding: 14px 20px;
+            margin: 20px 0;
             font-size: 16px;
+            border: 2px solid #bdc3c7;
+            border-radius: 8px;
+            text-align: center;
             outline: none;
             transition: border-color 0.2s;
-            text-align: center;
         }
 
-        .input-field:focus {
-            border-color: var(--secondary-color);
+        .input-gate:focus {
+            border-color: var(--primary-color);
         }
 
         .btn {
-            background: var(--secondary-color);
+            background-color: var(--primary-color);
             color: white;
             border: none;
-            padding: 12px 30px;
+            padding: 14px 40px;
             font-size: 16px;
-            font-weight: 600;
+            font-weight: bold;
             border-radius: 8px;
             cursor: pointer;
             transition: background 0.2s;
-            text-transform: uppercase;
         }
 
         .btn:hover {
-            background: var(--primary-color);
+            background-color: #001238;
         }
 
-        #hud-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: var(--primary-color);
-            color: white;
-            padding: 12px 25px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 600;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
-            z-index: 1000;
-            border-bottom: 4px solid var(--accent-color);
-        }
-
-        #hud-bar.warning {
-            background: var(--danger-color);
+        #quiz-screen, #result-screen {
+            display: none;
         }
 
         .section-header {
-            background: #edf2f7;
+            background: #eef2f7;
             color: var(--primary-color);
-            padding: 15px 20px;
-            border-left: 6px solid var(--secondary-color);
-            border-radius: 4px;
-            margin: 35px 0 20px 0;
-            font-weight: 700;
+            padding: 12px 15px;
+            border-radius: 6px;
+            font-weight: bold;
+            margin: 25px 0 15px 0;
+            border-left: 5px solid var(--secondary-color);
             font-size: 16px;
-            text-transform: uppercase;
         }
 
-        .question-card {
-            background: var(--card-bg);
-            padding: 20px;
+        .meta-info-strip {
+            font-size: 16px;
+            background: #eef2f7;
+            padding: 15px 20px;
             border-radius: 8px;
+            margin-bottom: 25px;
+            font-weight: bold;
+            border-left: 5px solid var(--secondary-color);
+        }
+
+        .question-box {
+            border-left: 5px solid var(--primary-color);
+            background: #fafafa;
+            padding: 20px;
             margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-            border: 1px solid #e2e8f0;
+            border-radius: 0 8px 8px 0;
         }
 
         .question-text {
-            font-weight: 600;
             font-size: 16px;
+            font-weight: bold;
             margin-bottom: 15px;
+            line-height: 1.5;
         }
 
         .options-grid {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 10px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 12px;
         }
 
-        @media(min-width: 768px) {
-            .options-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        .option-item {
+        .option-node {
             display: flex;
             align-items: center;
-            background: #f8fafc;
-            border: 1px solid #edf2f7;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
             padding: 12px 15px;
             border-radius: 6px;
             cursor: pointer;
             transition: all 0.2s;
-            font-size: 15px;
         }
 
-        .option-item:hover {
-            background: #edf2f7;
-            border-color: #cbd5e0;
+        .option-node:hover {
+            background: #f1f5f9;
+            border-color: #cbd5e1;
         }
 
-        .option-item input {
+        .option-node input {
             margin-right: 12px;
             transform: scale(1.2);
-            cursor: pointer;
         }
 
-        .item-correct {
-            background: #c6f6d5 !important;
+        /* Auto-Marking UI State Modifiers */
+        .option-node.correct-state {
+            background-color: #d4edda !important;
             border-color: var(--success-color) !important;
-            color: #22543d;
-            font-weight: 600;
-        }
-
-        .item-wrong {
-            background: #fed7d7 !important;
-            border-color: var(--danger-color) !important;
-            color: #742a2a;
-        }
-
-        .correction-badge {
-            display: inline-block;
-            margin-top: 12px;
-            padding: 6px 12px;
-            border-radius: 6px;
-            font-size: 14px;
+            color: #155724;
             font-weight: bold;
         }
-        .badge-success { background: #c6f6d5; color: #22543d; }
-        .badge-danger { background: #fed7d7; color: #742a2a; }
 
-        #report-dashboard {
-            background: white;
-            border: 3px solid var(--accent-color);
-            border-radius: 12px;
-            padding: 30px;
+        .option-node.wrong-state {
+            background-color: #f8d7da !important;
+            border-color: var(--fail-color) !important;
+            color: #721c24;
+        }
+
+        .correction-box {
+            margin-top: 12px;
+            font-weight: bold;
+            color: #c0392b;
+            font-size: 14px;
+            display: none;
+            padding: 5px 0;
+        }
+
+        .summary-dashboard {
             text-align: center;
+            background: #e8f8f5;
+            border: 2px solid var(--success-color);
+            padding: 25px;
+            border-radius: 12px;
             margin-bottom: 30px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
         }
 
-        .score-metrics {
-            font-size: 54px;
-            font-weight: 800;
-            color: var(--primary-color);
-            margin: 15px 0;
-        }
-
-        .hidden {
-            display: none !important;
+        .summary-dashboard h2 {
+            margin: 0 0 10px 0;
+            color: #117a65;
+            font-size: 24px;
         }
     </style>
 </head>
 <body>
 
-    <div id="hud-bar" class="hidden">
-        <div id="hud-candidate">Candidate: </div>
-        <div id="hud-timer">Time Remaining: 30:00</div>
+<div id="timer-banner">Time Left: 30:00</div>
+
+<header>
+    <h1>ROYAL WUNDERKIND MODEL SCHOOL</h1>
+    <h2>TERM 3 EXAMINATION, 2025/2026 ACADEMIC SESSION</h2>
+    <h3>SUBJECT: YEAR 7 HISTORY</h3>
+</header>
+
+<div class="container">
+    
+    <div id="login-screen" class="card">
+        <h2 style="margin-top:0; color: var(--primary-color);">Candidate Verification</h2>
+        <p>Please enter your full name below to access your exam paper.</p>
+        <input type="text" id="candidate-fullname" class="input-gate" placeholder="Surname & First Name" autocomplete="off">
+        <br>
+        <button class="btn" onclick="startAssessment()">Begin Examination</button>
     </div>
 
-    <div class="container">
+    <div id="quiz-screen">
+        <div class="meta-info-strip" id="student-details"></div>
         
-        <div class="header-panel">
-            <h1>Royal Wunderkind Model School</h1>
-            <h2>Jalala Area, Tanke, Oke - Odo, Ilorin</h2>
-            <h3>SUBJECT: CHRISTIAN RELIGIOUS STUDIES (CRS)</h3>
-            <div class="meta-grid">
-                <div><strong>Session:</strong> 2025/2026 Promotional</div>
-                <div><strong>Class:</strong> JSS One (Year 7)</div>
-                <div><strong>Exam Duration:</strong> 30 Minutes</div>
-            </div>
+        <div id="result-screen" class="summary-dashboard">
+            <h2 id="total-score-text"></h2>
+            <p>Please scroll down to review your performance and correct options below.</p>
         </div>
 
-        <div id="login-view">
-            <h4>Candidate Examination Gateway</h4>
-            <p>Please type your full name inside the entry space to launch your digital evaluation workspace.</p>
-            <input type="text" id="candidate-name-input" class="input-field" placeholder="Enter Student Full Name" autocomplete="off">
-            <button class="btn" onclick="initializeWorkspace()">Start Examination</button>
-        </div>
-
-        <form id="examination-form" class="hidden" onsubmit="event.preventDefault(); evaluateExamPayload(false);">
+        <form id="cbt-form">
+            <div id="questions-outlet"></div>
             
-            <div id="dynamic-exam-nodes"></div>
-
-            <div style="text-align: center; margin: 40px 0;">
-                <button type="button" class="btn" id="master-submit-btn" onclick="requestUserConfirmation()">Submit Examination</button>
+            <div style="text-align: center; margin-top: 40px;">
+                <button type="button" id="submit-exam-btn" class="btn" style="background-color: var(--success-color);" onclick="gradeAssessment()">Submit Examination</button>
             </div>
         </form>
-
-        <div id="report-dashboard" class="hidden">
-            <h2>Examination Evaluation Summary</h2>
-            <p id="report-name-target" style="font-size: 18px; margin-top: 10px; font-weight: 600;"></p>
-            <div class="score-metrics" id="report-score-target">0 / 50</div>
-            <p id="report-percentage-target" style="font-size: 20px; font-weight: 700; color: var(--secondary-color);"></p>
-            <p style="margin-top: 15px; color: #718096;">Scroll downwards to view color-coded markers and official correction paths.</p>
-        </div>
-
     </div>
+</div>
 
-    <script>
-        // Data Repository Matrix for 50 Quiz Questions
-        const structurePayload = [
-            { id: 1, q: "God intends marriage to be a source of ____________ .", options: ["Companionship", "Blessing", "Settlement", "Misunderstanding"], ans: 0 },
-            { id: 2, q: "One of the consequences of lack of repentance the house of Eli suffered was the ________ .", options: ["sickness of Eli", "death of Eli and his sons", "touching of the ark of covenant", "destruction of Shiloh."], ans: 1 },
-            { id: 3, q: "To be considered as a good child. You must behave like __________ in the Old testament.", options: ["Joel", "Samuel", "Saul", "Hophni"], ans: 1 },
-            { id: 4, q: "God intends marriage to be a source of _________ .", options: ["Companionship", "Blessing", "Endurance", "misunderstanding"], ans: 0 },
-            { id: 5, q: "God created the wife as a ________ to the man.", options: ["giver", "helper", "lover", "servant"], ans: 1 },
-            { id: 6, q: "Obedience is the act of _________.", options: ["doing what you are told to do", "doing what you want to", "readiness", "not complaining"], ans: 0 },
-            { id: 7, q: "Whosoever shall not receive the kingdom of God as a/an _______ shall not enter therein.", options: ["Fool", "Novice", "Adult", "Child"], ans: 3 },
-            { id: 8, q: "God rested on the _______ of creation.", options: ["forth", "Seventh", "Third", "Sixth"], ans: 1 },
-            { id: 9, q: "Every religion teaches the following except ___________ .", options: ["Greed", "Tolerance", "Holiness", "Faith in God"], ans: 0 },
-            { id: 10, q: "What did the wise men used in tracing Jesus to his place of birth?", options: ["moon", "sun", "star", "Angel"], ans: 2 },
-            { id: 11, q: "Abraham means ____________ .", options: ["Father of hope", "Lover of God", "The one after God’s own heart", "Father of many nations"], ans: 3 },
-            { id: 12, q: "Which animal did God provide to replace Isaac?", options: ["Ram", "Sheep", "Goat", "antelope"], ans: 0 },
-            { id: 13, q: "For how many years did the Israelites wonder in the wilderness?", options: ["4", "40", "14", "400"], ans: 1 },
-            { id: 14, q: "God sent Jonah to the people of ____________ for repentance.", options: ["Israel", "Nineveh", "Syria", "Jerusalem"], ans: 1 },
-            { id: 15, q: "All these people repented EXCEPT _______________", options: ["Eli", "Zacchaeus", "Jonah", "David"], ans: 0 },
-            { id: 16, q: "_________ named all the things created by God.", options: ["God", "Adam", "Angel", "Eve"], ans: 1 },
-            { id: 17, q: "--------------- humbled himself before Jesus and did not allow his wealth to come between his soul and God.", options: ["Timothy", "Paul", "Zacchaeus", "Abraham"], ans: 2 },
-            { id: 18, q: "God created Eve from _________--- of Adam’s ribs.", options: ["some", "one", "many", "two"], ans: 1 },
-            { id: 19, q: "God formed man’s body from the ________ of the ground.", options: ["sand", "dust", "clay", "stone"], ans: 1 },
-            { id: 20, q: "God carried out his work of creation in _________ days.", options: ["5", "6", "7", "40"], ans: 1 },
-            { id: 21, q: "According to Psalm 90:4, a thousand years is like a _________ before God.", options: ["day", "year", "decade", "century"], ans: 0 },
-            { id: 22, q: "_________ is the creator of all things.", options: ["God", "Jesus", "Angel", "Holy Spirit"], ans: 0 },
-            { id: 23, q: "A true and genuine relationship in the church is demonstrated when you __________ love your Christian brethren.", options: ["love", "hate", "fight", "control"], ans: 0 },
-            { id: 24, q: "The word ‘ woman” means ____________ .", options: ["taken out of man", "created by man", "born by man", "married to man."], ans: 0 },
-            { id: 25, q: "The following are the attribute of God EXCEPT __________ .", options: ["Holiness", "Partiality", "Righteousness", "Mightiness"], ans: 1 },
-            { id: 26, q: "The sin committed by Adam and Eve is __________ .", options: ["adultery", "envy", "disobedience", "hatred"], ans: 2 },
-            { id: 27, q: "In the beginning God created the heavens and the _______ .", options: ["earth", "man", "firmament", "sun"], ans: 0 },
-            { id: 28, q: "All the following are work of the flesh except _______ .", options: ["Love", "envy", "idolatry", "hatred"], ans: 0 },
-            { id: 29, q: "When we say the Lord’s prayer, we say “ lead us not into __________ .", options: ["hell", "problem", "temptation", "confusion"], ans: 2 },
-            { id: 30, q: "All the following are fruits of the Holy Spirit EXCEPT __________ .", options: ["Kindness", "Long suffering", "witch craft", "Patience"], ans: 2 },
-            { id: 31, q: "The first Christian martyr is ______________ .", options: ["Peter", "James", "Stephen", "John"], ans: 2 },
-            { id: 32, q: "Prophet __________ prophesied about the coming of the Holy Spirit.", options: ["Isaiah", "Joel", "Amos", "Hosea"], ans: 1 },
-            { id: 33, q: "The inspiration for preaching the gospel always comes from ______________ .", options: ["Jesus", "Holy Spirit", "God", "man"], ans: 1 },
-            { id: 34, q: "David defeated and killed ____________ .", options: ["Goliath", "Samson", "Deborah", "Martha"], ans: 0 },
-            { id: 35, q: "The Holy Spirit is a comforter in the time of ________ .", options: ["sorrow", "joy", "happiness", "success"], ans: 0 },
-            { id: 36, q: "The apostles were filled with ____________ .", options: ["food", "water", "Holy Spirit", "Oil"], ans: 2 },
-            { id: 37, q: "John in his gospel said a person who does not love and hate is likely to commit _________________- .", options: ["murder", "adultery", "fornication", "blasphemy"], ans: 0 },
-            { id: 38, q: "Whose life did God sacrifice for our salvation?", options: ["one of the angels", "Jesus", "Prophet", "Ram"], ans: 1 },
-            { id: 39, q: "The servant with one talent was punished because _____________ .", options: ["he buried his talent", "he was not given many talents", "he was a good servant", "he did not have any money"], ans: 0 },
-            { id: 40, q: "What was the sign of the covenant between God and Abraham?", options: ["sacrifice", "purification", "Circumcision", "sanctification"], ans: 2 },
-            { id: 41, q: "God is described as the ____________ . being.", options: ["Supreme", "Ordinary", "Weak", "Small"], ans: 0 },
-            { id: 42, q: "Prophet _________- was sent by God to King David for judgement.", options: ["Isaiah", "Joel", "Nathan", "Jeremiah"], ans: 2 },
-            { id: 43, q: "Human beings were created on the _____________ day.", options: ["Sixth", "Fourth", "Fifth", "Seventh"], ans: 0 },
-            { id: 44, q: "God is everywhere, this means He is __________- .", options: ["Invisible", "Omnipotent", "Omniscient", "Omnipresent"], ans: 3 },
-            { id: 45, q: "God knows everything, this means He is ------------- .", options: ["Spirit", "Omnipresent", "Omniscient", "Omnipotent"], ans: 2 },
-            { id: 46, q: "God created human beings to _________-", options: ["destroy the earth", "Fight others", "Know Him", "be lazy"], ans: 2 },
-            { id: 47, q: "God is invisible because ________ .", options: ["He is a spirit", "He is far away", "He is weak.", "He is sleeping"], ans: 0 },
-            { id: 48, q: "The primary function of the workspace given to Adam was to ________ the Garden of Eden.", options: ["abandon", "till and keep", "sell properties in", "burn down"], ans: 1 },
-            { id: 49, q: "God is all powerful means He is ________", options: ["Omniscient", "Omnipotent", "Omnipresent", "Spirit"], ans: 1 },
-            { id: 50, q: "Ubangiji is the name of God in ____________ language.", options: ["Yoruba", "Hausa", "Igbo", "Effik"], ans: 1 }
-        ];
+<script>
+    // System Question Database
+    const questionsDatabase = [
+        { q: "History is the study of ______.", o: ["future events", "past events", "imagination", "stories"], a: "B", section: "SECTION A: OBJECTIVE QUESTIONS - Instruction: Choose the correct answer from options A–D." },
+        { q: "Nigeria was amalgamated in ______.", o: ["1900", "1914", "1960", "1963"], a: "B" },
+        { q: "The Nok Culture flourished around ______.", o: ["1000 BC–500 AD", "1500–1800 AD", "1914–1960", "500–900 AD"], a: "A" },
+        { q: "Nok Culture was located mainly in ______ State.", o: ["Edo", "Kaduna", "Osun", "Rivers"], a: "B" },
+        { q: "The Nok people were famous for ______.", o: ["canoe building", "terracotta sculptures", "weaving", "salt mining"], a: "B" },
+        { q: "The Nok people were the earliest known ______ workers in Sub-Saharan Africa.", o: ["gold", "bronze", "iron", "silver"], a: "C" },
+        { q: "Terracotta sculptures are made from ______.", o: ["bronze", "burnt clay", "wood", "ivory"], a: "B" },
+        { q: "Igbo-Ukwu is located in present-day ______ State.", o: ["Edo", "Anambra", "Osun", "Kaduna"], a: "B" },
+        { q: "Igbo-Ukwu was accidentally discovered by ______.", o: ["Lord Lugard", "Isaiah Anozie", "Oduduwa", "Hugh Clapperton"], a: "B" },
+        { q: "Igbo-Ukwu became famous because of its ______.", o: ["iron roads", "bronze works", "pyramids", "ships"], a: "B" },
+        { q: "The bronze-casting method used at Igbo-Ukwu is called ______.", o: ["open mould", "lost-wax casting", "clay pressing", "stone carving"], a: "B" },
+        { q: "Thousands of glass beads found at Igbo-Ukwu suggest ______.", o: ["farming", "international trade", "fishing", "mining"], a: "B" },
+        { q: "The Benin Kingdom is located in ______.", o: ["Edo State", "Osun State", "Kano State", "Enugu State"], a: "A" },
+        { q: "The capital of the Benin Kingdom is ______.", o: ["Lokoja", "Benin City", "Warri", "Calabar"], a: "B" },
+        { q: "The traditional ruler of Benin is called the ______.", o: ["Ooni", "Emir", "Oba", "Obi"], a: "C" },
+        { q: "The head of the Eweka Dynasty is called ______.", o: ["Attah", "Omo N'Oba", "Amanyanabo", "Ooni"], a: "B" },
+        { q: "The Benin people are experts in ______.", o: ["bronze casting", "cotton weaving", "pottery only", "fishing"], a: "A" },
+        { q: "The major language spoken in Benin is ______.", o: ["Hausa", "Yoruba", "Edo", "Igbo"], a: "C" },
+        { q: "Benin artefacts mainly represent ______.", o: ["airplanes", "court life and human figures", "factories", "churches"], a: "B" },
+        { q: "The Benin Kingdom was protected by its ______.", o: ["deserts", "forests", "walls", "rivers"], a: "C" },
+        { q: "Which dynasty ruled Benin before the Eweka Dynasty?", o: ["Fulani", "Ogiso", "Kanem", "Oyo"], a: "B" },
+        { q: "Benin people are rich in the production of ______.", o: ["cocoa and coffee", "rubber and palm oil", "cotton and wheat", "rice and maize"], a: "B" },
+        { q: "Benin bronzes were taken away by the British in ______.", o: ["1851", "1897", "1914", "1960"], a: "B" },
+        { q: "Ile-Ife is regarded as the cradle of ______ civilization.", o: ["Hausa", "Yoruba", "Tiv", "Nupe"], a: "B" },
+        { q: "The king of Ile-Ife is known as the ______.", o: ["Emir", "Obi", "Ooni", "Attah"], a: "C" },
+        { q: "The founder traditionally associated with Ile-Ife is ______.", o: ["Sango", "Oduduwa", "Obatala", "Ogun"], a: "B" },
+        { q: "Ile-Ife is famous for its ______.", o: ["bronze heads", "pyramids", "gold mines", "coal"], a: "A" },
+        { q: "The indigenous language spoken in Ile-Ife is ______.", o: ["Igbo", "Yoruba", "Edo", "Fulfulde"], a: "B" },
+        { q: "Which kingdom was greatly influenced by Ile-Ife art?", o: ["Kanem", "Benin", "Daura", "Oyo"], a: "B" },
+        { q: "A centralised state is one where power is concentrated in ______.", o: ["every village", "one supreme ruler", "family heads", "age grades"], a: "B" },
+        { q: "The ruler of the Igala Kingdom is called the ______.", o: ["Ooni", "Attah", "Oba", "Obi"], a: "B" },
+        { q: "The capital of the Igala Kingdom is ______.", o: ["Idah", "Benin", "Lokoja", "Kano"], a: "A" },
+        { q: "Kings of the Niger Delta City-States are called ______.", o: ["Emirs", "Obis", "Amanyanabo", "Oonis"], a: "C" },
+        { q: "Which kingdom controlled trade along the River Niger?", o: ["Benin", "Igala", "Ife", "Oyo"], a: "B" },
+        { q: "Taxation in centralised states was mainly used to support the ______.", o: ["schools", "king and military", "churches", "markets"], a: "B" },
+        { q: "A map is a ______ representation of a place.", o: ["spoken", "symbolic", "written", "digital only"], a: "B" },
+        { q: "Which of these is NOT a cardinal direction?", o: ["North", "East", "South-West", "West"], a: "C" },
+        { q: "Which map shows mountains and rivers?", o: ["Political map", "Physical map", "Population map", "Road map"], a: "B" },
+        { q: "Which part of a map explains its symbols?", o: ["Scale", "Compass", "Legend", "Border"], a: "C" },
+        { q: "Google Maps provides ______ directions.", o: ["turn-by-turn", "written only", "verbal only", "historical"], a: "A" },
+        { q: "Which feature of Google Maps shows actual roads and buildings?", o: ["Compass", "Street View", "Scale", "Weather"], a: "B" },
+        { q: "Which climatic zone is found near the Equator?", o: ["Polar", "Temperate", "Tropical", "Desert"], a: "C" },
+        { q: "Weather refers to the ______ condition of the atmosphere.", o: ["permanent", "short-term", "yearly", "historical"], a: "B" },
+        { q: "Climate refers to weather conditions over about ______ years.", o: ["5", "10", "30–35", "100"], a: "C" },
+        { q: "Temperature is measured using a ______.", o: ["rain gauge", "thermometer", "hygrometer", "barometer"], a: "B" },
+        { q: "Rainfall is measured with a ______.", o: ["compass", "rain gauge", "wind vane", "map"], a: "B" },
+        { q: "Wind speed is measured by an ______.", o: ["anemometer", "hygrometer", "telescope", "thermometer"], a: "A" },
+        { q: "Humidity is measured using a ______.", o: ["compass", "hygrometer", "barometer", "ruler"], a: "B" },
+        { q: "Nigeria experiences ______ major seasons.", o: ["one", "two", "three", "four"], a: "B" },
+        { q: "The rainy season in Nigeria is generally from ______.", o: ["November–March", "April–October", "January–February", "June–December"], a: "B" },
+        { q: "The dry season is influenced by the ______.", o: ["South-West Trade Winds", "North-East Trade Winds", "Monsoon", "Ocean currents"], a: "B" },
+        { q: "The Harmattan occurs during the ______.", o: ["rainy season", "dry season", "spring", "summer"], a: "B" },
+        { q: "A landscape refers to the ______ features of an area.", o: ["invisible", "visible", "imaginary", "temporary"], a: "B" },
+        { q: "The most widespread landscape in Nigeria is the ______.", o: ["mangrove swamp", "savannah", "mountain", "desert"], a: "B" },
+        { q: "A plateau has a ______ top.", o: ["pointed", "flat", "curved", "rocky"], a: "B" },
+        { q: "Trees help prevent ______.", o: ["rainfall", "erosion", "sunshine", "earthquakes"], a: "B" },
+        { q: "People living near rivers are commonly ______.", o: ["miners", "fishermen", "bankers", "engineers"], a: "B" },
+        { q: "Benin City is recognised as the home of ______ in Nigeria.", o: ["aviation", "art and craft", "banking", "mining"], a: "B" },
+        { q: "Which civilisation is recognised as the earliest known bronze-casting tradition in Sub-Saharan Africa?", o: ["Benin", "Igbo-Ukwu", "Oyo", "Daura"], a: "B" },
+        { q: "Studying Nigerian civilisations helps us understand that ______.", o: ["Nigeria had no organised societies before colonial rule", "Nigeria's history began in 1914", "Nigeria had organised and advanced civilisations before British rule", "only Europeans developed technology"], a: "C" }
+    ];
 
-        let countdownRef;
-        let totalTimeSec = 30 * 60; 
-        let formSubmitted = false;
+    let countdownTracker;
+    let timeRemainingSeconds = 30 * 60; // 30 Minutes
+    const lettersMap = ["A", "B", "C", "D"];
 
-        function assembleExamDOM() {
-            const displayPool = document.getElementById('dynamic-exam-nodes');
-            displayPool.innerHTML = `<div class="section-header">SECTION A: CHOOSE THE CORRECT ANSWER FROM OPTIONS A–D.</div>`;
+    function startAssessment() {
+        const inputName = document.getElementById('candidate-fullname').value.trim();
+        if (inputName === "") {
+            alert("Access Denied: Please fill in the candidate's complete name to proceed.");
+            return;
+        }
 
-            structurePayload.forEach((node, index) => {
-                const optionPrefix = ["A", "B", "C", "D"];
-                let optionsMarkup = "";
+        document.getElementById('login-screen').style.display = 'none';
+        document.getElementById('quiz-screen').style.display = 'block';
+        document.getElementById('timer-banner').style.display = 'block';
+        
+        document.getElementById('student-details').innerText = `CANDIDATE: ${inputName.toUpperCase()} | CLASS: YEAR 7 | INSTRUCTIONS: ANSWER ALL QUESTIONS`;
 
-                node.options.forEach((opt, idx) => {
-                    optionsMarkup += `
-                        <label class="option-item" id="lbl-q${node.id}-o${idx}">
-                            <input type="radio" name="input-q${node.id}" value="${idx}">
-                            <span><strong>${optionPrefix[idx]}.</strong> ${opt}</span>
-                        </label>
-                    `;
-                });
+        buildQuizSheet();
+        runClockCounter();
+    }
 
-                const cardUI = `
-                    <div class="question-card" id="card-block-q${node.id}">
-                        <div class="question-text">${index + 1}. ${node.q}</div>
-                        <div class="options-grid">
-                            ${optionsMarkup}
-                        </div>
-                        <div id="evaluation-q${node.id}"></div>
-                    </div>
+    function buildQuizSheet() {
+        const targetContainer = document.getElementById('questions-outlet');
+        targetContainer.innerHTML = "";
+
+        questionsDatabase.forEach((questionItem, qIndex) => {
+            const displayIndex = qIndex + 1;
+
+            if (questionItem.section) {
+                const sectionDiv = document.createElement('div');
+                sectionDiv.className = 'section-header';
+                sectionDiv.innerText = questionItem.section;
+                targetContainer.appendChild(sectionDiv);
+            }
+
+            const block = document.createElement('div');
+            block.className = 'card question-box';
+
+            let structuralOptionsMarkup = "";
+            questionItem.o.forEach((optionValue, oIndex) => {
+                const currentLetter = lettersMap[oIndex];
+                structuralOptionsMarkup += `
+                    <label class="option-node" id="node-box-${displayIndex}-${currentLetter}">
+                        <input type="radio" name="question-id-${displayIndex}" value="${currentLetter}">
+                        <span><strong>${currentLetter}.</strong> ${optionValue}</span>
+                    </label>
                 `;
-                displayPool.innerHTML += cardUI;
             });
-        }
 
-        function initializeWorkspace() {
-            const inputName = document.getElementById('candidate-name-input').value.trim();
-            if (!inputName) {
-                alert("Please submit your descriptive profile identity name before logging in.");
-                return;
+            block.innerHTML = `
+                <div class="question-text">${displayIndex}. ${questionItem.q}</div>
+                <div class="options-grid">${structuralOptionsMarkup}</div>
+                <div class="correction-box" id="feedback-id-${displayIndex}"></div>
+            `;
+            targetContainer.appendChild(block);
+        });
+    }
+
+    function runClockCounter() {
+        countdownTracker = setInterval(() => {
+            timeRemainingSeconds--;
+            let computedMinutes = Math.floor(timeRemainingSeconds / 60);
+            let computedSeconds = timeRemainingSeconds % 60;
+
+            computedMinutes = computedMinutes < 10 ? "0" + computedMinutes : computedMinutes;
+            computedSeconds = computedSeconds < 10 ? "0" + computedSeconds : computedSeconds;
+
+            document.getElementById('timer-banner').innerText = `Time Left: ${computedMinutes}:${computedSeconds}`;
+
+            if (timeRemainingSeconds <= 0) {
+                clearInterval(countdownTracker);
+                alert("Time Limit Expired! Running automated system submission configuration.");
+                gradeAssessment();
             }
+        }, 1000);
+    }
 
-            document.getElementById('hud-candidate').innerText = `Candidate: ${inputName.toUpperCase()}`;
-            document.getElementById('login-view').classList.add('hidden');
-            document.getElementById('hud-bar').classList.remove('hidden');
-            document.getElementById('examination-form').classList.remove('hidden');
+    function gradeAssessment() {
+        clearInterval(countdownTracker);
+        document.getElementById('timer-banner').style.display = 'none';
+        document.getElementById('submit-exam-btn').style.display = 'none';
 
-            assembleExamDOM();
-            beginTimeDecrement();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+        let accurateAnswersTally = 0;
+        const completeCount = questionsDatabase.length;
 
-        function beginTimeDecrement() {
-            countdownRef = setInterval(() => {
-                if (totalTimeSec <= 0) {
-                    clearInterval(countdownRef);
-                    document.getElementById('hud-timer').innerText = "TIME EXPIRED";
-                    alert("Your allotted testing runtime has run out. Your exam paper will evaluate immediately.");
-                    evaluateExamPayload(true);
-                } else {
-                    totalTimeSec--;
-                    let min = Math.floor(totalTimeSec / 60);
-                    let sec = totalTimeSec % 60;
+        questionsDatabase.forEach((questionItem, qIndex) => {
+            const displayIndex = qIndex + 1;
+            const checkedRadio = document.querySelector(`input[name="question-id-${displayIndex}"]:checked`);
+            const checkedLetter = checkedRadio ? checkedRadio.value : null;
+            const targetCorrectLetter = questionItem.a;
 
-                    min = min < 10 ? '0' + min : min;
-                    sec = sec < 10 ? '0' + sec : sec;
+            // Freeze UI inputs
+            const choicesElements = document.querySelectorAll(`input[name="question-id-${displayIndex}"]`);
+            choicesElements.forEach(input => input.disabled = true);
 
-                    document.getElementById('hud-timer').innerText = `Time Remaining: ${min}:${sec}`;
-
-                    if (totalTimeSec <= 300) {
-                        document.getElementById('hud-bar').classList.add('warning');
-                    }
+            if (checkedLetter === targetCorrectLetter) {
+                accurateAnswersTally++;
+                document.getElementById(`node-box-${displayIndex}-${targetCorrectLetter}`).classList.add('correct-state');
+            } else {
+                if (checkedLetter) {
+                    document.getElementById(`node-box-${displayIndex}-${checkedLetter}`).classList.add('wrong-state');
                 }
-            }, 1000);
-        }
-
-        function requestUserConfirmation() {
-            let trackedAnswers = 0;
-            structurePayload.forEach(node => {
-                if (document.querySelector(`input[name="input-q${node.id}"]:checked`)) {
-                    trackedAnswers++;
-                }
-            });
-
-            const userVerdict = confirm(`You have responded to ${trackedAnswers} out of ${structurePayload.length} exam items. Would you like to finish and submit?`);
-            if (userVerdict) {
-                evaluateExamPayload(false);
+                document.getElementById(`node-box-${displayIndex}-${targetCorrectLetter}`).classList.add('correct-state');
+                
+                const solutionIndex = lettersMap.indexOf(targetCorrectLetter);
+                const explicitSolutionString = questionItem.o[solutionIndex];
+                const notificationDiv = document.getElementById(`feedback-id-${displayIndex}`);
+                notificationDiv.innerHTML = `Correction: The correct answer is <strong>${targetCorrectLetter}</strong> (${explicitSolutionString})`;
+                notificationDiv.style.display = "block";
             }
-        }
+        });
 
-        function evaluateExamPayload(isForcedTimeout = false) {
-            if (formSubmitted) return;
-            formSubmitted = true;
+        const calculationPercentage = Math.round((accurateAnswersTally / completeCount) * 100);
+        document.getElementById('total-score-text').innerText = `Examination Completed! Total Score: ${accurateAnswersTally} / ${completeCount} (${calculationPercentage}%)`;
+        document.getElementById('result-screen').style.display = 'block';
 
-            clearInterval(countdownRef);
-            document.getElementById('hud-bar').classList.add('hidden');
-            document.getElementById('master-submit-btn').classList.add('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+</script>
 
-            let aggregateScore = 0;
-            const userName = document.getElementById('candidate-name-input').value.toUpperCase();
-
-            structurePayload.forEach((node) => {
-                const selectedRadio = document.querySelector(`input[name="input-q${node.id}"]:checked`);
-                const logFeedbackNode = document.getElementById(`evaluation-q${node.id}`);
-                const selectionIdx = selectedRadio ? parseInt(selectedRadio.value) : null;
-
-                const optionElements = document.querySelectorAll(`input[name="input-q${node.id}"]`);
-                optionElements.forEach(radio => radio.disabled = true);
-
-                if (selectionIdx === node.ans) {
-                    aggregateScore++;
-                    document.getElementById(`lbl-q${node.id}-o${node.ans}`).classList.add('item-correct');
-                    logFeedbackNode.innerHTML = `<span class="correction-badge badge-success">✓ Correct Answer</span>`;
-                } else {
-                    document.getElementById(`lbl-q${node.id}-o${node.ans}`).classList.add('item-correct');
-                    if (selectionIdx !== null) {
-                        document.getElementById(`lbl-q${node.id}-o${selectionIdx}`).classList.add('item-wrong');
-                    }
-                    
-                    const charMap = ["A", "B", "C", "D"];
-                    logFeedbackNode.innerHTML = `
-                        <span class="correction-badge badge-danger">
-                            Correction: Option ${charMap[node.ans]} — "${node.options[node.ans]}" is correct.
-                        </span>`;
-                }
-            });
-
-            const computationPercentage = Math.round((aggregateScore / structurePayload.length) * 100);
-            
-            document.getElementById('report-name-target').innerText = `Student Identity Name: ${userName}`;
-            document.getElementById('report-score-target').innerText = `${aggregateScore} / ${structurePayload.length}`;
-            document.getElementById('report-percentage-target').innerText = `Final Evaluation Grade: ${computationPercentage}%`;
-            
-            document.getElementById('report-dashboard').classList.remove('hidden');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-    </script>
 </body>
 </html>
