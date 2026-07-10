@@ -1,510 +1,499 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Physics Practical Examination Quiz</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg: #0d0f14;
-    --surface: #161b24;
-    --card: #1e2535;
-    --border: #2a3448;
-    --accent: #4af0b0;
-    --accent2: #f0a94a;
-    --text: #e8edf5;
-    --muted: #7a8aa0;
-    --correct: #2dd69a;
-    --wrong: #f05a5a;
-    --correct-bg: rgba(45,214,154,0.1);
-    --wrong-bg: rgba(240,90,90,0.1);
-  }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROYAL WUNDERKIND MODEL SCHOOL - JSS 1 CRS PROMOTIONAL EXAM</title>
+    <style>
+        :root {
+            --primary-color: #1a365d;
+            --secondary-color: #2b6cb0;
+            --accent-color: #d69e2e;
+            --success-color: #2f855a;
+            --danger-color: #c53030;
+            --light-bg: #f7fafc;
+            --card-bg: #ffffff;
+            --text-color: #2d3748;
+        }
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-  body {
-    font-family: 'DM Mono', monospace;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    padding: 2rem 1rem 4rem;
-  }
+        body {
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
 
-  .header {
-    text-align: center;
-    margin-bottom: 3rem;
-  }
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 20px;
+        }
 
-  .lab-tag {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.75rem;
-    color: var(--accent);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    border: 1px solid var(--accent);
-    display: inline-block;
-    padding: 4px 14px;
-    border-radius: 2px;
-    margin-bottom: 1rem;
-  }
+        .header-panel {
+            background: var(--primary-color);
+            color: white;
+            padding: 35px 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            border-bottom: 5px solid var(--accent-color);
+        }
 
-  h1 {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(2rem, 5vw, 3.2rem);
-    font-weight: 800;
-    line-height: 1.1;
-    background: linear-gradient(135deg, var(--text) 40%, var(--accent));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 0.5rem;
-  }
+        .header-panel h1 {
+            font-size: 26px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
 
-  .subtitle {
-    color: var(--muted);
-    font-size: 0.85rem;
-    letter-spacing: 0.05em;
-  }
+        .header-panel h2 {
+            font-size: 16px;
+            color: #cbd5e0;
+            font-weight: 400;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
 
-  .school-name {
-    color: var(--muted);
-    font-size: 0.7rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-bottom: 0.6rem;
-  }
+        .header-panel h3 {
+            font-size: 19px;
+            letter-spacing: 0.5px;
+            color: #fff;
+            margin-bottom: 10px;
+        }
 
-  .progress-bar-wrap {
-    max-width: 680px;
-    margin: 0 auto 2.5rem;
-    background: var(--border);
-    border-radius: 4px;
-    height: 4px;
-    overflow: hidden;
-  }
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            margin-top: 15px;
+        }
 
-  .progress-bar {
-    height: 100%;
-    background: linear-gradient(90deg, var(--accent), var(--accent2));
-    transition: width 0.4s ease;
-    width: 0%;
-  }
+        #login-view {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            max-width: 500px;
+            margin: 40px auto;
+        }
 
-  .progress-label {
-    max-width: 680px;
-    margin: 0 auto 0.5rem;
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.72rem;
-    color: var(--muted);
-    letter-spacing: 0.08em;
-  }
+        #login-view h4 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            font-size: 20px;
+        }
 
-  .lab-divider {
-    max-width: 680px;
-    margin: 2.5rem auto 1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.9rem;
-  }
+        .input-field {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 15px 0 25px 0;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.2s;
+            text-align: center;
+        }
 
-  .lab-divider:first-of-type { margin-top: 0; }
+        .input-field:focus {
+            border-color: var(--secondary-color);
+        }
 
-  .lab-divider .line {
-    flex: 1;
-    height: 1px;
-    background: var(--border);
-  }
+        .btn {
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+            text-transform: uppercase;
+        }
 
-  .lab-divider .label {
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 0.85rem;
-    color: var(--accent2);
-    letter-spacing: 0.04em;
-    white-space: nowrap;
-  }
+        .btn:hover {
+            background: var(--primary-color);
+        }
 
-  .quiz-container {
-    max-width: 680px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
+        #hud-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--primary-color);
+            color: white;
+            padding: 12px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+            z-index: 1000;
+            border-bottom: 4px solid var(--accent-color);
+        }
 
-  .question-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 1.5rem;
-    transition: border-color 0.3s;
-  }
+        #hud-bar.warning {
+            background: var(--danger-color);
+        }
 
-  .question-card.answered-correct {
-    border-color: var(--correct);
-    background: linear-gradient(135deg, var(--card), rgba(45,214,154,0.04));
-  }
+        .section-header {
+            background: #edf2f7;
+            color: var(--primary-color);
+            padding: 15px 20px;
+            border-left: 6px solid var(--secondary-color);
+            border-radius: 4px;
+            margin: 35px 0 20px 0;
+            font-weight: 700;
+            font-size: 16px;
+            text-transform: uppercase;
+        }
 
-  .question-card.answered-wrong {
-    border-color: var(--wrong);
-    background: linear-gradient(135deg, var(--card), rgba(240,90,90,0.04));
-  }
+        .question-card {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            border: 1px solid #e2e8f0;
+        }
 
-  .q-num {
-    font-size: 0.68rem;
-    color: var(--accent2);
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    margin-bottom: 0.6rem;
-  }
+        .question-text {
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
 
-  .q-text {
-    font-family: 'Syne', sans-serif;
-    font-size: 1rem;
-    font-weight: 600;
-    line-height: 1.55;
-    margin-bottom: 1.2rem;
-    color: var(--text);
-  }
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
 
-  .options {
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-  }
+        @media(min-width: 768px) {
+            .options-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
 
-  .option-btn {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.75rem;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 0.7rem 1rem;
-    cursor: pointer;
-    text-align: left;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.82rem;
-    color: var(--text);
-    transition: border-color 0.2s, background 0.2s, transform 0.1s;
-    line-height: 1.4;
-  }
+        .option-item {
+            display: flex;
+            align-items: center;
+            background: #f8fafc;
+            border: 1px solid #edf2f7;
+            padding: 12px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 15px;
+        }
 
-  .option-btn:hover:not(:disabled) {
-    border-color: var(--accent);
-    background: rgba(74,240,176,0.06);
-    transform: translateX(2px);
-  }
+        .option-item:hover {
+            background: #edf2f7;
+            border-color: #cbd5e0;
+        }
 
-  .option-btn:disabled { cursor: default; }
+        .option-item input {
+            margin-right: 12px;
+            transform: scale(1.2);
+            cursor: pointer;
+        }
 
-  .option-btn.correct {
-    border-color: var(--correct);
-    background: var(--correct-bg);
-    color: var(--correct);
-  }
+        .item-correct {
+            background: #c6f6d5 !important;
+            border-color: var(--success-color) !important;
+            color: #22543d;
+            font-weight: 600;
+        }
 
-  .option-btn.wrong {
-    border-color: var(--wrong);
-    background: var(--wrong-bg);
-    color: var(--wrong);
-  }
+        .item-wrong {
+            background: #fed7d7 !important;
+            border-color: var(--danger-color) !important;
+            color: #742a2a;
+        }
 
-  .option-letter {
-    font-weight: 500;
-    color: var(--muted);
-    flex-shrink: 0;
-    min-width: 1rem;
-  }
+        .correction-badge {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .badge-success { background: #c6f6d5; color: #22543d; }
+        .badge-danger { background: #fed7d7; color: #742a2a; }
 
-  .option-btn.correct .option-letter { color: var(--correct); }
-  .option-btn.wrong .option-letter { color: var(--wrong); }
+        #report-dashboard {
+            background: white;
+            border: 3px solid var(--accent-color);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
 
-  .feedback {
-    margin-top: 1rem;
-    font-size: 0.78rem;
-    padding: 0.6rem 0.9rem;
-    border-radius: 4px;
-    line-height: 1.5;
-    display: none;
-  }
+        .score-metrics {
+            font-size: 54px;
+            font-weight: 800;
+            color: var(--primary-color);
+            margin: 15px 0;
+        }
 
-  .feedback.show { display: block; }
-  .feedback.correct { background: var(--correct-bg); color: var(--correct); border-left: 3px solid var(--correct); }
-  .feedback.wrong { background: var(--wrong-bg); color: var(--wrong); border-left: 3px solid var(--wrong); }
-
-  .results-panel {
-    max-width: 680px;
-    margin: 2rem auto 0;
-    background: var(--card);
-    border: 1px solid var(--accent);
-    border-radius: 8px;
-    padding: 2rem;
-    text-align: center;
-    display: none;
-  }
-
-  .results-panel.show { display: block; }
-
-  .score-display {
-    font-family: 'Syne', sans-serif;
-    font-size: 4rem;
-    font-weight: 800;
-    color: var(--accent);
-    line-height: 1;
-    margin: 0.5rem 0;
-  }
-
-  .score-label {
-    font-size: 0.75rem;
-    color: var(--muted);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-  }
-
-  .score-message {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.1rem;
-    margin: 1rem 0 1.5rem;
-    color: var(--text);
-  }
-
-  .retry-btn {
-    background: var(--accent);
-    color: var(--bg);
-    border: none;
-    border-radius: 4px;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.82rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    padding: 0.7rem 2rem;
-    cursor: pointer;
-    transition: opacity 0.2s;
-  }
-
-  .retry-btn:hover { opacity: 0.85; }
-
-  .jump-btn {
-    background: transparent;
-    color: var(--muted);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.05em;
-    padding: 0.6rem 1.2rem;
-    cursor: pointer;
-    transition: border-color 0.2s, color 0.2s;
-    margin: 0 auto 2rem;
-    display: block;
-  }
-
-  .jump-btn:hover { border-color: var(--accent); color: var(--accent); }
-</style>
+        .hidden {
+            display: none !important;
+        }
+    </style>
 </head>
 <body>
 
-<div class="header">
-  <div class="school-name">Royal Wunderkind Model School</div>
-  <div class="lab-tag">Science Assessment</div>
-  <h1>Physics Practical Examination</h1>
-  <p class="subtitle">60 multiple choice questions · click an option to answer</p>
-</div>
+    <div id="hud-bar" class="hidden">
+        <div id="hud-candidate">Candidate: </div>
+        <div id="hud-timer">Time Remaining: 30:00</div>
+    </div>
 
-<div class="progress-label" id="progressLabel">
-  <span>Progress</span><span id="progressCount">0 / 60</span>
-</div>
-<div class="progress-bar-wrap">
-  <div class="progress-bar" id="progressBar"></div>
-</div>
+    <div class="container">
+        
+        <div class="header-panel">
+            <h1>Royal Wunderkind Model School</h1>
+            <h2>Jalala Area, Tanke, Oke - Odo, Ilorin</h2>
+            <h3>SUBJECT: CHRISTIAN RELIGIOUS STUDIES (CRS)</h3>
+            <div class="meta-grid">
+                <div><strong>Session:</strong> 2025/2026 Promotional</div>
+                <div><strong>Class:</strong> JSS One (Year 7)</div>
+                <div><strong>Exam Duration:</strong> 30 Minutes</div>
+            </div>
+        </div>
 
-<button class="jump-btn" onclick="document.getElementById('resultsPanel').scrollIntoView({behavior:'smooth', block:'center'})">↓ Jump to results</button>
+        <div id="login-view">
+            <h4>Candidate Examination Gateway</h4>
+            <p>Please type your full name inside the entry space to launch your digital evaluation workspace.</p>
+            <input type="text" id="candidate-name-input" class="input-field" placeholder="Enter Student Full Name" autocomplete="off">
+            <button class="btn" onclick="initializeWorkspace()">Start Examination</button>
+        </div>
 
-<div class="quiz-container" id="quizContainer"></div>
-<div class="results-panel" id="resultsPanel">
-  <div class="score-label">Your Score</div>
-  <div class="score-display" id="scoreDisplay"></div>
-  <div style="color:var(--muted);font-size:0.8rem;margin-bottom:0.5rem">out of 60</div>
-  <div class="score-message" id="scoreMessage"></div>
-  <button class="retry-btn" onclick="retryQuiz()">↺ Try Again</button>
-</div>
+        <form id="examination-form" class="hidden" onsubmit="event.preventDefault(); evaluateExamPayload(false);">
+            
+            <div id="dynamic-exam-nodes"></div>
 
-<script>
-const questions = [
-  // Lab 1: Measurement, Precision, and Accuracy
-  { lab: "Lab 1 · Measurement, Precision & Accuracy", q: "Accuracy refers to how close a measurement is to:", options: ["Another measurement", "The correct value", "Zero", "The average value"], answer: 1, feedback: "Accuracy is about correctness — how near a reading is to the true, accepted value." },
-  { lab: "Lab 1 · Measurement, Precision & Accuracy", q: "Precision refers to:", options: ["The size of the object", "How close repeated measurements are to one another", "The speed of measurement", "The unit of measurement"], answer: 1, feedback: "Precision describes consistency — how tightly repeated readings cluster together, regardless of the true value." },
-  { lab: "Lab 1 · Measurement, Precision & Accuracy", q: "Which instrument is best used to measure the length of a classroom?", options: ["Stopwatch", "Measuring tape", "Thermometer", "Spring balance"], answer: 1, feedback: "A measuring tape is designed for long-distance length measurements like the dimensions of a room." },
-  { lab: "Lab 1 · Measurement, Precision & Accuracy", q: "The SI unit of distance is:", options: ["Centimeter", "Millimeter", "Meter", "Kilometer"], answer: 2, feedback: "The metre is the base SI unit for length/distance; other units are derived from it." },
-  { lab: "Lab 1 · Measurement, Precision & Accuracy", q: "Which instrument is commonly used to measure the dimensions of a small block?", options: ["Ruler", "Beaker", "Stopwatch", "Balance"], answer: 0, feedback: "A ruler gives quick, direct readings of length, width, and height for small regular objects." },
-  { lab: "Lab 1 · Measurement, Precision & Accuracy", q: "The smallest division on a measuring instrument determines its:", options: ["Accuracy", "Resolution", "Density", "Weight"], answer: 1, feedback: "Resolution (or precision limit) is set by the smallest marked division an instrument can read." },
-  { lab: "Lab 1 · Measurement, Precision & Accuracy", q: "Which instrument measures mass directly?", options: ["Spring scale", "Digital scale", "Stopwatch", "Measuring tape"], answer: 1, feedback: "A digital scale measures mass directly in grams or kilograms." },
-  { lab: "Lab 1 · Measurement, Precision & Accuracy", q: "A spring scale measures:", options: ["Density", "Weight", "Volume", "Mass"], answer: 1, feedback: "A spring scale reads the pull of gravity on an object, which is its weight, measured in newtons." },
-  { lab: "Lab 1 · Measurement, Precision & Accuracy", q: "Weight is measured in:", options: ["Kilograms", "Grams", "Newtons", "Meters"], answer: 2, feedback: "Weight is a force, so its SI unit is the newton (N), unlike mass which is measured in kilograms." },
-  { lab: "Lab 1 · Measurement, Precision & Accuracy", q: "The value of gravitational acceleration used in calculations is:", options: ["10.8 m/s²", "8.9 m/s²", "9.8 m/s²", "9.0 m/s²"], answer: 2, feedback: "The standard value used for gravitational acceleration near Earth's surface is 9.8 m/s²." },
-  { lab: "Lab 1 · Measurement, Precision & Accuracy", q: "Volume of an irregular object is best measured using:", options: ["Formula", "Ruler", "Displacement method", "Vernier caliper"], answer: 2, feedback: "Irregular shapes don't fit neat formulas, so the water displacement method is used instead." },
-  { lab: "Lab 1 · Measurement, Precision & Accuracy", q: "One milliliter (mL) is equal to:", options: ["10 cm³", "100 cm³", "1 cm³", "0.1 cm³"], answer: 2, feedback: "1 millilitre and 1 cubic centimetre represent exactly the same volume." },
-  { lab: "Lab 1 · Measurement, Precision & Accuracy", q: "When reading a measuring cylinder, your eye should be:", options: ["Above the water level", "Below the water level", "At eye level", "Anywhere"], answer: 2, feedback: "Reading at eye level with the meniscus avoids parallax error, which distorts the reading if viewed from above or below." },
-  { lab: "Lab 1 · Measurement, Precision & Accuracy", q: "Air bubbles attached to an object during displacement will make the measured volume:", options: ["Smaller", "Larger", "Unchanged", "Zero"], answer: 1, feedback: "Trapped air takes up extra space, pushing the water level higher and making the volume appear larger than it really is." },
-  { lab: "Lab 1 · Measurement, Precision & Accuracy", q: "Which precaution should be taken when using glassware?", options: ["Shake it vigorously", "Handle carefully", "Heat it immediately", "Drop the object into it"], answer: 1, feedback: "Glassware is fragile and should always be handled with care to prevent breakage and injury." },
+            <div style="text-align: center; margin: 40px 0;">
+                <button type="button" class="btn" id="master-submit-btn" onclick="requestUserConfirmation()">Submit Examination</button>
+            </div>
+        </form>
 
-  // Lab 2: Position and Speed
-  { lab: "Lab 2 · Position & Speed", q: "Speed is calculated as:", options: ["Distance × Time", "Distance ÷ Time", "Time ÷ Distance", "Mass × Acceleration"], answer: 1, feedback: "Speed tells you how much distance is covered per unit of time, so speed = distance ÷ time." },
-  { lab: "Lab 2 · Position & Speed", q: "The SI unit of speed is:", options: ["km/h", "cm/s", "m/s", "m²/s"], answer: 2, feedback: "Metres per second (m/s) combines the SI base units of distance and time." },
-  { lab: "Lab 2 · Position & Speed", q: "Which instrument is used to measure time?", options: ["Meter rule", "Stopwatch", "Spring balance", "Thermometer"], answer: 1, feedback: "A stopwatch precisely records elapsed time during an experiment." },
-  { lab: "Lab 2 · Position & Speed", q: "Repeating measurements during an experiment helps to:", options: ["Waste time", "Improve reliability", "Increase distance", "Reduce mass"], answer: 1, feedback: "Taking repeats and averaging reduces the effect of random errors, making results more reliable." },
-  { lab: "Lab 2 · Position & Speed", q: "If the same distance is covered in less time, the speed:", options: ["Decreases", "Remains constant", "Increases", "Becomes zero"], answer: 2, feedback: "Since speed = distance ÷ time, covering the same distance in less time means the speed is greater." },
-  { lab: "Lab 2 · Position & Speed", q: "A line of best fit is drawn:", options: ["Through every point", "Randomly", "Through the general trend of the data", "Along the axes"], answer: 2, feedback: "A line of best fit follows the overall pattern of the plotted points rather than connecting each one exactly." },
-  { lab: "Lab 2 · Position & Speed", q: "In a scatter graph, the dots should:", options: ["Be connected", "Not be connected", "Form a circle", "Be colored differently"], answer: 1, feedback: "Scatter plot points are left unconnected so the overall trend can be judged with a separate line of best fit." },
-  { lab: "Lab 2 · Position & Speed", q: "A positive trend means:", options: ["One variable decreases as the other increases.", "Both variables increase together.", "Both variables decrease together.", "There is no relationship."], answer: 1, feedback: "In a positive trend, as one variable rises, the other rises with it." },
-  { lab: "Lab 2 · Position & Speed", q: "Which variable is plotted on the horizontal axis?", options: ["Dependent variable", "Independent variable", "Constant", "Control"], answer: 1, feedback: "By convention, the variable the experimenter changes (the independent variable) goes on the x-axis." },
-  { lab: "Lab 2 · Position & Speed", q: "A line of best fit helps scientists:", options: ["Decorate graphs", "Make predictions", "Count points", "Measure mass"], answer: 1, feedback: "The line summarises the trend in the data, allowing values to be predicted beyond the measured points." },
+        <div id="report-dashboard" class="hidden">
+            <h2>Examination Evaluation Summary</h2>
+            <p id="report-name-target" style="font-size: 18px; margin-top: 10px; font-weight: 600;"></p>
+            <div class="score-metrics" id="report-score-target">0 / 50</div>
+            <p id="report-percentage-target" style="font-size: 20px; font-weight: 700; color: var(--secondary-color);"></p>
+            <p style="margin-top: 15px; color: #718096;">Scroll downwards to view color-coded markers and official correction paths.</p>
+        </div>
 
-  // Lab 3: Density
-  { lab: "Lab 3 · Density", q: "Density is defined as:", options: ["Volume ÷ Mass", "Mass ÷ Volume", "Mass × Volume", "Weight ÷ Volume"], answer: 1, feedback: "Density (ρ) = Mass ÷ Volume — it measures how much mass is packed into a given space." },
-  { lab: "Lab 3 · Density", q: "The SI-related unit used in the laboratory for density is:", options: ["kg/m", "g/cm³", "N/m²", "kg/L"], answer: 1, feedback: "In the lab, mass is usually in grams and volume in cm³, giving density in g/cm³." },
-  { lab: "Lab 3 · Density", q: "An object with density less than water will:", options: ["Sink", "Float", "Explode", "Dissolve"], answer: 1, feedback: "Objects less dense than water (1 g/cm³) are buoyed up and float on its surface." },
-  { lab: "Lab 3 · Density", q: "Water has a density of approximately:", options: ["0.5 g/cm³", "2 g/cm³", "1 g/cm³", "10 g/cm³"], answer: 2, feedback: "Pure water has a density of about 1 g/cm³, which serves as a reference point for floating and sinking." },
-  { lab: "Lab 3 · Density", q: "The volume of a rectangular block is:", options: ["Length + Width + Height", "Length × Width × Height", "Length × Width", "Mass × Volume"], answer: 1, feedback: "For a rectangular block, volume is found by multiplying its three dimensions together." },
-  { lab: "Lab 3 · Density", q: "Which object generally has the highest density?", options: ["Wood", "Plastic", "Metal", "Rubber"], answer: 2, feedback: "Metals typically pack a large mass into a small volume, giving them much higher densities than wood, plastic, or rubber." },
-  { lab: "Lab 3 · Density", q: "Density of an irregular object requires measuring:", options: ["Area only", "Weight only", "Volume by displacement", "Temperature"], answer: 2, feedback: "Since an irregular shape can't be measured with a formula, its volume is found using water displacement." },
-  { lab: "Lab 3 · Density", q: "Cooking oil poured into water usually:", options: ["Sinks", "Mixes completely", "Floats", "Evaporates"], answer: 2, feedback: "Cooking oil is less dense than water, so it forms a layer that floats on top." },
-  { lab: "Lab 3 · Density", q: "Salt water is denser than fresh water because it contains:", options: ["Less water", "Dissolved salt", "Air", "Oil"], answer: 1, feedback: "Dissolved salt adds extra mass to the same volume of water, increasing its density." },
-  { lab: "Lab 3 · Density", q: "Liquids in a container arrange themselves according to:", options: ["Color", "Temperature", "Density", "Volume"], answer: 2, feedback: "Denser liquids sink below less dense ones, so layers settle in order of density." },
+    </div>
 
-  // Lab 4: Stretching and Forces
-  { lab: "Lab 4 · Stretching & Forces", q: "Hooke's Law states that:", options: ["Force is inversely proportional to extension.", "Extension is directly proportional to force.", "Force equals mass × acceleration.", "Density equals mass ÷ volume."], answer: 1, feedback: "Hooke's Law says a spring's extension increases in direct proportion to the applied force, up to its elastic limit." },
-  { lab: "Lab 4 · Stretching & Forces", q: "The formula for Hooke's Law is:", options: ["F = ma", "F = kx", "V = lwh", "D = m/V"], answer: 1, feedback: "F = kx relates force (F) to the spring constant (k) and extension (x)." },
-  { lab: "Lab 4 · Stretching & Forces", q: "The spring constant is represented by:", options: ["F", "x", "k", "g"], answer: 2, feedback: "The letter k stands for the spring constant, which measures a spring's stiffness." },
-  { lab: "Lab 4 · Stretching & Forces", q: "Extension is calculated by:", options: ["New length + Natural length", "Natural length - New length", "New length - Natural length", "Force - Length"], answer: 2, feedback: "Extension is how much longer the spring has stretched, so it equals the new length minus the original (natural) length." },
-  { lab: "Lab 4 · Stretching & Forces", q: "The SI unit of force is:", options: ["Joule", "Newton", "Watt", "Pascal"], answer: 1, feedback: "Force is measured in newtons (N) in the SI system." },
-  { lab: "Lab 4 · Stretching & Forces", q: "Before recording the spring length, you should:", options: ["Shake the spring", "Wait until it stops moving", "Remove the mass", "Stretch it further"], answer: 1, feedback: "Letting the spring settle before reading avoids errors caused by it still oscillating." },
-  { lab: "Lab 4 · Stretching & Forces", q: "The graph of Force against Extension follows Hooke's Law by being:", options: ["Circular", "Curved", "Straight", "Zigzag"], answer: 2, feedback: "As long as the spring obeys Hooke's Law, plotting force against extension gives a straight line through the origin." },
-  { lab: "Lab 4 · Stretching & Forces", q: "The gradient of a Force-Extension graph represents:", options: ["Density", "Speed", "Spring constant", "Mass"], answer: 2, feedback: "Since F = kx, the slope of a force-extension graph gives the spring constant, k." },
-  { lab: "Lab 4 · Stretching & Forces", q: "A stiffer spring has:", options: ["Smaller spring constant", "Greater spring constant", "Zero extension", "Lower force"], answer: 1, feedback: "A larger spring constant means more force is needed to produce the same extension, so the spring is stiffer." },
-  { lab: "Lab 4 · Stretching & Forces", q: "Stretching beyond the elastic limit means the spring:", options: ["Returns completely", "Becomes permanently deformed", "Gets lighter", "Stops moving"], answer: 1, feedback: "Past the elastic limit, the spring is permanently stretched and no longer returns to its original length." },
+    <script>
+        // Data Repository Matrix for 50 Quiz Questions
+        const structurePayload = [
+            { id: 1, q: "God intends marriage to be a source of ____________ .", options: ["Companionship", "Blessing", "Settlement", "Misunderstanding"], ans: 0 },
+            { id: 2, q: "One of the consequences of lack of repentance the house of Eli suffered was the ________ .", options: ["sickness of Eli", "death of Eli and his sons", "touching of the ark of covenant", "destruction of Shiloh."], ans: 1 },
+            { id: 3, q: "To be considered as a good child. You must behave like __________ in the Old testament.", options: ["Joel", "Samuel", "Saul", "Hophni"], ans: 1 },
+            { id: 4, q: "God intends marriage to be a source of _________ .", options: ["Companionship", "Blessing", "Endurance", "misunderstanding"], ans: 0 },
+            { id: 5, q: "God created the wife as a ________ to the man.", options: ["giver", "helper", "lover", "servant"], ans: 1 },
+            { id: 6, q: "Obedience is the act of _________.", options: ["doing what you are told to do", "doing what you want to", "readiness", "not complaining"], ans: 0 },
+            { id: 7, q: "Whosoever shall not receive the kingdom of God as a/an _______ shall not enter therein.", options: ["Fool", "Novice", "Adult", "Child"], ans: 3 },
+            { id: 8, q: "God rested on the _______ of creation.", options: ["forth", "Seventh", "Third", "Sixth"], ans: 1 },
+            { id: 9, q: "Every religion teaches the following except ___________ .", options: ["Greed", "Tolerance", "Holiness", "Faith in God"], ans: 0 },
+            { id: 10, q: "What did the wise men used in tracing Jesus to his place of birth?", options: ["moon", "sun", "star", "Angel"], ans: 2 },
+            { id: 11, q: "Abraham means ____________ .", options: ["Father of hope", "Lover of God", "The one after God’s own heart", "Father of many nations"], ans: 3 },
+            { id: 12, q: "Which animal did God provide to replace Isaac?", options: ["Ram", "Sheep", "Goat", "antelope"], ans: 0 },
+            { id: 13, q: "For how many years did the Israelites wonder in the wilderness?", options: ["4", "40", "14", "400"], ans: 1 },
+            { id: 14, q: "God sent Jonah to the people of ____________ for repentance.", options: ["Israel", "Nineveh", "Syria", "Jerusalem"], ans: 1 },
+            { id: 15, q: "All these people repented EXCEPT _______________", options: ["Eli", "Zacchaeus", "Jonah", "David"], ans: 0 },
+            { id: 16, q: "_________ named all the things created by God.", options: ["God", "Adam", "Angel", "Eve"], ans: 1 },
+            { id: 17, q: "--------------- humbled himself before Jesus and did not allow his wealth to come between his soul and God.", options: ["Timothy", "Paul", "Zacchaeus", "Abraham"], ans: 2 },
+            { id: 18, q: "God created Eve from _________--- of Adam’s ribs.", options: ["some", "one", "many", "two"], ans: 1 },
+            { id: 19, q: "God formed man’s body from the ________ of the ground.", options: ["sand", "dust", "clay", "stone"], ans: 1 },
+            { id: 20, q: "God carried out his work of creation in _________ days.", options: ["5", "6", "7", "40"], ans: 1 },
+            { id: 21, q: "According to Psalm 90:4, a thousand years is like a _________ before God.", options: ["day", "year", "decade", "century"], ans: 0 },
+            { id: 22, q: "_________ is the creator of all things.", options: ["God", "Jesus", "Angel", "Holy Spirit"], ans: 0 },
+            { id: 23, q: "A true and genuine relationship in the church is demonstrated when you __________ love your Christian brethren.", options: ["love", "hate", "fight", "control"], ans: 0 },
+            { id: 24, q: "The word ‘ woman” means ____________ .", options: ["taken out of man", "created by man", "born by man", "married to man."], ans: 0 },
+            { id: 25, q: "The following are the attribute of God EXCEPT __________ .", options: ["Holiness", "Partiality", "Righteousness", "Mightiness"], ans: 1 },
+            { id: 26, q: "The sin committed by Adam and Eve is __________ .", options: ["adultery", "envy", "disobedience", "hatred"], ans: 2 },
+            { id: 27, q: "In the beginning God created the heavens and the _______ .", options: ["earth", "man", "firmament", "sun"], ans: 0 },
+            { id: 28, q: "All the following are work of the flesh except _______ .", options: ["Love", "envy", "idolatry", "hatred"], ans: 0 },
+            { id: 29, q: "When we say the Lord’s prayer, we say “ lead us not into __________ .", options: ["hell", "problem", "temptation", "confusion"], ans: 2 },
+            { id: 30, q: "All the following are fruits of the Holy Spirit EXCEPT __________ .", options: ["Kindness", "Long suffering", "witch craft", "Patience"], ans: 2 },
+            { id: 31, q: "The first Christian martyr is ______________ .", options: ["Peter", "James", "Stephen", "John"], ans: 2 },
+            { id: 32, q: "Prophet __________ prophesied about the coming of the Holy Spirit.", options: ["Isaiah", "Joel", "Amos", "Hosea"], ans: 1 },
+            { id: 33, q: "The inspiration for preaching the gospel always comes from ______________ .", options: ["Jesus", "Holy Spirit", "God", "man"], ans: 1 },
+            { id: 34, q: "David defeated and killed ____________ .", options: ["Goliath", "Samson", "Deborah", "Martha"], ans: 0 },
+            { id: 35, q: "The Holy Spirit is a comforter in the time of ________ .", options: ["sorrow", "joy", "happiness", "success"], ans: 0 },
+            { id: 36, q: "The apostles were filled with ____________ .", options: ["food", "water", "Holy Spirit", "Oil"], ans: 2 },
+            { id: 37, q: "John in his gospel said a person who does not love and hate is likely to commit _________________- .", options: ["murder", "adultery", "fornication", "blasphemy"], ans: 0 },
+            { id: 38, q: "Whose life did God sacrifice for our salvation?", options: ["one of the angels", "Jesus", "Prophet", "Ram"], ans: 1 },
+            { id: 39, q: "The servant with one talent was punished because _____________ .", options: ["he buried his talent", "he was not given many talents", "he was a good servant", "he did not have any money"], ans: 0 },
+            { id: 40, q: "What was the sign of the covenant between God and Abraham?", options: ["sacrifice", "purification", "Circumcision", "sanctification"], ans: 2 },
+            { id: 41, q: "God is described as the ____________ . being.", options: ["Supreme", "Ordinary", "Weak", "Small"], ans: 0 },
+            { id: 42, q: "Prophet _________- was sent by God to King David for judgement.", options: ["Isaiah", "Joel", "Nathan", "Jeremiah"], ans: 2 },
+            { id: 43, q: "Human beings were created on the _____________ day.", options: ["Sixth", "Fourth", "Fifth", "Seventh"], ans: 0 },
+            { id: 44, q: "God is everywhere, this means He is __________- .", options: ["Invisible", "Omnipotent", "Omniscient", "Omnipresent"], ans: 3 },
+            { id: 45, q: "God knows everything, this means He is ------------- .", options: ["Spirit", "Omnipresent", "Omniscient", "Omnipotent"], ans: 2 },
+            { id: 46, q: "God created human beings to _________-", options: ["destroy the earth", "Fight others", "Know Him", "be lazy"], ans: 2 },
+            { id: 47, q: "God is invisible because ________ .", options: ["He is a spirit", "He is far away", "He is weak.", "He is sleeping"], ans: 0 },
+            { id: 48, q: "The primary function of the workspace given to Adam was to ________ the Garden of Eden.", options: ["abandon", "till and keep", "sell properties in", "burn down"], ans: 1 },
+            { id: 49, q: "God is all powerful means He is ________", options: ["Omniscient", "Omnipotent", "Omnipresent", "Spirit"], ans: 1 },
+            { id: 50, q: "Ubangiji is the name of God in ____________ language.", options: ["Yoruba", "Hausa", "Igbo", "Effik"], ans: 1 }
+        ];
 
-  // Lab 6: The Pendulum
-  { lab: "Lab 6 · The Pendulum", q: "The time taken for one complete swing is called the:", options: ["Frequency", "Period", "Velocity", "Amplitude"], answer: 1, feedback: "The period is the time for one full back-and-forth swing of the pendulum." },
-  { lab: "Lab 6 · The Pendulum", q: "The period of a pendulum is measured in:", options: ["Meters", "Seconds", "Newtons", "Kilograms"], answer: 1, feedback: "Since the period is a measure of time, it is recorded in seconds." },
-  { lab: "Lab 6 · The Pendulum", q: "The main factor affecting the period of a pendulum is:", options: ["Mass", "Color", "Length", "Shape"], answer: 2, feedback: "A pendulum's period depends mainly on its length — longer pendulums swing more slowly." },
-  { lab: "Lab 6 · The Pendulum", q: "The recommended release angle is approximately:", options: ["45°", "30°", "10°", "90°"], answer: 2, feedback: "A small release angle, around 10°, keeps the swing close to simple harmonic motion for accurate timing." },
-  { lab: "Lab 6 · The Pendulum", q: "Timing ten swings instead of one:", options: ["Increases error", "Improves accuracy", "Changes gravity", "Changes the length"], answer: 1, feedback: "Timing multiple swings and dividing by the count spreads out reaction-time error, giving a more accurate period." },
-  { lab: "Lab 6 · The Pendulum", q: "The pendulum length is measured from:", options: ["Top of the stand", "Pivot to the center of the bob", "Bottom of the bob", "End of the string"], answer: 1, feedback: "Pendulum length is taken from the fixed pivot point down to the centre of the swinging bob." },
-  { lab: "Lab 6 · The Pendulum", q: "A longer pendulum generally has:", options: ["A shorter period", "The same period", "A longer period", "Zero period"], answer: 2, feedback: "Increasing the length of a pendulum increases the time it takes to complete each swing." },
-  { lab: "Lab 6 · The Pendulum", q: "Which instrument is used to measure the release angle?", options: ["Stopwatch", "Meter rule", "Protractor", "Thermometer"], answer: 2, feedback: "A protractor measures angles, making it the right tool for setting the pendulum's release angle." },
+        let countdownRef;
+        let totalTimeSec = 30 * 60; 
+        let formSubmitted = false;
 
-  // General Questions
-  { lab: "General Questions", q: "Which of the following is not a laboratory measuring instrument?", options: ["Stopwatch", "Measuring tape", "Spring scale", "Microscope"], answer: 3, feedback: "A microscope magnifies objects for viewing rather than producing a numerical measurement like the others." },
-  { lab: "General Questions", q: "Which unit is used to measure mass?", options: ["Newton", "Gram", "Meter", "Second"], answer: 1, feedback: "Mass is measured in grams or kilograms, not newtons, meters, or seconds." },
-  { lab: "General Questions", q: "Scientists repeat experiments mainly to:", options: ["Increase speed", "Improve reliability", "Reduce mass", "Save time"], answer: 1, feedback: "Repeating experiments and averaging results reduces the impact of random error, improving reliability." },
-  { lab: "General Questions", q: "Which of the following is an example of an irregular object?", options: ["Cube", "Stone", "Rectangular block", "Box"], answer: 1, feedback: "A stone has no uniform geometric shape, unlike a cube, block, or box, so its volume must be found by displacement." },
-  { lab: "General Questions", q: "A graph showing no relationship between variables indicates:", options: ["Positive trend", "Negative trend", "No clear trend", "Constant speed"], answer: 2, feedback: "When points are scattered with no visible pattern, this shows there is no clear trend between the variables." },
-  { lab: "General Questions", q: "Which laboratory activity investigates floating and sinking?", options: ["Speed", "Density", "Hooke's Law", "Pendulum"], answer: 1, feedback: "Floating and sinking are explained by density — whether an object is more or less dense than the fluid it's in." },
-  { lab: "General Questions", q: "Which scientific skill is emphasized throughout all the laboratory activities?", options: ["Memorization", "Accurate measurement and observation", "Guessing", "Drawing only"], answer: 1, feedback: "Every lab activity, from measuring length to timing a pendulum, relies on careful, accurate measurement and observation." }
-];
+        function assembleExamDOM() {
+            const displayPool = document.getElementById('dynamic-exam-nodes');
+            displayPool.innerHTML = `<div class="section-header">SECTION A: CHOOSE THE CORRECT ANSWER FROM OPTIONS A–D.</div>`;
 
-let answered = 0;
-let correct = 0;
+            structurePayload.forEach((node, index) => {
+                const optionPrefix = ["A", "B", "C", "D"];
+                let optionsMarkup = "";
 
-function buildQuiz() {
-  const container = document.getElementById('quizContainer');
-  container.innerHTML = '';
-  answered = 0;
-  correct = 0;
-  updateProgress();
+                node.options.forEach((opt, idx) => {
+                    optionsMarkup += `
+                        <label class="option-item" id="lbl-q${node.id}-o${idx}">
+                            <input type="radio" name="input-q${node.id}" value="${idx}">
+                            <span><strong>${optionPrefix[idx]}.</strong> ${opt}</span>
+                        </label>
+                    `;
+                });
 
-  const letters = ['A', 'B', 'C', 'D'];
+                const cardUI = `
+                    <div class="question-card" id="card-block-q${node.id}">
+                        <div class="question-text">${index + 1}. ${node.q}</div>
+                        <div class="options-grid">
+                            ${optionsMarkup}
+                        </div>
+                        <div id="evaluation-q${node.id}"></div>
+                    </div>
+                `;
+                displayPool.innerHTML += cardUI;
+            });
+        }
 
-  questions.forEach((q, i) => {
-    const card = document.createElement('div');
-    card.className = 'question-card';
-    card.id = `card-${i}`;
+        function initializeWorkspace() {
+            const inputName = document.getElementById('candidate-name-input').value.trim();
+            if (!inputName) {
+                alert("Please submit your descriptive profile identity name before logging in.");
+                return;
+            }
 
-    const optionsHTML = q.options.map((opt, oi) => `
-      <button class="option-btn" onclick="selectAnswer(${i}, ${oi})" id="opt-${i}-${oi}">
-        <span class="option-letter">${letters[oi]}.</span>
-        <span>${opt}</span>
-      </button>
-    `).join('');
+            document.getElementById('hud-candidate').innerText = `Candidate: ${inputName.toUpperCase()}`;
+            document.getElementById('login-view').classList.add('hidden');
+            document.getElementById('hud-bar').classList.remove('hidden');
+            document.getElementById('examination-form').classList.remove('hidden');
 
-    card.innerHTML = `
-      <div class="q-num">Question ${i + 1} of ${questions.length}</div>
-      <div class="q-text">${q.q}</div>
-      <div class="options">${optionsHTML}</div>
-      <div class="feedback" id="fb-${i}"></div>
-    `;
-    container.appendChild(card);
-  });
+            assembleExamDOM();
+            beginTimeDecrement();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
 
-  document.getElementById('resultsPanel').classList.remove('show');
-}
+        function beginTimeDecrement() {
+            countdownRef = setInterval(() => {
+                if (totalTimeSec <= 0) {
+                    clearInterval(countdownRef);
+                    document.getElementById('hud-timer').innerText = "TIME EXPIRED";
+                    alert("Your allotted testing runtime has run out. Your exam paper will evaluate immediately.");
+                    evaluateExamPayload(true);
+                } else {
+                    totalTimeSec--;
+                    let min = Math.floor(totalTimeSec / 60);
+                    let sec = totalTimeSec % 60;
 
-function selectAnswer(qIdx, optIdx) {
-  const q = questions[qIdx];
-  const card = document.getElementById(`card-${qIdx}`);
+                    min = min < 10 ? '0' + min : min;
+                    sec = sec < 10 ? '0' + sec : sec;
 
-  const btns = card.querySelectorAll('.option-btn');
-  btns.forEach(b => b.disabled = true);
+                    document.getElementById('hud-timer').innerText = `Time Remaining: ${min}:${sec}`;
 
-  const chosen = document.getElementById(`opt-${qIdx}-${optIdx}`);
-  const correctBtn = document.getElementById(`opt-${qIdx}-${q.answer}`);
+                    if (totalTimeSec <= 300) {
+                        document.getElementById('hud-bar').classList.add('warning');
+                    }
+                }
+            }, 1000);
+        }
 
-  const isCorrect = optIdx === q.answer;
+        function requestUserConfirmation() {
+            let trackedAnswers = 0;
+            structurePayload.forEach(node => {
+                if (document.querySelector(`input[name="input-q${node.id}"]:checked`)) {
+                    trackedAnswers++;
+                }
+            });
 
-  if (isCorrect) {
-    chosen.classList.add('correct');
-    card.classList.add('answered-correct');
-    correct++;
-  } else {
-    chosen.classList.add('wrong');
-    correctBtn.classList.add('correct');
-    card.classList.add('answered-wrong');
-  }
+            const userVerdict = confirm(`You have responded to ${trackedAnswers} out of ${structurePayload.length} exam items. Would you like to finish and submit?`);
+            if (userVerdict) {
+                evaluateExamPayload(false);
+            }
+        }
 
-  const fb = document.getElementById(`fb-${qIdx}`);
-  fb.textContent = (isCorrect ? '✓ Correct! ' : '✗ Incorrect. ') + q.feedback;
-  fb.className = `feedback show ${isCorrect ? 'correct' : 'wrong'}`;
+        function evaluateExamPayload(isForcedTimeout = false) {
+            if (formSubmitted) return;
+            formSubmitted = true;
 
-  answered++;
-  updateProgress();
+            clearInterval(countdownRef);
+            document.getElementById('hud-bar').classList.add('hidden');
+            document.getElementById('master-submit-btn').classList.add('hidden');
 
-  if (answered === questions.length) {
-    setTimeout(showResults, 600);
-  }
-}
+            let aggregateScore = 0;
+            const userName = document.getElementById('candidate-name-input').value.toUpperCase();
 
-function updateProgress() {
-  const pct = (answered / questions.length) * 100;
-  document.getElementById('progressBar').style.width = pct + '%';
-  document.getElementById('progressCount').textContent = `${answered} / ${questions.length}`;
-}
+            structurePayload.forEach((node) => {
+                const selectedRadio = document.querySelector(`input[name="input-q${node.id}"]:checked`);
+                const logFeedbackNode = document.getElementById(`evaluation-q${node.id}`);
+                const selectionIdx = selectedRadio ? parseInt(selectedRadio.value) : null;
 
-function showResults() {
-  const panel = document.getElementById('resultsPanel');
-  panel.classList.add('show');
-  document.getElementById('scoreDisplay').textContent = correct;
+                const optionElements = document.querySelectorAll(`input[name="input-q${node.id}"]`);
+                optionElements.forEach(radio => radio.disabled = true);
 
-  const pct = Math.round((correct / questions.length) * 100);
-  let msg;
-  if (pct >= 90) msg = "Outstanding! You have mastered the entire practical syllabus.";
-  else if (pct >= 75) msg = "Great work! Strong understanding of the concepts.";
-  else if (pct >= 60) msg = "Good effort! Review the labs you missed.";
-  else msg = "Keep practising! Re-read the lab notes and try again.";
-  document.getElementById('scoreMessage').textContent = `${pct}% — ${msg}`;
+                if (selectionIdx === node.ans) {
+                    aggregateScore++;
+                    document.getElementById(`lbl-q${node.id}-o${node.ans}`).classList.add('item-correct');
+                    logFeedbackNode.innerHTML = `<span class="correction-badge badge-success">✓ Correct Answer</span>`;
+                } else {
+                    document.getElementById(`lbl-q${node.id}-o${node.ans}`).classList.add('item-correct');
+                    if (selectionIdx !== null) {
+                        document.getElementById(`lbl-q${node.id}-o${selectionIdx}`).classList.add('item-wrong');
+                    }
+                    
+                    const charMap = ["A", "B", "C", "D"];
+                    logFeedbackNode.innerHTML = `
+                        <span class="correction-badge badge-danger">
+                            Correction: Option ${charMap[node.ans]} — "${node.options[node.ans]}" is correct.
+                        </span>`;
+                }
+            });
 
-  panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
-}
-
-function retryQuiz() {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-  setTimeout(buildQuiz, 300);
-}
-
-buildQuiz();
-</script>
+            const computationPercentage = Math.round((aggregateScore / structurePayload.length) * 100);
+            
+            document.getElementById('report-name-target').innerText = `Student Identity Name: ${userName}`;
+            document.getElementById('report-score-target').innerText = `${aggregateScore} / ${structurePayload.length}`;
+            document.getElementById('report-percentage-target').innerText = `Final Evaluation Grade: ${computationPercentage}%`;
+            
+            document.getElementById('report-dashboard').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
 </body>
 </html>
